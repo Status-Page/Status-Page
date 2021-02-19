@@ -231,4 +231,7 @@ return [
 
     ],
 
+    'mainpage_incident_days' => env('MAINPAGE_INCIDENT_DAYS', 7),
+    'actionlog_backlog' => env('ACTIONLOG_BACKLOG', 7),
+
 ];

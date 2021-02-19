@@ -6,7 +6,8 @@
         </x-slot>
 
         <x-slot name="content">
-            Are you sure, you want to delete the Incident "{{ $incident->title }}"? Be aware, that this could cause temporarily errors on your main page.
+            Are you sure, you want to delete the Incident "{{ $incident->title }}"?<br>
+            Be aware, that this could cause temporarily errors on your main page.
         </x-slot>
 
         <x-slot name="footer">

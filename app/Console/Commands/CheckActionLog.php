@@ -40,7 +40,7 @@ class CheckActionLog extends Command
     public function handle()
     {
         Action::query()
-            ->where('created_at', '<', Carbon::now()->subDays(7))
+            ->where('created_at', '<', Carbon::now()->subDays(config('app.actionlog_backlog')))
             ->delete();
         return 0;
     }

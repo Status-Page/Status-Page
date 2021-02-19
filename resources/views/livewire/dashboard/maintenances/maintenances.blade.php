@@ -50,50 +50,7 @@
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                         @can('edit_incidents')
-                                            <button wire:loading.attr="disabled" wire:click="startUpdateIncident({{ $maintenance->id }})" class="text-indigo-600 hover:text-indigo-900 mr-2">Update</button>
-
-                                            <x-jet-dialog-modal wire:model="incidentUpdateModal">
-                                                <x-slot name="title">
-                                                    Update Maintenance
-                                                </x-slot>
-
-                                                <x-slot name="content">
-                                                    <div class="col-span-6 sm:col-span-4 mb-4">
-                                                        <x-jet-label for="title" class="text-lg" value="{{ __('Title') }}" />
-                                                        <x-jet-input id="title" type="text" class="mt-1 block w-full" wire:model="newIncident.title" />
-                                                    </div>
-
-                                                    <div class="col-span-6 sm:col-span-4 mb-4">
-                                                        <x-jet-label for="status" class="text-lg" value="{{ __('Status') }}" />
-                                                        <select id="status" wire:model="newIncident.status" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-                                                            <option value="0">Planned</option>
-                                                            <option value="1">In Progress</option>
-                                                            <option value="2">Verifying</option>
-                                                            <option value="3">Completed</option>
-                                                        </select>
-                                                    </div>
-
-                                                    <div class="col-span-6 sm:col-span-4 mb-4">
-                                                        <x-jet-label for="visible" class="text-lg" value="{{ __('Visible') }}" />
-                                                        <x-jet-input id="visible" type="checkbox" class="mt-1 block" wire:model="newIncident.visible" />
-                                                    </div>
-
-                                                    <div class="col-span-6 sm:col-span-4 mb-4">
-                                                        <x-jet-label for="message" class="text-lg" value="{{ __('Message') }}" />
-                                                        <textarea id="message" wire:model="newIncidentUpdate.text" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"></textarea>
-                                                    </div>
-                                                </x-slot>
-
-                                                <x-slot name="footer">
-                                                    <x-jet-secondary-button wire:click="$toggle('incidentUpdateModal')" wire:loading.attr="disabled">
-                                                        Abort
-                                                    </x-jet-secondary-button>
-
-                                                    <x-jet-danger-button class="ml-2" wire:click="updateIncident" wire:loading.attr="disabled">
-                                                        Post Update
-                                                    </x-jet-danger-button>
-                                                </x-slot>
-                                            </x-jet-dialog-modal>
+                                            @livewire('dashboard.maintenances.modals.maintenance-update-modal', ['maintenance' => $maintenance], key($maintenance->id))
                                         @endcan
 
                                         @can('edit_incidents')

@@ -6,6 +6,7 @@ use App\Actions\Fortify\PasswordValidationRules;
 use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Hash;
+use Ramsey\Uuid\Uuid;
 use Validator;
 
 class StatusInstall extends Command
@@ -82,6 +83,12 @@ class StatusInstall extends Command
                 return 1;
             }
         }
+
+        $user = new User();
+        $user->name = 'System';
+        $user->email = 'system@statuspage';
+        $user->password = Hash::make(Uuid::uuid4());
+        $user->save();
 
         $user = new User();
         $user->name = $username;

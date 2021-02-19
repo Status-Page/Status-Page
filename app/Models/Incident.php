@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\ActionLog;
 use App\Mail\ScheduledIncidentStarted;
 use Auth;
 use Carbon\Carbon;
@@ -32,7 +33,13 @@ class Incident extends Model
 
                 $update->save();
 
-                $updates = $maintenance->incidentUpdates()->get();
+                ActionLog::dispatch(array(
+                    'user' => 1,
+                    'type' => 2,
+                    'message' => 'Maintenance '.$maintenance->title.' (ID: '.$maintenance->id.')',
+                ));
+
+                //$updates = $maintenance->incidentUpdates()->get();
                 // Mail::to(User::query()->where('id', '=', $maintenance->user)->get())->send(new ScheduledIncidentStarted($maintenance, $updates));
             }
         }
@@ -118,7 +125,11 @@ class Incident extends Model
     }
 
     public static function getUpcomingMaintenances(){
-        return Incident::query()->where([['status', '=', -1], ['type', '=', 1]])->get();
+        return Incident::query()->where([['status', '=', 0], ['type', '=', 1]])->get();
+    }
+
+    public static function getPublicUpcomingMaintenances(){
+        return Incident::query()->where([['status', '=', 0], ['type', '=', 1], ['visibility', '=', true]])->get();
     }
 
 }

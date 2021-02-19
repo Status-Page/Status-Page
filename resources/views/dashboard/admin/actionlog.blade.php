@@ -3,7 +3,7 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Action Log') }}
         </h2>
-        <p>Action Logs for the past 7 days. Older Logs are deleted daily.</p>
+        <p>Action Logs for the past {{ config('app.actionlog_backlog') }} days. Older Logs are deleted daily.</p>
     </x-slot>
 
     <div class="py-12">

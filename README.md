@@ -10,6 +10,7 @@ git clone https://git.herrtxbias.net/herrtxbias/status-page
 cd status-page
 composer install
 npm install
+npm run dev
 php artisan status:install
 ```
 

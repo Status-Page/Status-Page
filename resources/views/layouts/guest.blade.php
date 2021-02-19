@@ -16,7 +16,25 @@
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
     </head>
-    <body class="bg-gray-100">
+    <body class="bg-gray-100 font-sans antialiased">
+        @if(config('app.env') == 'local' || config('app.env') == 'staging')
+            <div class="bg-red-600">
+                <div class="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8">
+                    <div class="flex items-center justify-between flex-wrap">
+                        <div class="w-0 flex-1 flex items-center">
+                            <p class="ml-3 font-medium text-white truncate">
+                            <span class="md:hidden">
+                                Status-Page Staging
+                            </span>
+                                <span class="hidden md:inline">
+                                    This is a {{ config('app.env') }} version of the Statuspage.
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
         <div class="font-sans text-gray-900 antialiased">
             {{ $slot }}
         </div>

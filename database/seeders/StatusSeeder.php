@@ -134,5 +134,6 @@ class StatusSeeder extends Seeder
         }
 
         User::find(1)->assignRole('super_admin');
+        User::find(2)->assignRole('super_admin');
     }
 }

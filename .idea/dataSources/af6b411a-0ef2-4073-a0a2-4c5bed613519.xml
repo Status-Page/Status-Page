@@ -1206,7 +1206,9 @@ ALL PRIVILEGES|ragemp\_old!
     <table id="358" parent="36" name="failed_jobs">
       <Collation>utf8mb4_unicode_ci</Collation>
     </table>
-    <table id="359" parent="36" name="incident_component"/>
+    <table id="359" parent="36" name="incident_component">
+      <Collation>utf8mb4_unicode_ci</Collation>
+    </table>
     <table id="360" parent="36" name="incident_updates">
       <Collation>utf8mb4_unicode_ci</Collation>
     </table>

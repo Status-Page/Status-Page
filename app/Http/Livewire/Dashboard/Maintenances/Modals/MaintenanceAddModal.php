@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Dashboard\Maintenances\Modals;
 
+use App\Events\ActionLog;
 use App\Models\ComponentGroup;
 use App\Models\Incident;
 use App\Models\IncidentUpdate;
@@ -48,6 +49,12 @@ class MaintenanceAddModal extends Component
         $this->incidentUpdate->status = $this->incident->status;
         $this->incidentUpdate->user = Auth::id();
         $this->incidentUpdate->save();
+
+        ActionLog::dispatch(array(
+            'user' => Auth::id(),
+            'type' => 1,
+            'message' => 'Maintenance '.$this->incident->title.' (ID: '.$this->incident->id.')',
+        ));
 
         $this->modal = false;
         $this->emitUp('refreshData');
