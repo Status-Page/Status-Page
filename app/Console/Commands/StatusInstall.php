@@ -56,6 +56,7 @@ class StatusInstall extends Command
             return 1;
         }
 
+        $this->call('config:cache');
         $this->call('migrate:fresh');
         $this->call('config:cache');
         $this->call('route:cache');
