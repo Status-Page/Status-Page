@@ -57,8 +57,8 @@ class StatusInstall extends Command
         }
 
         $this->call('config:cache');
+        $this->call('key:generate');
         $this->call('migrate:fresh');
-        $this->call('config:cache');
         $this->call('route:cache');
 
         $username = 'foobar';
