@@ -29,6 +29,9 @@ class IncidentDeleteModal extends Component
             'message' => 'Incident '.$this->incident->title.' (ID: '.$this->incident->id.')',
         ));
         $this->incident->incidentUpdates()->delete();
+
+        $this->incident->components()->detach();
+
         $this->incident->delete();
 
         $this->modal = false;

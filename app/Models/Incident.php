@@ -15,6 +15,9 @@ class Incident extends Model
     use HasFactory;
 
     public static function checkMaintenances(){
+        /**
+         * @var $dueMaintenances Incident[]
+         */
         $dueMaintenances = Incident::query()
             ->where('type', '=', 1)
             ->where('status', '=', 0)
@@ -32,6 +35,12 @@ class Incident extends Model
                 $update->user = $maintenance->user;
 
                 $update->save();
+
+                foreach ($maintenance->components()->get() as $component){
+                    $component->update([
+                        'status_id' => 6,
+                    ]);
+                }
 
                 ActionLog::dispatch(array(
                     'user' => 1,
@@ -106,6 +115,10 @@ class Incident extends Model
 
     public function getReporter(){
         return $this->belongsTo(User::class, 'user')->first();
+    }
+
+    public function components(){
+        return $this->belongsToMany(Component::class, 'incident_component');
     }
 
     public static function getIncidents(){

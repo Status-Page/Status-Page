@@ -7,6 +7,7 @@ use App\Models\ComponentGroup;
 use App\Models\Incident;
 use App\Models\IncidentUpdate;
 use Auth;
+use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 
 class MaintenanceAddModal extends Component
@@ -15,12 +16,14 @@ class MaintenanceAddModal extends Component
     public bool $modal = false;
     public Incident $incident;
     public IncidentUpdate $incidentUpdate;
+    public $incidentComponents;
 
     protected $rules = [
         'incident.title' => 'required|string|min:3',
         'incident.visibility' => 'integer|max:1',
         'incident.scheduled_at' => 'required|date',
         'incidentUpdate.text' => 'required|string|min:3',
+        'incidentComponents' => '',
     ];
 
     public function render()
@@ -49,6 +52,12 @@ class MaintenanceAddModal extends Component
         $this->incidentUpdate->status = $this->incident->status;
         $this->incidentUpdate->user = Auth::id();
         $this->incidentUpdate->save();
+
+        foreach ($this->incidentComponents as $incidentComponent) {
+            if(!$this->incident->components->contains($incidentComponent)){
+                $this->incident->components()->attach($incidentComponent);
+            }
+        }
 
         ActionLog::dispatch(array(
             'user' => Auth::id(),
