@@ -17,7 +17,7 @@ Now edit the .env and fill it with your data.in
 ```
 php artisan status:install
 ```
-Make sure the user 
+Make sure the user of your webserver has write rights to the directories here.
 
 ### Known issues
 1. ``Invalid route action: [C:32:"Opis\Closure\SerializableClosure":210.....``
