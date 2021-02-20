@@ -13,10 +13,15 @@ npm install
 npm run dev
 cp .env.example .env
 ```
-Now edit the .env and fill it with your data.
+Now edit the .env and fill it with your data.in
 ```
 php artisan status:install
 ```
+Make sure the user 
+
+### Known issues
+1. ``Invalid route action: [C:32:"Opis\Closure\SerializableClosure":210.....``
+    - Solution: Run Command ``php artisan route:clear && php artisan route:cache``
 
 ## After install
 - Add the Command, shown in the installer to your crontab! Otherwise Scheduled Maintenances and much more won't work.
