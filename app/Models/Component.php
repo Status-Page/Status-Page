@@ -10,6 +10,10 @@ class Component extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'status_id'
+    ];
+
     public function status(){
         return $this->belongsTo(Status::class, 'status_id')->first();
     }

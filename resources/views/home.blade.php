@@ -31,7 +31,7 @@ $incidents = Cache::remember('home_incidents', config('cache.ttl'), function (){
 $upcoming_maintenances = Incident::getPublicUpcomingMaintenances();
 ?>
 <x-guest-layout>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
         <div class="max-w-3xl mx-auto">
             <div class="mt-12 text-4xl">
                 <h1 class="inline">{{ config('app.name') }}</h1>
@@ -46,7 +46,7 @@ $upcoming_maintenances = Incident::getPublicUpcomingMaintenances();
             <div class="mt-6">
                 @if($incidents->count() > 0)
                     @foreach($incidents as $incident)
-                        <div class="border-{{ $incident->getImpactColor() }} border-2 rounded-md shadow mb-2">
+                        <div class="bg-white border-{{ $incident->getImpactColor() }} border-2 rounded-md shadow mb-2">
                             <div class="bg-{{ $incident->getImpactColor() }} text-white px-4 py-5 sm:px-6">
                                 <h3 class="text-lg leading-6 font-medium">
                                     {{ $incident->title }}
@@ -132,7 +132,7 @@ $upcoming_maintenances = Incident::getPublicUpcomingMaintenances();
                     @foreach($upcoming_maintenances as $maintenance)
                         <div class="w-full">
                             <div class="mt-4 text-xl w-full">
-                                {{ $maintenance->title }} <span class="float-right text-sm text-gray-400">Scheduled for: {{ $maintenance->scheduled_at }}</span>
+                                <span class="font-bold">{{ $maintenance->title }}</span> <span class="float-right text-sm text-gray-400">Scheduled for: {{ $maintenance->scheduled_at }}</span>
                             </div>
                         </div>
                         <div class="my-2 w-full border-t border-gray-300"></div>
@@ -143,10 +143,49 @@ $upcoming_maintenances = Incident::getPublicUpcomingMaintenances();
                                     <span class="text-gray-400">{{ $update->updated_at }} by {{ $update->getReporter()->name }}</span>
                                 </div>
                             @endforeach
+                            <span class="text-sm text-gray-400">Affected Components: {{ $maintenance->components()->get()->map(function ($component){
+                                                                                                    return $component->group()->name.' - '.$component->name;
+                                                                                                })->implode('; ') }}
+                            </span>
                         </div>
                     @endforeach
                 </div>
             @endif
+            <div class="mt-12">
+                <h2 class="text-2xl">
+                    Past Incidents
+                </h2>
+                @for($i = 0; $i <= config('app.mainpage_incident_days'); $i++)
+                    <div class="mb-8">
+                        <div class="w-full">
+                            <div class="mt-4 text-xl w-full">
+                                {{ \Carbon\Carbon::now()->subDays($i)->monthName }} {{ \Carbon\Carbon::now()->subDays($i)->day }}, {{ \Carbon\Carbon::now()->subDays($i)->year }}
+                            </div>
+                        </div>
+                        <div class="my-2 w-full border-t border-gray-300"></div>
+                        @if(\App\Models\Incident::query()->where([['visibility', '=', true], ['status', '=', 3]])->whereDate('updated_at', \Carbon\Carbon::now()->subDays($i))->count() > 0)
+                            @foreach(\App\Models\Incident::query()->where([['visibility', '=', true], ['status', '=', 3]])->whereDate('updated_at', \Carbon\Carbon::now()->subDays($i))->get() as $incident)
+                                <div class="mt-6">
+                                    <h3 class="text-xl font-bold text-{{ $incident->getImpactColor() }}">
+                                        {{ $incident->title }}
+                                    </h3>
+
+                                    @foreach($incident->incidentUpdates()->orderBy('id', 'desc')->get() as $update)
+                                        <div class="mb-2">
+                                            <span class="font-bold">{{ $update->getUpdateType() }}</span> - {{ $update->text }}<br>
+                                            <span class="text-gray-400">{{ $update->updated_at }} by {{ $update->getReporter()->name }}</span>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @endforeach
+                        @else
+                            <div class="mb-2 text-gray-400">
+                                No incidents reported.
+                            </div>
+                        @endif
+                    </div>
+                @endfor
+            </div>
         </div>
     </div>
 </x-guest-layout>

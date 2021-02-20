@@ -26,10 +26,29 @@
                 </div>
 
                 <div class="col-span-6 sm:col-span-4 mb-4">
+                    <x-jet-label for="incidentComponents" class="text-lg" value="{{ __('Affected Components') }}" />
+                    <select id="incidentComponents" multiple wire:model="incidentComponents" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                        @foreach(\App\Models\Component::all() as $component)
+                            <option value="{{ $component->id }}">{{ $component->group()->name }} - {{ $component->name }}</option>
+                        @endforeach
+                    </select>
+                    @error('incidentComponents') <span class="text-red-500">{{ $message }}</span> @enderror
+                </div>
+
+                <div class="col-span-6 sm:col-span-4 mb-4">
                     <x-jet-label for="visibility" class="text-lg" value="{{ __('Visible') }}" />
                     <x-jet-input id="visibility" type="checkbox" class="mt-1 block" wire:model="maintenance.visibility" />
                     @error('maintenance.visibility') <span class="text-red-500">{{ $message }}</span> @enderror
                 </div>
+
+                @if($maintenance->status == 0)
+                    <div class="col-span-6 sm:col-span-4 mb-4">
+                        <x-jet-label for="scheduled_at" class="text-lg" value="{{ __('Start Time') }}" />
+                        <x-jet-input id="scheduled_at" type="datetime-local" class="mt-1 w-full inline block" wire:model="maintenance.scheduled_at" />
+                        @error('maintenance.scheduled_at') <span class="text-red-500">{{ $message }}</span> @enderror
+                        <br>Specify a new value to overwrite the existing one. Leaving this as is, wont update this.
+                    </div>
+                @endif
 
                 <div class="col-span-6 sm:col-span-4 mb-4">
                     <x-jet-label for="text" class="text-lg" value="{{ __('Message') }}" />
