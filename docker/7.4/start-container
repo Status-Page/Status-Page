@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+#
+# Copyright (c) 2021 by HerrTxbias.
+#
+# Using / Editing this without my consent is not allowed.
+#
+
 if [ ! -z "$WWWUSER" ]; then
     usermod -u $WWWUSER sail
 fi

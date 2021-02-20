@@ -1,4 +1,9 @@
 <?php
+/*
+ * Copyright (c) 2021 by HerrTxbias.
+ *
+ * Using / Editing this without my consent is not allowed.
+ */
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;

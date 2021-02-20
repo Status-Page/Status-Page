@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="Always" serverName="FRA1" deleteMissingItems="true" compareModeInSync="SIZE">
+  <component name="PublishConfigData" autoUpload="Always" serverName="FRA1" deleteMissingItems="true" uploadOnCheckin="238b9145-fb9a-49e4-b85e-b2f9e5bf770b" compareModeInSync="SIZE">
     <serverData>
       <paths name="FRA1">
         <serverdata>
@@ -10,6 +10,7 @@
         </serverdata>
       </paths>
     </serverData>
+    <option name="myUploadOnCheckinName" value="FRA1" />
     <option name="myAutoUpload" value="ALWAYS" />
   </component>
 </project>

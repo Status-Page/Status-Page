@@ -1,3 +1,9 @@
+<!--
+  - Copyright (c) 2021 by HerrTxbias.
+  -
+  - Using / Editing this without my consent is not allowed.
+  -->
+
 <template>
     <div v-if="hasErrors">
         <div class="font-medium text-red-600">Whoops! Something went wrong.</div>
