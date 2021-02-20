@@ -20,5 +20,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+    if($request->user()->tokenCan('read_users')){
+        return response(json_encode(array(
+            'result' => 'ok',
+            'data' => $request->user()
+        )), 200);
+    }else{
+        return response(json_encode(array(
+            'result' => 'error',
+            'data' => array(
+                'message' => 'Not Authorized.'
+            )
+        )), 403);
+    }
 });
