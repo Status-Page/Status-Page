@@ -15,4 +15,7 @@ php artisan status:install
 ```
 
 ## After install
-- Add the Command, shown in the installer to your crontab! Otherwise Scheduled Maintenances won't work.
+- Add the Command, shown in the installer to your crontab! Otherwise Scheduled Maintenances and much more won't work.
+
+## Adding new Users
+Currently it is only possible to add a new User via the command: ``php artisan status:adduser``
