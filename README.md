@@ -28,3 +28,17 @@ Make sure the user of your webserver has write rights to the directories here.
 
 ## Adding new Users
 Currently it is only possible to add a new User via the command: ``php artisan status:adduser``
+
+## Versioning
+We use semantic versioning. A version number has the following structure:
+````
+v 1 . 0 . 0
+  ^   ^   ^
+  |   |   |
+  |   |   Patch (Bug fixes)
+  |   |
+  |   Minor (No breaking changes to the Software, e.g. adding new features)
+  |
+  Major (Possible breaking changes to the Software)
+````
+Always remember to run ``php artisan status:update`` after pulling a new version.
