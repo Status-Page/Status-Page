@@ -31,6 +31,22 @@ class Components extends Component
         return view('livewire.dashboard.components.components');
     }
 
+    public function changeVisibility($id, $oldVis){
+        ComponentGroup::query()->where('id', '=', $id)->update([
+            'visibility' => $oldVis == 0 ? 1 : 0,
+        ]);
+
+        $group = ComponentGroup::query()->where('id', '=', $id)->first();
+
+        ActionLog::dispatch(array(
+            'user' => Auth::id(),
+            'type' => 2,
+            'message' => 'Component Group '.$group->name.' (ID: '.$group->id.')',
+        ));
+
+        $this->refreshData();
+    }
+
     public function refreshData(){
         $this->redirectRoute('dashboard.components');
     }

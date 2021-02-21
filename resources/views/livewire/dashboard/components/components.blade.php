@@ -7,12 +7,19 @@
             <x-jet-section-title>
                 <x-slot name="title">
                     Group: {{ $group->name }}
+                    @can('edit_componentgroups')
+                        @livewire('dashboard.components.modals.component-group-update-modal', ['group' => $group], key($group->id))
+                    @endcan
                     @can('delete_componentgroups')
                         @livewire('dashboard.components.modals.component-group-delete-modal', ['group' => $group], key($group->id))
                     @endcan
                 </x-slot>
                 <x-slot name="description">
-                    Visibility: {{ $group->visibility == 0 ? 'False' : 'True' }} | Creator: {{ $group->user()->name }} | Order: {{ $group->order }}
+                    Visibility: {{ $group->visibility == 0 ? 'False' : 'True' }}
+                    @can('edit_componentgroups')
+                        <button wire:loading.attr="disabled" wire:click="changeVisibility({{ $group->id }}, {{ $group->visibility }})" class="text-indigo-600 hover:text-indigo-900">Switch Visibility</button>
+                    @endcan
+                    | Creator: {{ $group->user()->name }} | Order: {{ $group->order }}
                 </x-slot>
             </x-jet-section-title>
             <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 mt-2">

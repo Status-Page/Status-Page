@@ -7,6 +7,7 @@
 
 namespace App\Providers;
 
+use App\Http\Middleware\EnsureUserIsNotDeactivated;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -23,7 +24,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/Dashboard';
+    public const HOME = '/dashboard';
 
     /**
      * The controller namespace for the application.
