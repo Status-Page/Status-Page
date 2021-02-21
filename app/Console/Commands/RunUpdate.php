@@ -39,8 +39,14 @@ class RunUpdate extends Command
      */
     public function handle()
     {
+        $version = json_decode(Http::get(route('api.version'))->body());
+
+        if($version->meta->on_latest){
+            $this->info('Nothing to update.');
+            return 0;
+        }
+
         if($this->confirm('Do you really want to Update now? The Application won\'t be available during this process.')){
-            $version = json_decode(Http::get(route('api.version'))->body());
 
             $this->call('down', [
                 '--retry' => '10'
