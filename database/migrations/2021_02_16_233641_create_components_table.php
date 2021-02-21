@@ -26,7 +26,7 @@ class CreateComponentsTable extends Migration {
 			$table->string('description')->nullable();
 			$table->integer('group')->nullable();
 			$table->boolean('visibility')->default(0);
-			$table->integer('status_id')->default(0);
+			$table->integer('status_id')->default(1);
 			$table->integer('order')->default(0);
             $table->integer('user');
             $table->timestamps();

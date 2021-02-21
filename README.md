@@ -42,3 +42,6 @@ v 1 . 0 . 0
   Major (Breaking changes to the Software)
 ````
 Always remember to run ``php artisan status:update`` after pulling a new version.
+
+## API Documentation
+You can find the API Documentation [here](https://herrtxbias-status.readme.io/reference).

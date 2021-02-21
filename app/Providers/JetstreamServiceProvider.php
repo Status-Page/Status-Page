@@ -47,12 +47,12 @@ class JetstreamServiceProvider extends ServiceProvider
         $default_permissions = [];
 
         foreach ($models as $model){
-            array_push($permissions, 'read_'.$model);
-            array_push($default_permissions, 'read_'.$model);
+            array_push($permissions, 'read:'.$model);
+            array_push($default_permissions, 'read:'.$model);
 
-            array_push($permissions, 'add_'.$model);
-            array_push($permissions, 'edit_'.$model);
-            array_push($permissions, 'delete_'.$model);
+            array_push($permissions, 'add:'.$model);
+            array_push($permissions, 'edit:'.$model);
+            array_push($permissions, 'delete:'.$model);
         }
 
         Jetstream::permissions($permissions);

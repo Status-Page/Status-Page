@@ -1365,7 +1365,7 @@ ALL PRIVILEGES|status_page_staging
       <Position>7</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
-      <DefaultExpression>0</DefaultExpression>
+      <DefaultExpression>1</DefaultExpression>
     </column>
     <column id="398" parent="358" name="order">
       <Position>8</Position>
