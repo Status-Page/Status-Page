@@ -39,6 +39,6 @@ v 1 . 0 . 0
   |   |
   |   Minor (No breaking changes to the Software, e.g. adding new features)
   |
-  Major (Possible breaking changes to the Software)
+  Major (Breaking changes to the Software)
 ````
 Always remember to run ``php artisan status:update`` after pulling a new version.
