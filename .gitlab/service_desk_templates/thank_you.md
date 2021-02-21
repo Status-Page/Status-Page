@@ -1,4 +1,4 @@
-# Thank you for your Request!
+### Thank you for your Request!
 We have received your request and gave it the ID %{ISSUE_ID}.
 
 The complete Issue path with the ID is: %{ISSUE_PATH}.
