@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Exception;
+use Illuminate\Support\Facades\Auth;
 
 class UserDeactivatedException extends Exception
 {
@@ -29,6 +30,12 @@ class UserDeactivatedException extends Exception
      */
     public function render($request)
     {
+        Auth::guard('web')->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
         return response(view('errors.423'));
     }
 }

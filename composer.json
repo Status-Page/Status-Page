@@ -1,12 +1,20 @@
 {
-    "name": "laravel/laravel",
+    "name": "herrtxbias/statuspage",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "An status page system, for everyone. Ok, only for some people.",
     "keywords": [
         "framework",
-        "laravel"
+        "laravel",
+        "statuspage"
     ],
-    "license": "MIT",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "HerrTxbias",
+            "email": "admin@herrtxbias.net",
+            "homepage": "https://herrtxbias.net"
+        }
+    ],
     "require": {
         "php": "^7.4|^8.0",
         "fedeisas/laravel-mail-css-inliner": "^4.0",
