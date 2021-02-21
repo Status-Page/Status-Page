@@ -6,11 +6,15 @@
  */
 
 use App\Models\Component;
+use App\Models\ComponentGroup;
 use App\Models\Status;
 use App\Statuspage\API\APIHelpers;
 use App\Statuspage\API\ResponseGenerator;
+use App\Statuspage\Version;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+use Symfony\Component\Process\Process;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,10 +28,47 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix('v1')->group(function () {
+    /*
+     * |---------------------------------------------
+     * |    General
+     * |---------------------------------------------
+     */
     Route::get('/ping', function (Request $request) {
-        return ResponseGenerator::generateEmptyResponse();
+        return ResponseGenerator::generateResponse(array(
+            'message' => 'Pong!'
+        ));
     });
 
+    Route::get('/version', function (Request $request) {
+        $tag = Process::fromShellCommandline('git describe --tags');
+        $tag->run();
+        if (!$tag->isSuccessful()) {
+            throw new ProcessFailedException($tag);
+        }
+
+        $lasttag = Process::fromShellCommandline('git describe --tags `git rev-list --tags --max-count=1`');
+        $lasttag->run();
+        if (!$lasttag->isSuccessful()) {
+            throw new ProcessFailedException($lasttag);
+        }
+
+        $formatted_tag = str_replace("\n", "", $tag->getOutput());
+        $formatted_lasttag = str_replace("\n", "", $lasttag->getOutput());
+
+        return ResponseGenerator::generateMetaResponse(Version::getVersion(), array(
+            'on_latest' => $formatted_tag == $formatted_lasttag,
+            'git' => array(
+                'tag' => $formatted_tag,
+                'last_tag' => $formatted_lasttag
+            )
+        ));
+    })->name('api.version');
+
+    /*
+     * |---------------------------------------------
+     * |    Components
+     * |---------------------------------------------
+     */
     Route::middleware('auth:sanctum')->group(function (){
         Route::get('/user', function (Request $request) {
             if(APIHelpers::hasPermission('read:users', $request)){
@@ -123,7 +164,7 @@ Route::prefix('v1')->group(function () {
                     'status_id' => $component->status_id,
                     'order' => $component->order,
                 ], [
-                    'name' => 'required|string|min:3',
+                    'name' => 'string|min:3',
                     'link' => 'nullable|url',
                     'group' => 'required|integer|min:1',
                     'visibility' => 'boolean',
@@ -160,8 +201,120 @@ Route::prefix('v1')->group(function () {
             }
         });
 
+        /*
+         * |---------------------------------------------
+         * |    Component Groups
+         * |---------------------------------------------
+         */
+        Route::get('/component-groups', function (Request $request) {
+            if(APIHelpers::hasPermission('read:componentgroups', $request)){
+                return ResponseGenerator::generateResponse(ComponentGroup::all());
+            }else{
+                return ResponseGenerator::generateResponse(array(
+                    'message' => 'Not Authorized.'
+                ), 403);
+            }
+        });
+
+        Route::get('/component-groups/{id}', function (Request $request, $id) {
+            if(APIHelpers::hasPermission('read:componentgroups', $request)){
+                return ResponseGenerator::generateResponse(ComponentGroup::find($id));
+            }else{
+                return ResponseGenerator::generateResponse(array(
+                    'message' => 'Not Authorized.'
+                ), 403);
+            }
+        });
+
+        Route::post('/component-groups', function (Request $request) {
+            if(APIHelpers::hasPermission('edit:componentgroups', $request)){
+                $component = new ComponentGroup();
+
+                $component->name = $request->get('name');
+                $component->visibility = $request->get('visibility') ?: false;
+                $component->order = $request->get('order') ?: 0;
+
+                $component->user = $request->user()->id;
+
+                $validator = Validator::make([
+                    'name' => $component->name,
+                    'visibility' => $component->visibility,
+                    'order' => $component->order,
+                ], [
+                    'name' => 'required|string|min:3',
+                    'visibility' => 'boolean',
+                    'order' => 'integer',
+                ]);
+
+                if($validator->fails()){
+                    return ResponseGenerator::generateResponse(array(
+                        'errors' => $validator->errors()
+                    ), 400);
+                }
+
+                $component->save();
+                $component->refresh();
+                return ResponseGenerator::generateResponse($component);
+            }else{
+                return ResponseGenerator::generateResponse(array(
+                    'message' => 'Not Authorized.'
+                ), 403);
+            }
+        });
+
+        Route::put('/component-groups/{id}', function (Request $request, $id) {
+            if(APIHelpers::hasPermission('edit:componentgroups', $request)){
+                $component = ComponentGroup::findOrFail($id);
+
+                $component->name = $request->get('name') ?: $component->name;
+                $component->visibility = $request->get('visibility') ?: $component->visibility;
+                $component->order = $request->get('order') ?: $component->order;
+
+                $validator = Validator::make([
+                    'name' => $component->name,
+                    'visibility' => $component->visibility,
+                    'order' => $component->order,
+                ], [
+                    'name' => 'string|min:3',
+                    'visibility' => 'boolean',
+                    'order' => 'integer',
+                ]);
+
+                if($validator->fails()){
+                    return ResponseGenerator::generateResponse(array(
+                        'errors' => $validator->errors()
+                    ), 400);
+                }
+
+                $component->save();
+                $component->refresh();
+                return ResponseGenerator::generateResponse($component);
+            }else{
+                return ResponseGenerator::generateResponse(array(
+                    'message' => 'Not Authorized.'
+                ), 403);
+            }
+        });
+
+        Route::delete('/component-groups/{id}', function (Request $request, $id) {
+            if(APIHelpers::hasPermission('delete:componentgroups', $request)){
+                $component = ComponentGroup::findOrFail($id);
+                $component->delete();
+
+                return ResponseGenerator::generateEmptyResponse();
+            }else{
+                return ResponseGenerator::generateResponse(array(
+                    'message' => 'Not Authorized.'
+                ), 403);
+            }
+        });
 
 
+        /*
+         * |---------------------------------------------
+         * |    Statuses
+         * |---------------------------------------------
+         */
         Route::get('/status', function (Request $request) {
             if(APIHelpers::hasPermission('read:statuses', $request)){
                 return ResponseGenerator::generateResponse(Status::all());

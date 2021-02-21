@@ -10,6 +10,8 @@ namespace App\Console;
 use App\Models\Incident;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+use Symfony\Component\Process\Process;
 
 class Kernel extends ConsoleKernel
 {
@@ -32,6 +34,13 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('check:maintenances')->everyMinute()->description('Run Maintenance Checks');
         $schedule->command('check:actionlog')->daily()->description('Run Actionlog Checks');
+        $schedule->call(function (){
+            $fetch = Process::fromShellCommandline('git fetch');
+            $fetch->run();
+            if (!$fetch->isSuccessful()) {
+                throw new ProcessFailedException($fetch);
+            }
+        })->everyFifteenMinutes()->description('Checks for a newer version.');
     }
 
     /**
