@@ -60,6 +60,12 @@ class RunUpdate extends Command
                 'version' => $version->meta->git->last_tag
             ]);
 
+            $this->call('config:cache');
+            $this->call('route:cache');
+            $this->call('event:cache');
+            $this->call('view:cache');
+            $this->call('permission:cache-reset');
+
             $this->call('up');
         }else{
             $this->info('Aborted.');
