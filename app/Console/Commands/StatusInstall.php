@@ -93,6 +93,7 @@ class StatusInstall extends Command
         $user = new User();
         $user->name = 'System';
         $user->email = 'system@statuspage';
+        $user->deactivated = true;
         $user->password = Hash::make(Uuid::uuid4());
         $user->save();
 
