@@ -12,10 +12,10 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="flow-root">
                         <ul class="-mb-8">
-                            @foreach(\App\Models\Action::query()->orderBy('id', 'desc')->get() as $action)
+                            @foreach($logs as $action)
                                 <li>
                                     <div class="relative pb-8">
-                                        @if(\App\Models\Action::all()->first()->id != $action->id)
+                                        @if($logs->last()->id != $action->id)
                                             <span class="absolute top-4 left-4 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
                                         @endif
                                         <div class="relative flex space-x-3">
@@ -36,6 +36,9 @@
                                     </div>
                                 </li>
                             @endforeach
+                            <div class="mb-6">
+                                {{ $logs->links() }}
+                            </div>
                         </ul>
                     </div>
                 </div>

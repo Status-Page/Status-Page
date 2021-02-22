@@ -7,6 +7,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\APIActionLog;
 use App\Http\Middleware\EnsureUserIsNotDeactivated;
 use App\Http\Middleware\RespondWithJsonMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
@@ -50,7 +51,8 @@ class Kernel extends HttpKernel
         'api' => [
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            RespondWithJsonMiddleware::class
+            RespondWithJsonMiddleware::class,
+            APIActionLog::class,
         ],
     ];
 
