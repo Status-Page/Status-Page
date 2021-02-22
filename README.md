@@ -41,7 +41,9 @@ v 1 . 0 . 0
   |
   Major (Breaking changes to the Software)
 ````
-Always remember to run ``php artisan status:update`` after pulling a new version.
+If you update using git-tags: Run ``php artisan status:update``.
+
+If you update using git-pull on master: Always remember to run ``php artisan status:updatedatabase`` after pulling a new version.
 
 ## API Documentation
 You can find the API Documentation [here](https://herrtxbias-status.readme.io/reference).

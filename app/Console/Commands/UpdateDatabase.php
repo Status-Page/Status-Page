@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Statuspage\Version;
 use Illuminate\Console\Command;
 
 class UpdateDatabase extends Command
@@ -12,7 +13,7 @@ class UpdateDatabase extends Command
      * @var string
      */
     protected $signature = 'status:updatedatabase
-                            {version : The version tag to run the updates for.}';
+                            {version? : The version tag to run the updates for.}';
 
     /**
      * The console command description.
@@ -39,6 +40,10 @@ class UpdateDatabase extends Command
     public function handle()
     {
         $version = $this->argument('version');
+        if($version == null){
+            $version = Version::getVersion();
+        }
+
         switch ($version){
             default:
                 $this->info('No Database Migrations to run.');
