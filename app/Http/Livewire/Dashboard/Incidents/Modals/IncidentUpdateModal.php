@@ -24,7 +24,7 @@ class IncidentUpdateModal extends Component
         'model.title' => 'required|string|min:3',
         'model.status' => 'required|integer|min:0|max:3',
         'model.impact' => 'required|integer|min:0|max:3',
-        'model.visibility' => 'integer|max:1',
+        'model.visibility' => 'boolean',
         'modelUpdate.text' => 'required|string|min:3',
     ];
 

@@ -1,10 +1,10 @@
 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
     <x-jet-section-title>
         <x-slot name="title">
-            Past Incidents
+            {{ __('past.incidents.title')  }}
         </x-slot>
         <x-slot name="description">
-            All the Incidents, that happened in the past.
+            {{ __('past.incidents.subtitle')  }}
         </x-slot>
     </x-jet-section-title>
     <div class="flex flex-col mt-4">
@@ -15,16 +15,16 @@
                         <thead class="bg-gray-50">
                             <tr>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Title
+                                    {{ __('past.tables.head.title')  }}
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Status
+                                    {{ __('past.tables.head.status')  }}
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Impact
+                                    {{ __('past.tables.head.impact')  }}
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Reporter
+                                    {{ __('past.tables.head.reporter')  }}
                                 </th>
                                 <th scope="col" class="relative px-6 py-3">
 
@@ -64,10 +64,10 @@
     <x-jet-section-border />
     <x-jet-section-title>
         <x-slot name="title">
-            Past Maintenances
+            {{ __('past.maintenances.title')  }}
         </x-slot>
         <x-slot name="description">
-            All the Maintenances, that happened in the past.
+            {{ __('past.maintenances.subtitle')  }}
         </x-slot>
     </x-jet-section-title>
     <div class="flex flex-col mt-4">
@@ -78,16 +78,16 @@
                         <thead class="bg-gray-50">
                         <tr>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Title
+                                {{ __('past.tables.head.title')  }}
                             </th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Status
+                                {{ __('past.tables.head.status')  }}
                             </th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Impact
+                                {{ __('past.tables.head.impact')  }}
                             </th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Reporter
+                                {{ __('past.tables.head.reporter')  }}
                             </th>
                             <th scope="col" class="relative px-6 py-3">
 

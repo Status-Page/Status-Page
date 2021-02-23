@@ -24,7 +24,7 @@ class MaintenanceUpdateModal extends Component
     protected $rules = [
         'maintenance.title' => 'required|string|min:3',
         'maintenance.status' => 'required|integer|min:0|max:3',
-        'maintenance.visibility' => 'integer|max:1',
+        'maintenance.visibility' => 'boolean',
         'maintenance.scheduled_at' => 'required|date',
         'maintenance.end_at' => 'date',
         'maintenanceUpdate.text' => 'required|string|min:3',

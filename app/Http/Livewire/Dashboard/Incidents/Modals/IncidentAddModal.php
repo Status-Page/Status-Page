@@ -24,7 +24,7 @@ class IncidentAddModal extends Component
         'model.title' => 'required|string|min:3',
         'model.status' => 'required|integer|min:0|max:3',
         'model.impact' => 'required|integer|min:0|max:3',
-        'model.visibility' => 'integer|max:1',
+        'model.visibility' => 'boolean',
         'modelUpdate.text' => 'required|string|min:3',
     ];
 
@@ -39,6 +39,7 @@ class IncidentAddModal extends Component
 
         $this->model->status = 0;
         $this->model->impact = 0;
+        $this->model->visibility = 0;
 
         $this->modal = true;
     }

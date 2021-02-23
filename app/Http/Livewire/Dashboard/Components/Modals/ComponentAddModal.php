@@ -24,7 +24,7 @@ class ComponentAddModal extends Component
         'model.link' => 'url',
         'model.status_id' => 'required|integer|min:1|max:6',
         'model.order' => 'integer',
-        'model.visibility' => 'integer|max:1',
+        'model.visibility' => 'boolean',
     ];
 
     public function render()

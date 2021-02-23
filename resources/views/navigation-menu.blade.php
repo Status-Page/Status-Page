@@ -13,23 +13,23 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('dashboard.title') }}
                     </x-jet-nav-link>
                 </div>
                 @can('read_incidents')
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-jet-nav-link href="{{ route('dashboard.incidents') }}" :active="request()->routeIs('dashboard.incidents')">
-                            {{ __('Incidents') }}
+                            {{ __('incidents.title') }}
                         </x-jet-nav-link>
                     </div>
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-jet-nav-link href="{{ route('dashboard.incidents.maintenances') }}" :active="request()->routeIs('dashboard.incidents.maintenances')">
-                            {{ __('Maintenances') }}
+                            {{ __('maintenances.title') }}
                         </x-jet-nav-link>
                     </div>
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-jet-nav-link href="{{ route('dashboard.incidents.past') }}" :active="request()->routeIs('dashboard.incidents.past')">
-                            {{ __('Past Incidents / Maintenances') }}
+                            {{ __('past.title') }}
                         </x-jet-nav-link>
                     </div>
                 @endcan
@@ -178,17 +178,22 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+                {{ __('dashboard.title') }}
             </x-jet-responsive-nav-link>
             @can('read_incidents')
                 <x-jet-responsive-nav-link href="{{ route('dashboard.incidents') }}" :active="request()->routeIs('dashboard.incidents')">
-                    {{ __('Incidents') }}
+                    {{ __('incidents.title') }}
                 </x-jet-responsive-nav-link>
                 <x-jet-responsive-nav-link href="{{ route('dashboard.incidents.maintenances') }}" :active="request()->routeIs('dashboard.incidents.maintenances')">
-                    {{ __('Maintenances') }}
+                    {{ __('maintenances.title') }}
                 </x-jet-responsive-nav-link>
                 <x-jet-responsive-nav-link href="{{ route('dashboard.incidents.past') }}" :active="request()->routeIs('dashboard.incidents.past')">
-                    {{ __('Past Incidents / Maintenances') }}
+                    {{ __('past.title') }}
+                </x-jet-responsive-nav-link>
+            @endcan
+            @can('read_components')
+                <x-jet-responsive-nav-link href="{{ route('dashboard.components') }}" :active="request()->routeIs('dashboard.components')">
+                    {{ __('Components') }}
                 </x-jet-responsive-nav-link>
             @endcan
         </div>

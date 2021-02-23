@@ -7,22 +7,22 @@
                         <thead class="bg-gray-50">
                             <tr>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Title
+                                    {{ __('maintenances.table.head.title') }}
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Status
+                                    {{ __('maintenances.table.head.status') }}
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Impact
+                                    {{ __('maintenances.table.head.impact') }}
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Scheduled at
+                                    {{ __('maintenances.table.head.scheduled_at') }}
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    End at
+                                    {{ __('maintenances.table.head.end_at') }}
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Reporter
+                                    {{ __('maintenances.table.head.reporter') }}
                                 </th>
                                 <th scope="col" class="relative px-6 py-3">
                                     @can('add_incidents')

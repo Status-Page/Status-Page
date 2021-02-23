@@ -164,7 +164,7 @@ $upcoming_maintenances = Incident::getPublicUpcomingMaintenances();
                         </div>
                         <div class="my-2 w-full border-t border-gray-300"></div>
                         @if(\App\Models\Incident::query()->where([['visibility', '=', true], ['status', '=', 3]])->whereDate('updated_at', \Carbon\Carbon::now()->subDays($i))->count() > 0)
-                            @foreach(\App\Models\Incident::query()->where([['visibility', '=', true], ['status', '=', 3]])->whereDate('updated_at', \Carbon\Carbon::now()->subDays($i))->get() as $incident)
+                            @foreach(\App\Models\Incident::query()->where([['visibility', '=', true], ['status', '=', 3]])->whereDate('updated_at', \Carbon\Carbon::now()->subDays($i))->orderBy('id', 'desc')->get() as $incident)
                                 <div class="mt-6">
                                     <h3 class="text-xl font-bold text-{{ $incident->getImpactColor() }}">
                                         {{ $incident->title }}

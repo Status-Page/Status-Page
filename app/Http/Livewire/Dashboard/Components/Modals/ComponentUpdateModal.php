@@ -25,7 +25,7 @@ class ComponentUpdateModal extends Component
         'comp.group' => 'required|integer',
         'comp.status_id' => 'required|integer|min:1|max:6',
         'comp.order' => 'required|integer',
-        'comp.visibility' => 'integer|max:1',
+        'comp.visibility' => 'boolean',
     ];
 
     public function render()

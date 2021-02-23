@@ -24,7 +24,7 @@
 
                 <div class="col-span-6 sm:col-span-4 mb-4">
                     <x-jet-label for="order" class="text-lg" value="{{ __('Order') }}" />
-                    <x-jet-input id="order" type="number" class="mt-1 block w-full" wire:model="grouporder" />
+                    <x-jet-input id="order" type="number" class="mt-1 block w-full" wire:model="group.order" />
                     @error('group.order') <span class="text-red-500">{{ $message }}</span> @enderror
                 </div>
             </x-slot>
