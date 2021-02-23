@@ -31,6 +31,13 @@
                 </div>
 
                 <div class="col-span-6 sm:col-span-4 mb-4">
+                    <x-jet-label for="end_at" class="text-lg" value="{{ __('End Time') }}" />
+                    <x-jet-input id="end_at" type="datetime-local" class="mt-1 w-full inline block" wire:model="incident.end_at" />
+                    @error('incident.end_at') <span class="text-red-500">{{ $message }}</span> @enderror
+                    <br>If you don't want to automatically end this Maintenance, don't specify a value here.
+                </div>
+
+                <div class="col-span-6 sm:col-span-4 mb-4">
                     <x-jet-label for="incidentComponents" class="text-lg" value="{{ __('Affected Components') }}" />
                     <select id="incidentComponents" multiple wire:model="incidentComponents" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
                         @foreach(\App\Models\Component::all() as $component)

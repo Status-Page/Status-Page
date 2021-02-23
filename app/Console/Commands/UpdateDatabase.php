@@ -45,6 +45,11 @@ class UpdateDatabase extends Command
         }
 
         switch ($version){
+            case 'v1.1.3':
+                $this->call('migrate', [
+                   '--path=migration=2021_02_23_225336_update113'
+                ]);
+                break;
             default:
                 $this->info('No Database Migrations to run.');
                 break;

@@ -28,6 +28,7 @@ class CreateIncidentsTable extends Migration {
             $table->boolean('visibility')->default(0);
             $table->integer('user');
 			$table->dateTime('scheduled_at')->nullable();
+            $table->dateTime('end_at')->nullable();
             $table->timestamps();
 		});
 	}

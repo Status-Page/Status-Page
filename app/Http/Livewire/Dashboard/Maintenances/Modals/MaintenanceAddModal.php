@@ -27,6 +27,7 @@ class MaintenanceAddModal extends Component
         'incident.title' => 'required|string|min:3',
         'incident.visibility' => 'integer|max:1',
         'incident.scheduled_at' => 'required|date',
+        'incident.end_at' => 'date',
         'incidentUpdate.text' => 'required|string|min:3',
         'incidentComponents' => '',
     ];

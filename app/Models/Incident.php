@@ -37,7 +37,7 @@ class Incident extends Model
                 $update->type = 1;
                 $update->text = 'The maintenance has been started.';
                 $update->status = 1;
-                $update->user = $maintenance->user;
+                $update->user = 1;
 
                 $update->save();
 
@@ -64,6 +64,57 @@ class Incident extends Model
             ->where('scheduled_at', '<=', Carbon::now())
             ->update([
                 'status' => 1,
+                'impact' => 4
+            ]);
+
+        /**
+         * @var $endedMaintenances Incident[]
+         */
+        $endedMaintenances = Incident::query()
+            ->where('type', '=', 1)
+            ->where('status', '!=', 0)
+            ->where('status', '!=', 3)
+            ->where('end_at', '!=', null)
+            ->where('end_at', '<=', Carbon::now())
+            ->get();
+
+        if($endedMaintenances->count() > 0){
+            foreach ($endedMaintenances as $maintenance){
+                $update = new IncidentUpdate();
+
+                $update->incident_id = $maintenance->id;
+                $update->type = 1;
+                $update->text = 'The maintenance is completed.';
+                $update->status = 3;
+                $update->user = 1;
+
+                $update->save();
+
+                foreach ($maintenance->components()->get() as $component){
+                    $component->update([
+                        'status_id' => 2,
+                    ]);
+                }
+
+                ActionLog::dispatch(array(
+                    'user' => 1,
+                    'type' => 2,
+                    'message' => 'Maintenance '.$maintenance->title.' (ID: '.$maintenance->id.')',
+                ));
+
+                //$updates = $maintenance->incidentUpdates()->get();
+                // Mail::to(User::query()->where('id', '=', $maintenance->user)->get())->send(new ScheduledIncidentStarted($maintenance, $updates));
+            }
+        }
+
+        Incident::query()
+            ->where('type', '=', 1)
+            ->where('status', '!=', 0)
+            ->where('status', '!=', 3)
+            ->where('end_at', '!=', null)
+            ->where('end_at', '<=', Carbon::now())
+            ->update([
+                'status' => 3,
                 'impact' => 4
             ]);
     }

@@ -51,6 +51,13 @@
                 @endif
 
                 <div class="col-span-6 sm:col-span-4 mb-4">
+                    <x-jet-label for="end_at" class="text-lg" value="{{ __('End Time') }}" />
+                    <x-jet-input id="end_at" type="datetime-local" class="mt-1 w-full inline block" wire:model="maintenance.end_at" />
+                    @error('maintenance.end_at') <span class="text-red-500">{{ $message }}</span> @enderror
+                    <br>Specify a new value to overwrite the existing one. Leaving this as is, wont update this.
+                </div>
+
+                <div class="col-span-6 sm:col-span-4 mb-4">
                     <x-jet-label for="text" class="text-lg" value="{{ __('Message') }}" />
                     <textarea id="text" wire:model="maintenanceUpdate.text" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"></textarea>
                     @error('maintenanceUpdate.text') <span class="text-red-500">{{ $message }}</span> @enderror

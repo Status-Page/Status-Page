@@ -26,6 +26,7 @@ class MaintenanceUpdateModal extends Component
         'maintenance.status' => 'required|integer|min:0|max:3',
         'maintenance.visibility' => 'integer|max:1',
         'maintenance.scheduled_at' => 'required|date',
+        'maintenance.end_at' => 'date',
         'maintenanceUpdate.text' => 'required|string|min:3',
         'incidentComponents' => '',
     ];
