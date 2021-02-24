@@ -5,7 +5,7 @@
  * Using / Editing this without my consent is not allowed.
  */
 
-namespace App\Mail;
+namespace App\Mail\Incidents\Scheduled;
 
 use App\Models\Incident;
 use App\Models\IncidentUpdate;
@@ -36,7 +36,7 @@ class ScheduledIncidentStarted extends Mailable implements ShouldQueue
         $this->incident = $incident;
         $this->updates = $updates;
 
-        $this->subject = 'Incident Update: '.$incident->title;
+        $this->subject = 'Scheduled Maintenance Start: '.$incident->title;
     }
 
     /**
@@ -46,6 +46,20 @@ class ScheduledIncidentStarted extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->view('mail.incident-detail');
+        //return $this->view('mail.incident-detail');
+        return $this->markdown('vendor.notifications.email', [
+            'greeting' => 'Hello '.$this->to[0]['name'].',',
+            'introLines' => [
+                'just as a friendly reminder:',
+                'Your scheduled Maintenance '.$this->incident->title.' has started now.',
+                'If set, your Maintenance will end at: '.$this->incident->end_at ?: 'No set',
+            ],
+            'actionText' => 'Open Dashboard',
+            'actionUrl' => route('dashboard.incidents.maintenances'),
+            'displayableActionUrl' => route('dashboard.incidents.maintenances'),
+            'outroLines' => [
+                ''
+            ],
+        ]);
     }
 }

@@ -19,7 +19,7 @@
 {{-- Action Button --}}
 @isset($actionText)
 <?php
-    switch ($level) {
+    switch ($level ?? '') {
         case 'success':
         case 'error':
             $color = $level;

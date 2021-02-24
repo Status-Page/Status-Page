@@ -10,6 +10,7 @@ use App\Http\Controllers\DashboardComponentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardIncidentController;
 use App\Http\Controllers\RefreshController;
+use App\Mail\Incidents\Scheduled\ScheduledIncidentStarted;
 use App\Models\Incident;
 use Illuminate\Support\Facades\Route;
 
@@ -46,12 +47,12 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function (){
 })->name('dashboard');
 */
 
-/* Route::get('/mailtest', function (){
+Route::get('/mailtest', function (){
     /**
      * @var $incident Incident
      */
-/* $incident = Incident::query()->where('id', '=', 4)->first();
-$updates = $incident->incidentUpdates()->get();
+    $incident = Incident::query()->where('id', '=', 19)->first();
+    $updates = $incident->incidentUpdates()->get();
 
-return new App\Mail\ScheduledIncidentStarted($incident, $updates);
-}); */
+    return new ScheduledIncidentStarted($incident, $updates);
+});

@@ -8,7 +8,8 @@
 namespace App\Models;
 
 use App\Events\ActionLog;
-use App\Mail\ScheduledIncidentStarted;
+use App\Mail\Incidents\Scheduled\ScheduledIncidentEnded;
+use App\Mail\Incidents\Scheduled\ScheduledIncidentStarted;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -53,8 +54,8 @@ class Incident extends Model
                     'message' => 'Maintenance '.$maintenance->title.' (ID: '.$maintenance->id.')',
                 ));
 
-                //$updates = $maintenance->incidentUpdates()->get();
-                // Mail::to(User::query()->where('id', '=', $maintenance->user)->get())->send(new ScheduledIncidentStarted($maintenance, $updates));
+                $updates = $maintenance->incidentUpdates()->get();
+                Mail::to(User::query()->where('id', '=', $maintenance->user)->get())->queue(new ScheduledIncidentStarted($maintenance, $updates));
             }
         }
 
@@ -102,8 +103,8 @@ class Incident extends Model
                     'message' => 'Maintenance '.$maintenance->title.' (ID: '.$maintenance->id.')',
                 ));
 
-                //$updates = $maintenance->incidentUpdates()->get();
-                // Mail::to(User::query()->where('id', '=', $maintenance->user)->get())->send(new ScheduledIncidentStarted($maintenance, $updates));
+                $updates = $maintenance->incidentUpdates()->get();
+                Mail::to(User::query()->where('id', '=', $maintenance->user)->get())->queue(new ScheduledIncidentEnded($maintenance, $updates));
             }
         }
 

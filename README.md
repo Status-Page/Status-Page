@@ -47,3 +47,23 @@ If you update using git-pull on master: Always remember to run ``php artisan sta
 
 ## API Documentation
 You can find the API Documentation [here](https://herrtxbias-status.readme.io/reference).
+
+
+## Running queued Jobs
+To run queue Jobs you should use [supervisor](https://laravel.com/docs/8.x/queues#supervisor-configuration).
+
+The configuration file (statuspage.conf) for this app would be like this:
+```
+[program:statuspage]
+process_name=%(program_name)s_%(process_num)02d
+command=php /PATH/TO/APP/artisan queue:work redis --sleep=3 --tries=3 --max-time=3600
+autostart=true
+autorestart=true
+stopasgroup=true
+killasgroup=true
+user=forge
+numprocs=8
+redirect_stderr=true
+stdout_logfile=/SPECIFY/LOG/FOLDER/HERE/worker.log
+stopwaitsecs=3600
+```
