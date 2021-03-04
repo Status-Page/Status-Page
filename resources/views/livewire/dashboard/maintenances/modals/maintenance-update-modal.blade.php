@@ -28,8 +28,12 @@
                 <div class="col-span-6 sm:col-span-4 mb-4">
                     <x-jet-label for="incidentComponents" class="text-lg" value="{{ __('maintenances.update_maintenance.modal.affected_components') }}" />
                     <select id="incidentComponents" multiple wire:model="incidentComponents" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-                        @foreach(\App\Models\Component::all() as $component)
-                            <option value="{{ $component->id }}">{{ $component->group()->name }} - {{ $component->name }}</option>
+                        @foreach(\App\Models\ComponentGroup::all() as $group)
+                            <optgroup label="{{ $group->name }}">
+                                @foreach($group->components() as $component)
+                                    <option value="{{ $component->id }}">{{ $component->name }}</option>
+                                @endforeach
+                            </optgroup>
                         @endforeach
                     </select>
                     @error('incidentComponents') <span class="text-red-500">{{ $message }}</span> @enderror
