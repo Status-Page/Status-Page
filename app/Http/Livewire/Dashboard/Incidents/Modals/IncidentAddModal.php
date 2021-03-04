@@ -17,15 +17,17 @@ use Livewire\Component;
 class IncidentAddModal extends Component
 {
     public bool $modal = false;
-    public Incident $model;
-    public IncidentUpdate $modelUpdate;
+    public Incident $incident;
+    public IncidentUpdate $incidentUpdate;
+    public $incidentComponents;
 
     protected $rules = [
-        'model.title' => 'required|string|min:3',
-        'model.status' => 'required|integer|min:0|max:3',
-        'model.impact' => 'required|integer|min:0|max:3',
-        'model.visibility' => 'boolean',
-        'modelUpdate.text' => 'required|string|min:3',
+        'incident.title' => 'required|string|min:3',
+        'incident.status' => 'required|integer|min:0|max:3',
+        'incident.impact' => 'required|integer|min:0|max:3',
+        'incident.visibility' => 'boolean',
+        'incidentUpdate.text' => 'required|string|min:3',
+        'incidentComponents' => '',
     ];
 
     public function render()
@@ -34,34 +36,48 @@ class IncidentAddModal extends Component
     }
 
     public function start(){
-        $this->model = new Incident();
-        $this->modelUpdate = new IncidentUpdate();
+        $this->incident = new Incident();
+        $this->incidentUpdate = new IncidentUpdate();
 
-        $this->model->status = 0;
-        $this->model->impact = 0;
-        $this->model->visibility = 0;
+        $this->incident->status = 0;
+        $this->incident->impact = 0;
+        $this->incident->visibility = 0;
 
         $this->modal = true;
     }
 
     public function save(){
-        $this->model->type = 0;
-        $this->model->user = Auth::id();
+        $this->incident->type = 0;
+        $this->incident->user = Auth::id();
 
         $this->validate();
 
-        $this->model->save();
+        $this->incident->save();
 
-        $this->modelUpdate->incident_id = $this->model->id;
-        $this->modelUpdate->type = 1;
-        $this->modelUpdate->status = $this->model->status;
-        $this->modelUpdate->user = Auth::id();
+        $this->incidentUpdate->incident_id = $this->incident->id;
+        $this->incidentUpdate->type = 1;
+        $this->incidentUpdate->status = $this->incident->status;
+        $this->incidentUpdate->user = Auth::id();
 
-        $this->modelUpdate->save();
+        foreach ($this->incidentComponents as $incidentComponent) {
+            if(!$this->incident->components->contains($incidentComponent)){
+                $this->incident->components()->attach($incidentComponent);
+            }
+        }
+
+        if(0 <= $this->incident->status && $this->incident->status < 3){
+            foreach ($this->incident->components()->get() as $component){
+                $component->update([
+                    'status_id' => $this->incident->impact+2,
+                ]);
+            }
+        }
+
+        $this->incidentUpdate->save();
         ActionLog::dispatch(array(
             'user' => Auth::id(),
             'type' => 1,
-            'message' => 'Incident '.$this->model->title.' (ID: '.$this->model->id.')',
+            'message' => 'Incident '.$this->incident->title.' (ID: '.$this->incident->id.')',
         ));
         $this->modal = false;
         $this->emitUp('refreshData');

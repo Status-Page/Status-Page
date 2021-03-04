@@ -44,7 +44,7 @@
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                         @can('edit_incidents')
-                                            @livewire('dashboard.incidents.modals.incident-update-modal', ['model' => $incident], key($incident->id))
+                                            @livewire('dashboard.incidents.modals.incident-update-modal', ['incident' => $incident], key($incident->id))
                                         @endcan
 
                                         @can('delete_incidents')

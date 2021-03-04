@@ -17,4 +17,10 @@ class AdminController extends Controller
             'logs' => Action::query()->orderBy('id', 'desc')->paginate($request->get('per_page', '20'))
         ]);
     }
+
+    public function users(Request $request){
+        return view('dashboard.admin.actionlog', [
+            'logs' => Action::query()->orderBy('id', 'desc')->paginate($request->get('per_page', '20'))
+        ]);
+    }
 }

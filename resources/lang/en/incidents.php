@@ -35,6 +35,8 @@ return [
             'status' => 'Status',
             'impact' => 'Impact',
             'visible' => 'Visible',
+            'affected_components' => 'Affected Components',
+            'affected_components_hint' => 'Affected Components will be set automatically into a status, based on the impact.',
             'message' => 'Message',
             'open_button' => 'Open Incident',
         ]
@@ -47,6 +49,8 @@ return [
             'status' => 'Status',
             'impact' => 'Impact',
             'visible' => 'Visible',
+            'affected_components' => 'Affected Components',
+            'affected_components_hint' => 'The status for the Components will not be set automatically, when you update this incident. <br> Only resolving the Incident will set all Components into Operational.',
             'message' => 'Message',
             'update_button' => 'Post Update',
         ]
