@@ -18,6 +18,7 @@ class ComponentResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'link' => $this->link,
             'description' => $this->description,
             'group' => $this->group(),
             'group_id' => $this->group()->id,

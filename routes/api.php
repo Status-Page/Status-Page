@@ -115,6 +115,7 @@ Route::prefix('v1')->group(function () {
 
                 $component->name = $request->get('name');
                 $component->link = $request->get('link');
+                $component->description = $request->get('description') ?: "";
                 $component->group = $request->get('group');
                 $component->visibility = $request->get('visibility') ?: false;
                 $component->status_id = $request->get('status_id') ?: 1;
@@ -125,6 +126,7 @@ Route::prefix('v1')->group(function () {
                 $validator = Validator::make([
                     'name' => $component->name,
                     'link' => $component->link,
+                    'description' => $component->description,
                     'group' => $component->group,
                     'visibility' => $component->visibility,
                     'status_id' => $component->status_id,
@@ -132,6 +134,7 @@ Route::prefix('v1')->group(function () {
                 ], [
                     'name' => 'required|string|min:3',
                     'link' => 'nullable|url',
+                    'description' => 'string|min:3',
                     'group' => 'required|integer|min:1',
                     'visibility' => 'boolean',
                     'status_id' => 'integer|min:1|max:6',
@@ -159,6 +162,7 @@ Route::prefix('v1')->group(function () {
 
                 $component->name = $request->get('name') ?: $component->name;
                 $component->link = $request->get('link') ?: $component->link;
+                $component->description = $request->get('description') ?: $component->description;
                 $component->group = $request->get('group') ?: $component->group;
                 $component->visibility = $request->get('visibility') ?: $component->visibility;
                 $component->status_id = $request->get('status_id') ?: $component->status_id;
@@ -167,6 +171,7 @@ Route::prefix('v1')->group(function () {
                 $validator = Validator::make([
                     'name' => $component->name,
                     'link' => $component->link,
+                    'description' => $component->description,
                     'group' => $component->group,
                     'visibility' => $component->visibility,
                     'status_id' => $component->status_id,
@@ -174,6 +179,7 @@ Route::prefix('v1')->group(function () {
                 ], [
                     'name' => 'string|min:3',
                     'link' => 'nullable|url',
+                    'description' => 'string|min:3',
                     'group' => 'required|integer|min:1',
                     'visibility' => 'boolean',
                     'status_id' => 'integer|min:1|max:6',
