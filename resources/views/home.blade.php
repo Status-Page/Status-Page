@@ -38,7 +38,7 @@ $upcoming_maintenances = Incident::getPublicUpcomingMaintenances();
                 @auth()
                     <div class="inline">
                         <a href="{{ route('dashboard') }}" target="_blank">
-                            <x-jet-button class="text-right">Open Dashboard</x-jet-button>
+                            <x-jet-button class="text-right dark:bg-discordGrey">Open Dashboard</x-jet-button>
                         </a>
                     </div>
                 @endauth
@@ -46,7 +46,7 @@ $upcoming_maintenances = Incident::getPublicUpcomingMaintenances();
             <div class="mt-6">
                 @if($incidents->count() > 0)
                     @foreach($incidents as $incident)
-                        <div class="bg-white border-{{ $incident->getImpactColor() }} border-2 rounded-md shadow mb-2">
+                        <div class="bg-white text-black dark:bg-discordDark dark:text-white border-{{ $incident->getImpactColor() }} border-2 rounded-md shadow mb-2">
                             <div class="bg-{{ $incident->getImpactColor() }} text-white px-4 py-5 sm:px-6">
                                 <h3 class="text-lg leading-6 font-medium">
                                     {{ $incident->title }}
@@ -79,11 +79,11 @@ $upcoming_maintenances = Incident::getPublicUpcomingMaintenances();
             </div>
             <div class="mt-12">
                 @foreach($component_groups as $group)
-                    <div class="bg-white text-black px-4 py-5 sm:px-6 mt-2 shadow sm:rounded-t-md border-b border-gray-200">
+                    <div class="bg-white text-black dark:bg-discordBlack dark:text-white dark:border-discordDark px-4 py-5 sm:px-6 mt-2 shadow sm:rounded-t-md border-b border-gray-200">
                         <h3 class="text-lg leading-6 font-medium">
                             {{ $group->name }}
                             @if($group->description != "")
-                                <button data-title="{{ $group->description }}" data-placement="top" class="focus:outline-none">
+                                <button data-title="{{ $group->description }}" data-placement="top" class="focus:outline-none cursor-default">
                                     <svg class="h-4 w-4 inline visible" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
@@ -91,14 +91,14 @@ $upcoming_maintenances = Incident::getPublicUpcomingMaintenances();
                             @endif
                         </h3>
                     </div>
-                    <div class="bg-white shadow overflow-hidden sm:rounded-b-md">
-                        <ul class="divide-y divide-gray-200">
+                    <div class="bg-white text-black dark:bg-discordBlack dark:text-white shadow overflow-hidden sm:rounded-b-md">
+                        <ul class="divide-y divide-gray-200 dark:divide-discordDark">
                             @foreach($group->getComponents() as $component)
                                 <li>
                                     @if($component->link)
-                                    <a href="{{ $component->link }}" target="_blank" class="block hover:bg-gray-50">
+                                    <a href="{{ $component->link }}" target="_blank" class="block hover:bg-gray-50 dark:hover:bg-discordDark">
                                     @else
-                                    <a class="block hover:bg-gray-50">
+                                    <a class="block hover:bg-gray-50 dark:hover:bg-discordDark">
                                     @endif
                                         <div class="flex items-center px-4 py-4 sm:px-6">
                                             <div class="min-w-0 flex-1 flex items-center">
@@ -107,7 +107,7 @@ $upcoming_maintenances = Incident::getPublicUpcomingMaintenances();
                                                         <p class="font-medium truncate relative">
                                                             {{ $component->name }}
                                                             @if($component->description != "")
-                                                                <button data-title="{{ $component->description }}" data-placement="top" class="focus:outline-none">
+                                                                <button data-title="{{ $component->description }}" data-placement="top" class="focus:outline-none cursor-default">
                                                                     <svg class="h-4 w-4 inline visible" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                                     </svg>

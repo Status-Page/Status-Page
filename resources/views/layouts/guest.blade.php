@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="{{ !config('statuspage.darkmode') ?: 'dark' }}">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,7 +18,7 @@
         <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
         <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
     </head>
-    <body class="bg-gray-100 font-sans antialiased">
+    <body class="bg-gray-100 dark:bg-discordDark font-sans antialiased">
         @if(config('app.env') == 'local' || config('app.env') == 'staging')
             <div class="bg-red-600">
                 <div class="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8">
@@ -37,7 +37,7 @@
                 </div>
             </div>
         @endif
-        <div class="font-sans text-gray-900 antialiased">
+        <div class="font-sans text-gray-900 dark:text-gray-100 antialiased">
             {{ $slot }}
         </div>
         <script>

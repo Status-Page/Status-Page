@@ -17,6 +17,8 @@
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
+        <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+        <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
     </head>
     <body class="font-sans antialiased">
         @if(config('app.env') == 'local' || config('app.env') == 'staging')
@@ -82,5 +84,15 @@
         @stack('modals')
 
         @livewireScripts
+        <script>
+            tippy('button', {
+                content:(reference)=>reference.getAttribute('data-title'),
+                onMount(instance) {
+                    instance.popperInstance.setOptions({
+                        placement :instance.reference.getAttribute('data-placement')
+                    });
+                }
+            });
+        </script>
     </body>
 </html>

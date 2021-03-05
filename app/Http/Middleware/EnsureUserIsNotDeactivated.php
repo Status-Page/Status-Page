@@ -22,7 +22,7 @@ class EnsureUserIsNotDeactivated
         if($request->user()){
             if($request->user()->deactivated){
                 // throw new UserDeactivatedException();
-                abort(423);
+                abort(423, 'User deactivated');
             }
         }
 

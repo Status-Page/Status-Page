@@ -7,6 +7,8 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
+    darkMode: 'class',
+
     purge: [
         './vendor/laravel/jetstream/**/*.blade.php',
         './storage/framework/views/*.php',
@@ -19,6 +21,14 @@ module.exports = {
         extend: {
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
+            },
+            colors: {
+                discordBlue: '#7289DA',
+                discordGrey: '#99AAB5',
+                discordDark: '#2C2F33',
+                discordBlack: '#23272A',
+                divGrey: '#394248',
+                aGrey: '#58585f',
             },
         },
     },

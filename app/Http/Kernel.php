@@ -53,6 +53,7 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             RespondWithJsonMiddleware::class,
             APIActionLog::class,
+            EnsureUserIsNotDeactivated::class,
         ],
     ];
 
