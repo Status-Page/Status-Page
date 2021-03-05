@@ -1,7 +1,7 @@
 <div>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Users') }}
+            {{ __('users.title') }}
         </h2>
     </x-slot>
 
@@ -14,17 +14,20 @@
                         <tr>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"></th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                {{ __('Name') }}
+                                {{ __('users.table.head.name') }}
                             </th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                {{ __('E-Mail') }}
+                                {{ __('users.table.head.email') }}
                             </th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                {{ __('Deactivated') }}
+                                {{ __('users.table.head.deactivated') }}
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                {{ __('users.table.head.role') }}
                             </th>
                             <th scope="col" class="relative px-6 py-3">
-                                @can('add_incidents')
-                                    @livewire('dashboard.incidents.modals.incident-add-modal')
+                                @can('add_users')
+                                    @livewire('dashboard.administration.modals.user-add-modal')
                                 @endcan
                             </th>
                         </tr>
@@ -44,16 +47,25 @@
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                     {{ $user->deactivated ? 'True' : 'False' }}
                                 </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    {{ $user->getRoleNames()->first() }}
+                                </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                    @if($user->system)
-                                        <button data-title="{{ __('This is the System user. You can\'t edit it and never should!') }}" data-placement="top" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 focus:outline-none cursor-default">
-                                            System User
-                                        </button>
-                                    @elseif($user->id == Auth::id())
+                                    @if($user->id == Auth::id())
                                         <button data-title="{{ __('You can\'t edit yourself here!') }}" data-placement="top" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 focus:outline-none cursor-default">
                                             Yourself
                                         </button>
+                                    @elseif($user->system || $user->getRoleNames()->first() == 'super_admin')
+                                        <button data-title="{{ __('This is the System  / Super Admin User. You can\'t edit it and never should!') }}" data-placement="top" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 focus:outline-none cursor-default">
+                                            System / Super Admin User
+                                        </button>
                                     @else
+                                        @can('edit_users')
+                                            @livewire('dashboard.administration.modals.user-update-modal', ['user' => $user], key($user->id))
+                                        @endcan
+                                        @can('delete_users')
+                                            @livewire('dashboard.administration.modals.user-delete-modal', ['user' => $user], key($user->id))
+                                        @endcan
                                     @endif
                                 </td>
                             </tr>

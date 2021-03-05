@@ -20,6 +20,7 @@ trait PasswordValidationRules
     {
         return ['required', 'string', new Password, 'confirmed'];
     }
+
     /**
      * Get the validation rules used to validate passwords.
      *
@@ -28,5 +29,15 @@ trait PasswordValidationRules
     protected function consolePasswordRules()
     {
         return ['required', 'string', new Password];
+    }
+
+    /**
+     * Get the validation rules used to validate passwords.
+     *
+     * @return array
+     */
+    protected function updatePasswordRules()
+    {
+        return ['string', new Password];
     }
 }
