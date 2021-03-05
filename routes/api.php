@@ -64,12 +64,12 @@ Route::prefix('v1')->group(function () {
         ));
     })->name('api.version');
 
-    /*
-     * |---------------------------------------------
-     * |    Components
-     * |---------------------------------------------
-     */
     Route::middleware('auth:sanctum')->group(function (){
+        /*
+         * |---------------------------------------------
+         * |    User
+         * |---------------------------------------------
+         */
         Route::get('/user', function (Request $request) {
             if(APIHelpers::hasPermission('read:users', $request)){
                 return ResponseGenerator::generateResponse($request->user());
@@ -80,6 +80,11 @@ Route::prefix('v1')->group(function () {
             }
         });
 
+        /*
+         * |---------------------------------------------
+         * |    Components
+         * |---------------------------------------------
+         */
         Route::get('/components', function (Request $request) {
             if(APIHelpers::hasPermission('read:components', $request)){
                 return ResponseGenerator::generateResponse(Component::all());
@@ -145,7 +150,7 @@ Route::prefix('v1')->group(function () {
             }
         });
 
-        Route::put('/components/{id}', function (Request $request, $id) {
+        Route::patch('/components/{id}', function (Request $request, $id) {
             if(APIHelpers::hasPermission('edit:components', $request)){
                 $component = Component::findOrFail($id);
 
@@ -262,7 +267,7 @@ Route::prefix('v1')->group(function () {
             }
         });
 
-        Route::put('/component-groups/{id}', function (Request $request, $id) {
+        Route::patch('/component-groups/{id}', function (Request $request, $id) {
             if(APIHelpers::hasPermission('edit:componentgroups', $request)){
                 $component = ComponentGroup::findOrFail($id);
 
