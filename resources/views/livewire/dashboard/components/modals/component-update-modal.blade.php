@@ -21,6 +21,12 @@
                 </div>
 
                 <div class="col-span-6 sm:col-span-4 mb-4">
+                    <x-jet-label for="description" class="text-lg" value="{{ __('Description') }}" />
+                    <x-jet-input id="description" type="text" class="mt-1 block w-full" wire:model="comp.description" />
+                    @error('comp.description') <span class="text-red-500">{{ $message }}</span> @enderror
+                </div>
+
+                <div class="col-span-6 sm:col-span-4 mb-4">
                     <x-jet-label for="group" class="text-lg" value="{{ __('Group') }}" />
                     <select id="group" wire:model="comp.group" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
                         @foreach(\App\Models\ComponentGroup::all() as $local_group)

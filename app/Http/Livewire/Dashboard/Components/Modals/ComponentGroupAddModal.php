@@ -19,6 +19,7 @@ class ComponentGroupAddModal extends Component
 
     protected $rules = [
         'newGroup.name' => 'required|string|min:3',
+        'newGroup.description' => 'string|min:3',
         'newGroup.order' => 'required|integer',
         'newGroup.visibility' => 'boolean',
     ];

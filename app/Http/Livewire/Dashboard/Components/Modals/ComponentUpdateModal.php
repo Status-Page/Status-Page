@@ -22,6 +22,7 @@ class ComponentUpdateModal extends Component
     protected $rules = [
         'comp.name' => 'required|string|min:3',
         'comp.link' => 'url',
+        'comp.description' => 'string|min:3',
         'comp.group' => 'required|integer',
         'comp.status_id' => 'required|integer|min:1|max:6',
         'comp.order' => 'required|integer',
@@ -38,7 +39,6 @@ class ComponentUpdateModal extends Component
     }
 
     public function save(){
-        $this->comp->description = '';
         $this->comp->user = Auth::id();
 
         $this->validate();

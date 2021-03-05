@@ -19,6 +19,12 @@
                 </div>
 
                 <div class="col-span-6 sm:col-span-4 mb-4">
+                    <x-jet-label for="description" class="text-lg" value="{{ __('Description') }}" />
+                    <x-jet-input id="description" type="text" class="mt-1 block w-full" wire:model="newGroup.description" />
+                    @error('newGroup.description') <span class="text-red-500">{{ $message }}</span> @enderror
+                </div>
+
+                <div class="col-span-6 sm:col-span-4 mb-4">
                     <x-jet-label for="order" class="text-lg" value="{{ __('Order') }}" />
                     <x-jet-input id="order" type="number" class="mt-1 block w-full" wire:model="newGroup.order" />
                     @error('newGroup.order') <span class="text-red-500">{{ $message }}</span> @enderror

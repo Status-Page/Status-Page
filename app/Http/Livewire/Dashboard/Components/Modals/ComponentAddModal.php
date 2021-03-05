@@ -22,6 +22,7 @@ class ComponentAddModal extends Component
     protected $rules = [
         'model.name' => 'required|string|min:3',
         'model.link' => 'url',
+        'model.description' => 'string|min:3',
         'model.status_id' => 'required|integer|min:1|max:6',
         'model.order' => 'integer',
         'model.visibility' => 'boolean',
@@ -39,7 +40,6 @@ class ComponentAddModal extends Component
     }
 
     public function save(){
-        $this->model->description = '';
         $this->model->group = $this->group->id;
         $this->model->user = Auth::id();
 
