@@ -5,6 +5,10 @@
  * Using / Editing this without my consent is not allowed.
  */
 
+use App\Http\Resources\ComponentGroupCollection;
+use App\Http\Resources\ComponentGroupResource;
+use App\Http\Resources\ComponentResource;
+use App\Http\Resources\StatusResource;
 use App\Models\Component;
 use App\Models\ComponentGroup;
 use App\Models\Status;
@@ -87,7 +91,7 @@ Route::prefix('v1')->group(function () {
          */
         Route::get('/components', function (Request $request) {
             if(APIHelpers::hasPermission('read:components', $request)){
-                return ResponseGenerator::generateResponse(Component::all());
+                return ComponentResource::collection(Component::paginate(intval($request->get('per_page', 20))));
             }else{
                 return ResponseGenerator::generateResponse(array(
                     'message' => 'Not Authorized.'
@@ -97,7 +101,7 @@ Route::prefix('v1')->group(function () {
 
         Route::get('/components/{id}', function (Request $request, $id) {
             if(APIHelpers::hasPermission('read:components', $request)){
-                return ResponseGenerator::generateResponse(Component::find($id));
+                return new ComponentResource(Component::find($id));
             }else{
                 return ResponseGenerator::generateResponse(array(
                     'message' => 'Not Authorized.'
@@ -141,8 +145,7 @@ Route::prefix('v1')->group(function () {
                 }
 
                 $component->save();
-                $component->refresh();
-                return ResponseGenerator::generateResponse($component);
+                return new ComponentResource(Component::find($component->id));
             }else{
                 return ResponseGenerator::generateResponse(array(
                     'message' => 'Not Authorized.'
@@ -184,8 +187,7 @@ Route::prefix('v1')->group(function () {
                 }
 
                 $component->save();
-                $component->refresh();
-                return ResponseGenerator::generateResponse($component);
+                return new ComponentResource(Component::find($id));
             }else{
                 return ResponseGenerator::generateResponse(array(
                     'message' => 'Not Authorized.'
@@ -213,7 +215,7 @@ Route::prefix('v1')->group(function () {
          */
         Route::get('/component-groups', function (Request $request) {
             if(APIHelpers::hasPermission('read:componentgroups', $request)){
-                return ResponseGenerator::generateResponse(ComponentGroup::all());
+                return ComponentGroupResource::collection(ComponentGroup::paginate(intval($request->get('per_page', 20))));
             }else{
                 return ResponseGenerator::generateResponse(array(
                     'message' => 'Not Authorized.'
@@ -223,7 +225,7 @@ Route::prefix('v1')->group(function () {
 
         Route::get('/component-groups/{id}', function (Request $request, $id) {
             if(APIHelpers::hasPermission('read:componentgroups', $request)){
-                return ResponseGenerator::generateResponse(ComponentGroup::find($id));
+                return new ComponentGroupResource(ComponentGroup::find($id));
             }else{
                 return ResponseGenerator::generateResponse(array(
                     'message' => 'Not Authorized.'
@@ -240,6 +242,7 @@ Route::prefix('v1')->group(function () {
                 $component->order = $request->get('order') ?: 0;
 
                 $component->user = $request->user()->id;
+
 
                 $validator = Validator::make([
                     'name' => $component->name,
@@ -258,8 +261,7 @@ Route::prefix('v1')->group(function () {
                 }
 
                 $component->save();
-                $component->refresh();
-                return ResponseGenerator::generateResponse($component);
+                return new ComponentGroupResource(ComponentGroup::find($component->id));
             }else{
                 return ResponseGenerator::generateResponse(array(
                     'message' => 'Not Authorized.'
@@ -292,8 +294,7 @@ Route::prefix('v1')->group(function () {
                 }
 
                 $component->save();
-                $component->refresh();
-                return ResponseGenerator::generateResponse($component);
+                return new ComponentGroupResource(ComponentGroup::find($component->id));
             }else{
                 return ResponseGenerator::generateResponse(array(
                     'message' => 'Not Authorized.'
@@ -322,7 +323,7 @@ Route::prefix('v1')->group(function () {
          */
         Route::get('/status', function (Request $request) {
             if(APIHelpers::hasPermission('read:statuses', $request)){
-                return ResponseGenerator::generateResponse(Status::all());
+                return StatusResource::collection(Status::all());
             }else{
                 return ResponseGenerator::generateResponse(array(
                     'message' => 'Not Authorized.'
