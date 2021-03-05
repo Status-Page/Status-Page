@@ -10,6 +10,7 @@ use App\Http\Controllers\DashboardComponentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardIncidentController;
 use App\Http\Controllers\RefreshController;
+use App\Http\Livewire\Dashboard\Administration\Users;
 use App\Mail\Incidents\Scheduled\ScheduledIncidentStarted;
 use App\Models\Incident;
 use Illuminate\Support\Facades\Route;
@@ -39,7 +40,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function (){
 
     Route::get('/dashboard/components', [DashboardComponentController::class, 'show'])->middleware(['can:read_components'])->name('dashboard.components');
 
-    Route::get('/dashboard/admin/users', [AdminController::class, 'users'])->middleware(['can:read_users'])->name('dashboard.admin.users');
+    Route::get('/dashboard/admin/users', Users::class)->middleware(['can:read_users'])->name('dashboard.admin.users');
     Route::get('/dashboard/admin/actionlog', [AdminController::class, 'actionLog'])->middleware(['can:read_actionlog'])->name('dashboard.admin.actionlog');
 });
 
