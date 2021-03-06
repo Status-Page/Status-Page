@@ -2,9 +2,6 @@
 
 namespace App\Http\Livewire\Home;
 
-use Cache;
-use Carbon\Carbon;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Livewire\Component;
 
 class Metric extends Component

@@ -23,15 +23,24 @@
                 </div>
 
                 <div class="col-span-6 sm:col-span-4 mb-4">
-                    <x-jet-label for="visibility" class="text-lg" value="{{ __('Visible') }}" />
-                    <x-jet-input id="visibility" type="checkbox" class="mt-1 block" wire:model="group.visibility" />
-                    @error('group.visibility') <span class="text-red-500">{{ $message }}</span> @enderror
-                </div>
-
-                <div class="col-span-6 sm:col-span-4 mb-4">
                     <x-jet-label for="order" class="text-lg" value="{{ __('Order') }}" />
                     <x-jet-input id="order" type="number" class="mt-1 block w-full" wire:model="group.order" />
                     @error('group.order') <span class="text-red-500">{{ $message }}</span> @enderror
+                </div>
+
+                <div class="col-span-6 sm:col-span-4 mb-4">
+                    <x-jet-label for="collapse" class="text-lg" value="{{ __('Expand on') }}" />
+                    <select id="collapse" wire:model="group.collapse" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                        <option value="expand_always">Expand always</option>
+                        <option value="expand_issue">Expand on Issue</option>
+                    </select>
+                    @error('group.collapse') <span class="text-red-500">{{ $message }}</span> @enderror
+                </div>
+
+                <div class="col-span-6 sm:col-span-4 mb-4">
+                    <x-jet-label for="visibility" class="text-lg" value="{{ __('Visible') }}" />
+                    <x-jet-input id="visibility" type="checkbox" class="mt-1 block" wire:model="group.visibility" />
+                    @error('group.visibility') <span class="text-red-500">{{ $message }}</span> @enderror
                 </div>
             </x-slot>
 

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMetricPointsTable extends Migration
+class AddColumnsToComponentGroups extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateMetricPointsTable extends Migration
      */
     public function up()
     {
-        Schema::create('metric_points', function (Blueprint $table) {
-            $table->id();
-            $table->double('value');
-            $table->integer('metric_id');
-            $table->timestamps();
+        Schema::table('component_groups', function (Blueprint $table) {
+            $table->enum('collapse', ['expand_always', 'expand_issue'])->after('order')->default('expand_issue');
         });
     }
 
@@ -28,6 +25,8 @@ class CreateMetricPointsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('metric_points');
+        Schema::table('component_groups', function (Blueprint $table) {
+            $table->dropColumn('collapse');
+        });
     }
 }

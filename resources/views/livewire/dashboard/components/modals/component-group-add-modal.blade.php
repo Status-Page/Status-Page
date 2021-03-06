@@ -31,6 +31,15 @@
                 </div>
 
                 <div class="col-span-6 sm:col-span-4 mb-4">
+                    <x-jet-label for="collapse" class="text-lg" value="{{ __('Expand on') }}" />
+                    <select id="collapse" wire:model="newGroup.collapse" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                        <option value="expand_always">Expand always</option>
+                        <option value="expand_issue">Expand on Issue</option>
+                    </select>
+                    @error('newGroup.collapse') <span class="text-red-500">{{ $message }}</span> @enderror
+                </div>
+
+                <div class="col-span-6 sm:col-span-4 mb-4">
                     <x-jet-label for="visible" class="text-lg" value="{{ __('Visibility') }}" />
                     <x-jet-input id="visible" type="checkbox" class="mt-1 block" wire:model="newGroup.visibility" />
                     @error('newGroup.visibility') <span class="text-red-500">{{ $message }}</span> @enderror

@@ -21,6 +21,7 @@ class ComponentGroupAddModal extends Component
         'newGroup.name' => 'required|string|min:3',
         'newGroup.description' => 'string|min:3',
         'newGroup.order' => 'required|integer',
+        'newGroup.collapse' => 'required|string',
         'newGroup.visibility' => 'boolean',
     ];
 
@@ -32,6 +33,8 @@ class ComponentGroupAddModal extends Component
     public function startAddGroup(){
         $this->newGroup = new ComponentGroup();
         $this->groupCreationModal = true;
+
+        $this->newGroup->collapse = 'expand_issue';
     }
     public function addGroup(){
         if(!$this->newGroup->visibility){

@@ -26,9 +26,9 @@ class Metric extends Model
             'points' => [],
         ];
         for ($i = $lastHours-1; $i >= 0; $i--){
-            array_push($return->labels, Carbon::now()->subHours($i)->setMinutes(intval(Carbon::now()->minute / 5) * 5)->format('H:i'));
+            array_push($return->labels, Carbon::now()->subHours($i)->setMinutes(0)->format('H:i'));
 
-            $points = $this->points()->whereBetween('created_at', [Carbon::now()->subHours($i)->setMinutes(intval(Carbon::now()->minute / 5) * 5), Carbon::now()->subHours($i-1)->setMinutes(intval(Carbon::now()->minute / 5) * 5)])->get();
+            $points = $this->points()->whereBetween('created_at', [Carbon::now()->subHours($i)->setMinutes(0), Carbon::now()->subHours($i-1)->setMinutes(0)])->get();
             array_push($return->points, $points->avg('value') ?? 0);
         }
 

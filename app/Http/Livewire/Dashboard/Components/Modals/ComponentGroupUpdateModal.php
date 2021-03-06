@@ -21,6 +21,7 @@ class ComponentGroupUpdateModal extends Component
         'group.name' => 'required|string|min:3',
         'group.description' => 'string|min:3',
         'group.visibility' => 'boolean',
+        'group.collapse' => 'required|string',
         'group.order' => 'required|integer',
     ];
 

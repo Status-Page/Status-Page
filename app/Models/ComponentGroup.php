@@ -37,4 +37,32 @@ class ComponentGroup extends Model
     public static function getAllGroups(){
         return self::query()->orderBy('order')->get();
     }
+
+    public function shouldExpand(): string {
+        if($this->collapse == "expand_issue"){
+            $expand = "false";
+
+            foreach ($this->components() as $component){
+                if($component->status()->id != 2){
+                    $expand = "true";
+                }
+            }
+
+            return $expand;
+        }
+        return "true";
+    }
+
+    public function getStatus(): Status {
+        $status = new Status();
+        $status->id = 0;
+
+        foreach ($this->components() as $component){
+            if($component->status()->id > $status->id){
+                $status = $component->status();
+            }
+        }
+
+        return $status;
+    }
 }
