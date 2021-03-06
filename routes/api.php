@@ -21,6 +21,7 @@ use App\Statuspage\API\ResponseGenerator;
 use App\Statuspage\Version;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Validation\Rule;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 
@@ -248,20 +249,26 @@ Route::prefix('v1')->group(function () {
                 $component = new ComponentGroup();
 
                 $component->name = $request->get('name');
+                $component->description = $request->get('description') ?: '';
                 $component->visibility = $request->get('visibility') ?: false;
                 $component->order = $request->get('order') ?: 0;
+                $component->collapse = $request->get('collapse') ?: 'expand_issue';
 
                 $component->user = $request->user()->id;
 
 
                 $validator = Validator::make([
                     'name' => $component->name,
+                    'description' => $component->description,
                     'visibility' => $component->visibility,
                     'order' => $component->order,
+                    'collapse' => $component->collapse,
                 ], [
                     'name' => 'required|string|min:3',
+                    'description' => 'string|min:3',
                     'visibility' => 'boolean',
                     'order' => 'integer',
+                    'collapse' => ['string', Rule::in(['expand_always', 'expand_issue'])],
                 ]);
 
                 if($validator->fails()){
@@ -284,17 +291,23 @@ Route::prefix('v1')->group(function () {
                 $component = ComponentGroup::findOrFail($id);
 
                 $component->name = $request->get('name') ?: $component->name;
+                $component->description = $request->get('description') ?: $component->description;
                 $component->visibility = $request->get('visibility') ?: $component->visibility;
                 $component->order = $request->get('order') ?: $component->order;
+                $component->collapse = $request->get('collapse') ?: $component->collapse;
 
                 $validator = Validator::make([
                     'name' => $component->name,
+                    'description' => $component->description,
                     'visibility' => $component->visibility,
                     'order' => $component->order,
+                    'collapse' => $component->collapse,
                 ], [
                     'name' => 'string|min:3',
+                    'description' => 'string|min:3',
                     'visibility' => 'boolean',
                     'order' => 'integer',
+                    'collapse' => ['string', Rule::in(['expand_always', 'expand_issue'])],
                 ]);
 
                 if($validator->fails()){
