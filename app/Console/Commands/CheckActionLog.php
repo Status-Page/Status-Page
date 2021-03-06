@@ -25,7 +25,7 @@ class CheckActionLog extends Command
      *
      * @var string
      */
-    protected $description = 'Checks the Action Log for old entrys and deletes them.';
+    protected $description = 'Checks the Action Log for old entries and deletes them.';
 
     /**
      * Create a new command instance.

@@ -3,6 +3,7 @@ use App\Models\Component;
 use App\Models\ComponentGroup;
 use App\Models\Incident;
 use App\Models\Status;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
 
 $components = Cache::remember('home_components', config('cache.ttl'), function (){
@@ -130,6 +131,16 @@ $upcoming_maintenances = Incident::getPublicUpcomingMaintenances();
                     </div>
                 @endforeach
             </div>
+            @if(\App\Models\Metric::query()->where('visibility', true)->count() > 0)
+                <div class="mt-12">
+                    <h2 class="text-2xl">
+                        Metrics
+                    </h2>
+                    @foreach(\App\Models\Metric::query()->where('visibility', true)->get() as $metric)
+                        @livewire('home.metric', ['metric' => $metric], key($metric->id))
+                    @endforeach
+                </div>
+            @endif
             @if($upcoming_maintenances->count() > 0)
                 <div class="mt-12">
                     <h2 class="text-2xl">
