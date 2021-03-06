@@ -17,7 +17,6 @@ class CreateMetricPointsTable extends Migration
             $table->id();
             $table->integer('value');
             $table->integer('metric_id');
-            $table->dateTime('timestamp');
             $table->timestamps();
         });
     }

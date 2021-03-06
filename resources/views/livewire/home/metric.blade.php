@@ -1,4 +1,12 @@
 <div>
+    <!-- <div class="text-right">
+        <label>
+            <select wire:model="unit" wire:change="update" class="dark:bg-discordBlack mt-1 pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                <option value="24">Last 24 Hours</option>
+                <option value="48">Last 48 Hours</option>
+            </select>
+        </label>
+    </div> -->
     <canvas id="metric-{{ $metric->id }}" width="400" height="150"></canvas>
     <script>
         var ctx = document.getElementById('metric-{{ $metric->id }}').getContext('2d');

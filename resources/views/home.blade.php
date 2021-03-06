@@ -179,7 +179,7 @@ $upcoming_maintenances = Incident::getPublicUpcomingMaintenances();
                                 {{ \Carbon\Carbon::now()->subDays($i)->monthName }} {{ \Carbon\Carbon::now()->subDays($i)->day }}, {{ \Carbon\Carbon::now()->subDays($i)->year }}
                             </div>
                         </div>
-                        <div class="my-2 w-full border-t border-gray-300"></div>
+                        <div class="my-2 w-full border-t border-gray-300 dark:border-discordGrey"></div>
                         @if(\App\Models\Incident::query()->where([['visibility', '=', true], ['status', '=', 3]])->whereDate('updated_at', \Carbon\Carbon::now()->subDays($i))->count() > 0)
                             @foreach(\App\Models\Incident::query()->where([['visibility', '=', true], ['status', '=', 3]])->whereDate('updated_at', \Carbon\Carbon::now()->subDays($i))->orderBy('id', 'desc')->get() as $incident)
                                 <div class="mt-6">
