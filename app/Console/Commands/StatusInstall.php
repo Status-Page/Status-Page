@@ -56,8 +56,8 @@ class StatusInstall extends Command
             return 1;
         }
 
-        $this->call('config:cache');
         $this->call('key:generate');
+        $this->call('config:cache');
         $this->call('migrate:fresh');
         $this->call('route:cache');
 
@@ -94,6 +94,7 @@ class StatusInstall extends Command
         $user->name = 'System';
         $user->email = 'system@statuspage';
         $user->deactivated = true;
+        $user->system = 1;
         $user->password = Hash::make(Uuid::uuid4());
         $user->save();
 
