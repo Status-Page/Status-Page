@@ -8,9 +8,13 @@
 use App\Http\Resources\ComponentGroupCollection;
 use App\Http\Resources\ComponentGroupResource;
 use App\Http\Resources\ComponentResource;
+use App\Http\Resources\MetricPointResource;
+use App\Http\Resources\MetricResource;
 use App\Http\Resources\StatusResource;
 use App\Models\Component;
 use App\Models\ComponentGroup;
+use App\Models\Metric;
+use App\Models\MetricPoint;
 use App\Models\Status;
 use App\Statuspage\API\APIHelpers;
 use App\Statuspage\API\ResponseGenerator;
@@ -312,6 +316,194 @@ Route::prefix('v1')->group(function () {
             if(APIHelpers::hasPermission('delete:componentgroups', $request)){
                 $component = ComponentGroup::findOrFail($id);
                 $component->delete();
+
+                return ResponseGenerator::generateEmptyResponse();
+            }else{
+                return ResponseGenerator::generateResponse(array(
+                    'message' => 'Not Authorized.'
+                ), 403);
+            }
+        });
+
+
+        /*
+         * |---------------------------------------------
+         * |    Metrics
+         * |---------------------------------------------
+         */
+        Route::get('/metrics', function (Request $request) {
+            if(APIHelpers::hasPermission('read:metrics', $request)){
+                return MetricResource::collection(Metric::paginate(intval($request->get('per_page', 20))));
+            }else{
+                return ResponseGenerator::generateResponse(array(
+                    'message' => 'Not Authorized.'
+                ), 403);
+            }
+        });
+
+        Route::get('/metrics/{id}', function (Request $request, $id) {
+            if(APIHelpers::hasPermission('read:metrics', $request)){
+                return new MetricResource(Metric::find($id));
+            }else{
+                return ResponseGenerator::generateResponse(array(
+                    'message' => 'Not Authorized.'
+                ), 403);
+            }
+        });
+
+        Route::post('/metrics', function (Request $request) {
+            if(APIHelpers::hasPermission('edit:metrics', $request)){
+                $metric = new Metric();
+
+                $metric->title = $request->get('title');
+                $metric->suffix = $request->get('suffix') ?: '';
+                $metric->order = $request->get('order') ?: 0;
+                $metric->visibility = $request->get('visibility') ?: 0;
+
+                $validator = Validator::make([
+                    'title' => $metric->title,
+                    'suffix' => $metric->suffix,
+                    'order' => $metric->order,
+                    'visibility' => $metric->visibility,
+                ], [
+                    'title' => 'required|string|min:3',
+                    'suffix' => 'string',
+                    'order' => 'integer',
+                    'visibility' => 'boolean',
+                ]);
+
+                if($validator->fails()){
+                    return ResponseGenerator::generateResponse(array(
+                        'errors' => $validator->errors()
+                    ), 400);
+                }
+
+                $metric->save();
+                return new MetricResource(Metric::find($metric->id));
+            }else{
+                return ResponseGenerator::generateResponse(array(
+                    'message' => 'Not Authorized.'
+                ), 403);
+            }
+        });
+
+        Route::patch('/metrics/{id}', function (Request $request, $id) {
+            if(APIHelpers::hasPermission('edit:metrics', $request)){
+                $metric = Metric::findOrFail($id);
+
+                $metric->title = $request->get('title') ?: $metric->title;
+                $metric->suffix = $request->get('suffix') ?: $metric->suffix;
+                $metric->order = $request->get('order') ?: $metric->order;
+                $metric->visibility = $request->get('visibility') ?: $metric->visibility;
+
+                $validator = Validator::make([
+                    'title' => $metric->title,
+                    'suffix' => $metric->suffix,
+                    'order' => $metric->order,
+                    'visibility' => $metric->visibility,
+                ], [
+                    'title' => 'string|min:3',
+                    'suffix' => 'string',
+                    'order' => 'integer',
+                    'visibility' => 'boolean',
+                ]);
+
+                if($validator->fails()){
+                    return ResponseGenerator::generateResponse(array(
+                        'errors' => $validator->errors()
+                    ), 400);
+                }
+
+                $metric->save();
+                return new MetricResource(Metric::find($metric->id));
+            }else{
+                return ResponseGenerator::generateResponse(array(
+                    'message' => 'Not Authorized.'
+                ), 403);
+            }
+        });
+
+        Route::delete('/metrics/{id}', function (Request $request, $id) {
+            if(APIHelpers::hasPermission('delete:metrics', $request)){
+                $metric = Metric::findOrFail($id);
+                $metric->delete();
+
+                return ResponseGenerator::generateEmptyResponse();
+            }else{
+                return ResponseGenerator::generateResponse(array(
+                    'message' => 'Not Authorized.'
+                ), 403);
+            }
+        });
+
+
+        /*
+         * |---------------------------------------------
+         * |    Metric Points
+         * |---------------------------------------------
+         */
+        Route::get('/metrics/{id}/points', function (Request $request, $id) {
+            if(APIHelpers::hasPermission('read:metric_points', $request)){
+                return new MetricPointResource(Metric::find($id)->points()->paginate());
+            }else{
+                return ResponseGenerator::generateResponse(array(
+                    'message' => 'Not Authorized.'
+                ), 403);
+            }
+        });
+
+        Route::post('/metrics/{id}/points', function (Request $request, $id) {
+            if(APIHelpers::hasPermission('edit:metrics', $request)){
+                $metric = Metric::findOrFail($id);
+                $point = new MetricPoint();
+                $point->metric_id = $metric->id;
+
+                $point->value = doubleval($request->get('value'));
+
+                $validator = Validator::make([
+                    'value' => $point->value,
+                ], [
+                    'value' => 'required|numeric',
+                ]);
+
+                if($validator->fails()){
+                    return ResponseGenerator::generateResponse(array(
+                        'errors' => $validator->errors()
+                    ), 400);
+                }
+
+                $point->save();
+                return new MetricPointResource(MetricPoint::find($point->id));
+            }else{
+                return ResponseGenerator::generateResponse(array(
+                    'message' => 'Not Authorized.'
+                ), 403);
+            }
+        });
+
+        Route::delete('/metrics/{metric_id}/points/{id}', function (Request $request, $metric_id, $id) {
+            if(APIHelpers::hasPermission('delete:metric_points', $request)){
+                /**
+                 * @var $metric Metric
+                 */
+                $metric = Metric::findOrFail($metric_id);
+                $metric->points()->findOrFail($id)->delete();
+
+                return ResponseGenerator::generateEmptyResponse();
+            }else{
+                return ResponseGenerator::generateResponse(array(
+                    'message' => 'Not Authorized.'
+                ), 403);
+            }
+        });
+
+        Route::delete('/metrics/{metric_id}/points', function (Request $request, $metric_id) {
+            if(APIHelpers::hasPermission('delete:metric_points', $request)){
+                /**
+                 * @var $metric Metric
+                 */
+                $metric = Metric::findOrFail($metric_id);
+                $metric->points()->delete();
 
                 return ResponseGenerator::generateEmptyResponse();
             }else{

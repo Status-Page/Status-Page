@@ -3,7 +3,7 @@
         <h2 class="text-2xl">
             Metrics
         </h2>
-        @foreach(\App\Models\Metric::query()->where('visibility', true)->get() as $metric)
+        @foreach(\App\Models\Metric::query()->where('visibility', true)->orderBy('order')->get() as $metric)
             @livewire('home.metric', ['metric' => $metric], key($metric->id))
         @endforeach
     </div>

@@ -99,7 +99,7 @@ class StatusSeeder extends Seeder
         $admin = Role::create(['name' => 'admin']);
         $reporter = Role::create(['name' => 'reporter']);
 
-        $models = ['incidents', 'components', 'componentgroups', 'statuses', 'users'];
+        $models = ['incidents', 'components', 'componentgroups', 'metrics', 'metric_points', 'statuses', 'users'];
 
         $reporterModelsShow = ['incidents', 'components', 'componentgroups', 'statuses'];
         $reporterModelsAdd = ['incidents'];

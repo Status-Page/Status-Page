@@ -42,7 +42,7 @@ class JetstreamServiceProvider extends ServiceProvider
      */
     protected function configurePermissions()
     {
-        $models = ['incidents', 'maintenances', 'components', 'componentgroups', 'statuses', 'users'];
+        $models = ['incidents', 'maintenances', 'components', 'componentgroups', 'metrics', 'metric_points', 'statuses', 'users'];
         $permissions = [];
         $default_permissions = [];
 

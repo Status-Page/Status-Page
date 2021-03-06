@@ -20,6 +20,7 @@ class ComponentGroupResource extends JsonResource
             'visibility' => $this->visibility,
             'user' => $this->user,
             'order' => $this->order,
+            'collapse' => $this->collapse,
             'components' => ComponentResource::collection($this->components()),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
