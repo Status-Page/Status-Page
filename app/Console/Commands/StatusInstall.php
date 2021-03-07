@@ -60,6 +60,7 @@ class StatusInstall extends Command
         $this->call('config:cache');
         $this->call('migrate:fresh');
         $this->call('route:cache');
+        $this->call('storage:link');
 
         $username = 'foobar';
         $email = 'foo@bar.com';
