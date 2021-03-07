@@ -14,5 +14,6 @@
  */
 
 return [
-    'darkmode' => true
+    'darkmode' => true,
+    'use_configcat' => env('STATUS_USE_CONFIGCAT', true),
 ];

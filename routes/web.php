@@ -45,15 +45,3 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function (){
     Route::get('/dashboard/admin/users', Users::class)->middleware(['can:read_users'])->name('dashboard.admin.users');
     Route::get('/dashboard/admin/actionlog', [AdminController::class, 'actionLog'])->middleware(['can:read_actionlog'])->name('dashboard.admin.actionlog');
 });
-
-/* Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
-*/
-
-/* Route::get('/mailtest', function (){
-    $incident = Incident::query()->where('id', '=', 19)->first();
-    $updates = $incident->incidentUpdates()->get();
-
-    return new ScheduledIncidentStarted($incident, $updates);
-}); */

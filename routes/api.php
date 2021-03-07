@@ -5,7 +5,6 @@
  * Using / Editing this without my consent is not allowed.
  */
 
-use App\Http\Resources\ComponentGroupCollection;
 use App\Http\Resources\ComponentGroupResource;
 use App\Http\Resources\ComponentResource;
 use App\Http\Resources\MetricPointResource;
@@ -18,6 +17,7 @@ use App\Models\MetricPoint;
 use App\Models\Status;
 use App\Statuspage\API\APIHelpers;
 use App\Statuspage\API\ResponseGenerator;
+use App\Statuspage\GlobalConfig;
 use App\Statuspage\Version;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -74,6 +74,21 @@ Route::prefix('v1')->group(function () {
     })->name('api.version');
 
     Route::middleware('auth:sanctum')->group(function (){
+        /*
+         * |---------------------------------------------
+         * |    ConfigCat PageID
+         * |---------------------------------------------
+         */
+        Route::get('/configcat_pageid', function (Request $request) {
+            if(APIHelpers::hasPermission('configcat_pageid', $request)){
+                return ResponseGenerator::generateResponse(GlobalConfig::uniquePageID());
+            }else{
+                return ResponseGenerator::generateResponse(array(
+                    'message' => 'Not Authorized.'
+                ), 403);
+            }
+        });
+
         /*
          * |---------------------------------------------
          * |    User
