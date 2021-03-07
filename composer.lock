@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9333eda2e7104c6729fef1e4b2055d1a",
+    "content-hash": "303fbc4dbbc2c07b9ed43403bb8202ba",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -170,6 +170,71 @@
                 }
             ],
             "time": "2021-01-20T22:51:39+00:00"
+        },
+        {
+            "name": "configcat/configcat-client",
+            "version": "v5.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/configcat/php-sdk.git",
+                "reference": "997c5db8f25cb2035fc1ffeda5fe7945266f91f2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/configcat/php-sdk/zipball/997c5db8f25cb2035fc1ffeda5fe7945266f91f2",
+                "reference": "997c5db8f25cb2035fc1ffeda5fe7945266f91f2",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "guzzlehttp/guzzle": "^6.3 || ^7.0",
+                "monolog/monolog": "^1.6|^2.0",
+                "php": ">=5.5",
+                "psr/log": "^1.1",
+                "z4kn4fein/php-semver": "^1.0"
+            },
+            "require-dev": {
+                "illuminate/cache": "^5.0",
+                "phpunit/phpunit": "~4.0",
+                "psr/cache": "^1.0",
+                "psr/simple-cache": "^1.0",
+                "squizlabs/php_codesniffer": "3.5.1"
+            },
+            "suggest": {
+                "laravel/framework": "When using laravel, a pre-built cache adapter \\ConfigCat\\LaravelCache can be used as the main cache of the library.",
+                "psr/cache": "When using any PSR6 Cache implementation, a pre-built cache adapter \\ConfigCat\\Psr6Cache can be used as the main cache of the library.",
+                "psr/simple-cache": "When using any PSR16 SimpleCache implementation, a pre-built cache adapter \\ConfigCat\\Psr16Cache can be used as the main cache of the library."
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ConfigCat\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "ConfigCat",
+                    "email": "developer@configcat.com",
+                    "homepage": "https://configcat.com"
+                }
+            ],
+            "description": "ConfigCat is a feature flag, feature toggle, and configuration management service. That lets you launch new features and change your software configuration remotely without actually (re)deploying code. ConfigCat even helps you do controlled roll-outs like canary releases and blue-green deployments.",
+            "homepage": "https://github.com/configcat/php-sdk",
+            "keywords": [
+                "configcat",
+                "feature flag",
+                "feature toggle",
+                "user targeting"
+            ],
+            "support": {
+                "issues": "https://github.com/configcat/php-sdk/issues",
+                "source": "https://github.com/configcat/php-sdk/tree/v5.2.0"
+            },
+            "time": "2021-01-22T12:24:48+00:00"
         },
         {
             "name": "dasprid/enum",
@@ -5755,6 +5820,56 @@
                 "source": "https://github.com/webmozarts/assert/tree/1.9.1"
             },
             "time": "2020-07-08T17:02:28+00:00"
+        },
+        {
+            "name": "z4kn4fein/php-semver",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/z4kn4fein/php-semver.git",
+                "reference": "9b0dba84af87d7dc4a97087893f2874184ee8f97"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/z4kn4fein/php-semver/zipball/9b0dba84af87d7dc4a97087893f2874184ee8f97",
+                "reference": "9b0dba84af87d7dc4a97087893f2874184ee8f97",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "z4kn4fein\\SemVer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Peter Csajtai",
+                    "email": "peter.csajtai@outlook.com"
+                }
+            ],
+            "description": "Semantic version utility library with parser and comparator written in PHP. It provides full support for the semver 2.0.0 standards.",
+            "homepage": "https://github.com/z4kn4fein/php-semver",
+            "keywords": [
+                "Semantic version",
+                "semver",
+                "semver-compare",
+                "semver-parsing"
+            ],
+            "support": {
+                "issues": "https://github.com/z4kn4fein/php-semver/issues",
+                "source": "https://github.com/z4kn4fein/php-semver/tree/v1.0.1"
+            },
+            "time": "2020-01-03T01:04:18+00:00"
         }
     ],
     "packages-dev": [

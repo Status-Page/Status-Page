@@ -4,7 +4,9 @@
     </x-slot>
 
     <x-slot name="description">
-        {{ __('Update your account\'s profile information and email address.') }}
+        {{ __('Update your account\'s profile information and email address.') }}<br>
+        {{ __('Your unique User ID: '.\App\Statuspage\GlobalConfig::uniqueUserID(Auth::user())) }}<br>
+        {{ __('We\'re using a service called ConfigCat, to publish new Beta features. This unique ID will be sent to this Service. It\'s fully anonymous. It changes, when you update your Name or E-Mail address.') }}
     </x-slot>
 
     <x-slot name="form">

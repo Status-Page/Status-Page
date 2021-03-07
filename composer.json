@@ -18,6 +18,7 @@
     "require": {
         "php": "^7.4|^8.0",
         "ext-json": "*",
+        "configcat/configcat-client": "^5.2",
         "fedeisas/laravel-mail-css-inliner": "^4.0",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
