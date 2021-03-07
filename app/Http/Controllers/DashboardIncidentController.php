@@ -7,7 +7,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Livewire\Dashboard\Metrics\Metrics;
 use App\Models\Incident;
+use App\Models\Metric;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
@@ -62,6 +64,19 @@ class DashboardIncidentController extends Controller
             'old_maintenances' => Incident::getPastMaintenances(),
             'maintenances' => Incident::getMaintenances(),
             'upcoming_maintenances' => Incident::getUpcomingMaintenances(),
+        ]);
+    }
+
+    /**
+     * Display Metrics.
+     *
+     * @param Request $request
+     * @return Application|Factory|\Illuminate\Contracts\View\View|View
+     */
+    public function showMetrics(Request $request)
+    {
+        return view('livewire.dashboard.metrics.metrics', [
+            'metrics' => Metric::query()->orderBy('order')->get(),
         ]);
     }
 }

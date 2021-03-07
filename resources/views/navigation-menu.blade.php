@@ -40,6 +40,13 @@
                         </x-jet-nav-link>
                     </div>
                 @endcan
+                @can('read_metrics')
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-jet-nav-link href="{{ route('dashboard.metrics') }}" :active="request()->routeIs('dashboard.metrics')">
+                            {{ __('Metrics') }}
+                        </x-jet-nav-link>
+                    </div>
+                @endcan
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -200,6 +207,11 @@
             @can('read_components')
                 <x-jet-responsive-nav-link href="{{ route('dashboard.components') }}" :active="request()->routeIs('dashboard.components')">
                     {{ __('Components') }}
+                </x-jet-responsive-nav-link>
+            @endcan
+            @can('read_metrics')
+                <x-jet-responsive-nav-link href="{{ route('dashboard.metrics') }}" :active="request()->routeIs('dashboard.metrics')">
+                    {{ __('Metrics') }}
                 </x-jet-responsive-nav-link>
             @endcan
         </div>

@@ -466,7 +466,7 @@ Route::prefix('v1')->group(function () {
         });
 
         Route::post('/metrics/{id}/points', function (Request $request, $id) {
-            if(APIHelpers::hasPermission('edit:metrics', $request)){
+            if(APIHelpers::hasPermission('edit:metric_points', $request)){
                 $metric = Metric::findOrFail($id);
                 $point = new MetricPoint();
                 $point->metric_id = $metric->id;
