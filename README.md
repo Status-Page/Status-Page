@@ -67,6 +67,8 @@ This will handle all necessary operations, as well as the git-pull.
 ## API Documentation
 You can find the API Documentation [here](https://herrtxbias-status.readme.io/reference).
 
+## Translation
+If you want to help with translation, head over to [my translation Page](https://translate.herrtxbias.net/projects/status-page/).
 
 ## Running queued Jobs
 To run queue Jobs you should use [supervisor](https://laravel.com/docs/8.x/queues#supervisor-configuration).
