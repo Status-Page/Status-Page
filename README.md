@@ -70,6 +70,12 @@ You can find the API Documentation [here](https://herrtxbias-status.readme.io/re
 ## Translation
 If you want to help with translation, head over to [my translation Page](https://translate.herrtxbias.net/projects/status-page/).
 
+Translation Status:
+
+<a href="http://translate.herrtxbias.net/engage/status-page/">
+<img src="http://translate.herrtxbias.net/widgets/status-page/-/multi-auto.svg" alt="Translation status" />
+</a>
+
 ## Running queued Jobs
 To run queue Jobs you should use [supervisor](https://laravel.com/docs/8.x/queues#supervisor-configuration).
 
