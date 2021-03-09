@@ -60,7 +60,7 @@ class SPImporter {
                 description: group.description,
                 visibility: true,
                 order: group.position,
-                collapse: 'expand_always'
+                collapse: 'expand_issue'
             })).data.data
 
             for (const comp of group.components) {
@@ -109,7 +109,7 @@ class SPImporter {
             const newMetric = (await this.sp.post(`/metrics`, {
                 title: metric.name,
                 suffix: metric.suffix,
-                visibility: true
+                visibility: metric.display
             })).data.data
         }catch (e) {
             console.error(`Error: ${e.message}`)

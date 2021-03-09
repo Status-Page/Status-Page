@@ -9,12 +9,12 @@ class Metric {
     metrics_provider_id: string
     metric_identifier: string
     name: string
-    display: true
+    display: boolean
     tooltip_description: string
-    backfilled: true
+    backfilled: boolean
     y_axis_min: number
     y_axis_max: number
-    y_axis_hidden: true
+    y_axis_hidden: boolean
     suffix: string
     decimal_places: number
     most_recent_data_at: string
