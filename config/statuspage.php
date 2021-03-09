@@ -15,5 +15,5 @@
 
 return [
     'darkmode' => true,
-    'use_configcat' => env('STATUS_USE_CONFIGCAT', true),
+    'use_configcat' => boolval(env('STATUS_USE_CONFIGCAT', true)),
 ];

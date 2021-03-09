@@ -36,17 +36,6 @@ class GlobalConfig
         }
     }
 
-    public static function getPageFeature($feature){
-        if(config('statuspage.use_configcat')){
-            $user = new User(self::uniquePageID());
-
-            $client = new ConfigCatClient((config('app.env') == 'production' ? 'wd3YCE7v2E2KdmSYIZ36Qw/_-hfoDlPgEGbmjOPv0xfkw' : 'wd3YCE7v2E2KdmSYIZ36Qw/LF6lHJe2iE-TE5LQ90ej7Q'));
-            return $client->getValue($feature, false, $user);
-        }else{
-            return false;
-        }
-    }
-
     public static function darkModeEnabled(){
         return self::getFeature('darkmodeAvailable', Auth::user()) && config('statuspage.darkmode');
     }

@@ -23,7 +23,7 @@
 - PHP 8.0
 - Composer
 - A supported database: MySQL, PostgreSQL or SQLite
-- Mail Server (e.g. SMTP)
+- Mail Server (with SMTP)
 - Optional:
     - Redis Server
     - supervisor
