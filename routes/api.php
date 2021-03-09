@@ -49,6 +49,12 @@ Route::prefix('v1')->group(function () {
     });
 
     Route::get('/version', function (Request $request) {
+        $process = Process::fromShellCommandline('git fetch origin');
+        $process->run();
+        if (!$process->isSuccessful()) {
+            throw new ProcessFailedException($process);
+        }
+
         $tag = Process::fromShellCommandline('git describe --tags');
         $tag->run();
         if (!$tag->isSuccessful()) {

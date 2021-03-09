@@ -70,7 +70,7 @@ class RunUpdate extends Command
                 $this->info('Aborted.');
             }
         }else{
-            $process = Process::fromShellCommandline('git fetch');
+            $process = Process::fromShellCommandline('git fetch origin');
             $process->run();
             $this->line($process->getOutput());
 
