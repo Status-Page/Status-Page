@@ -94,3 +94,15 @@ redirect_stderr=true
 stdout_logfile=/SPECIFY/LOG/FOLDER/HERE/worker.log
 stopwaitsecs=3600
 ```
+
+## Available Import Scripts
+### Requirements
+- Node.JS
+
+
+### Import from statuspage.io
+You can import your components from statuspage.io, with a simple script.
+To use it, run the following command:
+```shell
+npm run statuspage-import
+```

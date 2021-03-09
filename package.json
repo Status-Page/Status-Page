@@ -7,7 +7,13 @@
         "watch-poll": "mix watch -- --watch-options-poll=1000",
         "hot": "mix watch --hot",
         "prod": "npm run production",
-        "production": "mix --production"
+        "production": "mix --production",
+        "statuspage-import": "ts-node scripts/import_statuspage.ts"
+    },
+    "dependencies": {
+        "typescript": "^4.2.3",
+        "ts-node": "^9.1.1",
+        "axios": "^0.21.1"
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.2.1",
