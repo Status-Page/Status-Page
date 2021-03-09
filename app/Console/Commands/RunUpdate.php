@@ -86,6 +86,10 @@ class RunUpdate extends Command
                     '--retry' => '10'
                 ]);
 
+                $process = Process::fromShellCommandline('git stash');
+                $process->run();
+                $this->line($process->getOutput());
+
                 $process = Process::fromShellCommandline('git checkout '.$version->meta->git->last_tag);
                 $process->run();
                 $this->line($process->getOutput());
@@ -97,10 +101,6 @@ class RunUpdate extends Command
                 $process = Process::fromShellCommandline('npm run dev');
                 $process->run();
                 $this->line($process->getOutput());
-
-                /* $this->call('status:updatedatabase', [
-                    'version' => $version->meta->git->last_tag
-                ]); */
 
                 $this->call('migrate');
                 $this->call('config:cache');
