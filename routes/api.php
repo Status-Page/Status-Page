@@ -49,26 +49,16 @@ Route::prefix('v1')->group(function () {
     });
 
     Route::get('/version', function (Request $request) {
-        $process = Process::fromShellCommandline('git fetch origin');
-        $process->run();
-        if (!$process->isSuccessful()) {
-            throw new ProcessFailedException($process);
-        }
-
         $tag = Process::fromShellCommandline('git describe --tags');
         $tag->run();
         if (!$tag->isSuccessful()) {
             throw new ProcessFailedException($tag);
         }
 
-        $lasttag = Process::fromShellCommandline('git describe --tags `git rev-list --tags --max-count=1`');
-        $lasttag->run();
-        if (!$lasttag->isSuccessful()) {
-            throw new ProcessFailedException($lasttag);
-        }
-
         $formatted_tag = str_replace("\n", "", $tag->getOutput());
-        $formatted_lasttag = str_replace("\n", "", $lasttag->getOutput());
+
+        $lasttag = \Illuminate\Support\Facades\Http::get('https://status.herrtxbias.me/api/v1/version');
+        $formatted_lasttag = $lasttag->json()->data;
 
         return ResponseGenerator::generateMetaResponse(Version::getVersion(), array(
             'on_latest' => $formatted_tag == $formatted_lasttag,
