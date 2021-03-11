@@ -11,6 +11,6 @@ namespace App\Statuspage;
 class Version
 {
     public static function getVersion(){
-        return 'v1.2.5';
+        return 'v1.2.6';
     }
 }
