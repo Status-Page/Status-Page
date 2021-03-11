@@ -49,16 +49,10 @@ Route::prefix('v1')->group(function () {
     });
 
     Route::get('/version', function (Request $request) {
-        $tag = Process::fromShellCommandline('git describe --tags');
-        $tag->run();
-        if (!$tag->isSuccessful()) {
-            throw new ProcessFailedException($tag);
-        }
+        $formatted_tag = Version::getVersion();
 
-        $formatted_tag = str_replace("\n", "", $tag->getOutput());
-
-        $lasttag = \Illuminate\Support\Facades\Http::get('https://status.herrtxbias.me/api/v1/version');
-        $formatted_lasttag = $lasttag->json()->data;
+        $lasttag = config('app.url') == 'https://status.herrtxbias.me' ?: \Illuminate\Support\Facades\Http::get('https://status.herrtxbias.me/api/v1/version');
+        $formatted_lasttag = config('app.url') == 'https://status.herrtxbias.me' ? Version::getVersion() : $lasttag->json()->data;
 
         return ResponseGenerator::generateMetaResponse(Version::getVersion(), array(
             'on_latest' => $formatted_tag == $formatted_lasttag,
