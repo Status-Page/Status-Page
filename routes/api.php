@@ -172,7 +172,7 @@ Route::prefix('v1')->group(function () {
             }
         });
 
-        Route::patch('/components/{id}', function (Request $request, $id) {
+        Route::match(['patch', 'put'], '/components/{id}', function (Request $request, $id) {
             if(APIHelpers::hasPermission('edit:components', $request)){
                 $component = Component::findOrFail($id);
 
@@ -297,7 +297,7 @@ Route::prefix('v1')->group(function () {
             }
         });
 
-        Route::patch('/component-groups/{id}', function (Request $request, $id) {
+        Route::match(['patch', 'put'], '/component-groups/{id}', function (Request $request, $id) {
             if(APIHelpers::hasPermission('edit:componentgroups', $request)){
                 $component = ComponentGroup::findOrFail($id);
 
@@ -411,7 +411,7 @@ Route::prefix('v1')->group(function () {
             }
         });
 
-        Route::patch('/metrics/{id}', function (Request $request, $id) {
+        Route::match(['patch', 'put'], '/metrics/{id}', function (Request $request, $id) {
             if(APIHelpers::hasPermission('edit:metrics', $request)){
                 $metric = Metric::findOrFail($id);
 
