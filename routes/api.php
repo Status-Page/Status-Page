@@ -49,15 +49,13 @@ Route::prefix('v1')->group(function () {
     });
 
     Route::get('/version', function (Request $request) {
-        $formatted_tag = Version::getVersion();
-
         $lasttag = config('app.url') == 'https://status.herrtxbias.me' ?: \Illuminate\Support\Facades\Http::get('https://status.herrtxbias.me/api/v1/version');
         $formatted_lasttag = config('app.url') == 'https://status.herrtxbias.me' ? Version::getVersion() : $lasttag->json()->data;
 
         return ResponseGenerator::generateMetaResponse(Version::getVersion(), array(
-            'on_latest' => $formatted_tag == $formatted_lasttag,
+            'on_latest' => Version::getVersion() == $formatted_lasttag,
             'git' => array(
-                'tag' => $formatted_tag,
+                'tag' => Version::getVersion(),
                 'last_tag' => $formatted_lasttag
             )
         ));

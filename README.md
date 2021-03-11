@@ -64,6 +64,20 @@ If you update using git-tags: Run ``php artisan status:update --tags``.
 If you update using git-pull on the master branch: Run ``php artisan status:update``.
 This will handle all necessary operations, as well as the git-pull.
 
+### Manual updating
+```shell
+php artisan down
+git fetch origin
+git tag -l
+git checkout LATEST_TAG              # Insert the Latest Tag for LATEST_TAG
+composer install --no-dev -o --no-scripts
+php artisan migrate
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+php artisan event:cache
+```
+
 ## API Documentation
 You can find the API Documentation [here](https://herrtxbias-status.readme.io/reference).
 
