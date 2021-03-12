@@ -97,7 +97,7 @@ Route::prefix('v1')->group(function () {
          */
         Route::get('/components', function (Request $request) {
             if(APIHelpers::hasPermission('read:components', $request)){
-                return ComponentResource::collection(Component::paginate(intval($request->get('per_page', 20))));
+                return ComponentResource::collection(Component::paginate(intval($request->get('per_page', 100))));
             }else{
                 return ResponseGenerator::generateResponse(array(
                     'message' => 'Not Authorized.'
@@ -227,7 +227,7 @@ Route::prefix('v1')->group(function () {
          */
         Route::get('/component-groups', function (Request $request) {
             if(APIHelpers::hasPermission('read:componentgroups', $request)){
-                return ComponentGroupResource::collection(ComponentGroup::paginate(intval($request->get('per_page', 20))));
+                return ComponentGroupResource::collection(ComponentGroup::paginate(intval($request->get('per_page', 100))));
             }else{
                 return ResponseGenerator::generateResponse(array(
                     'message' => 'Not Authorized.'
@@ -347,7 +347,7 @@ Route::prefix('v1')->group(function () {
          */
         Route::get('/metrics', function (Request $request) {
             if(APIHelpers::hasPermission('read:metrics', $request)){
-                return MetricResource::collection(Metric::paginate(intval($request->get('per_page', 20))));
+                return MetricResource::collection(Metric::paginate(intval($request->get('per_page', 100))));
             }else{
                 return ResponseGenerator::generateResponse(array(
                     'message' => 'Not Authorized.'
