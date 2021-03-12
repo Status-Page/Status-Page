@@ -36,7 +36,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('check:actionlog')->daily()->description('Run Actionlog Checks');
         $schedule->command('check:metricpoints')->daily()->description('Run Metric Point Checks');
         $schedule->call(function (){
-            $fetch = Process::fromShellCommandline('git fetch', base_path());
+            $fetch = Process::fromShellCommandline('git fetch origin', base_path());
             $fetch->run();
             if (!$fetch->isSuccessful()) {
                 throw new ProcessFailedException($fetch);
