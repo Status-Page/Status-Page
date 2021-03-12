@@ -14,6 +14,10 @@ class IncidentUpdate extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'incident_id'
+    ];
+
     public function incident(){
         return $this->belongsTo(Incident::class, 'incident_id')->first();
     }
