@@ -22,8 +22,6 @@ use App\Statuspage\Version;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Validation\Rule;
-use Symfony\Component\Process\Exception\ProcessFailedException;
-use Symfony\Component\Process\Process;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,8 +47,8 @@ Route::prefix('v1')->group(function () {
     });
 
     Route::get('/version', function (Request $request) {
-        $lasttag = config('app.url') == 'https://status.herrtxbias.me' ?: \Illuminate\Support\Facades\Http::get('https://status.herrtxbias.me/api/v1/version');
-        $formatted_lasttag = config('app.url') == 'https://status.herrtxbias.me' ? Version::getVersion() : $lasttag->json()->data;
+        $lasttag = config('app.url') == 'https://status.herrtxbias.me' ? Version::getVersion() : \Illuminate\Support\Facades\Http::get('https://status.herrtxbias.me/api/v1/version');
+        $formatted_lasttag = $lasttag == Version::getVersion() ? Version::getVersion() : $lasttag->json()->data;
 
         return ResponseGenerator::generateMetaResponse(Version::getVersion(), array(
             'on_latest' => Version::getVersion() == $formatted_lasttag,
