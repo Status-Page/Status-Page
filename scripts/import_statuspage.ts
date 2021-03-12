@@ -57,7 +57,14 @@ rl.question('Statuspage.io Page ID: ', answer => {
                 }
                 settings.sp.apiKey = answer
 
-                new SPImporter(settings);
+                rl.question('Which data do you want to import? [0: All, 1: Components, 2: Metrics] ', answer => {
+                    if(answer == ''){
+                        console.error('No value provided. Restart the Script.')
+                        return
+                    }
+
+                    new SPImporter(settings, parseInt(answer));
+                })
             })
         })
     })

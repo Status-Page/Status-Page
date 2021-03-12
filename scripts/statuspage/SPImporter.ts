@@ -14,7 +14,7 @@ class SPImporter {
     private spio: AxiosInstance;
     private sp: AxiosInstance;
 
-    public constructor(settings: Settings){
+    public constructor(settings: Settings, importChoice: number = 0){
         console.log('Starting...')
 
         this.spio = axios.create({
@@ -31,13 +31,32 @@ class SPImporter {
             }
         })
 
-        this.fetchComponentGroups().then(value => {
-            console.log('Successfully added all Components!')
+        switch (importChoice){
+            // All Data
+            case 0:
+                this.fetchComponentGroups().then(value => {
+                    console.log('Successfully added all Components!')
 
-            this.fetchMetrics().then(value => {
-                console.log('Successfully added all Metrics!')
-            })
-        })
+                    this.fetchMetrics().then(value => {
+                        console.log('Successfully added all Metrics!')
+                    })
+                })
+                break
+
+            // Components
+            case 1:
+                this.fetchComponentGroups().then(value => {
+                    console.log('Successfully added all Components!')
+                })
+                break
+            
+            // Metrics
+            case 2:
+                this.fetchMetrics().then(value => {
+                    console.log('Successfully added all Metrics!')
+                })
+                break
+        }
     }
 
     private async fetchComponentGroups() {
