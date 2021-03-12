@@ -44,7 +44,7 @@ class MetricUpdateModal extends Component
 
         ActionLog::dispatch(array(
             'user' => Auth::id(),
-            'type' => 1,
+            'type' => 2,
             'message' => 'Metric '.$this->metric->title.' (ID: '.$this->metric->id.')',
         ));
 
