@@ -21,6 +21,7 @@ return [
     'title' => 'Past Incidents / Maintenances',
     'tables' => [
         'head' => [
+            'id' => 'ID',
             'title' => 'Title',
             'status' => 'Status',
             'impact' => 'Impact',

@@ -15,7 +15,7 @@
                     @endcan
                 </x-slot>
                 <x-slot name="description">
-                    Visibility: {{ $group->visibility == 0 ? 'False' : 'True' }}
+                    ID: {{ $group->id }} | Visibility: {{ $group->visibility == 0 ? 'False' : 'True' }}
                     @can('edit_componentgroups')
                         <button wire:loading.attr="disabled" wire:click="changeVisibility({{ $group->id }}, {{ $group->visibility }})" class="text-indigo-600 hover:text-indigo-900">Switch Visibility</button>
                     @endcan
@@ -28,6 +28,9 @@
                         <table class="min-w-full divide-y divide-gray-200">
                             <thead class="bg-gray-50">
                                 <tr>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        ID
+                                    </th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Name
                                     </th>
@@ -53,6 +56,9 @@
                             <tbody>
                                 @foreach($group->components() as $comp)
                                     <tr class="bg-white">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                            {{ $comp->id }}
+                                        </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                             {{ $comp->name }}
                                         </td>

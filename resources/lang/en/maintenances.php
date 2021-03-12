@@ -21,6 +21,7 @@ return [
     'title' => 'Maintenances',
     'table' => [
         'head' => [
+            'id' => 'ID',
             'title' => 'Title',
             'status' => 'Status',
             'impact' => 'Impact',
