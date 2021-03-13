@@ -1,12 +1,4 @@
 <div>
-    <!-- <div class="text-right">
-        <label>
-            <select wire:model="unit" wire:change="update" class="dark:bg-discordBlack mt-1 pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-                <option value="24">Last 24 Hours</option>
-                <option value="48">Last 48 Hours</option>
-            </select>
-        </label>
-    </div> -->
     <div class="bg-white text-black dark:bg-discordBlack dark:text-white px-4 py-5 sm:px-6 mt-2 shadow sm:rounded-md">
         <h3 class="text-lg leading-6 font-medium">
             <canvas id="metric-{{ $metric->id }}" width="400" height="150"></canvas>

@@ -34,4 +34,24 @@ class Metric extends Model
 
         return $return;
     }
+
+    public function getIntervalPointsLastHours($lastHours, $interval = 60): object
+    {
+        $return = (object) [
+            'labels' => [],
+            'points' => [],
+        ];
+        for ($i = $lastHours-1; $i >= 0; $i--){
+            for($j = 0; $j < 60; $j = $j+$interval){
+                if(Carbon::now()->subHours($i)->setMinutes($j) < Carbon::now()){
+                    array_push($return->labels, Carbon::now()->subHours($i)->setMinutes($j)->format('H:i'));
+
+                    $points = $this->points()->whereBetween('created_at', [Carbon::now()->subHours($i)->setMinutes($j), Carbon::now()->subHours($i-1)->setMinutes($j+$interval)])->get();
+                    array_push($return->points, $points->avg('value') ?? 0);
+                }
+            }
+        }
+
+        return $return;
+    }
 }
