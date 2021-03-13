@@ -2,6 +2,14 @@
 ## [Unreleased]
 
 
+<a name="v1.3.2"></a>
+## [v1.3.2] - 2021-03-13
+### Bug Fixes
+- **actionlog:** Wrong Action on Metric Edit in Action Log
+- **chore:** Bump version
+- **config_cat:** Make Page ID only available for super admins
+
+
 <a name="v1.3.1"></a>
 ## [v1.3.1] - 2021-03-12
 
@@ -59,7 +67,8 @@
 <a name="v1.0.0"></a>
 ## v1.0.0 - 2021-02-21
 
-[Unreleased]: https://github.com/HerrTxbias/Status-Page/compare/v1.3.1...HEAD
+[Unreleased]: https://github.com/HerrTxbias/Status-Page/compare/v1.3.2...HEAD
+[v1.3.2]: https://github.com/HerrTxbias/Status-Page/compare/v1.3.1...v1.3.2
 [v1.3.1]: https://github.com/HerrTxbias/Status-Page/compare/v1.3.0...v1.3.1
 [v1.3.0]: https://github.com/HerrTxbias/Status-Page/compare/v1.2.8...v1.3.0
 [v1.2.8]: https://github.com/HerrTxbias/Status-Page/compare/v1.2.7...v1.2.8
