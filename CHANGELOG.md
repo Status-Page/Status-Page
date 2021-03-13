@@ -2,6 +2,15 @@
 ## [Unreleased]
 
 
+<a name="v1.3.3"></a>
+## [v1.3.3] - 2021-03-13
+### Bug Fixes
+- **chore:** Bump Version to v1.3.3
+
+### Features
+- **metric_interval:** Preparation for Metric Intervals
+
+
 <a name="v1.3.2"></a>
 ## [v1.3.2] - 2021-03-13
 ### Bug Fixes
@@ -67,7 +76,8 @@
 <a name="v1.0.0"></a>
 ## v1.0.0 - 2021-02-21
 
-[Unreleased]: https://github.com/HerrTxbias/Status-Page/compare/v1.3.2...HEAD
+[Unreleased]: https://github.com/HerrTxbias/Status-Page/compare/v1.3.3...HEAD
+[v1.3.3]: https://github.com/HerrTxbias/Status-Page/compare/v1.3.2...v1.3.3
 [v1.3.2]: https://github.com/HerrTxbias/Status-Page/compare/v1.3.1...v1.3.2
 [v1.3.1]: https://github.com/HerrTxbias/Status-Page/compare/v1.3.0...v1.3.1
 [v1.3.0]: https://github.com/HerrTxbias/Status-Page/compare/v1.2.8...v1.3.0
