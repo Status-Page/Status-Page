@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/configcat_pageid', function (Request $request) {
-    if(APIHelpers::hasPermission('configcat_pageid', $request)){
+    if($request->user()->getRoleNames()->first() == 'super_admin'){
         return ResponseGenerator::generateResponse(GlobalConfig::uniquePageID());
     }else{
         return ResponseGenerator::generateResponse(array(
