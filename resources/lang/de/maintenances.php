@@ -8,6 +8,7 @@ return [
             'reporter' => 'Melder',
             'scheduled_at' => 'Geplant um',
             'end_at' => 'Ende um',
+            'id' => 'ID',
         ],
     ],
     'new_maintenance' => [
