@@ -35,6 +35,7 @@ return [
             'status' => 'Status',
             'impact' => 'Einfluss',
             'reporter' => 'Melder',
+            'id' => 'ID',
         ],
     ],
     'new_incident' => [
