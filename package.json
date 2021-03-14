@@ -11,9 +11,9 @@
         "statuspage-import": "ts-node scripts/import_statuspage.ts"
     },
     "dependencies": {
-        "typescript": "^4.2.3",
+        "axios": "^0.21.1",
         "ts-node": "^9.1.1",
-        "axios": "^0.21.1"
+        "typescript": "^4.2.3"
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.2.1",
