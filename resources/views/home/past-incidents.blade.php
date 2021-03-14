@@ -19,7 +19,7 @@
 
                         @foreach($incident->incidentUpdates()->orderBy('id', 'desc')->get() as $update)
                             <div class="mb-2">
-                                <span class="font-bold">{{ $update->getUpdateType() }}</span> - {{ $update->text }}<br>
+                                <span class="font-bold">{{ $update->getUpdateType() }}</span> - <span class="markdown-content">{!! \Illuminate\Support\Str::markdown($update->text) !!}<br>
                                 <span class="text-gray-400">{{ $update->updated_at }} by {{ $update->getReporter()->name }}</span>
                             </div>
                         @endforeach

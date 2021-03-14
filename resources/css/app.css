@@ -4,10 +4,75 @@
  * Using / Editing this without my consent is not allowed.
  */
 
-/* @import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities'; */
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@tailwind screens;
+
+:root {
+    --discord-blue: #7289DA;
+    --discord-grey: #99AAB5;
+    --discord-dark: #2C2F33;
+    --discord-black: #23272A;
+    --bodybg: #36393f,
+}
+
+::-webkit-scrollbar{
+    width: 15px !important;
+    background-color: var(--bodybg);
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: rgba(0, 0, 0, .4) !important;
+    border-color: transparent !important;
+}
+
+::-webkit-scrollbar-thumb, ::-webkit-scrollbar-track{
+    background-clip: padding-box !important;
+    border-width: 3px !important;
+    border-style: solid !important;
+    border-radius: 30px !important;
+}
+
+::-webkit-scrollbar-track{
+    background-color: transparent !important;
+    border-color: transparent !important;
+}
+
+::-webkit-scrollbar-track{
+    border-width: initial !important;
+}
+
+::-webkit-scrollbar-thumb, ::-webkit-scrollbar-track{
+    background-clip: padding-box !important;
+    border-width: 3px !important;
+    border-style: solid !important;
+    border-radius: 30px !important;
+}
+
+.markdown-content {
+    @apply prose prose-sm prose-red;
+}
+
+.markdown-content :first-child {
+    @apply inline;
+}
+
+.markdown-content p {
+    @apply mb-1;
+}
+
+blockquote {
+    @apply my-2 ml-4;
+    @apply pl-2;
+    @apply border-l-4 border-solid border-discordGrey;
+}
+
+p code {
+    @apply bg-discordDark px-2 py-1 border border-discordBlack rounded-md;
+}
+
+pre {
+    @apply bg-discordDark px-2 py-1 border border-discordBlack rounded-md w-full mx-auto;
+}
+

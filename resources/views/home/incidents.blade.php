@@ -27,7 +27,7 @@ $incidents = Cache::remember('home_incidents', config('cache.ttl'), function (){
 <div class="mt-6">
     @if($incidents->count() > 0)
         @foreach($incidents as $incident)
-            <div class="bg-white text-black dark:bg-discordDark dark:text-white border-{{ $incident->getImpactColor() }} border-2 rounded-md shadow mb-2">
+            <div class="bg-white text-black dark:bg-bodyBG dark:text-white border-{{ $incident->getImpactColor() }} border-2 rounded-md shadow mb-2">
                 <div class="bg-{{ $incident->getImpactColor() }} text-white px-4 py-5 sm:px-6">
                     <h3 class="text-lg leading-6 font-medium">
                         {{ $incident->title }}
@@ -35,8 +35,10 @@ $incidents = Cache::remember('home_incidents', config('cache.ttl'), function (){
                 </div>
                 <div class="px-4 py-5 sm:px-6">
                     @foreach($incident->incidentUpdates()->orderBy('id', 'desc')->get() as $update)
+                        <div>
+                            <span class="font-bold">{{ $update->getUpdateType() }}</span> - <span class="markdown-content">{!! \Illuminate\Support\Str::markdown($update->text) !!}</span>
+                        </div>
                         <div class="mb-2">
-                            <span class="font-bold">{{ $update->getUpdateType() }}</span> - {{ $update->text }}<br>
                             <span class="text-gray-400">{{ $update->updated_at }} by {{ $update->getReporter()->name }}</span>
                         </div>
                     @endforeach

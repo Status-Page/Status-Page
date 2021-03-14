@@ -29,6 +29,7 @@ module.exports = {
                 discordBlack: '#23272A',
                 divGrey: '#394248',
                 aGrey: '#58585f',
+                bodyBG: '#36393f',
             },
         },
     },

@@ -19,7 +19,7 @@
         <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
     </head>
-    <body class="bg-gray-100 dark:bg-discordDark font-sans antialiased">
+    <body class="bg-gray-100 dark:bg-bodyBG font-sans antialiased">
         @if(config('app.env') == 'local' || config('app.env') == 'staging')
             <div class="bg-red-600">
                 <div class="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8">

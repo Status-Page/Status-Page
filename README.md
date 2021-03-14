@@ -34,7 +34,6 @@ git clone https://github.com/HerrTxbias/Status-Page
 cd status-page
 composer install
 npm install
-npm run dev
 cp .env.example .env
 ```
 Now edit the .env and fill it with your data in.
