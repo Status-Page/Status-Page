@@ -32,6 +32,11 @@
                             stacked: true
                         }
                     }]
+                },
+                elements: {
+                    point:{
+                        radius: 0.75
+                    }
                 }
             }
         });
