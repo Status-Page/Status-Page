@@ -179,23 +179,23 @@ class Incident extends Model
     }
 
     public static function getIncidents(){
-        return Incident::query()->where([['status', '!=', 3], ['type', '=', 0]])->get();
+        return Incident::query()->where([['status', '!=', 3], ['type', '=', 0]])->paginate();
     }
 
     public static function getPastIncidents(){
-        return Incident::query()->where([['status', '=', 3], ['type', '=', 0]])->get();
+        return Incident::query()->where([['status', '=', 3], ['type', '=', 0]])->paginate();
     }
 
     public static function getMaintenances(){
-        return Incident::query()->where([['status', '!=', 3], ['type', '=', 1]])->get();
+        return Incident::query()->where([['status', '!=', 3], ['type', '=', 1]])->paginate();
     }
 
     public static function getPastMaintenances(){
-        return Incident::query()->where([['status', '=', 3], ['type', '=', 1]])->get();
+        return Incident::query()->where([['status', '=', 3], ['type', '=', 1]])->paginate();
     }
 
     public static function getUpcomingMaintenances(){
-        return Incident::query()->where([['status', '=', 0], ['type', '=', 1]])->get();
+        return Incident::query()->where([['status', '=', 0], ['type', '=', 1]])->paginate();
     }
 
     public static function getPublicUpcomingMaintenances(){

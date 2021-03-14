@@ -13,35 +13,13 @@ use App\Models\IncidentUpdate;
 use App\Models\Status;
 use Auth;
 use Livewire\Component;
+use Livewire\WithPagination;
 
-class Past extends Component
+class PastIncidents extends Component
 {
+    use WithPagination;
+
     protected $listeners = ['refreshData'];
-
-    /**
-     * @var $incidents Incident[]
-     */
-    public $incidents;
-
-    /**
-     * @var $oldincidents Incident[]
-     */
-    public $oldincidents;
-
-    /**
-     * @var $oldmaintenances Incident[]
-     */
-    public $oldmaintenances;
-
-    /**
-     * @var $maintenances Incident[]
-     */
-    public $maintenances;
-
-    /**
-     * @var $upcomingmaintenances Incident[]
-     */
-    public $upcomingmaintenances;
 
     public function render()
     {
@@ -50,7 +28,9 @@ class Past extends Component
             'type' => 0,
             'message' => 'Past Incidents',
         ));
-        return view('livewire.dashboard.incidents.past');
+        return view('livewire.dashboard.incidents.past-incidents', [
+            'old_incidents' => Incident::getPastIncidents(),
+        ]);
     }
 
     public function refreshData(){

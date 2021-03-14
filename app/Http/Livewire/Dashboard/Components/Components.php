@@ -16,11 +16,6 @@ class Components extends Component
 {
     protected $listeners = ['refreshData'];
 
-    /**
-     * @var $groups ComponentGroup[]
-     */
-    public $groups;
-
     public function render()
     {
         ActionLog::dispatch(array(
@@ -28,7 +23,9 @@ class Components extends Component
             'type' => 0,
             'message' => 'Components',
         ));
-        return view('livewire.dashboard.components.components');
+        return view('livewire.dashboard.components.components', [
+            'groups' => ComponentGroup::getAllGroups(),
+        ]);
     }
 
     public function changeVisibility($id, $oldVis){

@@ -35,7 +35,7 @@
                     </div>
                     <div class="bg-gray-50 px-4 py-4 sm:px-6">
                         <div class="text-sm">
-                            <a href="{{ route('dashboard.incidents.maintenances') }}" class="font-medium text-indigo-600 hover:text-indigo-500"> {{ __('dashboard.view_all') }}</a>
+                            <a href="{{ route('dashboard.maintenances') }}" class="font-medium text-indigo-600 hover:text-indigo-500"> {{ __('dashboard.view_all') }}</a>
                         </div>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
                     </div>
                     <div class="bg-gray-50 px-4 py-4 sm:px-6">
                         <div class="text-sm">
-                            <a href="{{ route('dashboard.incidents.maintenances') }}" class="font-medium text-indigo-600 hover:text-indigo-500"> {{ __('dashboard.view_all') }}</a>
+                            <a href="{{ route('dashboard.maintenances') }}" class="font-medium text-indigo-600 hover:text-indigo-500"> {{ __('dashboard.view_all') }}</a>
                         </div>
                     </div>
                 </div>

@@ -23,13 +23,18 @@
                         </x-jet-nav-link>
                     </div>
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-jet-nav-link href="{{ route('dashboard.incidents.maintenances') }}" :active="request()->routeIs('dashboard.incidents.maintenances')">
+                        <x-jet-nav-link href="{{ route('dashboard.incidents.past') }}" :active="request()->routeIs('dashboard.incidents.past')">
+                            {{ __('past.title_incidents') }}
+                        </x-jet-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-jet-nav-link href="{{ route('dashboard.maintenances') }}" :active="request()->routeIs('dashboard.maintenances')">
                             {{ __('maintenances.title') }}
                         </x-jet-nav-link>
                     </div>
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-jet-nav-link href="{{ route('dashboard.incidents.past') }}" :active="request()->routeIs('dashboard.incidents.past')">
-                            {{ __('past.title') }}
+                        <x-jet-nav-link href="{{ route('dashboard.maintenances.past') }}" :active="request()->routeIs('dashboard.maintenances.past')">
+                            {{ __('past.title_maintenances') }}
                         </x-jet-nav-link>
                     </div>
                 @endcan
@@ -197,11 +202,14 @@
                 <x-jet-responsive-nav-link href="{{ route('dashboard.incidents') }}" :active="request()->routeIs('dashboard.incidents')">
                     {{ __('incidents.title') }}
                 </x-jet-responsive-nav-link>
-                <x-jet-responsive-nav-link href="{{ route('dashboard.incidents.maintenances') }}" :active="request()->routeIs('dashboard.incidents.maintenances')">
+                <x-jet-responsive-nav-link href="{{ route('dashboard.incidents.past') }}" :active="request()->routeIs('dashboard.incidents.past')">
+                    {{ __('past.title_incidents') }}
+                </x-jet-responsive-nav-link>
+                <x-jet-responsive-nav-link href="{{ route('dashboard.maintenances') }}" :active="request()->routeIs('dashboard.maintenances')">
                     {{ __('maintenances.title') }}
                 </x-jet-responsive-nav-link>
-                <x-jet-responsive-nav-link href="{{ route('dashboard.incidents.past') }}" :active="request()->routeIs('dashboard.incidents.past')">
-                    {{ __('past.title') }}
+                <x-jet-responsive-nav-link href="{{ route('dashboard.maintenances.past') }}" :active="request()->routeIs('dashboard.maintenances.past')">
+                    {{ __('past.title_maintenances') }}
                 </x-jet-responsive-nav-link>
             @endcan
             @can('read_components')

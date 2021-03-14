@@ -18,7 +18,8 @@ return [
     |
     */
 
-    'title' => 'Past Incidents / Maintenances',
+    'title_incidents' => 'Past Incidents',
+    'title_maintenances' => 'Past Maintenances',
     'tables' => [
         'head' => [
             'id' => 'ID',

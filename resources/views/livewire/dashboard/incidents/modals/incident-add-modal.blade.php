@@ -1,4 +1,4 @@
-<div>
+<div class="normal-case">
     <div class="text-right">
         <x-jet-button wire:click="start">
             {{ __('incidents.new_incident.button') }}
@@ -15,7 +15,7 @@
                 <div class="col-span-6 sm:col-span-4 mb-4">
                     <x-jet-label for="title" class="text-lg" value="{{ __('incidents.new_incident.modal.incident_title') }}" />
                     <x-jet-input id="title" type="text" class="mt-1 block w-full" wire:model="incident.title" />
-                    @error('incident.title') <span class="text-red-500">{{ $message }}</span> @enderror
+                    <x-jet-input-error for="incident.title" class="mt-2" />
                 </div>
 
                 <div class="col-span-6 sm:col-span-4 mb-4">
@@ -26,7 +26,7 @@
                         <option value="2">Monitoring</option>
                         <option value="3">Resolved</option>
                     </select>
-                    @error('incident.status') <span class="text-red-500">{{ $message }}</span> @enderror
+                    <x-jet-input-error for="incident.status" class="mt-2" />
                 </div>
 
                 <div class="col-span-6 sm:col-span-4 mb-4">
@@ -37,13 +37,13 @@
                         <option value="2">Major</option>
                         <option value="3">Critical</option>
                     </select>
-                    @error('incident.impact') <span class="text-red-500">{{ $message }}</span> @enderror
+                    <x-jet-input-error for="incident.impact" class="mt-2" />
                 </div>
 
                 <div class="col-span-6 sm:col-span-4 mb-4">
                     <x-jet-label for="visibility" class="text-lg" value="{{ __('incidents.new_incident.modal.visible') }}" />
                     <x-jet-input id="visibility" type="checkbox" class="mt-1 block" wire:model="incident.visibility" />
-                    @error('incident.visibility') <span class="text-red-500">{{ $message }}</span> @enderror
+                    <x-jet-input-error for="incident.visibility" class="mt-2" />
                 </div>
 
                 <div class="col-span-6 sm:col-span-4 mb-4">
@@ -58,13 +58,13 @@
                         @endforeach
                     </select>
                     <span>{{ __('incidents.new_incident.modal.affected_components_hint') }}</span>
-                    @error('incidentComponents') <span class="text-red-500">{{ $message }}</span> @enderror
+                    <x-jet-input-error for="incidentComponents" class="mt-2" />
                 </div>
 
                 <div class="col-span-6 sm:col-span-4 mb-4">
                     <x-jet-label for="text" class="text-lg" value="{{ __('incidents.new_incident.modal.message') }}" />
-                    <textarea id="text" wire:model="incidentUpdate.text" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"></textarea>
-                    @error('incidentUpdate.text') <span class="text-red-500">{{ $message }}</span> @enderror
+                    <textarea id="text" wire:model="incidentUpdate.text" class="h-96 mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"></textarea>
+                    <x-jet-input-error for="incidentUpdate.text" class="mt-2" />
                 </div>
             </x-slot>
 

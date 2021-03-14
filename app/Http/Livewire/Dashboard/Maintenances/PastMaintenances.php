@@ -15,7 +15,7 @@ use Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class Maintenances extends Component
+class PastMaintenances extends Component
 {
     use WithPagination;
 
@@ -26,14 +26,14 @@ class Maintenances extends Component
         ActionLog::dispatch(array(
             'user' => Auth::id(),
             'type' => 0,
-            'message' => 'Maintenances',
+            'message' => 'Past Incidents',
         ));
-        return view('livewire.dashboard.maintenances.maintenances', [
-            'maintenances' => Incident::getMaintenances(),
+        return view('livewire.dashboard.maintenances.past-maintenances', [
+            'old_maintenances' => Incident::getPastMaintenances(),
         ]);
     }
 
     public function refreshData(){
-        $this->redirectRoute('dashboard.incidents.maintenances');
+        $this->redirectRoute('dashboard.incidents.past');
     }
 }

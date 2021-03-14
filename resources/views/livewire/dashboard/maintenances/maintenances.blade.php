@@ -1,83 +1,56 @@
-<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-    <div class="flex flex-col">
-        <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                    <table class="min-w-full divide-y divide-gray-200">
-                        <thead class="bg-gray-50">
-                            <tr>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    {{ __('maintenances.table.head.id') }}
-                                </th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    {{ __('maintenances.table.head.title') }}
-                                </th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    {{ __('maintenances.table.head.status') }}
-                                </th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    {{ __('maintenances.table.head.impact') }}
-                                </th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    {{ __('maintenances.table.head.scheduled_at') }}
-                                </th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    {{ __('maintenances.table.head.end_at') }}
-                                </th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    {{ __('maintenances.table.head.reporter') }}
-                                </th>
-                                <th scope="col" class="relative px-6 py-3">
-                                    @can('add_incidents')
-                                        @livewire('dashboard.maintenances.modals.maintenance-add-modal')
-                                    @endcan
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($maintenances as $maintenance)
-                                <tr class="bg-white">
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                        {{ $maintenance->id }}
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                        {{ $maintenance->title }}
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        {{ $maintenance->getType() }}
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-{{ $maintenance->getImpactColor() }} text-white">
-                                            &nbsp;&nbsp;
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        {{ $maintenance->scheduled_at }}
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        {{ $maintenance->end_at }}
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        {{ $maintenance->getReporter()->name }}
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                        @can('edit_incidents')
-                                            @livewire('dashboard.maintenances.modals.maintenance-update-modal', ['maintenance' => $maintenance], key($maintenance->id))
-                                        @endcan
+<div>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('maintenances.title') }}
+        </h2>
+    </x-slot>
 
-                                        @can('edit_incidents')
-                                            <!-- <a href="{{ route('dashboard.incidents.show', ['id' => $maintenance->id]) }}" class="text-indigo-600 hover:text-indigo-900 mr-2">Details</a> -->
-                                        @endcan
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex-col space-y-4">
+            <x-table>
+                <x-slot name="head">
+                    <x-table.heading>{{ __('maintenances.table.head.id') }}</x-table.heading>
+                    <x-table.heading>{{ __('maintenances.table.head.title') }}</x-table.heading>
+                    <x-table.heading>{{ __('maintenances.table.head.status') }}</x-table.heading>
+                    <x-table.heading>{{ __('maintenances.table.head.impact') }}</x-table.heading>
+                    <x-table.heading>{{ __('maintenances.table.head.scheduled_at') }}</x-table.heading>
+                    <x-table.heading>{{ __('maintenances.table.head.end_at') }}</x-table.heading>
+                    <x-table.heading>{{ __('maintenances.table.head.reporter') }}</x-table.heading>
+                    <x-table.heading>
+                        @can('add_incidents')
+                            @livewire('dashboard.maintenances.modals.maintenance-add-modal')
+                        @endcan
+                    </x-table.heading>
+                </x-slot>
+                <x-slot name="body">
+                    @foreach($maintenances as $maintenance)
+                        <x-table.row>
+                            <x-table.cell>{{ $maintenance->id }}</x-table.cell>
+                            <x-table.cell>{{ $maintenance->title }}</x-table.cell>
+                            <x-table.cell>{{ $maintenance->getType() }}</x-table.cell>
+                            <x-table.cell>
+                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-{{ $maintenance->getImpactColor() }} text-white">
+                                    &nbsp;&nbsp;
+                                </span>
+                            </x-table.cell>
+                            <x-table.cell>{{ $maintenance->scheduled_at }}</x-table.cell>
+                            <x-table.cell>{{ $maintenance->end_at }}</x-table.cell>
+                            <x-table.cell>{{ $maintenance->getReporter()->name }}</x-table.cell>
+                            <x-table.cell>
+                                @can('edit_incidents')
+                                    @livewire('dashboard.maintenances.modals.maintenance-update-modal', ['maintenance' => $maintenance], key($maintenance->id))
+                                @endcan
+                                @can('delete_incidents')
+                                    @livewire('dashboard.incidents.modals.incident-delete-modal', ['incident' => $maintenance], key($maintenance->id))
+                                @endcan
+                            </x-table.cell>
+                        </x-table.row>
+                    @endforeach
+                </x-slot>
+            </x-table>
 
-                                        @can('delete_incidents')
-                                            @livewire('dashboard.incidents.modals.incident-delete-modal', ['incident' => $maintenance], key($maintenance->id))
-                                        @endcan
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
+            <div>
+                {{ $maintenances->links() }}
             </div>
         </div>
     </div>
