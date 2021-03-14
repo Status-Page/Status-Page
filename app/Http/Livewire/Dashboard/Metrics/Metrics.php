@@ -20,7 +20,7 @@ class Metrics extends Component
         ));
 
         return view('livewire.dashboard.metrics.metrics', [
-            'metrics' => Metric::query()->orderBy('order')->get(),
+            'metrics' => Metric::query()->orderBy('order')->paginate(),
         ]);
     }
 

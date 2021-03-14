@@ -29,7 +29,7 @@ class PastMaintenances extends Component
             'message' => 'Past Incidents',
         ));
         return view('livewire.dashboard.maintenances.past-maintenances', [
-            'old_maintenances' => Incident::getPastMaintenances(),
+            'old_maintenances' => Incident::query()->where([['status', '=', 3], ['type', '=', 1]])->paginate(),
         ]);
     }
 

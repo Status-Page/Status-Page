@@ -29,7 +29,7 @@ class Incidents extends Component
             'message' => 'Incidents',
         ));
         return view('livewire.dashboard.incidents.incidents', [
-            'incidents' => Incident::getIncidents()
+            'incidents' => Incident::query()->where([['status', '!=', 3], ['type', '=', 0]])->paginate(),
         ]);
     }
 

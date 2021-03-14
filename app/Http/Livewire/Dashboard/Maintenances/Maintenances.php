@@ -29,7 +29,7 @@ class Maintenances extends Component
             'message' => 'Maintenances',
         ));
         return view('livewire.dashboard.maintenances.maintenances', [
-            'maintenances' => Incident::getMaintenances(),
+            'maintenances' => Incident::query()->where([['status', '!=', 3], ['type', '=', 1]])->paginate(),
         ]);
     }
 

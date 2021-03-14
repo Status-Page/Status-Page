@@ -51,7 +51,7 @@
 }
 
 .markdown-content {
-    @apply prose prose-sm prose-red;
+    /* @apply prose prose-sm; */
 }
 
 .markdown-content :first-child {
