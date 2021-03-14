@@ -27,9 +27,9 @@ class DashboardController extends Controller
         // $request->session()->flash('flash.banner', 'Yay it workssss!');
 
         return view('dashboard', [
-            'incidents' => Incident::getIncidents(),
-            'maintenances' => Incident::getMaintenances(),
-            'upcoming_maintenances' => Incident::getUpcomingMaintenances(),
+            'incidents' => Incident::query()->where([['status', '!=', 3], ['type', '=', 0]])->get(),
+            'maintenances' => Incident::query()->where([['status', '!=', 3], ['type', '=', 1]])->paginate(),
+            'upcoming_maintenances' => Incident::query()->where([['status', '=', 0], ['type', '=', 1]])->paginate(),
         ]);
     }
 }

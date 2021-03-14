@@ -29,7 +29,7 @@ class PastIncidents extends Component
             'message' => 'Past Incidents',
         ));
         return view('livewire.dashboard.incidents.past-incidents', [
-            'old_incidents' => Incident::getPastIncidents(),
+            'old_incidents' => Incident::query()->where([['status', '=', 3], ['type', '=', 0]])->paginate(),
         ]);
     }
 

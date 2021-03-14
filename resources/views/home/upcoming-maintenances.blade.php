@@ -2,7 +2,7 @@
 
 use App\Models\Incident;
 
-$upcoming_maintenances = Incident::getPublicUpcomingMaintenances();
+$upcoming_maintenances = Incident::query()->where([['status', '=', 0], ['type', '=', 1], ['visibility', '=', true]])->get();
 ?>
 @if($upcoming_maintenances->count() > 0)
     <div class="mt-12">
