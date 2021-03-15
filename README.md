@@ -30,8 +30,9 @@
 
 # Installation
 ``` shell
-git clone https://github.com/HerrTxbias/Status-Page
+git clone https://github.com/Status-Page/Status-Page
 cd status-page
+git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
 composer install
 npm install
 cp .env.example .env
