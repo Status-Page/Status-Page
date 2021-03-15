@@ -20,7 +20,7 @@
                     <x-table.heading></x-table.heading>
                 </x-slot>
                 <x-slot name="body">
-                    @foreach($old_maintenances as $incident)
+                    @forelse($old_maintenances as $incident)
                         <x-table.row wire:loading.class.delay="opacity-50">
                             <x-table.cell>{{ $incident->id }}</x-table.cell>
                             <x-table.cell>{{ $incident->title }}</x-table.cell>
@@ -37,7 +37,15 @@
                                 @endcan
                             </x-table.cell>
                         </x-table.row>
-                    @endforeach
+                    @empty
+                        <x-table.row>
+                            <x-table.cell colspan="6">
+                                <div class="flex justify-center items-center">
+                                    <span class="font-medium py-8 text-gray-400 text-xl">No results...</span>
+                                </div>
+                            </x-table.cell>
+                        </x-table.row>
+                    @endforelse
                 </x-slot>
             </x-table>
 
