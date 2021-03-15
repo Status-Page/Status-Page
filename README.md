@@ -38,7 +38,7 @@ npm install
 cp .env.example .env
 ```
 Now edit the .env and fill it with your data in.
-```
+``` shell
 php artisan status:install
 ```
 Make sure the user of your webserver has write rights to the directories here.
@@ -65,7 +65,7 @@ If you update using git-pull on the master branch: Run ``php artisan status:upda
 This will handle all necessary operations, as well as the git-pull.
 
 ### Manual updating
-```shell
+``` shell
 php artisan down
 git fetch origin
 git tag -l
@@ -117,6 +117,6 @@ stopwaitsecs=3600
 ### Import from statuspage.io
 You can import your components from statuspage.io, with a simple script.
 To use it, run the following command:
-```shell
+``` shell
 npm run statuspage-import
 ```
