@@ -21,6 +21,8 @@ class Incidents extends Component
 
     protected $listeners = ['refreshData'];
 
+    public $search = '';
+
     public function render()
     {
         ActionLog::dispatch(array(
@@ -29,7 +31,7 @@ class Incidents extends Component
             'message' => 'Incidents',
         ));
         return view('livewire.dashboard.incidents.incidents', [
-            'incidents' => Incident::query()->where([['status', '!=', 3], ['type', '=', 0]])->paginate(),
+            'incidents' => Incident::query()->where([['status', '!=', 3], ['type', '=', 0]])->search('title', $this->search)->paginate(),
         ]);
     }
 
