@@ -33,8 +33,8 @@
 git clone https://github.com/Status-Page/Status-Page
 cd status-page
 git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
-composer install
-npm install
+composer install --no-dev -o --no-scripts
+npm install --no-dev
 cp .env.example .env
 ```
 Now edit the .env and fill it with your data in.
