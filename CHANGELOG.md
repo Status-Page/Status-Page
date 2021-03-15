@@ -1,6 +1,21 @@
 <a name="unreleased"></a>
 ## [Unreleased]
 
+### Bug Fixes
+- **metrics:** made element points smaller
+
+### Code Refactoring
+- **components:** Some Searching
+- **components:** Livewire Components, Pagination, etc Part 2
+- **components:** Some Searching
+- **styles:** Livewire Components, Pagination, etc Part 2
+- **styles:** Livewire Components, Pagination, etc
+
+### Features
+- **darkmode:** Darkmode for main Layout
+- **i18n:** Add Status Language lines
+- **incidents:** Markdown Support
+
 
 <a name="v1.3.3"></a>
 ## [v1.3.3] - 2021-03-13
