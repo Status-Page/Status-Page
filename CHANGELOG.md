@@ -1,6 +1,9 @@
 <a name="unreleased"></a>
 ## [Unreleased]
 
+### Bug Fixes
+- **no_results:** Add missing no results
+
 
 <a name="v1.3.4"></a>
 ## [v1.3.4] - 2021-03-15
