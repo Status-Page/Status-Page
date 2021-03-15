@@ -7,7 +7,9 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex-col space-y-4">
-
+            <div class="w-1/3">
+                <x-jet-input type="text" wire:model="search" placeholder="Search metrics..." class="w-full"></x-jet-input>
+            </div>
             <x-table>
                 <x-slot name="head">
                     <x-table.heading>{{ __('ID') }}</x-table.heading>
@@ -23,7 +25,7 @@
                 </x-slot>
                 <x-slot name="body">
                     @foreach($metrics as $metric)
-                        <x-table.row>
+                        <x-table.row wire:loading.class.delay="opacity-50">
                             <x-table.cell>{{ $metric->id }}</x-table.cell>
                             <x-table.cell>{{ $metric->title }}</x-table.cell>
                             <x-table.cell>{{ $metric->suffix }}</x-table.cell>
@@ -31,13 +33,13 @@
                             <x-table.cell>{{ $metric->visibility ? 'True' : 'False' }}</x-table.cell>
                             <x-table.cell>
                                 @can('edit_metrics')
-                                    @livewire('dashboard.metrics.modals.metric-update-modal', ['metric' => $metric], key($metric->id))
+                                    <livewire:dashboard.metrics.modals.metric-update-modal :metric="$metric" :key="time().$metric->id" />
                                 @endcan
                                 @can('delete_metrics')
-                                    @livewire('dashboard.metrics.modals.metric-delete-modal', ['metric' => $metric], key($metric->id))
+                                    <livewire:dashboard.metrics.modals.metric-delete-modal :metric="$metric" :key="time().time().$metric->id" />
                                 @endcan
                                 @can('delete_metric_points')
-                                    @livewire('dashboard.metrics.modals.metric-delete-points-modal', ['metric' => $metric], key($metric->id))
+                                    <livewire:dashboard.metrics.modals.metric-delete-points-modal :metric="$metric" :key="time().time().time().$metric->id" />
                                 @endcan
                             </x-table.cell>
                         </x-table.row>

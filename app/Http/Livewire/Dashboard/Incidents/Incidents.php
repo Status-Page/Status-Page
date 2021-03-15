@@ -31,7 +31,7 @@ class Incidents extends Component
             'message' => 'Incidents',
         ));
         return view('livewire.dashboard.incidents.incidents', [
-            'incidents' => Incident::query()->where([['status', '!=', 3], ['type', '=', 0]])->search('title', $this->search)->paginate(),
+            'incidents' => Incident::query()->where([['status', '!=', 3], ['type', '=', 0]])->search('title', $this->search, [['status', '!=', 3], ['type', '=', 0]])->paginate(),
         ]);
     }
 

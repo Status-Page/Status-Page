@@ -34,8 +34,8 @@ class AppServiceProvider extends ServiceProvider
             $this->dispatchBrowserEvent('notify', $message);
         });
 
-        Builder::macro('search', function ($field, $string) {
-            return $string ? $this->where($field, 'like', '%'.$string.'%') : $this;
+        Builder::macro('search', function ($field, $string, $additionalWhere = [], $order = 'id') {
+            return $string ? $this->where($field, 'like', '%'.$string.'%')->where($additionalWhere)->orderBy($order) : $this;
         });
     }
 }

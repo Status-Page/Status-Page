@@ -21,6 +21,8 @@ class Maintenances extends Component
 
     protected $listeners = ['refreshData'];
 
+    public $search = '';
+
     public function render()
     {
         ActionLog::dispatch(array(
@@ -29,7 +31,7 @@ class Maintenances extends Component
             'message' => 'Maintenances',
         ));
         return view('livewire.dashboard.maintenances.maintenances', [
-            'maintenances' => Incident::query()->where([['status', '!=', 3], ['type', '=', 1]])->paginate(),
+            'maintenances' => Incident::query()->where([['status', '!=', 3], ['type', '=', 1]])->search('title', $this->search, [['status', '!=', 3], ['type', '=', 1]])->paginate(),
         ]);
     }
 

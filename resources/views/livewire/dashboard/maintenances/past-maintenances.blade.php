@@ -7,6 +7,9 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex-col space-y-4">
+            <div class="w-1/3">
+                <x-jet-input type="text" wire:model="search" placeholder="Search past maintenances..." class="w-full"></x-jet-input>
+            </div>
             <x-table>
                 <x-slot name="head">
                     <x-table.heading>{{ __('past.tables.head.id')  }}</x-table.heading>
@@ -18,7 +21,7 @@
                 </x-slot>
                 <x-slot name="body">
                     @foreach($old_maintenances as $incident)
-                        <x-table.row>
+                        <x-table.row wire:loading.class.delay="opacity-50">
                             <x-table.cell>{{ $incident->id }}</x-table.cell>
                             <x-table.cell>{{ $incident->title }}</x-table.cell>
                             <x-table.cell>{{ $incident->getType() }}</x-table.cell>
@@ -30,7 +33,7 @@
                             <x-table.cell>{{ $incident->getReporter()->name }}</x-table.cell>
                             <x-table.cell>
                                 @can('delete_incidents')
-                                    @livewire('dashboard.incidents.modals.incident-delete-modal', ['incident' => $incident], key($incident->id))
+                                    <livewire:dashboard.incidents.modals.incident-delete-modal :incident="$incident" :key="time().$incident->id" />
                                 @endcan
                             </x-table.cell>
                         </x-table.row>

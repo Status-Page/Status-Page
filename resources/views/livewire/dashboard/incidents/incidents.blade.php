@@ -25,22 +25,22 @@
                 </x-slot>
                 <x-slot name="body">
                     @forelse($incidents as $incident)
-                        <x-table.row>
+                        <x-table.row wire:loading.class.delay="opacity-50">
                             <x-table.cell>{{ $incident->id }}</x-table.cell>
                             <x-table.cell>{{ $incident->title }}</x-table.cell>
                             <x-table.cell>{{ $incident->getType() }}</x-table.cell>
                             <x-table.cell>
-                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-{{ $incident->getImpactColor() }} text-white">
-                            &nbsp;&nbsp;
-                        </span>
+                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-{{ $incident->getImpactColor() }} text-white">
+                                    &nbsp;&nbsp;
+                                </span>
                             </x-table.cell>
                             <x-table.cell>{{ $incident->getReporter()->name }}</x-table.cell>
                             <x-table.cell>
                                 @can('edit_incidents')
-                                    @livewire('dashboard.incidents.modals.incident-update-modal', ['incident' => $incident], key($incident->id))
+                                    <livewire:dashboard.incidents.modals.incident-update-modal :incident="$incident" :key="time().$incident->id" />
                                 @endcan
                                 @can('delete_incidents')
-                                    @livewire('dashboard.incidents.modals.incident-delete-modal', ['incident' => $incident], key($incident->id))
+                                    <livewire:dashboard.incidents.modals.incident-delete-modal :incident="$incident" :key="time().time().$incident->id" />
                                 @endcan
                             </x-table.cell>
                         </x-table.row>

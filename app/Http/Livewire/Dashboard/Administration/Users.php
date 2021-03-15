@@ -6,10 +6,15 @@ use App\Events\ActionLog;
 use App\Models\User;
 use Auth;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Users extends Component
 {
+    use WithPagination;
+
     protected $listeners = ['refreshData'];
+
+    public $search = '';
 
     public function render()
     {
@@ -20,7 +25,7 @@ class Users extends Component
         ));
 
         return view('livewire.dashboard.administration.users', [
-            'users' => User::all(),
+            'users' => User::query()->search('name', $this->search)->paginate(),
         ]);
     }
 

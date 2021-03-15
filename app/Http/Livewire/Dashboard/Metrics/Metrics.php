@@ -6,10 +6,15 @@ use App\Events\ActionLog;
 use App\Models\Metric;
 use Auth;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Metrics extends Component
 {
+    use WithPagination;
+
     protected $listeners = ['refreshData'];
+
+    public $search = '';
 
     public function render()
     {
@@ -20,7 +25,7 @@ class Metrics extends Component
         ));
 
         return view('livewire.dashboard.metrics.metrics', [
-            'metrics' => Metric::query()->orderBy('order')->paginate(),
+            'metrics' => Metric::query()->orderBy('order')->search('title', $this->search, [], 'order')->paginate(),
         ]);
     }
 

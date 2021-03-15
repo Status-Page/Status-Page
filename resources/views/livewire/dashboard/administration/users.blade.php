@@ -6,73 +6,66 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="mt-4 bg-white overflow-hidden shadow sm:rounded-lg">
-                <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                    <table class="min-w-full divide-y divide-gray-200">
-                        <thead class="bg-gray-50">
-                        <tr>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"></th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                {{ __('users.table.head.name') }}
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                {{ __('users.table.head.email') }}
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                {{ __('users.table.head.deactivated') }}
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                {{ __('users.table.head.role') }}
-                            </th>
-                            <th scope="col" class="relative px-6 py-3">
-                                @can('add_users')
-                                    @livewire('dashboard.administration.modals.user-add-modal')
-                                @endcan
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($users as $user)
-                            <tr class="bg-white">
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    <img class="rounded-full h-12 w-12" src="{{ $user->getProfilePhotoUrlAttribute() }}" />
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                    {{ $user->name }}
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    {{ $user->email }}
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    {{ $user->deactivated ? 'True' : 'False' }}
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    {{ $user->getRoleNames()->first() }}
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                    @if($user->id == Auth::id())
-                                        <button data-title="{{ __('You can\'t edit yourself here!') }}" data-placement="top" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 focus:outline-none cursor-default">
-                                            Yourself
-                                        </button>
-                                    @elseif($user->system || $user->getRoleNames()->first() == 'super_admin')
-                                        <button data-title="{{ __('This is the System  / Super Admin User. You can\'t edit it and never should!') }}" data-placement="top" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 focus:outline-none cursor-default">
-                                            System / Super Admin User
-                                        </button>
-                                    @else
-                                        @can('edit_users')
-                                            @livewire('dashboard.administration.modals.user-update-modal', ['user' => $user], key($user->id))
-                                        @endcan
-                                        @can('delete_users')
-                                            @livewire('dashboard.administration.modals.user-delete-modal', ['user' => $user], key($user->id))
-                                        @endcan
-                                    @endif
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                </div>
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex-col space-y-4">
+            <div class="w-1/3">
+                <x-jet-input type="text" wire:model="search" placeholder="Search users..." class="w-full"></x-jet-input>
+            </div>
+            <x-table>
+                <x-slot name="head">
+                    <x-table.heading></x-table.heading>
+                    <x-table.heading>{{ __('users.table.head.name') }}</x-table.heading>
+                    <x-table.heading>{{ __('users.table.head.email') }}</x-table.heading>
+                    <x-table.heading>{{ __('users.table.head.deactivated') }}</x-table.heading>
+                    <x-table.heading>{{ __('users.table.head.role') }}</x-table.heading>
+                    <x-table.heading>
+                        @can('add_users')
+                            @livewire('dashboard.administration.modals.user-add-modal')
+                        @endcan
+                    </x-table.heading>
+                </x-slot>
+                <x-slot name="body">
+                    @forelse($users as $user)
+                        <x-table.row wire:loading.class.delay="opacity-50">
+                            <x-table.cell>
+                                <img class="rounded-full h-12 w-12" src="{{ $user->getProfilePhotoUrlAttribute() }}" />
+                            </x-table.cell>
+                            <x-table.cell class="font-medium text-gray-900">{{ $user->name }}</x-table.cell>
+                            <x-table.cell class="text-gray-500">{{ $user->email }}</x-table.cell>
+                            <x-table.cell class="text-gray-500">{{ $user->deactivated ? 'True' : 'False' }}</x-table.cell>
+                            <x-table.cell class="text-gray-500">{{ $user->getRoleNames()->first() }}</x-table.cell>
+                            <x-table.cell>
+                                @if($user->id == Auth::id())
+                                    <button data-title="{{ __('You can\'t edit yourself here!') }}" data-placement="top" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 focus:outline-none cursor-default">
+                                        Yourself
+                                    </button>
+                                @elseif($user->system || $user->getRoleNames()->first() == 'super_admin')
+                                    <button data-title="{{ __('This is the System  / Super Admin User. You can\'t edit it and never should!') }}" data-placement="top" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 focus:outline-none cursor-default">
+                                        System / Super Admin User
+                                    </button>
+                                @else
+                                    @can('edit_users')
+                                        <livewire:dashboard.administration.modals.user-update-modal :user="$user" :key="time().$user->id" />
+                                    @endcan
+                                    @can('delete_users')
+                                        <livewire:dashboard.administration.modals.user-delete-modal :user="$user" :key="time().time().$user->id" />
+                                    @endcan
+                                @endif
+                            </x-table.cell>
+                        </x-table.row>
+                    @empty
+                        <x-table.row>
+                            <x-table.cell colspan="6">
+                                <div class="flex justify-center items-center">
+                                    <span class="font-medium py-8 text-gray-400 text-xl">No results...</span>
+                                </div>
+                            </x-table.cell>
+                        </x-table.row>
+                    @endforelse
+                </x-slot>
+            </x-table>
+
+            <div>
+                {{ $users->links() }}
             </div>
         </div>
     </div>
