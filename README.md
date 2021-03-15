@@ -11,6 +11,9 @@
 </p>
 
 # Overview
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/cbb195458edb4d0a804ca6bf82e69f49)](https://app.codacy.com/gh/Status-Page/Status-Page?utm_source=github.com&utm_medium=referral&utm_content=Status-Page/Status-Page&utm_campaign=Badge_Grade_Settings)
+
 - Components
 - Report incidents
 - JSON API
