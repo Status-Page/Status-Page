@@ -21,6 +21,8 @@ class PastIncidents extends Component
 
     protected $listeners = ['refreshData'];
 
+    public $search = '';
+
     public function render()
     {
         ActionLog::dispatch(array(
@@ -29,7 +31,7 @@ class PastIncidents extends Component
             'message' => 'Past Incidents',
         ));
         return view('livewire.dashboard.incidents.past-incidents', [
-            'old_incidents' => Incident::query()->where([['status', '=', 3], ['type', '=', 0]])->paginate(),
+            'old_incidents' => Incident::query()->where([['status', '=', 3], ['type', '=', 0]])->search('title', $this->search)->paginate(),
         ]);
     }
 
