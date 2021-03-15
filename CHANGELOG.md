@@ -1,10 +1,15 @@
 <a name="unreleased"></a>
 ## [Unreleased]
 
+
+<a name="v1.3.4"></a>
+## [v1.3.4] - 2021-03-15
 ### Bug Fixes
+- **home_components:** Dark Mode collapse Button color
 - **metrics:** made element points smaller
 
 ### Code Refactoring
+- **components:** Livewire Components, Pagination, etc Part 3
 - **components:** Some Searching
 - **components:** Livewire Components, Pagination, etc Part 2
 - **components:** Some Searching
@@ -91,7 +96,8 @@
 <a name="v1.0.0"></a>
 ## v1.0.0 - 2021-02-21
 
-[Unreleased]: https://github.com/HerrTxbias/Status-Page/compare/v1.3.3...HEAD
+[Unreleased]: https://github.com/HerrTxbias/Status-Page/compare/v1.3.4...HEAD
+[v1.3.4]: https://github.com/HerrTxbias/Status-Page/compare/v1.3.3...v1.3.4
 [v1.3.3]: https://github.com/HerrTxbias/Status-Page/compare/v1.3.2...v1.3.3
 [v1.3.2]: https://github.com/HerrTxbias/Status-Page/compare/v1.3.1...v1.3.2
 [v1.3.1]: https://github.com/HerrTxbias/Status-Page/compare/v1.3.0...v1.3.1
