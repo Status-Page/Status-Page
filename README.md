@@ -3,11 +3,11 @@
 </h1>
 
 <p align="center">
-    <a href="https://github.com/HerrTxbias/Status-Page"><img alt="GitHub license" src="https://img.shields.io/github/license/HerrTxbias/Status-Page"></a>
-    <a href="https://github.com/HerrTxbias/Status-Page/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/HerrTxbias/Status-Page"></a>
-    <a href="https://github.com/HerrTxbias/Status-Page/network"><img alt="GitHub forks" src="https://img.shields.io/github/forks/HerrTxbias/Status-Page"></a>
-    <a href="https://github.com/HerrTxbias/Status-Page/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/HerrTxbias/Status-Page"></a>
-    <a href="https://github.com/HerrTxbias/Status-Page/releases"><img alt="GitHub stars" src="https://img.shields.io/github/release/HerrTxbias/Status-Page"></a>
+    <a href="https://github.com/Status-Page/Status-Page"><img alt="GitHub license" src="https://img.shields.io/github/license/Status-Page/Status-Page"></a>
+    <a href="https://github.com/Status-Page/Status-Page/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/Status-Page/Status-Page"></a>
+    <a href="https://github.com/Status-Page/Status-Page/network"><img alt="GitHub forks" src="https://img.shields.io/github/forks/Status-Page/Status-Page"></a>
+    <a href="https://github.com/Status-Page/Status-Page/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/Status-Page/Status-Page"></a>
+    <a href="https://github.com/Status-Page/Status-Page/releases"><img alt="GitHub stars" src="https://img.shields.io/github/release/Status-Page/Status-Page"></a>
 </p>
 
 # Overview
