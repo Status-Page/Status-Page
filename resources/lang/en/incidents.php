@@ -37,7 +37,8 @@ return [
             'impact' => 'Impact',
             'visible' => 'Visible',
             'affected_components' => 'Affected Components',
-            'affected_components_hint' => 'Affected Components will be set automatically into a status, based on the impact.',
+            'affected_components_hint' => 'Affected Components will be set automatically into a status, based on the impact, unless you deactivate this feature.',
+            'do_not_update_status' => 'Do not update the Status',
             'message' => 'Message',
             'open_button' => 'Open Incident',
         ]

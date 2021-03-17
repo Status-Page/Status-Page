@@ -20,6 +20,7 @@ class IncidentAddModal extends Component
     public Incident $incident;
     public IncidentUpdate $incidentUpdate;
     public $incidentComponents;
+    public bool $doNotUpdateStatus = false;
 
     protected $rules = [
         'incident.title' => 'required|string|min:3',
@@ -28,6 +29,7 @@ class IncidentAddModal extends Component
         'incident.visibility' => 'boolean',
         'incidentUpdate.text' => 'required|string|min:3',
         'incidentComponents' => '',
+        'doNotUpdateStatus' => 'boolean',
     ];
 
     public function render()
@@ -65,11 +67,13 @@ class IncidentAddModal extends Component
             }
         }
 
-        if(0 <= $this->incident->status && $this->incident->status < 3){
-            foreach ($this->incident->components()->get() as $component){
-                $component->update([
-                    'status_id' => $this->incident->impact+2,
-                ]);
+        if(!$this->doNotUpdateStatus){
+            if(0 <= $this->incident->status && $this->incident->status < 3){
+                foreach ($this->incident->components()->get() as $component){
+                    $component->update([
+                        'status_id' => $this->incident->impact+2,
+                    ]);
+                }
             }
         }
 

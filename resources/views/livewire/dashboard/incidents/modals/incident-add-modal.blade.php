@@ -62,6 +62,12 @@
                 </div>
 
                 <div class="col-span-6 sm:col-span-4 mb-4">
+                    <x-jet-label for="doNotUpdateStatus" class="text-lg" value="{{ __('incidents.new_incident.modal.do_not_update_status') }}" />
+                    <x-jet-input id="doNotUpdateStatus" type="checkbox" class="mt-1 block" wire:model="doNotUpdateStatus" />
+                    <x-jet-input-error for="doNotUpdateStatus" class="mt-2" />
+                </div>
+
+                <div class="col-span-6 sm:col-span-4 mb-4">
                     <x-jet-label for="text" class="text-lg" value="{{ __('incidents.new_incident.modal.message') }}" />
                     <textarea id="text" wire:model="incidentUpdate.text" class="h-96 mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"></textarea>
                     <x-jet-input-error for="incidentUpdate.text" class="mt-2" />
