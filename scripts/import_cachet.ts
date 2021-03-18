@@ -5,12 +5,12 @@
  */
 
 import * as readline from "readline";
-import Settings = require("./statuspage/models/Settings");
-import SPImporter = require("./statuspage/SPImporter");
+import Settings = require("./cachet/models/Settings");
+import CachetImporter = require("./cachet/CachetImporter");
 
 console.log(
     `Statuspage Import\n
-This will import all Component Groups, Components and Metrics from your existing Statuspage.io page.\n
+This will import all Component Groups, Components and Metrics from your existing Cachet Installation.\n
 This can take some time...`)
 
 const rl = readline.createInterface({
@@ -19,8 +19,8 @@ const rl = readline.createInterface({
 })
 
 const settings: Settings = {
-    spio: {
-        pageID: '',
+    cachet: {
+        domain: '',
         apiKey: ''
     },
     sp: {
@@ -29,19 +29,19 @@ const settings: Settings = {
     }
 };
 
-rl.question('Statuspage.io Page ID: ', answer => {
+rl.question('Cachet Domain (example: status.herrtxbias.net): ', answer => {
     if(answer == ''){
         console.error('No value provided. Restart the Script.')
         return
     }
-    settings.spio.pageID = answer
+    settings.cachet.domain = answer
 
-    rl.question('Statuspage.io API Key: ', answer => {
+    rl.question('API Key: ', answer => {
         if(answer == ''){
             console.error('No value provided. Restart the Script.')
             return
         }
-        settings.spio.apiKey = answer
+        settings.cachet.apiKey = answer
 
         rl.question('Status-Page API URL: ', answer => {
             if(answer == ''){
@@ -63,7 +63,7 @@ rl.question('Statuspage.io Page ID: ', answer => {
                         return
                     }
 
-                    new SPImporter(settings, parseInt(answer));
+                    new CachetImporter(settings, parseInt(answer));
                 })
             })
         })
