@@ -1,5 +1,5 @@
 <div>
-    <x-jet-button wire:loading.attr="disabled" wire:click="startDeleteGroup">Delete</x-jet-button>
+    <x-jet-danger-button wire:loading.attr="disabled" wire:click="startDeleteGroup">Delete</x-jet-danger-button>
     <x-jet-confirmation-modal wire:model="groupDeletionModal">
         <x-slot name="title">
             Delete Group

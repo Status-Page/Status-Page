@@ -1,6 +1,6 @@
 <div>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-white leading-tight">
             {{ __('incidents.title') }}
         </h2>
     </x-slot>
@@ -49,12 +49,14 @@
                             </x-table.cell>
                             <x-table.cell>{{ $incident->getReporter()->name }}</x-table.cell>
                             <x-table.cell>
-                                @can('edit_incidents')
-                                    <livewire:dashboard.incidents.modals.incident-update-modal :incident="$incident" :key="time().$incident->id" />
-                                @endcan
-                                @can('delete_incidents')
-                                    <livewire:dashboard.incidents.modals.incident-delete-modal :incident="$incident" :key="time().time().$incident->id" />
-                                @endcan
+                                <div class="space-x-2 flex items-center">
+                                    @can('edit_incidents')
+                                        <livewire:dashboard.incidents.modals.incident-update-modal :incident="$incident" :key="time().$incident->id" />
+                                    @endcan
+                                    @can('delete_incidents')
+                                        <livewire:dashboard.incidents.modals.incident-delete-modal :incident="$incident" :key="time().time().$incident->id" />
+                                    @endcan
+                                </div>
                             </x-table.cell>
                         </x-table.row>
                     @empty

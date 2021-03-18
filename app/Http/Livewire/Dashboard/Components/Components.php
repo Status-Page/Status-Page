@@ -8,12 +8,15 @@
 namespace App\Http\Livewire\Dashboard\Components;
 
 use App\Events\ActionLog;
+use App\Http\Livewire\DataTable\WithPerPagePagination;
 use App\Models\ComponentGroup;
 use Auth;
 use Livewire\Component;
 
 class Components extends Component
 {
+    use WithPerPagePagination;
+
     protected $listeners = ['refreshData'];
 
     public function render()
@@ -24,7 +27,7 @@ class Components extends Component
             'message' => 'Components',
         ));
         return view('livewire.dashboard.components.components', [
-            'groups' => ComponentGroup::getAllGroups(),
+            'groups' => $this->applyPagination(ComponentGroup::query()->orderBy('order')),
         ]);
     }
 

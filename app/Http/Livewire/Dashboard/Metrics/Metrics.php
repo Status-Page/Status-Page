@@ -29,6 +29,11 @@ class Metrics extends Component
         ]);
     }
 
+    public function reorder($orderedIds)
+    {
+        dd($orderedIds);
+    }
+
     public function updatedSearch(){
         $this->resetPage();
     }

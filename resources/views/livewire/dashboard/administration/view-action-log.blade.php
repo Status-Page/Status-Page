@@ -1,6 +1,6 @@
 <div>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-white leading-tight">
             {{ __('Action Log') }}
         </h2>
         <p>Action Logs for the past {{ config('app.actionlog_backlog', '?') }} days. Older Logs are deleted daily.</p>
@@ -24,8 +24,8 @@
                     </x-input.group>
                 </div>
             </div>
-            <div class="mt-4 bg-white overflow-hidden shadow sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
+            <div class="mt-4 bg-white overflow-hidden shadow sm:rounded-lg dark:bg-discordDark">
+                <div class="p-6 bg-white border-b border-gray-200 dark:bg-discordDark dark:border-discordBlack dark:text-white">
                     <div class="flow-root">
                         <ul class="-mb-8">
                             @foreach($logs as $action)
@@ -36,13 +36,13 @@
                                         @endif
                                         <div class="relative flex space-x-3">
                                             <div>
-                                                <span class="h-8 w-8 rounded-full {{ $action->getColor() }} flex items-center justify-center ring-8 ring-white">
+                                                <span class="h-8 w-8 rounded-full {{ $action->getColor() }} flex items-center justify-center ring-8 ring-white dark:ring-discordDark">
                                                     {!! $action->getSVG() !!}
                                                 </span>
                                             </div>
                                             <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
                                                 <div>
-                                                    <p class="text-sm text-gray-500">{{ $action->getTypeText() }} {{ $action->message }} by <a href="" class="font-medium text-gray-900">{{ $action->user()->name }}</a></p>
+                                                    <p class="text-sm text-gray-500 dark:text-white">{{ $action->getTypeText() }} {{ $action->message }} by <a href="" class="font-medium text-gray-900 dark:text-gray-500">{{ $action->user()->name }}</a></p>
                                                 </div>
                                                 <div class="text-right text-sm whitespace-nowrap text-gray-500">
                                                     <time datetime="{{ $action->created_at }}">{{ $action->created_at }}</time>

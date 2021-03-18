@@ -20,7 +20,7 @@
         <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
         <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
     </head>
-    <body class="font-sans antialiased">
+    <body class="font-sans antialiased dark:bg-bodyBG">
         <x-notification />
         @if(config('app.env') == 'local' || config('app.env') == 'staging')
             <div class="bg-red-600">
@@ -64,12 +64,12 @@
         @endif
         <x-jet-banner />
 
-        <div class="min-h-screen bg-gray-100">
+        <div class="min-h-screen bg-gray-100 dark:bg-bodyBG dark:text-white">
             @livewire('navigation-menu')
 
             <!-- Page Heading -->
             @if (isset($header))
-                <header class="bg-white shadow">
+                <header class="bg-white shadow dark:bg-discordDark dark:text-white">
                     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
@@ -85,15 +85,7 @@
         @stack('modals')
 
         @livewireScripts
-        <script>
-            tippy('button', {
-                content:(reference)=>reference.getAttribute('data-title'),
-                onMount(instance) {
-                    instance.popperInstance.setOptions({
-                        placement :instance.reference.getAttribute('data-placement')
-                    });
-                }
-            });
-        </script>
+        <script src="{{ mix('js/misc.js') }}" defer></script>
+        <script src="https://cdn.jsdelivr.net/gh/livewire/sortable@v0.x.x/dist/livewire-sortable.js"></script>
     </body>
 </html>

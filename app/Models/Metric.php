@@ -7,6 +7,7 @@
 
 namespace App\Models;
 
+use Cache;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -46,12 +47,19 @@ class Metric extends Model
                 if(Carbon::now()->subHours($i)->setMinutes($j) < Carbon::now()){
                     array_push($return->labels, Carbon::now()->subHours($i)->setMinutes($j)->format('H:i'));
 
-                    $points = $this->points()->whereBetween('created_at', [Carbon::now()->subHours($i)->setMinutes($j), Carbon::now()->subHours($i-1)->setMinutes($j+$interval)])->get();
+                    $points = $this->getPoints($interval, $i, $j);
                     array_push($return->points, $points->avg('value') ?? 0);
                 }
             }
         }
 
         return $return;
+    }
+
+    private function getPoints($interval, $i, $j){
+        if(Cache::has('points_'.$this->id)){
+            return Cache::get('points_'.$this->id);
+        }
+        return $this->points()->whereBetween('created_at', [Carbon::now()->subHours($i)->setMinutes($j), Carbon::now()->subHours($i-1)->setMinutes($j+$interval)])->get();
     }
 }

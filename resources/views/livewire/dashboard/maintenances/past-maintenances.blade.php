@@ -1,6 +1,6 @@
 <div>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-white leading-tight">
             {{ __('past.title_maintenances') }}
         </h2>
     </x-slot>

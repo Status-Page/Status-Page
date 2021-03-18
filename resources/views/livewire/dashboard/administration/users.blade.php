@@ -1,6 +1,6 @@
 <div>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-white leading-tight">
             {{ __('users.title') }}
         </h2>
     </x-slot>
@@ -42,27 +42,29 @@
                             <x-table.cell>
                                 <img class="rounded-full h-12 w-12" src="{{ $user->getProfilePhotoUrlAttribute() }}" />
                             </x-table.cell>
-                            <x-table.cell class="font-medium text-gray-900">{{ $user->name }}</x-table.cell>
-                            <x-table.cell class="text-gray-500">{{ $user->email }}</x-table.cell>
-                            <x-table.cell class="text-gray-500">{{ $user->deactivated ? 'True' : 'False' }}</x-table.cell>
-                            <x-table.cell class="text-gray-500">{{ $user->getRoleNames()->first() }}</x-table.cell>
+                            <x-table.cell>{{ $user->name }}</x-table.cell>
+                            <x-table.cell>{{ $user->email }}</x-table.cell>
+                            <x-table.cell>{{ $user->deactivated ? 'True' : 'False' }}</x-table.cell>
+                            <x-table.cell>{{ $user->getRoleNames()->first() }}</x-table.cell>
                             <x-table.cell>
-                                @if($user->id == Auth::id())
-                                    <button data-title="{{ __('You can\'t edit yourself here!') }}" data-placement="top" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 focus:outline-none cursor-default">
-                                        Yourself
-                                    </button>
-                                @elseif($user->system || $user->getRoleNames()->first() == 'super_admin')
-                                    <button data-title="{{ __('This is the System  / Super Admin User. You can\'t edit it and never should!') }}" data-placement="top" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 focus:outline-none cursor-default">
-                                        System / Super Admin User
-                                    </button>
-                                @else
-                                    @can('edit_users')
-                                        <livewire:dashboard.administration.modals.user-update-modal :user="$user" :key="time().$user->id" />
-                                    @endcan
-                                    @can('delete_users')
-                                        <livewire:dashboard.administration.modals.user-delete-modal :user="$user" :key="time().time().$user->id" />
-                                    @endcan
-                                @endif
+                                <div class="space-x-2 flex items-center">
+                                    @if($user->id == Auth::id())
+                                        <button data-title="{{ __('You can\'t edit yourself here!') }}" data-placement="top" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 focus:outline-none cursor-default">
+                                            Yourself
+                                        </button>
+                                    @elseif($user->system || $user->getRoleNames()->first() == 'super_admin')
+                                        <button data-title="{{ __('This is the System  / Super Admin User. You can\'t edit it and never should!') }}" data-placement="top" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 focus:outline-none cursor-default">
+                                            System / Super Admin User
+                                        </button>
+                                    @else
+                                        @can('edit_users')
+                                            <livewire:dashboard.administration.modals.user-update-modal :user="$user" :key="time().$user->id" />
+                                        @endcan
+                                        @can('delete_users')
+                                            <livewire:dashboard.administration.modals.user-delete-modal :user="$user" :key="time().time().$user->id" />
+                                        @endcan
+                                    @endif
+                                </div>
                             </x-table.cell>
                         </x-table.row>
                     @empty

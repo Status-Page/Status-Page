@@ -39,7 +39,7 @@
 
                 <div class="col-span-6 sm:col-span-4 mb-4">
                     <x-jet-label for="incidentComponents" class="text-lg" value="{{ __('maintenances.new_maintenance.modal.affected_components') }}" />
-                    <select id="incidentComponents" multiple wire:model="incidentComponents" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                    <select id="incidentComponents" multiple wire:model="incidentComponents" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md dark:bg-discordDark dark:border-discordBlack">
                         @foreach(\App\Models\ComponentGroup::all() as $group)
                             <optgroup label="{{ $group->name }}">
                                 @foreach($group->components() as $component)
@@ -53,7 +53,7 @@
 
                 <div class="col-span-6 sm:col-span-4 mb-4">
                     <x-jet-label for="message" class="text-lg" value="{{ __('maintenances.new_maintenance.modal.message') }}" />
-                    <textarea id="message" wire:model="incidentUpdate.text" class="h-96 mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"></textarea>
+                    <textarea id="message" wire:model="incidentUpdate.text" class="h-96 mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md dark:bg-discordDark dark:border-discordBlack"></textarea>
                     @error('incidentUpdate.text') <span class="text-red-500">{{ $message }}</span> @enderror
                 </div>
             </x-slot>

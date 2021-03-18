@@ -1,10 +1,12 @@
-<x-guest-layout>
+<div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
         <div class="max-w-3xl mx-auto">
-            <div class="mt-12 text-4xl">
-                <h1 class="inline">{{ config('app.name') }}</h1>
+            <div class="mt-12 text-4xl flex justify-between">
+                <div>
+                    <h1 class="inline">{{ config('app.name') }}</h1>
+                </div>
                 @auth()
-                    <div class="inline">
+                    <div>
                         <a href="{{ route('dashboard') }}" target="_blank">
                             <x-jet-button class="text-right dark:bg-discordGrey">Open Dashboard</x-jet-button>
                         </a>
@@ -18,4 +20,4 @@
             @include('home.past-incidents')
         </div>
     </div>
-</x-guest-layout>
+</div>

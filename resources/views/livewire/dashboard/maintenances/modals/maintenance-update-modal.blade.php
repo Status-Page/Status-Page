@@ -16,7 +16,7 @@
 
                 <div class="col-span-6 sm:col-span-4 mb-4">
                     <x-jet-label for="status" class="text-lg" value="{{ __('maintenances.update_maintenance.modal.status') }}" />
-                    <select id="status" wire:model="maintenance.status" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                    <select id="status" wire:model="maintenance.status" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md dark:bg-discordDark dark:border-discordBlack">
                         <option value="0">Planned</option>
                         <option value="1">In Progress</option>
                         <option value="2">Verifying</option>
@@ -27,7 +27,7 @@
 
                 <div class="col-span-6 sm:col-span-4 mb-4">
                     <x-jet-label for="incidentComponents" class="text-lg" value="{{ __('maintenances.update_maintenance.modal.affected_components') }}" />
-                    <select id="incidentComponents" multiple wire:model="incidentComponents" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                    <select id="incidentComponents" multiple wire:model="incidentComponents" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md dark:bg-discordDark dark:border-discordBlack">
                         @foreach(\App\Models\ComponentGroup::all() as $group)
                             <optgroup label="{{ $group->name }}">
                                 @foreach($group->components() as $component)
@@ -63,7 +63,7 @@
 
                 <div class="col-span-6 sm:col-span-4 mb-4">
                     <x-jet-label for="text" class="text-lg" value="{{ __('maintenances.update_maintenance.modal.message') }}" />
-                    <textarea id="text" wire:model="maintenanceUpdate.text" class="h-96 mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"></textarea>
+                    <textarea id="text" wire:model="maintenanceUpdate.text" class="h-96 mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md dark:bg-discordDark dark:border-discordBlack"></textarea>
                     @error('maintenanceUpdate.text') <span class="text-red-500">{{ $message }}</span> @enderror
                 </div>
             </x-slot>

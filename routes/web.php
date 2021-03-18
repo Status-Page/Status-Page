@@ -15,6 +15,7 @@ use App\Http\Livewire\Dashboard\Incidents\PastIncidents;
 use App\Http\Livewire\Dashboard\Maintenances\Maintenances;
 use App\Http\Livewire\Dashboard\Maintenances\PastMaintenances;
 use App\Http\Livewire\Dashboard\Metrics\Metrics;
+use App\Http\Livewire\Home\Home;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,9 +29,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::get('/', Home::class)->name('home');
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function (){
     Route::get('/dashboard', [DashboardController::class, 'show'])->name('dashboard');

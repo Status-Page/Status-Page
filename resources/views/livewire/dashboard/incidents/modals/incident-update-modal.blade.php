@@ -16,7 +16,7 @@
 
                 <div class="col-span-6 sm:col-span-4 mb-4">
                     <x-jet-label for="status" class="text-lg" value="{{ __('incidents.update_incident.modal.status') }}" />
-                    <select id="status" wire:model="incident.status" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                    <select id="status" wire:model="incident.status" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md dark:bg-discordDark dark:border-discordBlack">
                         <option value="0">Investigating</option>
                         <option value="1">Identified</option>
                         <option value="2">Monitoring</option>
@@ -27,7 +27,7 @@
 
                 <div class="col-span-6 sm:col-span-4 mb-4">
                     <x-jet-label for="impact" class="text-lg" value="{{ __('incidents.update_incident.modal.impact') }}" />
-                    <select id="impact" wire:model="incident.impact" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                    <select id="impact" wire:model="incident.impact" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md dark:bg-discordDark dark:border-discordBlack">
                         <option value="0">None</option>
                         <option value="1">Minor</option>
                         <option value="2">Major</option>
@@ -44,7 +44,7 @@
 
                 <div class="col-span-6 sm:col-span-4 mb-4">
                     <x-jet-label for="incidentComponents" class="text-lg" value="{{ __('incidents.update_incident.modal.affected_components') }}" />
-                    <select id="incidentComponents" multiple wire:model="incidentComponents" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                    <select id="incidentComponents" multiple wire:model="incidentComponents" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md dark:bg-discordDark dark:border-discordBlack">
                         @foreach(\App\Models\ComponentGroup::all() as $group)
                             <optgroup label="{{ $group->name }}">
                                 @foreach($group->components() as $component)
@@ -59,7 +59,7 @@
 
                 <div class="col-span-6 sm:col-span-4 mb-4">
                     <x-jet-label for="text" class="text-lg" value="{{ __('incidents.update_incident.modal.message') }}" />
-                    <textarea id="text" wire:model="incidentUpdate.text" class="h-96 mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"></textarea>
+                    <textarea id="text" wire:model="incidentUpdate.text" class="h-96 mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md dark:bg-discordDark dark:border-discordBlack"></textarea>
                     @error('incidentUpdate.text') <span class="text-red-500">{{ $message }}</span> @enderror
                 </div>
             </x-slot>

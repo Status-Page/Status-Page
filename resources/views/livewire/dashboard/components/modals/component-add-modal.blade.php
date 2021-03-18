@@ -32,7 +32,7 @@
 
                 <div class="col-span-6 sm:col-span-4 mb-4">
                     <x-jet-label for="status" class="text-lg" value="{{ __('Status') }}" />
-                    <select id="status" wire:model="comp.status_id" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                    <select id="status" wire:model="comp.status_id" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md dark:bg-discordDark dark:border-discordBlack">
                         @foreach(\App\Models\Status::all() as $status)
                             <option value="{{ $status->id }}">{{ $status->name }}</option>
                         @endforeach

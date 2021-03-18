@@ -1,6 +1,6 @@
 <div>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-white leading-tight">
             {{ __('Metrics') }}
         </h2>
     </x-slot>
@@ -39,22 +39,24 @@
                 <x-slot name="body">
                     <div>
                         @forelse($metrics as $metric)
-                            <x-table.row wire:loading.class.delay="opacity-50">
+                            <x-table.row wire:loading.class.delay="opacity-50" wire:sortable.item="{{ $metric->id }}" wire:key="metric-{{ $metric->id }}">
                                 <x-table.cell>{{ $metric->id }}</x-table.cell>
-                                <x-table.cell>{{ $metric->title }}</x-table.cell>
+                                <x-table.cell wire:sortable.handle>{{ $metric->title }}</x-table.cell>
                                 <x-table.cell>{{ $metric->suffix }}</x-table.cell>
                                 <x-table.cell>{{ $metric->order }}</x-table.cell>
                                 <x-table.cell>{{ $metric->visibility ? 'True' : 'False' }}</x-table.cell>
                                 <x-table.cell>
-                                    @can('edit_metrics')
-                                        <livewire:dashboard.metrics.modals.metric-update-modal :metric="$metric" :key="time().$metric->id" />
-                                    @endcan
-                                    @can('delete_metrics')
-                                        <livewire:dashboard.metrics.modals.metric-delete-modal :metric="$metric" :key="time().time().$metric->id" />
-                                    @endcan
-                                    @can('delete_metric_points')
-                                        <livewire:dashboard.metrics.modals.metric-delete-points-modal :metric="$metric" :key="time().time().time().$metric->id" />
-                                    @endcan
+                                    <div class="space-x-2 flex items-center">
+                                        @can('edit_metrics')
+                                            <livewire:dashboard.metrics.modals.metric-update-modal :metric="$metric" :key="time().$metric->id" />
+                                        @endcan
+                                        @can('delete_metrics')
+                                            <livewire:dashboard.metrics.modals.metric-delete-modal :metric="$metric" :key="time().time().$metric->id" />
+                                        @endcan
+                                        @can('delete_metric_points')
+                                            <livewire:dashboard.metrics.modals.metric-delete-points-modal :metric="$metric" :key="time().time().time().$metric->id" />
+                                        @endcan
+                                    </div>
                                 </x-table.cell>
                             </x-table.row>
                         @empty
