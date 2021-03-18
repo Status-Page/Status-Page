@@ -1,4 +1,4 @@
-<x-app-layout>
+<div>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Action Log') }}
@@ -7,7 +7,23 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex-col space-y-4">
+            <div class="flex justify-between">
+                <div class="w-1/3 flex space-x-2">
+                    <x-jet-input type="text" wire:model="search" placeholder="Search Actions..." class="w-full"></x-jet-input>
+                </div>
+
+                <div class="space-x-2 flex items-center">
+                    <x-input.group borderless paddingless for="perPage" label="Per Page">
+                        <x-input.select wire:model="perPage" id="perPage" class="rounded-md">
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </x-input.select>
+                    </x-input.group>
+                </div>
+            </div>
             <div class="mt-4 bg-white overflow-hidden shadow sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="flow-root">
@@ -45,4 +61,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+</div>

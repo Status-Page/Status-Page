@@ -8,6 +8,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Livewire\Dashboard\Administration\Users;
+use App\Http\Livewire\Dashboard\Administration\ViewActionLog;
 use App\Http\Livewire\Dashboard\Components\Components;
 use App\Http\Livewire\Dashboard\Incidents\Incidents;
 use App\Http\Livewire\Dashboard\Incidents\PastIncidents;
@@ -43,5 +44,5 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function (){
     Route::get('/dashboard/metrics', Metrics::class)->middleware(['can:read_metrics'])->name('dashboard.metrics');
 
     Route::get('/dashboard/admin/users', Users::class)->middleware(['can:read_users'])->name('dashboard.admin.users');
-    Route::get('/dashboard/admin/actionlog', [AdminController::class, 'actionLog'])->middleware(['can:read_actionlog'])->name('dashboard.admin.actionlog');
+    Route::get('/dashboard/admin/actionlog', ViewActionLog::class)->middleware(['can:read_actionlog'])->name('dashboard.admin.actionlog');
 });
