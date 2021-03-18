@@ -2,6 +2,16 @@
 ## [Unreleased]
 
 
+<a name="v1.4.1"></a>
+## [v1.4.1] - 2021-03-18
+### Bug Fixes
+- **logo:** Add Logo ([f7186b8](https://github.com/Status-Page/Status-Page/commit/f7186b8f66b3922c650a54679bf2894108c32eed))
+- **searchbar_strings:** Fixed wrong Strings ([4ba1a75](https://github.com/Status-Page/Status-Page/commit/4ba1a75baeae9f5aa9e827c635edc65e5ceeda9a))
+
+### Reverts
+- Changelog
+
+
 <a name="v1.4.0"></a>
 ## [v1.4.0] - 2021-03-18
 ### Bug Fixes
@@ -118,7 +128,8 @@
 <a name="v1.0.0"></a>
 ## v1.0.0 - 2021-02-21
 
-[Unreleased]: https://github.com/HerrTxbias/Status-Page/compare/v1.4.0...HEAD
+[Unreleased]: https://github.com/HerrTxbias/Status-Page/compare/v1.4.1...HEAD
+[v1.4.1]: https://github.com/HerrTxbias/Status-Page/compare/v1.4.0...v1.4.1
 [v1.4.0]: https://github.com/HerrTxbias/Status-Page/compare/v1.3.4...v1.4.0
 [v1.3.4]: https://github.com/HerrTxbias/Status-Page/compare/v1.3.3...v1.3.4
 [v1.3.3]: https://github.com/HerrTxbias/Status-Page/compare/v1.3.2...v1.3.3
