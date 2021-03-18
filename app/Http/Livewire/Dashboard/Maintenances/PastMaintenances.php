@@ -8,16 +8,14 @@
 namespace App\Http\Livewire\Dashboard\Maintenances;
 
 use App\Events\ActionLog;
+use App\Http\Livewire\DataTable\WithPerPagePagination;
 use App\Models\Incident;
-use App\Models\IncidentUpdate;
-use App\Models\Status;
 use Auth;
 use Livewire\Component;
-use Livewire\WithPagination;
 
 class PastMaintenances extends Component
 {
-    use WithPagination;
+    use WithPerPagePagination;
 
     protected $listeners = ['refreshData'];
 
@@ -31,7 +29,7 @@ class PastMaintenances extends Component
             'message' => 'Past Incidents',
         ));
         return view('livewire.dashboard.maintenances.past-maintenances', [
-            'old_maintenances' => Incident::query()->where([['status', '=', 3], ['type', '=', 1]])->search('title', $this->search, [['status', '=', 3], ['type', '=', 1]])->paginate(),
+            'old_maintenances' => $this->applyPagination(Incident::query()->where([['status', '=', 3], ['type', '=', 1]])->search('title', $this->search, [['status', '=', 3], ['type', '=', 1]])),
         ]);
     }
 

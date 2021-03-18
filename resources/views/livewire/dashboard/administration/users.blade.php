@@ -7,8 +7,25 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex-col space-y-4">
-            <div class="w-1/3">
-                <x-jet-input type="text" wire:model="search" placeholder="Search users..." class="w-full"></x-jet-input>
+            <div class="flex justify-between">
+                <div class="w-1/3 flex space-x-2">
+                    <x-jet-input type="text" wire:model="search" placeholder="Search Metrics..." class="w-full"></x-jet-input>
+                </div>
+
+                <div class="space-x-2 flex items-center">
+                    <x-input.group borderless paddingless for="perPage" label="Per Page">
+                        <x-input.select wire:model="perPage" id="perPage" class="rounded-md">
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </x-input.select>
+                    </x-input.group>
+
+                    @can('add_users')
+                        @livewire('dashboard.administration.modals.user-add-modal')
+                    @endcan
+                </div>
             </div>
             <x-table>
                 <x-slot name="head">
@@ -17,11 +34,7 @@
                     <x-table.heading>{{ __('users.table.head.email') }}</x-table.heading>
                     <x-table.heading>{{ __('users.table.head.deactivated') }}</x-table.heading>
                     <x-table.heading>{{ __('users.table.head.role') }}</x-table.heading>
-                    <x-table.heading>
-                        @can('add_users')
-                            @livewire('dashboard.administration.modals.user-add-modal')
-                        @endcan
-                    </x-table.heading>
+                    <x-table.heading></x-table.heading>
                 </x-slot>
                 <x-slot name="body">
                     @forelse($users as $user)

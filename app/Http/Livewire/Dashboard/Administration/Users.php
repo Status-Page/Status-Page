@@ -3,14 +3,14 @@
 namespace App\Http\Livewire\Dashboard\Administration;
 
 use App\Events\ActionLog;
+use App\Http\Livewire\DataTable\WithPerPagePagination;
 use App\Models\User;
 use Auth;
 use Livewire\Component;
-use Livewire\WithPagination;
 
 class Users extends Component
 {
-    use WithPagination;
+    use WithPerPagePagination;
 
     protected $listeners = ['refreshData'];
 
@@ -25,7 +25,7 @@ class Users extends Component
         ));
 
         return view('livewire.dashboard.administration.users', [
-            'users' => User::query()->search('name', $this->search)->paginate(),
+            'users' => $this->applyPagination(User::query()->search('name', $this->search)),
         ]);
     }
 

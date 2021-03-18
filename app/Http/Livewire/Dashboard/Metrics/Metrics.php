@@ -3,14 +3,14 @@
 namespace App\Http\Livewire\Dashboard\Metrics;
 
 use App\Events\ActionLog;
+use App\Http\Livewire\DataTable\WithPerPagePagination;
 use App\Models\Metric;
 use Auth;
 use Livewire\Component;
-use Livewire\WithPagination;
 
 class Metrics extends Component
 {
-    use WithPagination;
+    use WithPerPagePagination;
 
     protected $listeners = ['refreshData'];
 
@@ -25,8 +25,12 @@ class Metrics extends Component
         ));
 
         return view('livewire.dashboard.metrics.metrics', [
-            'metrics' => Metric::query()->orderBy('order')->search('title', $this->search, [], 'order')->paginate(),
+            'metrics' => $this->applyPagination(Metric::query()->orderBy('order')->search('title', $this->search, [], 'order')),
         ]);
+    }
+
+    public function updatedSearch(){
+        $this->resetPage();
     }
 
     public function refreshData(){
