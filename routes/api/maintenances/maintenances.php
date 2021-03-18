@@ -61,7 +61,7 @@ Route::post('/maintenances', function (Request $request) {
             'title' => 'required|string|min:3',
             'status' => 'integer|min:0|max:3',
             'visibility' => 'boolean',
-            'scheduled_at' => 'date|after:'.Carbon::now(),
+            'scheduled_at' => 'required|date|after:'.Carbon::now(),
             'end_at' => 'nullable|date',
             'components' => 'array',
             'message' => 'required|string',
