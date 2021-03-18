@@ -17,15 +17,16 @@
 - JSON API
 - Metrics
 - Two factor authentication
+- Markdown support in incident / maintenance messages
 - And soon more...
 
 # Requirements
-- HTTP server with PHP support (e.g.: Apache, Nginx, Caddy)
-- PHP 8.0
+- HTTP server with PHP support (e.g.: Apache, Nginx)
+- PHP 8.0 (minimum: PHP 7.4)
 - Composer
 - A supported database: MySQL, PostgreSQL or SQLite
 - Mail Server (with SMTP)
-- Optional:
+- Optional, but recommended:
     - Redis Server
     - supervisor
 
