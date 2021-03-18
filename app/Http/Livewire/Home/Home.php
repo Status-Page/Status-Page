@@ -11,10 +11,14 @@ class Home extends Component
     public $interval = 60;
     public $lastHours = 24;
 
+    public bool $readyToLoad = false;
+
     public function render()
     {
         return view('livewire.home.home', [
-            'metrics' => Metric::query()->where('visibility', true)->orderBy('order')->get()
+            'metrics' => $this->readyToLoad
+                ? Metric::query()->where('visibility', true)->orderBy('order')->get()
+                : [],
         ])->layout('layouts.guest');
     }
 
@@ -29,6 +33,10 @@ class Home extends Component
 
     public function updatedLastHours(){
         Session::put('lastHours', $this->lastHours);
+    }
+
+    public function loadData(){
+        $this->readyToLoad = true;
     }
 
     public function changeDarkmode(){
