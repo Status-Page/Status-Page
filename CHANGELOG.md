@@ -1,8 +1,27 @@
 <a name="unreleased"></a>
 ## [Unreleased]
 
+
+<a name="v1.4.0"></a>
+## [v1.4.0] - 2021-03-18
 ### Bug Fixes
+- **css:** Wrong CSS styling
+- **data:** Data gets reloaded without page refresh
+- **maintenance_add:** Texts are now not only uppercase
+- **maintenances:** No results now styled correctly
+- **metrics_add:** Texts are now not only uppercase
 - **no_results:** Add missing no results
+- **search:** Reset page to one, on search
+- **users_add:** Texts are now not only uppercase
+
+### Features
+- **action_log:** Make Action Log view Livewire Component
+- **chore:** Add Per Page selector
+- **incidens:** User can choose between updating component status or not
+- **past_maintenances:** Add Scheduled At and End At to past incidents
+
+### Performance Improvements
+- **updater:** Updater improvements
 
 
 <a name="v1.3.4"></a>
@@ -99,7 +118,8 @@
 <a name="v1.0.0"></a>
 ## v1.0.0 - 2021-02-21
 
-[Unreleased]: https://github.com/HerrTxbias/Status-Page/compare/v1.3.4...HEAD
+[Unreleased]: https://github.com/HerrTxbias/Status-Page/compare/v1.4.0...HEAD
+[v1.4.0]: https://github.com/HerrTxbias/Status-Page/compare/v1.3.4...v1.4.0
 [v1.3.4]: https://github.com/HerrTxbias/Status-Page/compare/v1.3.3...v1.3.4
 [v1.3.3]: https://github.com/HerrTxbias/Status-Page/compare/v1.3.2...v1.3.3
 [v1.3.2]: https://github.com/HerrTxbias/Status-Page/compare/v1.3.1...v1.3.2
