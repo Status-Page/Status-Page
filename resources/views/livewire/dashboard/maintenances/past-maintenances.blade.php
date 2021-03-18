@@ -39,7 +39,7 @@
                         </x-table.row>
                     @empty
                         <x-table.row>
-                            <x-table.cell colspan="6">
+                            <x-table.cell colspan="8">
                                 <div class="flex justify-center items-center">
                                     <span class="font-medium py-8 text-gray-400 text-xl">No results...</span>
                                 </div>
