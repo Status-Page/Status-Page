@@ -2,6 +2,12 @@
 ## [Unreleased]
 
 
+<a name="v1.4.3"></a>
+## [v1.4.3] - 2021-03-18
+### Bug Fixes
+- **metrics:** Defer loading and add loading animation ([af2295e](https://github.com/Status-Page/Status-Page/commit/af2295e4460c6c3aac75c9f75e816f48ed3260bb))
+
+
 <a name="v1.4.2"></a>
 ## [v1.4.2] - 2021-03-18
 ### Features
@@ -135,7 +141,8 @@
 <a name="v1.0.0"></a>
 ## v1.0.0 - 2021-02-21
 
-[Unreleased]: https://github.com/HerrTxbias/Status-Page/compare/v1.4.2...HEAD
+[Unreleased]: https://github.com/HerrTxbias/Status-Page/compare/v1.4.3...HEAD
+[v1.4.3]: https://github.com/HerrTxbias/Status-Page/compare/v1.4.2...v1.4.3
 [v1.4.2]: https://github.com/HerrTxbias/Status-Page/compare/v1.4.1...v1.4.2
 [v1.4.1]: https://github.com/HerrTxbias/Status-Page/compare/v1.4.0...v1.4.1
 [v1.4.0]: https://github.com/HerrTxbias/Status-Page/compare/v1.3.4...v1.4.0
