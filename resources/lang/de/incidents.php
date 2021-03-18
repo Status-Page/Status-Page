@@ -47,9 +47,10 @@ return [
             'impact' => 'Einfluss',
             'visible' => 'Sichtbar',
             'affected_components' => 'Betroffene Komponenten',
-            'affected_components_hint' => 'Betroffene Komponenten werden automatisch in einen Status gesetzt, der auf den Auswirkungen basiert.',
+            'affected_components_hint' => 'Betroffene Komponenten werden automatisch in einen Status gesetzt, der auf der Auswirkung basiert, sofern Sie diese Funktion nicht deaktivieren.',
             'message' => 'Nachricht',
             'open_button' => 'Offener Vorfall',
+            'do_not_update_status' => 'Status nicht aktualisieren',
         ],
     ],
     'delete_incident' => [
