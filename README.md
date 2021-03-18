@@ -122,3 +122,10 @@ To use it, run the following command:
 ``` shell
 npm run statuspage-import
 ```
+
+### Import from Cachet
+You can import your components from Cachet, with a simple script.
+To use it, run the following command:
+``` shell
+npm run cachet-import
+```

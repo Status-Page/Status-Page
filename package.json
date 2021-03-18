@@ -8,7 +8,8 @@
         "hot": "mix watch --hot",
         "prod": "npm run production",
         "production": "mix --production",
-        "statuspage-import": "ts-node scripts/import_statuspage.ts"
+        "statuspage-import": "ts-node scripts/import_statuspage.ts",
+        "cachet-import": "ts-node scripts/import_cachet.ts"
     },
     "dependencies": {
         "axios": "^0.21.1",
