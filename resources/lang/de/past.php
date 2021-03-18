@@ -7,6 +7,8 @@ return [
             'impact' => 'Einfluss',
             'reporter' => 'Melder',
             'id' => 'ID',
+            'scheduled_at' => 'Geplant um',
+            'end_at' => 'Ende um',
         ],
     ],
     'incidents' => [
