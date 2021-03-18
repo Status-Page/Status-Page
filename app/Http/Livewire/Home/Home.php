@@ -30,4 +30,9 @@ class Home extends Component
     public function updatedLastHours(){
         Session::put('lastHours', $this->lastHours);
     }
+
+    public function changeDarkmode(){
+        session()->put('darkmode', !session()->get('darkmode', config('statuspage.darkmode')));
+        $this->redirectRoute('home');
+    }
 }
