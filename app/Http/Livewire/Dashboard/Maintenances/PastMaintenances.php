@@ -36,6 +36,6 @@ class PastMaintenances extends Component
     }
 
     public function refreshData(){
-        $this->redirectRoute('dashboard.incidents.past');
+        // Placeholder
     }
 }

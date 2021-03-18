@@ -30,6 +30,6 @@ class Metrics extends Component
     }
 
     public function refreshData(){
-        $this->redirectRoute('dashboard.metrics');
+        // Placeholder
     }
 }

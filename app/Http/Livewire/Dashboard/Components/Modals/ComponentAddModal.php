@@ -17,15 +17,15 @@ class ComponentAddModal extends Component
     public ComponentGroup $group;
 
     public bool $modal = false;
-    public \App\Models\Component $model;
+    public \App\Models\Component $comp;
 
     protected $rules = [
-        'model.name' => 'required|string|min:3',
-        'model.link' => 'url',
-        'model.description' => 'string|min:3',
-        'model.status_id' => 'required|integer|min:1|max:6',
-        'model.order' => 'integer',
-        'model.visibility' => 'boolean',
+        'comp.name' => 'required|string|min:3',
+        'comp.link' => 'url',
+        'comp.description' => 'string|min:3',
+        'comp.status_id' => 'required|integer|min:1|max:6',
+        'comp.order' => 'integer',
+        'comp.visibility' => 'boolean',
     ];
 
     public function render()
@@ -34,23 +34,24 @@ class ComponentAddModal extends Component
     }
 
     public function start(){
-        $this->model = new \App\Models\Component();
-        $this->model->status_id = 2;
+        $this->comp = new \App\Models\Component();
+        $this->comp->status_id = 2;
+        $this->comp->order = 0;
         $this->modal = true;
     }
 
     public function save(){
-        $this->model->group = $this->group->id;
-        $this->model->user = Auth::id();
+        $this->comp->group = $this->group->id;
+        $this->comp->user = Auth::id();
 
         $this->validate();
 
-        $this->model->save();
+        $this->comp->save();
 
         ActionLog::dispatch(array(
             'user' => Auth::id(),
             'type' => 1,
-            'message' => 'Component '.$this->model->name.' (ID: '.$this->model->id.')',
+            'message' => 'Component '.$this->comp->name.' (ID: '.$this->comp->id.')',
         ));
 
         $this->modal = false;
