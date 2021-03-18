@@ -61,7 +61,7 @@ v 1 . 0 . 0
   |
   Major (Breaking changes to the Software)
 ````
-If you update using git-tags: Run ``php artisan status:update --tags``.
+If you update using git-tags (default installation): Run ``php artisan status:update --tags``.
 
 If you update using git-pull on the master branch: Run ``php artisan status:update``.
 This will handle all necessary operations, as well as the git-pull.
