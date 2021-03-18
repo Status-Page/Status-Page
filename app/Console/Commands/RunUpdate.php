@@ -46,15 +46,18 @@ class RunUpdate extends Command
                     '--retry' => '10'
                 ]);
 
+                $this->info('Pulling new / updated files...');
                 $process = Process::fromShellCommandline('git pull');
                 $process->run();
                 $this->line($process->getOutput());
 
+                $this->info('Installing / Updating Composer packages...');
                 $process = Process::fromShellCommandline('composer install');
                 $process->run();
                 $this->line($process->getOutput());
 
-                $process = Process::fromShellCommandline('npm run dev');
+                $this->info('Installing / Updating NPM packages...');
+                $process = Process::fromShellCommandline('npm install');
                 $process->run();
                 $this->line($process->getOutput());
 
@@ -86,19 +89,23 @@ class RunUpdate extends Command
                     '--retry' => '10'
                 ]);
 
+                $this->info('Stashing changes...');
                 $process = Process::fromShellCommandline('git stash');
                 $process->run();
                 $this->line($process->getOutput());
 
+                $this->info('Checking out new Version...');
                 $process = Process::fromShellCommandline('git checkout '.$version->meta->git->last_tag);
                 $process->run();
                 $this->line($process->getOutput());
 
+                $this->info('Installing / Updating Composer packages...');
                 $process = Process::fromShellCommandline('composer install');
                 $process->run();
                 $this->line($process->getOutput());
 
-                $process = Process::fromShellCommandline('npm run dev');
+                $this->info('Installing / Updating NPM packages...');
+                $process = Process::fromShellCommandline('npm install');
                 $process->run();
                 $this->line($process->getOutput());
 
