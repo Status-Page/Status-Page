@@ -1,4 +1,4 @@
-<div>
+<div class="normal-case">
     <div class="text-right">
         <x-jet-button wire:click="start">
             {{ __('Add Metric') }}
