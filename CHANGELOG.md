@@ -2,6 +2,13 @@
 ## [Unreleased]
 
 
+<a name="v1.4.2"></a>
+## [v1.4.2] - 2021-03-18
+### Features
+- **darkmode:** Use can now activate Darkmode ([bfd5f6e](https://github.com/Status-Page/Status-Page/commit/bfd5f6e73fbebdc697f8a4f4a6d2a3bb88d1d40b))
+- **darkmode:** Added Darkmode classes ([875aa7f](https://github.com/Status-Page/Status-Page/commit/875aa7f1f8411174c6145e7fa8de7cfbb15e9cf4))
+
+
 <a name="v1.4.1"></a>
 ## [v1.4.1] - 2021-03-18
 ### Bug Fixes
@@ -128,7 +135,8 @@
 <a name="v1.0.0"></a>
 ## v1.0.0 - 2021-02-21
 
-[Unreleased]: https://github.com/HerrTxbias/Status-Page/compare/v1.4.1...HEAD
+[Unreleased]: https://github.com/HerrTxbias/Status-Page/compare/v1.4.2...HEAD
+[v1.4.2]: https://github.com/HerrTxbias/Status-Page/compare/v1.4.1...v1.4.2
 [v1.4.1]: https://github.com/HerrTxbias/Status-Page/compare/v1.4.0...v1.4.1
 [v1.4.0]: https://github.com/HerrTxbias/Status-Page/compare/v1.3.4...v1.4.0
 [v1.3.4]: https://github.com/HerrTxbias/Status-Page/compare/v1.3.3...v1.3.4
