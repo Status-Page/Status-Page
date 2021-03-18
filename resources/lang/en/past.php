@@ -26,6 +26,8 @@ return [
             'title' => 'Title',
             'status' => 'Status',
             'impact' => 'Impact',
+            'scheduled_at' => 'Scheduled at',
+            'end_at' => 'End at',
             'reporter' => 'Reporter',
         ],
     ],

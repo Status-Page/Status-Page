@@ -16,6 +16,8 @@
                     <x-table.heading>{{ __('past.tables.head.title')  }}</x-table.heading>
                     <x-table.heading>{{ __('past.tables.head.status')  }}</x-table.heading>
                     <x-table.heading>{{ __('past.tables.head.impact')  }}</x-table.heading>
+                    <x-table.heading>{{ __('past.tables.head.scheduled_at') }}</x-table.heading>
+                    <x-table.heading>{{ __('past.tables.head.end_at') }}</x-table.heading>
                     <x-table.heading>{{ __('past.tables.head.reporter')  }}</x-table.heading>
                     <x-table.heading></x-table.heading>
                 </x-slot>
@@ -30,6 +32,8 @@
                                     &nbsp;&nbsp;
                                 </span>
                             </x-table.cell>
+                            <x-table.cell>{{ $incident->scheduled_at }}</x-table.cell>
+                            <x-table.cell>{{ $incident->end_at }}</x-table.cell>
                             <x-table.cell>{{ $incident->getReporter()->name }}</x-table.cell>
                             <x-table.cell>
                                 @can('delete_incidents')
