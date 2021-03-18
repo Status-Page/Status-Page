@@ -1,7 +1,7 @@
 <div align="center">
     <img alt="Status Page" src="https://github.com/Status-Page/Assets/blob/master/logo_gray/logo_small.png"></a>
 </div>
-
+<br />
 <p align="center">
     <a href="https://github.com/Status-Page/Status-Page"><img alt="GitHub license" src="https://img.shields.io/github/license/Status-Page/Status-Page"></a>
     <a href="https://github.com/Status-Page/Status-Page/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/Status-Page/Status-Page"></a>
