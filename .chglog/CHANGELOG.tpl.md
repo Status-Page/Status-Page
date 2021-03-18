@@ -6,7 +6,7 @@
 {{ range .Unreleased.CommitGroups -}}
 ### {{ .Title }}
 {{ range .Commits -}}
-- {{ if .Scope }}**{{ .Scope }}:** {{ end }}{{ .Subject }} ([https://github.com/Status-Page/Status-Page/commit/{{ .Hash.Long }}])
+- {{ if .Scope }}**{{ .Scope }}:** {{ end }}{{ .Subject }} (https://github.com/Status-Page/Status-Page/commit/{{ .Hash.Long }})
 {{ end }}
 {{ end -}}
 {{ end -}}
@@ -18,7 +18,7 @@
 {{ range .CommitGroups -}}
 ### {{ .Title }}
 {{ range .Commits -}}
-- {{ if .Scope }}**{{ .Scope }}:** {{ end }}{{ .Subject }} ([https://github.com/Status-Page/Status-Page/commit/{{ .Hash.Long }}])
+- {{ if .Scope }}**{{ .Scope }}:** {{ end }}{{ .Subject }} (https://github.com/Status-Page/Status-Page/commit/{{ .Hash.Long }})
 {{ end }}
 {{ end -}}
 
