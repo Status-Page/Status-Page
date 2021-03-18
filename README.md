@@ -1,5 +1,5 @@
 <h1 align="center">
-    Status Page
+    <img alt="Status Page" src="https://github.com/Status-Page/Assets/blob/master/logo_gray/logo_small.png"></a>
 </h1>
 
 <p align="center">
