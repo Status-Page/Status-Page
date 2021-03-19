@@ -2,6 +2,16 @@
 ## [Unreleased]
 
 
+<a name="v1.4.4"></a>
+## [v1.4.4] - 2021-03-19
+### Bug Fixes
+- **darkmode:** metric title is now shown in light mode ([547bad3](https://github.com/Status-Page/Status-Page/commit/547bad31de471d6969370dfeacc1db658e1f7121))
+
+### Features
+- **cachet_import:** Add Cachet Importer ([01ad848](https://github.com/Status-Page/Status-Page/commit/01ad848d4e254e79ee6f64501968fd048f213c59))
+- **home:** Data gets refreshed every 10s ([f208af8](https://github.com/Status-Page/Status-Page/commit/f208af8468318d3c56521822453cbe327152ff1b))
+
+
 <a name="v1.4.3"></a>
 ## [v1.4.3] - 2021-03-18
 ### Bug Fixes
@@ -141,7 +151,8 @@
 <a name="v1.0.0"></a>
 ## v1.0.0 - 2021-02-21
 
-[Unreleased]: https://github.com/HerrTxbias/Status-Page/compare/v1.4.3...HEAD
+[Unreleased]: https://github.com/HerrTxbias/Status-Page/compare/v1.4.4...HEAD
+[v1.4.4]: https://github.com/HerrTxbias/Status-Page/compare/v1.4.3...v1.4.4
 [v1.4.3]: https://github.com/HerrTxbias/Status-Page/compare/v1.4.2...v1.4.3
 [v1.4.2]: https://github.com/HerrTxbias/Status-Page/compare/v1.4.1...v1.4.2
 [v1.4.1]: https://github.com/HerrTxbias/Status-Page/compare/v1.4.0...v1.4.1
