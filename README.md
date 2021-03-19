@@ -45,6 +45,8 @@ php artisan status:install
 ```
 Make sure the user of your webserver has write rights to the directories here.
 
+After the installation is complete, you can access the Dashboard via the route `/dashboard`.
+
 ## After install
 - To be able to use all functions like caching etc. you should add the command to your crontab file at the end of the installation.
 - Follow the Instructions at "Running queued Jobs"
