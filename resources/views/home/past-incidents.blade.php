@@ -1,4 +1,4 @@
-<div class="mt-12">
+<div class="mt-12" wire:poll.10s wire:poll.keep-alive>
     <h2 class="text-2xl">
         Past Incidents
     </h2>

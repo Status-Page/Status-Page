@@ -6,7 +6,7 @@ $component_groups = Cache::remember('home_componentgroups', config('cache.ttl'),
     return ComponentGroup::getGroups();
 });
 ?>
-<div class="mt-12">
+<div class="mt-12" wire:poll.10s wire:poll.keep-alive>
     @foreach($component_groups as $group)
         <div x-data="{ open{{ $group->id }}: {{ $group->shouldExpand() }} }" class="shadow sm:rounded-md bg-white text-black dark:bg-discordBlack dark:text-white">
             <div class="px-4 py-5 sm:px-6 mt-2 border-b border-gray-200 dark:border-discordDark cursor-pointer" @click="open{{ $group->id }} = !open{{ $group->id }}">

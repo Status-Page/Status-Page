@@ -24,7 +24,7 @@ $incidents = Cache::remember('home_incidents', config('cache.ttl'), function (){
 });
 
 ?>
-<div class="mt-6">
+<div class="mt-6" wire:poll.10s wire:poll.keep-alive>
     @if($incidents->count() > 0)
         @foreach($incidents as $incident)
             <div class="bg-white text-black dark:bg-bodyBG dark:text-white border-{{ $incident->getImpactColor() }} border-2 rounded-md shadow mb-2">
