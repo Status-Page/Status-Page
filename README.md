@@ -131,3 +131,9 @@ To use it, run the following command:
 ``` shell
 npm run cachet-import
 ```
+
+## Other Licenses
+### Tailwind UI
+We are using Tailwind UI Components in this App. You are **NOT** allowed to reuse these Components in your own App!
+
+See their [License](https://www.notion.so/Tailwind-UI-License-644418bb34ad4fa29aac9b82e956a867) for more information.
