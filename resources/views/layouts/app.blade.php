@@ -81,6 +81,7 @@
                 {{ $slot }}
             </main>
         </div>
+        @include('global.footer')
 
         @stack('modals')
 
