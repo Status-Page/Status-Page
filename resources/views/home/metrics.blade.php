@@ -1,4 +1,4 @@
-@if(\App\Models\Metric::query()->where('visibility', true)->count() > 0)
+@if($metric_count > 0)
     <div class="mt-12">
         <div class="flex justify-between">
             <h2 class="text-2xl">

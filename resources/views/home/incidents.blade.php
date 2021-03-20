@@ -1,30 +1,4 @@
-<?php
-use App\Models\Component;
-use App\Models\Incident;
-use App\Models\Status;
-use Illuminate\Support\Facades\Cache;
-
-$components = Cache::remember('home_components', config('cache.ttl'), function (){
-    return Component::all();
-});
-
-$highestStatus = 1;
-$globalStatus = Status::getByOrder($highestStatus)->first();
-foreach ($components as $component){
-    if($component->group()->visibility == 1){
-        if($highestStatus < $component->status()->id){
-            $highestStatus = $component->status()->id;
-            $globalStatus = $component->status();
-        }
-    }
-}
-
-$incidents = Cache::remember('home_incidents', config('cache.ttl'), function (){
-    return Incident::query()->where([['status', '!=', 3], ['type', '=', 0], ['visibility', '=', true]])->orWhere([['status', '!=', 3], ['type', '=', 1], ['status', '!=', 0], ['visibility', '=', true]])->orderBy('id', 'desc')->get();
-});
-
-?>
-<div class="mt-6" wire:poll.10s wire:poll.keep-alive>
+<div class="mt-6">
     @if($incidents->count() > 0)
         @foreach($incidents as $incident)
             <div class="bg-white text-black dark:bg-bodyBG dark:text-white border-{{ $incident->getImpactColor() }} border-2 rounded-md shadow mb-2">

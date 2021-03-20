@@ -35,11 +35,13 @@
                     </div>
                 </div>
             </div>
-            @include('home.incidents')
-            @include('home.components')
-            @include('home.metrics')
-            @include('home.upcoming-maintenances')
-            @include('home.past-incidents')
+            <div wire:poll.10s wire:poll.keep-alive>
+                @include('home.incidents')
+                @include('home.components')
+                @include('home.metrics')
+                @include('home.upcoming-maintenances')
+                @include('home.past-incidents')
+            </div>
         </div>
     </div>
 </div>
