@@ -11,6 +11,7 @@ return [
             'affected_components' => 'Betroffene Komponenten',
             'message' => 'Nachricht',
             'update_button' => 'Update posten',
+            'update_button_without_message' => 'Update ohne Meldung',
         ],
         'button' => 'Update',
     ],
