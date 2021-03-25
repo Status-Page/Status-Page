@@ -23,5 +23,6 @@ return [
     'footer_show' => 'Show Footer',
     'footer_showDashboardLink' => 'Show Link to Dashboard in the Footer',
     'incidents_pastIncidentDays' => 'Incident Backlog on the Mainpage',
+    'metrics_cache' => 'Cache Metric Data',
 
 ];
