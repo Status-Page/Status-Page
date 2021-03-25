@@ -9,6 +9,7 @@ return [
             'id' => 'ID',
             'scheduled_at' => 'Geplant um',
             'end_at' => 'Ende um',
+            'visibility' => 'Sichtbarkeit',
         ],
     ],
     'incidents' => [
