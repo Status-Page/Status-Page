@@ -55,6 +55,7 @@ return [
             'affected_components_hint' => 'The status for the Components will not be set automatically, when you update this incident. <br> Only resolving the Incident will set all Components into Operational.',
             'message' => 'Message',
             'update_button' => 'Post Update',
+            'update_button_without_message' => 'Update without Message',
         ]
     ],
     'delete_incident' => [

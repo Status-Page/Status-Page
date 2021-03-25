@@ -42,21 +42,25 @@ class IncidentUpdateModal extends Component
         $this->modal = true;
     }
 
-    public function save(){
+    public function save($withMessage = true){
         $oldIncident = Incident::query()->where('id', '=', $this->incident->id)->first();
 
         $this->incident->type = 0;
+
+        if(!$withMessage){
+            $this->incidentUpdate->text = 'none';
+        }
 
         $this->validate();
 
         $this->incident->save();
 
-        $this->incidentUpdate->incident_id = $this->incident->id;
-        $this->incidentUpdate->type = $oldIncident->status == $this->incident->status ? 0 : 1;
-        $this->incidentUpdate->status = $this->incident->status;
-        $this->incidentUpdate->user = Auth::id();
-        $this->incidentUpdate->save();
-
+        if($withMessage){
+            $this->incidentUpdate->incident_id = $this->incident->id;
+            $this->incidentUpdate->type = $oldIncident->status == $this->incident->status ? 0 : 1;
+            $this->incidentUpdate->status = $this->incident->status;
+            $this->incidentUpdate->user = Auth::id();
+            $this->incidentUpdate->save();
         }
 
         $this->incident->components()->detach();
