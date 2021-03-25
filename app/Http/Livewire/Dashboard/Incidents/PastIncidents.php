@@ -33,6 +33,20 @@ class PastIncidents extends Component
         ]);
     }
 
+    public function changeVisibility($id, $oldVis){
+        Incident::query()->where('id', '=', $id)->update([
+            'visibility' => $oldVis == 0 ? 1 : 0,
+        ]);
+
+        $incident = Incident::query()->where('id', '=', $id)->first();
+
+        ActionLog::dispatch(array(
+            'user' => Auth::id(),
+            'type' => 2,
+            'message' => 'Incident '.$incident->name.' (ID: '.$incident->id.')',
+        ));
+    }
+
     public function updatedSearch(){
         $this->resetPage();
     }

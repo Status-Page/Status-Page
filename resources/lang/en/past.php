@@ -29,6 +29,7 @@ return [
             'scheduled_at' => 'Scheduled at',
             'end_at' => 'End at',
             'reporter' => 'Reporter',
+            'visibility' => 'Visibility',
         ],
     ],
     'incidents' => [
