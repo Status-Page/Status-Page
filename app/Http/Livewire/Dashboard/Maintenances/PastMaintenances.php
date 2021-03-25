@@ -33,6 +33,20 @@ class PastMaintenances extends Component
         ]);
     }
 
+    public function changeVisibility($id, $oldVis){
+        Incident::query()->where('id', '=', $id)->update([
+            'visibility' => $oldVis == 0 ? 1 : 0,
+        ]);
+
+        $maintenance = Incident::query()->where('id', '=', $id)->first();
+
+        ActionLog::dispatch(array(
+            'user' => Auth::id(),
+            'type' => 2,
+            'message' => 'Maintenance '.$maintenance->name.' (ID: '.$maintenance->id.')',
+        ));
+    }
+
     public function updatedSearch(){
         $this->resetPage();
     }

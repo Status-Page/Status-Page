@@ -30,6 +30,7 @@
                     <x-table.heading>{{ __('past.tables.head.status')  }}</x-table.heading>
                     <x-table.heading>{{ __('past.tables.head.impact')  }}</x-table.heading>
                     <x-table.heading>{{ __('past.tables.head.reporter')  }}</x-table.heading>
+                    <x-table.heading>{{ __('past.tables.head.visibility')  }}</x-table.heading>
                     <x-table.heading></x-table.heading>
                 </x-slot>
                 <x-slot name="body">
@@ -44,6 +45,11 @@
                                 </span>
                             </x-table.cell>
                             <x-table.cell>{{ $incident->getReporter()->name }}</x-table.cell>
+                            <x-table.cell>
+                                @can('edit_incidents')
+                                    <button wire:loading.attr="disabled" wire:click="changeVisibility({{ $incident->id }}, {{ $incident->visibility }})" data-title="{{ __('Click to Change') }}" data-placement="top" class="text-indigo-600 hover:text-indigo-900">{{ $incident->visibility ? 'True' : 'False' }}</button>
+                                @endcan
+                            </x-table.cell>
                             <x-table.cell>
                                 @can('delete_incidents')
                                     <livewire:dashboard.incidents.modals.incident-delete-modal :incident="$incident" :key="time().$incident->id" />
