@@ -59,11 +59,7 @@ class MaintenanceAddModal extends Component
         $this->incidentUpdate->user = Auth::id();
         $this->incidentUpdate->save();
 
-        foreach ($this->incidentComponents as $incidentComponent) {
-            if(!$this->incident->components->contains($incidentComponent)){
-                $this->incident->components()->attach($incidentComponent);
-            }
-        }
+        $this->incident->components()->attach($this->incidentComponents);
 
         ActionLog::dispatch(array(
             'user' => Auth::id(),

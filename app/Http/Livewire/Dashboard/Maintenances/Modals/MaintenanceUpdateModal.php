@@ -59,15 +59,8 @@ class MaintenanceUpdateModal extends Component
 
         $this->maintenanceUpdate->save();
 
-        foreach ($this->maintenance->components()->get() as $incidentComponent) {
-            $this->maintenance->components()->detach($incidentComponent->id);
-        }
-
-        foreach ($this->incidentComponents as $incidentComponent) {
-            if(!$this->maintenance->components->contains($incidentComponent)){
-                $this->maintenance->components()->attach($incidentComponent);
-            }
-        }
+        $this->maintenance->components()->detach($this->maintenance->components()->get());
+        $this->maintenance->components()->attach($this->incidentComponents);
 
         if(0 < $this->maintenance->status && $this->maintenance->status < 3){
             foreach ($this->maintenance->components()->get() as $component){
