@@ -1,5 +1,5 @@
 <div align="center">
-    <img alt="Status Page" src="https://github.com/Status-Page/Assets/blob/master/logo_gray/logo_small.png"></a>
+    <img alt="Status Page" src="https://cdn.herrtxbias.net/status-page/logo_gray/logo_small.png"></a>
 </div>
 <br />
 <p align="center">
