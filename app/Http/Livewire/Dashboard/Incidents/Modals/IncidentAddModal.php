@@ -61,11 +61,7 @@ class IncidentAddModal extends Component
         $this->incidentUpdate->status = $this->incident->status;
         $this->incidentUpdate->user = Auth::id();
 
-        foreach ($this->incidentComponents as $incidentComponent) {
-            if(!$this->incident->components->contains($incidentComponent)){
-                $this->incident->components()->attach($incidentComponent);
-            }
-        }
+        $this->incident->components()->attach($this->incidentComponents);
 
         if(!$this->doNotUpdateStatus){
             if(0 <= $this->incident->status && $this->incident->status < 3){

@@ -57,15 +57,10 @@ class IncidentUpdateModal extends Component
         $this->incidentUpdate->user = Auth::id();
         $this->incidentUpdate->save();
 
-        foreach ($this->incident->components()->get() as $incidentComponent) {
-            $this->incident->components()->detach($incidentComponent->id);
         }
 
-        foreach ($this->incidentComponents as $incidentComponent) {
-            if(!$this->incident->components->contains($incidentComponent)){
-                $this->incident->components()->attach($incidentComponent);
-            }
-        }
+        $this->incident->components()->detach();
+        $this->incident->components()->attach($this->incidentComponents);
 
         if($this->incident->status == 3){
             foreach ($this->incident->components()->get() as $component){
