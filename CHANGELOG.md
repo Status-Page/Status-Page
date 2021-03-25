@@ -2,6 +2,30 @@
 ## [Unreleased]
 
 
+<a name="v1.5.0"></a>
+## [v1.5.0] - 2021-03-25
+### Bug Fixes
+- **darkmode:** Fix wrong Config request ([ee04c2c](https://github.com/Status-Page/Status-Page/commit/ee04c2c5c821e5499ecee008f63b49be0bbf1a79))
+- **incidents:** Component Detaching and Attaching ([e45d738](https://github.com/Status-Page/Status-Page/commit/e45d73897cb051fce9d43d1dc322f6f5031982c0))
+- **maintenances:** Component Detaching and Attaching ([d4f5998](https://github.com/Status-Page/Status-Page/commit/d4f599850c50a3584b143e6bdf6d7392d12ae3a8))
+- **metrics:** Fixed wrong Config request ([e21095a](https://github.com/Status-Page/Status-Page/commit/e21095a35833ae59f8669678992a2a16a4663051))
+- **scripts:** Add missing scripts ([292040e](https://github.com/Status-Page/Status-Page/commit/292040efb553d0fb862dd274d30a83225e52559a))
+- **settings:** Remove obsolete Settings ([f8ec079](https://github.com/Status-Page/Status-Page/commit/f8ec0799b63035afb526ac4d7bdeb63afc0b2e00))
+
+### Code Refactoring
+- **home:** Refactoring some code ([fde83db](https://github.com/Status-Page/Status-Page/commit/fde83dbd0751b0b6d81bc8e4ce686a5f0181d5da))
+
+### Code Update
+- **footer:** Add Footer with Copyright and Link to GitHub ([f2e011e](https://github.com/Status-Page/Status-Page/commit/f2e011e9e0ae3bb24ec1f57455b61f74456d1f1d))
+
+### Features
+- **i18n:** Add Settings translation Strings ([dce45d4](https://github.com/Status-Page/Status-Page/commit/dce45d486b872e2cc6d718424739a15996a9e565))
+- **incidents:** Update Incidents without Message ([b801820](https://github.com/Status-Page/Status-Page/commit/b801820ece124506800f9d5173b3da22ccbbee76))
+- **maintenances:** Update Maintenances without Message ([7cb6875](https://github.com/Status-Page/Status-Page/commit/7cb6875ce0b8011526968d0185c0d3d85cb6caaa))
+- **past:** Change Incident / Maintenance Visibility inline ([76e17da](https://github.com/Status-Page/Status-Page/commit/76e17da045ce1b221d3e3eb18421fe48a87873c6))
+- **settings:** Added Settings Page ([99b67c8](https://github.com/Status-Page/Status-Page/commit/99b67c8fd1c5d81028bcfbf45b628e326edb1fcf))
+
+
 <a name="v1.4.4"></a>
 ## [v1.4.4] - 2021-03-19
 ### Bug Fixes
@@ -151,30 +175,31 @@
 <a name="v1.0.0"></a>
 ## v1.0.0 - 2021-02-21
 
-[Unreleased]: https://github.com/HerrTxbias/Status-Page/compare/v1.4.4...HEAD
-[v1.4.4]: https://github.com/HerrTxbias/Status-Page/compare/v1.4.3...v1.4.4
-[v1.4.3]: https://github.com/HerrTxbias/Status-Page/compare/v1.4.2...v1.4.3
-[v1.4.2]: https://github.com/HerrTxbias/Status-Page/compare/v1.4.1...v1.4.2
-[v1.4.1]: https://github.com/HerrTxbias/Status-Page/compare/v1.4.0...v1.4.1
-[v1.4.0]: https://github.com/HerrTxbias/Status-Page/compare/v1.3.4...v1.4.0
-[v1.3.4]: https://github.com/HerrTxbias/Status-Page/compare/v1.3.3...v1.3.4
-[v1.3.3]: https://github.com/HerrTxbias/Status-Page/compare/v1.3.2...v1.3.3
-[v1.3.2]: https://github.com/HerrTxbias/Status-Page/compare/v1.3.1...v1.3.2
-[v1.3.1]: https://github.com/HerrTxbias/Status-Page/compare/v1.3.0...v1.3.1
-[v1.3.0]: https://github.com/HerrTxbias/Status-Page/compare/v1.2.8...v1.3.0
-[v1.2.8]: https://github.com/HerrTxbias/Status-Page/compare/v1.2.7...v1.2.8
-[v1.2.7]: https://github.com/HerrTxbias/Status-Page/compare/v1.2.6...v1.2.7
-[v1.2.6]: https://github.com/HerrTxbias/Status-Page/compare/v1.2.5...v1.2.6
-[v1.2.5]: https://github.com/HerrTxbias/Status-Page/compare/v1.2.4...v1.2.5
-[v1.2.4]: https://github.com/HerrTxbias/Status-Page/compare/v1.2.3...v1.2.4
-[v1.2.3]: https://github.com/HerrTxbias/Status-Page/compare/v1.2.2...v1.2.3
-[v1.2.2]: https://github.com/HerrTxbias/Status-Page/compare/v1.2.1...v1.2.2
-[v1.2.1]: https://github.com/HerrTxbias/Status-Page/compare/v1.2.0...v1.2.1
-[v1.2.0]: https://github.com/HerrTxbias/Status-Page/compare/v1.1.3...v1.2.0
-[v1.1.3]: https://github.com/HerrTxbias/Status-Page/compare/v1.1.2...v1.1.3
-[v1.1.2]: https://github.com/HerrTxbias/Status-Page/compare/v1.1.1...v1.1.2
-[v1.1.1]: https://github.com/HerrTxbias/Status-Page/compare/v1.1.0...v1.1.1
-[v1.1.0]: https://github.com/HerrTxbias/Status-Page/compare/v1.0.2...v1.1.0
-[v1.0.2]: https://github.com/HerrTxbias/Status-Page/compare/v1.0.1...v1.0.2
-[v1.0.1]: https://github.com/HerrTxbias/Status-Page/compare/v1.0...v1.0.1
-[v1.0]: https://github.com/HerrTxbias/Status-Page/compare/v1.0.0...v1.0
+[Unreleased]: https://github.com/Status-Page/Status-Page/compare/v1.5.0...HEAD
+[v1.5.0]: https://github.com/Status-Page/Status-Page/compare/v1.4.4...v1.5.0
+[v1.4.4]: https://github.com/Status-Page/Status-Page/compare/v1.4.3...v1.4.4
+[v1.4.3]: https://github.com/Status-Page/Status-Page/compare/v1.4.2...v1.4.3
+[v1.4.2]: https://github.com/Status-Page/Status-Page/compare/v1.4.1...v1.4.2
+[v1.4.1]: https://github.com/Status-Page/Status-Page/compare/v1.4.0...v1.4.1
+[v1.4.0]: https://github.com/Status-Page/Status-Page/compare/v1.3.4...v1.4.0
+[v1.3.4]: https://github.com/Status-Page/Status-Page/compare/v1.3.3...v1.3.4
+[v1.3.3]: https://github.com/Status-Page/Status-Page/compare/v1.3.2...v1.3.3
+[v1.3.2]: https://github.com/Status-Page/Status-Page/compare/v1.3.1...v1.3.2
+[v1.3.1]: https://github.com/Status-Page/Status-Page/compare/v1.3.0...v1.3.1
+[v1.3.0]: https://github.com/Status-Page/Status-Page/compare/v1.2.8...v1.3.0
+[v1.2.8]: https://github.com/Status-Page/Status-Page/compare/v1.2.7...v1.2.8
+[v1.2.7]: https://github.com/Status-Page/Status-Page/compare/v1.2.6...v1.2.7
+[v1.2.6]: https://github.com/Status-Page/Status-Page/compare/v1.2.5...v1.2.6
+[v1.2.5]: https://github.com/Status-Page/Status-Page/compare/v1.2.4...v1.2.5
+[v1.2.4]: https://github.com/Status-Page/Status-Page/compare/v1.2.3...v1.2.4
+[v1.2.3]: https://github.com/Status-Page/Status-Page/compare/v1.2.2...v1.2.3
+[v1.2.2]: https://github.com/Status-Page/Status-Page/compare/v1.2.1...v1.2.2
+[v1.2.1]: https://github.com/Status-Page/Status-Page/compare/v1.2.0...v1.2.1
+[v1.2.0]: https://github.com/Status-Page/Status-Page/compare/v1.1.3...v1.2.0
+[v1.1.3]: https://github.com/Status-Page/Status-Page/compare/v1.1.2...v1.1.3
+[v1.1.2]: https://github.com/Status-Page/Status-Page/compare/v1.1.1...v1.1.2
+[v1.1.1]: https://github.com/Status-Page/Status-Page/compare/v1.1.0...v1.1.1
+[v1.1.0]: https://github.com/Status-Page/Status-Page/compare/v1.0.2...v1.1.0
+[v1.0.2]: https://github.com/Status-Page/Status-Page/compare/v1.0.1...v1.0.2
+[v1.0.1]: https://github.com/Status-Page/Status-Page/compare/v1.0...v1.0.1
+[v1.0]: https://github.com/Status-Page/Status-Page/compare/v1.0.0...v1.0
