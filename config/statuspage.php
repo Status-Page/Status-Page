@@ -14,6 +14,6 @@
  */
 
 return [
-    'darkmode' => env('STATUS_DARKMODE_DEFAULT', true),
-    'use_configcat' => boolval(env('STATUS_USE_CONFIGCAT', true)),
+    'darkmode' => env('STATUSPAGE_DARKMODE', true),
+    'use_configcat' => boolval(env('STATUSPAGE_USE_CONFIGCAT', true)),
 ];

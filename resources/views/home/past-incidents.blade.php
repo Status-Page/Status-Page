@@ -2,7 +2,7 @@
     <h2 class="text-2xl">
         Past Incidents
     </h2>
-    @for($i = 0; $i <= config('app.mainpage_incident_days'); $i++)
+    @for($i = 0; $i <= \App\Models\Setting::getInteger('incidents_pastIncidentDays'); $i++)
         <div class="mb-8">
             <div class="w-full">
                 <div class="mt-4 text-xl w-full">

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="{{ !session()->get('darkmode', config('statuspage.darkmode')) ?: 'dark' }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="{{ !session()->get('darkmode', \App\Models\Setting::getBoolean('darkmode_default')) ?: 'dark' }}">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">

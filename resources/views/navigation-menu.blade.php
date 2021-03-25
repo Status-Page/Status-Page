@@ -150,6 +150,12 @@
                                     {{ __('Administrator Settings') }}
                                 </div>
 
+                                @can('read_settings')
+                                    <x-jet-dropdown-link href="{{ route('dashboard.admin.settings') }}">
+                                        {{ __('Settings') }}
+                                    </x-jet-dropdown-link>
+                                @endcan
+
                                 @can('read_users')
                                     <x-jet-dropdown-link href="{{ route('dashboard.admin.users') }}">
                                         {{ __('Users') }}
@@ -252,6 +258,12 @@
                 @endif
 
                 @hasanyrole('admin|super_admin')
+                    @can('read_settings')
+                        <x-jet-responsive-nav-link href="{{ route('dashboard.admin.settings') }}" :active="request()->routeIs('dashboard.admin.settings')">
+                            {{ __('Settings') }}
+                        </x-jet-responsive-nav-link>
+                    @endcan
+
                     @can('read_users')
                         <x-jet-responsive-nav-link href="{{ route('dashboard.admin.users') }}" :active="request()->routeIs('dashboard.admin.users')">
                             {{ __('Users') }}

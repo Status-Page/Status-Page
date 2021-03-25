@@ -8,6 +8,7 @@
 namespace App\Console\Commands;
 
 use App\Models\Action;
+use App\Models\Setting;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 
@@ -45,7 +46,7 @@ class CheckActionLog extends Command
     public function handle()
     {
         Action::query()
-            ->where('created_at', '<', Carbon::now()->subDays(config('app.actionlog_backlog')))
+            ->where('created_at', '<', Carbon::now()->subDays(Setting::getInteger('actionlog_backlog')))
             ->delete();
         return 0;
     }
