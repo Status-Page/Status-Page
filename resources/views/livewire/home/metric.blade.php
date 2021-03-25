@@ -24,7 +24,7 @@
                     title: {
                         display: true,
                         fontSize: 20,
-                        fontColor: '{{ session()->get('darkmode', config('statuspage.darkmode')) ? '#ffffff' : '#000000' }}',
+                        fontColor: '{{ session()->get('darkmode', \App\Models\Setting::getBoolean('darkmode_default')) ? '#ffffff' : '#000000' }}',
                         text: '{{ $metric->title }}'
                     },
                     scales: {
