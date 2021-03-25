@@ -43,21 +43,27 @@ class MaintenanceUpdateModal extends Component
         $this->modal = true;
     }
 
-    public function save(){
+    public function save($withMessage = true){
         $oldIncident = Incident::query()->where('id', '=', $this->maintenance->id)->first();
 
         $this->maintenance->type = 1;
+
+        if(!$withMessage){
+            $this->maintenanceUpdate->text = 'none';
+        }
 
         $this->validate();
 
         $this->maintenance->save();
 
-        $this->maintenanceUpdate->incident_id = $this->maintenance->id;
-        $this->maintenanceUpdate->type = $oldIncident->status == $this->maintenance->status ? 0 : 1;
-        $this->maintenanceUpdate->status = $this->maintenance->status;
-        $this->maintenanceUpdate->user = Auth::id();
+        if($withMessage) {
+            $this->maintenanceUpdate->incident_id = $this->maintenance->id;
+            $this->maintenanceUpdate->type = $oldIncident->status == $this->maintenance->status ? 0 : 1;
+            $this->maintenanceUpdate->status = $this->maintenance->status;
+            $this->maintenanceUpdate->user = Auth::id();
 
-        $this->maintenanceUpdate->save();
+            $this->maintenanceUpdate->save();
+        }
 
         $this->maintenance->components()->detach($this->maintenance->components()->get());
         $this->maintenance->components()->attach($this->incidentComponents);

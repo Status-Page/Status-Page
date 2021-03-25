@@ -76,6 +76,10 @@
                 <x-jet-danger-button class="ml-2" wire:click="save" wire:loading.attr="disabled">
                     {{ __('maintenances.update_maintenance.modal.update_button') }}
                 </x-jet-danger-button>
+
+                <x-jet-danger-button class="ml-2" wire:click="save(false)" wire:loading.attr="disabled">
+                    {{ __('maintenances.update_maintenance.modal.update_button_without_message') }}
+                </x-jet-danger-button>
             </x-slot>
         </x-jet-dialog-modal>
     </div>

@@ -58,6 +58,7 @@ return [
             'affected_components' => 'Affected Components',
             'message' => 'Message',
             'update_button' => 'Post Update',
+            'update_button_without_message' => 'Update without Message',
         ]
     ],
 
