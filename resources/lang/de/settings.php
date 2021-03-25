@@ -19,4 +19,5 @@ return [
     |
     */
     'actionlog_backlog' => 'ActionLog Backlog',
+    'metrics_cache' => 'Metrik-Daten zwischenspeichern',
 ];
