@@ -2,6 +2,13 @@
 ## [Unreleased]
 
 
+<a name="v1.5.1"></a>
+## [v1.5.1] - 2021-03-26
+### Bug Fixes
+- **metrics:** Cache Metric Data, so Metrics should load faster ([9c36cbf](https://github.com/Status-Page/Status-Page/commit/9c36cbf376d32ef086a45db3b1b1393bef993ea6))
+- **past:** Changed colspan for "No Results" ([eba879e](https://github.com/Status-Page/Status-Page/commit/eba879e90c511a5422f290f38b242688ad9a1acf))
+
+
 <a name="v1.5.0"></a>
 ## [v1.5.0] - 2021-03-25
 ### Bug Fixes
@@ -175,7 +182,8 @@
 <a name="v1.0.0"></a>
 ## v1.0.0 - 2021-02-21
 
-[Unreleased]: https://github.com/Status-Page/Status-Page/compare/v1.5.0...HEAD
+[Unreleased]: https://github.com/Status-Page/Status-Page/compare/v1.5.1...HEAD
+[v1.5.1]: https://github.com/Status-Page/Status-Page/compare/v1.5.0...v1.5.1
 [v1.5.0]: https://github.com/Status-Page/Status-Page/compare/v1.4.4...v1.5.0
 [v1.4.4]: https://github.com/Status-Page/Status-Page/compare/v1.4.3...v1.4.4
 [v1.4.3]: https://github.com/Status-Page/Status-Page/compare/v1.4.2...v1.4.3
