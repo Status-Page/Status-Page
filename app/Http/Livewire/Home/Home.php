@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Home;
 
 use App\Models\ComponentGroup;
 use App\Models\Incident;
+use App\Models\Setting;
 use App\Models\Status;
 use Cache;
 use Livewire\Component;
@@ -53,7 +54,7 @@ class Home extends Component
     }
 
     public function changeDarkmode(){
-        session()->put('darkmode', !session()->get('darkmode', config('statuspage.darkmode')));
+        session()->put('darkmode', !session()->get('darkmode', Setting::getBoolean('darkmode_default')));
         $this->redirectRoute('home');
     }
 
