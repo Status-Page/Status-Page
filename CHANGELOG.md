@@ -2,6 +2,18 @@
 ## [Unreleased]
 
 
+<a name="v1.5.3"></a>
+## [v1.5.3] - 2021-03-26
+### Bug Fixes
+- **metrics:** Possible fix for Overlapping Cache Jobs ([ad2644b](https://github.com/Status-Page/Status-Page/commit/ad2644b78543df4c8f994b9a2724b28095e99fdf))
+
+
+<a name="v1.5.2"></a>
+## [v1.5.2] - 2021-03-26
+### Bug Fixes
+- **metrics:** Possible fix for Overlapping Cache Jobs ([11cad32](https://github.com/Status-Page/Status-Page/commit/11cad32dd1ada7ebf439a34cc34ee3e3d6d5d317))
+
+
 <a name="v1.5.1"></a>
 ## [v1.5.1] - 2021-03-26
 ### Bug Fixes
@@ -182,7 +194,9 @@
 <a name="v1.0.0"></a>
 ## v1.0.0 - 2021-02-21
 
-[Unreleased]: https://github.com/Status-Page/Status-Page/compare/v1.5.1...HEAD
+[Unreleased]: https://github.com/Status-Page/Status-Page/compare/v1.5.3...HEAD
+[v1.5.3]: https://github.com/Status-Page/Status-Page/compare/v1.5.2...v1.5.3
+[v1.5.2]: https://github.com/Status-Page/Status-Page/compare/v1.5.1...v1.5.2
 [v1.5.1]: https://github.com/Status-Page/Status-Page/compare/v1.5.0...v1.5.1
 [v1.5.0]: https://github.com/Status-Page/Status-Page/compare/v1.4.4...v1.5.0
 [v1.4.4]: https://github.com/Status-Page/Status-Page/compare/v1.4.3...v1.4.4
