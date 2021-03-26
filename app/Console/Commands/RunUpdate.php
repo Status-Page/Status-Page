@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Statuspage\Version;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 use Symfony\Component\Process\Process;
@@ -77,7 +78,7 @@ class RunUpdate extends Command
             $process->run();
             $this->line($process->getOutput());
 
-            $version = json_decode(Http::get(route('api.version'))->body());
+            $version = Version::getLatestVersion();
 
             if($version->meta->on_latest){
                 $this->info('Nothing to update.');

@@ -8,9 +8,15 @@
 namespace App\Statuspage;
 
 
+use Illuminate\Support\Facades\Http;
+
 class Version
 {
     public static function getVersion(){
         return 'v1.5.3';
+    }
+
+    public static function getLatestVersion() {
+        return json_decode(Http::get(route('api.version'))->body());
     }
 }
