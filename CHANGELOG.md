@@ -2,6 +2,22 @@
 ## [Unreleased]
 
 
+<a name="v1.5.4"></a>
+## [v1.5.4] - 2021-03-26
+### Bug Fixes
+- **metrics:** Removed long load Intervals ([9dce34c](https://github.com/Status-Page/Status-Page/commit/9dce34cdd1c4f92a94182b2e3454fb626b6f4762))
+
+### Build
+- **deps:** bump laravel/framework from 8.33.1 to 8.34.0 ([#20](https://github.com/Status-Page/Status-Page/issues/20)) ([b98defb](https://github.com/Status-Page/Status-Page/commit/b98defb0a19b06a0c8a8b0214a8df00823640194))
+- **deps:** bump guzzlehttp/guzzle from 7.2.0 to 7.3.0 ([#19](https://github.com/Status-Page/Status-Page/issues/19)) ([4ecd027](https://github.com/Status-Page/Status-Page/commit/4ecd027560ee05852bcf067636577278773da9a1))
+- **deps-dev:** bump [@tailwindcss](https://github.com/tailwindcss)/forms from 0.2.1 to 0.3.0 ([#21](https://github.com/Status-Page/Status-Page/issues/21)) ([55b8093](https://github.com/Status-Page/Status-Page/commit/55b8093047e9e141c5f1e655723574208efef916))
+- **deps-dev:** bump alpinejs from 2.8.1 to 2.8.2 ([#18](https://github.com/Status-Page/Status-Page/issues/18)) ([469eda2](https://github.com/Status-Page/Status-Page/commit/469eda2e7fa27fadd16d490364217a05ce60e425))
+- **deps-dev:** bump phpunit/phpunit from 9.5.3 to 9.5.4 ([#17](https://github.com/Status-Page/Status-Page/issues/17)) ([ad927ca](https://github.com/Status-Page/Status-Page/commit/ad927ca3fc86cc8adc26ca431a73cd550c5ba65c))
+
+### Features
+- **update:** Add Version Note ([e6e5880](https://github.com/Status-Page/Status-Page/commit/e6e588084f7c747aea19aab14a9fb71db5e2c519))
+
+
 <a name="v1.5.3"></a>
 ## [v1.5.3] - 2021-03-26
 ### Bug Fixes
@@ -194,7 +210,8 @@
 <a name="v1.0.0"></a>
 ## v1.0.0 - 2021-02-21
 
-[Unreleased]: https://github.com/Status-Page/Status-Page/compare/v1.5.3...HEAD
+[Unreleased]: https://github.com/Status-Page/Status-Page/compare/v1.5.4...HEAD
+[v1.5.4]: https://github.com/Status-Page/Status-Page/compare/v1.5.3...v1.5.4
 [v1.5.3]: https://github.com/Status-Page/Status-Page/compare/v1.5.2...v1.5.3
 [v1.5.2]: https://github.com/Status-Page/Status-Page/compare/v1.5.1...v1.5.2
 [v1.5.1]: https://github.com/Status-Page/Status-Page/compare/v1.5.0...v1.5.1
