@@ -15,8 +15,8 @@
                 </x-input.group>
                 <x-input.group borderless paddingless for="interval" label="Interval" inline="true">
                     <x-input.select wire:model="interval" id="interval" class="rounded-md">
-                        <option value="5">5 Minutes</option>
-                        <option value="15">15 Minutes</option>
+                        <!-- <option value="5">5 Minutes</option>
+                        <option value="15">15 Minutes</option> -->
                         <option value="30">30 Minutes</option>
                         <option value="60">1 Hour</option>
                     </x-input.select>
