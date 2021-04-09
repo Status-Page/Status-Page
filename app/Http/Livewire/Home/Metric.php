@@ -17,8 +17,8 @@ class Metric extends Component
     public function render()
     {
         return view('livewire.home.metric', [
-            'metricData' => Setting::getBoolean('metrics_cache')
-                            ? Cache::get('metric_'.$this->metric->id.'_'.($this->lastHours ?? '24').'_'.($this->interval ?? '60'), $this->getMetricData())
+            'metricData' => Setting::getBoolean('metrics_cache') && Cache::has('metric_'.$this->metric->id.'_'.($this->lastHours ?? '24').'_'.($this->interval ?? '60'))
+                            ? Cache::get('metric_'.$this->metric->id.'_'.($this->lastHours ?? '24').'_'.($this->interval ?? '60'))
                             : $this->getMetricData(),
         ]);
     }

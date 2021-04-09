@@ -20,6 +20,11 @@ class Metric extends Model
         return $this->hasMany(MetricPoint::class)->latest();
     }
 
+    /**
+     * @param $lastHours
+     * @return object
+     * @deprecated
+     */
     public function getPointsLastHours($lastHours): object
     {
         $return = (object) [
@@ -57,9 +62,6 @@ class Metric extends Model
     }
 
     private function getPoints($interval, $i, $j){
-        if(Cache::has('points_'.$this->id)){
-            return Cache::get('points_'.$this->id);
-        }
         return $this->points()->whereBetween('created_at', [Carbon::now()->subHours($i)->setMinutes($j), Carbon::now()->subHours($i-1)->setMinutes($j+$interval)])->get();
     }
 }
