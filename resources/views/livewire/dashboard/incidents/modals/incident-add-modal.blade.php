@@ -14,7 +14,7 @@
             <x-slot name="content">
                 <div class="col-span-6 sm:col-span-4 mb-4">
                     <x-jet-label for="title" class="text-lg" value="{{ __('incidents.new_incident.modal.incident_title') }}" />
-                    <x-jet-input id="title" type="text" class="mt-1 block w-full" wire:model="incident.title" />
+                    <x-input-dark id="title" type="text" class="mt-1 block w-full" wire:model="incident.title" />
                     <x-jet-input-error for="incident.title" class="mt-2" />
                 </div>
 
@@ -42,7 +42,7 @@
 
                 <div class="col-span-6 sm:col-span-4 mb-4">
                     <x-jet-label for="visibility" class="text-lg" value="{{ __('incidents.new_incident.modal.visible') }}" />
-                    <x-jet-input id="visibility" type="checkbox" class="mt-1 block" wire:model="incident.visibility" />
+                    <x-input-dark id="visibility" type="checkbox" class="mt-1 block" wire:model="incident.visibility" />
                     <x-jet-input-error for="incident.visibility" class="mt-2" />
                 </div>
 

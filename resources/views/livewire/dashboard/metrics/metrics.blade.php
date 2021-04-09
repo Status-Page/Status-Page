@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex-col space-y-4">
             <div class="flex justify-between">
                 <div class="w-1/3 flex space-x-2">
-                    <x-jet-input type="text" wire:model="search" placeholder="Search Metrics..." class="w-full"></x-jet-input>
+                    <x-input-dark type="text" wire:model="search" placeholder="Search Metrics..." class="w-full"></x-input-dark>
                 </div>
 
                 <div class="space-x-2 flex items-center">
@@ -39,9 +39,16 @@
                 <x-slot name="body">
                     <div>
                         @forelse($metrics as $metric)
-                            <x-table.row wire:loading.class.delay="opacity-50" wire:sortable.item="{{ $metric->id }}" wire:key="metric-{{ $metric->id }}">
+                            <x-table.row wire:loading.class.delay="opacity-50" wire:key="metric-{{ $metric->id }}">
                                 <x-table.cell>{{ $metric->id }}</x-table.cell>
-                                <x-table.cell wire:sortable.handle>{{ $metric->title }}</x-table.cell>
+                                <x-table.cell>
+                                    {{ $metric->title }}
+                                    @if(\App\Statuspage\Helper\SPHelper::isManagedMetric($metric->id))
+                                        <button data-title="{{ __('This Metric is managed from a plugin.') }}" data-placement="top" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 focus:outline-none cursor-default">
+                                            Managed
+                                        </button>
+                                    @endif
+                                </x-table.cell>
                                 <x-table.cell>{{ $metric->suffix }}</x-table.cell>
                                 <x-table.cell>{{ $metric->order }}</x-table.cell>
                                 <x-table.cell>{{ $metric->visibility ? 'True' : 'False' }}</x-table.cell>

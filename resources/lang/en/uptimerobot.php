@@ -10,7 +10,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Status Language Lines
+    | UptimeRobot Language Lines
     |--------------------------------------------------------------------------
     |
     | Please do not edit these lines, as they are managed by our translation
@@ -18,12 +18,6 @@ return [
     |
     */
 
-    'actionlog_backlog' => 'ActionLog Backlog',
-    'darkmode_default' => 'Darkmode Default Value',
-    'footer_show' => 'Show Footer',
-    'footer_showDashboardLink' => 'Show Link to Dashboard in the Footer',
-    'incidents_pastIncidentDays' => 'Incident Backlog on the Mainpage',
-    'metrics_cache' => 'Cache Metric Data',
-    'uptimerobot_key' => 'Uptime Robot Read Only API Key'
-
+    'title_prefix' => 'Uptime Robot',
+    'title' => 'Monitors',
 ];

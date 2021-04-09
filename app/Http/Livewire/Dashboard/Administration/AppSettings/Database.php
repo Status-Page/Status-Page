@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Dashboard\Administration\AppSettings;
 
 use App\Models\Setting;
 use Artisan;
+use Crypt;
 use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 
@@ -24,16 +25,25 @@ class Database extends Component
 
     public function updateInformation(){
         foreach ($this->settings as $setting){
-            if($setting['type'] == 'checkbox'){
-                Setting::query()->where('key', $setting['key'])->update([
-                    'boolval' => boolval($setting['boolval']),
+            if($setting['encrypted']){
+                Setting::query()->where('key', $setting['key'])->where('value', '<>', $setting['value'])->update([
+                    'value' => $setting['value'] == '' ? '' : Crypt::encryptString($setting['value']),
                 ]);
+                $setting['value'] = Crypt::encryptString($setting['value']);
             }else{
-                Setting::query()->where('key', $setting['key'])->update([
-                    'value' => $setting['value'],
-                ]);
+                if($setting['type'] == 'checkbox'){
+                    Setting::query()->where('key', $setting['key'])->update([
+                        'boolval' => boolval($setting['boolval']),
+                    ]);
+                }else{
+                    Setting::query()->where('key', $setting['key'])->update([
+                        'value' => $setting['value'],
+                    ]);
+                }
             }
         }
+        $this->settings = Setting::all()->toArray();
+
         $this->emit('saved');
     }
 }

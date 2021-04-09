@@ -72,7 +72,14 @@
                                 @forelse($group->components() as $comp)
                                     <x-table.row wire:loading.class.delay="opacity-50">
                                         <x-table.cell>{{ $comp->id }}</x-table.cell>
-                                        <x-table.cell>{{ $comp->name }}</x-table.cell>
+                                        <x-table.cell>
+                                            {{ $comp->name }}
+                                            @if(\App\Statuspage\Helper\SPHelper::isManagedComponent($comp->id))
+                                                <button data-title="{{ __('This Component is managed from a plugin.') }}" data-placement="top" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 focus:outline-none cursor-default">
+                                                    Managed
+                                                </button>
+                                            @endif
+                                        </x-table.cell>
                                         <x-table.cell>{{ $comp->visibility == 0 ? 'False' : 'True' }}</x-table.cell>
                                         <x-table.cell>{{ $comp->order }}</x-table.cell>
                                         <x-table.cell>

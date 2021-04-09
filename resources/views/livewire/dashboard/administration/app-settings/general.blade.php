@@ -20,10 +20,10 @@
 
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="app_locale" value="{{ __('App Locale') }}" />
-            <x-input.select id="app_locale" wire:model.defer="app_locale" autocomplete="app_locale" class="rounded-md mt-1 block w-full">
+            <x-input.select-brighter id="app_locale" wire:model.defer="app_locale" autocomplete="app_locale" class="rounded-md mt-1 block w-full">
                 <option value="de">German</option>
                 <option value="en">English</option>
-            </x-input.select>
+            </x-input.select-brighter>
             <x-jet-input-error for="app_locale" class="mt-2" />
         </div>
     </x-slot>

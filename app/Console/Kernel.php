@@ -45,6 +45,7 @@ class Kernel extends ConsoleKernel
                 throw new ProcessFailedException($fetch);
             }
         })->everyFifteenMinutes()->description('Checks for a newer version.');
+        $schedule->command('status:fetchuptimerobot')->everyMinute()->description('Import Data from UR');
         $schedule->job(new CacheMetricData(24))->everyFiveMinutes()->description('Caches Metric Data (24 Hours)')->withoutOverlapping();
         $schedule->job(new CacheMetricData(48))->everyFiveMinutes()->description('Caches Metric Data (48 Hours)')->withoutOverlapping();
         $schedule->job(new CacheMetricData(72))->everyFiveMinutes()->description('Caches Metric Data (72 Hours)')->withoutOverlapping();

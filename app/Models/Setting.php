@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Crypt;
 
 class Setting extends Model
 {
@@ -18,7 +19,7 @@ class Setting extends Model
     {
         $query = self::query()->where('key', $key)->get();
         if($query->count() == 1){
-            return $query->first()->value;
+            return $query->first()->encrypted ? ($query->first()->value == '' ? $default : Crypt::decryptString($query->first()->value)) : $query->first()->value;
         }
         return $default;
     }

@@ -14,25 +14,25 @@
             <x-slot name="content">
                 <div class="col-span-6 sm:col-span-4 mb-4">
                     <x-jet-label for="title" class="text-lg" value="{{ __('maintenances.new_maintenance.modal.maintenance_title') }}" />
-                    <x-jet-input id="title" type="text" class="mt-1 block w-full" wire:model="incident.title" />
+                    <x-input-dark id="title" type="text" class="mt-1 block w-full" wire:model="incident.title" />
                     @error('incident.title') <span class="text-red-500">{{ $message }}</span> @enderror
                 </div>
 
                 <div class="col-span-6 sm:col-span-4 mb-4">
                     <x-jet-label for="visibility" class="text-lg" value="{{ __('maintenances.new_maintenance.modal.visible') }}" />
-                    <x-jet-input id="visibility" type="checkbox" class="mt-1 block" wire:model="incident.visibility" />
+                    <x-input-dark id="visibility" type="checkbox" class="mt-1 block" wire:model="incident.visibility" />
                     @error('incident.visibility') <span class="text-red-500">{{ $message }}</span> @enderror
                 </div>
 
                 <div class="col-span-6 sm:col-span-4 mb-4">
                     <x-jet-label for="scheduled_at" class="text-lg" value="{{ __('maintenances.new_maintenance.modal.scheduled_at') }}" />
-                    <x-jet-input id="scheduled_at" type="datetime-local" class="mt-1 w-full inline block" wire:model="incident.scheduled_at" />
+                    <x-input-dark id="scheduled_at" type="datetime-local" class="mt-1 w-full inline block" wire:model="incident.scheduled_at" />
                     @error('incident.scheduled_at') <span class="text-red-500">{{ $message }}</span> @enderror
                 </div>
 
                 <div class="col-span-6 sm:col-span-4 mb-4">
                     <x-jet-label for="end_at" class="text-lg" value="{{ __('maintenances.new_maintenance.modal.end_at') }}" />
-                    <x-jet-input id="end_at" type="datetime-local" class="mt-1 w-full inline block" wire:model="incident.end_at" />
+                    <x-input-dark id="end_at" type="datetime-local" class="mt-1 w-full inline block" wire:model="incident.end_at" />
                     @error('incident.end_at') <span class="text-red-500">{{ $message }}</span> @enderror
                     <br>{{ __('maintenances.new_maintenance.modal.end_hint') }}
                 </div>

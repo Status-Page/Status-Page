@@ -14,25 +14,25 @@
             <x-slot name="content">
                 <div class="col-span-6 sm:col-span-4 mb-4">
                     <x-jet-label for="name" class="text-lg" value="{{ __('users.new_user.modal.name') }}" />
-                    <x-jet-input id="name" type="text" class="mt-1 block w-full" wire:model="user.name" />
+                    <x-input-dark id="name" type="text" class="mt-1 block w-full" wire:model="user.name" />
                     <x-jet-input-error for="user.name" class="mt-2" />
                 </div>
 
                 <div class="col-span-6 sm:col-span-4 mb-4">
                     <x-jet-label for="email" class="text-lg" value="{{ __('users.new_user.modal.email') }}" />
-                    <x-jet-input id="email" type="text" class="mt-1 block w-full" wire:model="email" />
+                    <x-input-dark id="email" type="text" class="mt-1 block w-full" wire:model="email" />
                     <x-jet-input-error for="email" class="mt-2" />
                 </div>
 
                 <div class="col-span-6 sm:col-span-4 mb-4">
                     <x-jet-label for="password" class="text-lg" value="{{ __('users.new_user.modal.password') }}" />
-                    <x-jet-input id="password" type="password" class="mt-1 block w-full" wire:model="password" />
+                    <x-input-dark id="password" type="password" class="mt-1 block w-full" wire:model="password" />
                     <x-jet-input-error for="password" class="mt-2" />
                 </div>
 
                 <div class="col-span-6 sm:col-span-4 mb-4">
                     <x-jet-label for="deactivated" class="text-lg" value="{{ __('users.new_user.modal.deactivated') }}" />
-                    <x-jet-input id="deactivated" type="checkbox" class="mt-1 block" wire:model="user.deactivated" />
+                    <x-input-dark id="deactivated" type="checkbox" class="mt-1 block" wire:model="user.deactivated" />
                     <x-jet-input-error for="user.deactivated" class="mt-2" />
                 </div>
 

@@ -169,6 +169,20 @@
                                 @endcan
 
                                 <div class="border-t border-gray-100 dark:border-discordBlack"></div>
+
+                                @if(\App\Models\Setting::getString('uptimerobot_key') != '')
+                                    <div class="block px-4 py-2 text-xs text-gray-400">
+                                        {{ __('Uptime Robot') }}
+                                    </div>
+
+                                    @can('read_settings')
+                                        <x-jet-dropdown-link href="{{ route('dashboard.admin.plugins.uptimerobot') }}">
+                                            {{ __('uptimerobot.title') }}
+                                        </x-jet-dropdown-link>
+                                    @endcan
+
+                                    <div class="border-t border-gray-100 dark:border-discordBlack"></div>
+                                @endif
                             @endhasanyrole
 
                             <!-- Authentication -->

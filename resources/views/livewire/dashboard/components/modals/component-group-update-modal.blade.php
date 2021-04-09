@@ -12,19 +12,19 @@
             <x-slot name="content">
                 <div class="col-span-6 sm:col-span-4 mb-4">
                     <x-jet-label for="name" class="text-lg" value="{{ __('Name') }}" />
-                    <x-jet-input id="name" type="text" class="mt-1 block w-full" wire:model="group.name" />
+                    <x-input-dark id="name" type="text" class="mt-1 block w-full" wire:model="group.name" />
                     @error('group.name') <span class="text-red-500">{{ $message }}</span> @enderror
                 </div>
 
                 <div class="col-span-6 sm:col-span-4 mb-4">
                     <x-jet-label for="description" class="text-lg" value="{{ __('Description') }}" />
-                    <x-jet-input id="description" type="text" class="mt-1 block w-full" wire:model="group.description" />
+                    <x-input-dark id="description" type="text" class="mt-1 block w-full" wire:model="group.description" />
                     @error('group.description') <span class="text-red-500">{{ $message }}</span> @enderror
                 </div>
 
                 <div class="col-span-6 sm:col-span-4 mb-4">
                     <x-jet-label for="order" class="text-lg" value="{{ __('Order') }}" />
-                    <x-jet-input id="order" type="number" class="mt-1 block w-full" wire:model="group.order" />
+                    <x-input-dark id="order" type="number" class="mt-1 block w-full" wire:model="group.order" />
                     @error('group.order') <span class="text-red-500">{{ $message }}</span> @enderror
                 </div>
 
@@ -39,7 +39,7 @@
 
                 <div class="col-span-6 sm:col-span-4 mb-4">
                     <x-jet-label for="visibility" class="text-lg" value="{{ __('Visible') }}" />
-                    <x-jet-input id="visibility" type="checkbox" class="mt-1 block" wire:model="group.visibility" />
+                    <x-input-dark id="visibility" type="checkbox" class="mt-1 block" wire:model="group.visibility" />
                     @error('group.visibility') <span class="text-red-500">{{ $message }}</span> @enderror
                 </div>
             </x-slot>

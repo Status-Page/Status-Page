@@ -10,6 +10,7 @@ use App\Models\Metric;
 use App\Models\MetricPoint;
 use App\Statuspage\API\APIHelpers;
 use App\Statuspage\API\ResponseGenerator;
+use App\Statuspage\Helper\SPHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,11 @@ Route::get('/metrics/{id}/points', function (Request $request, $id) {
 });
 
 Route::post('/metrics/{id}/points', function (Request $request, $id) {
+    if(SPHelper::isManagedMetric($id)){
+        return ResponseGenerator::generateResponse(array(
+            'message' => 'This Metric is currently managed by a plugin.'
+        ), 423);
+    }
     if(APIHelpers::hasPermission('edit:metric_points', $request)){
         $metric = Metric::findOrFail($id);
         $point = new MetricPoint();

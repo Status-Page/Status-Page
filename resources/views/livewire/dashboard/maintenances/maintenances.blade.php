@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex-col space-y-4">
             <div class="flex justify-between">
                 <div class="w-1/3 flex space-x-2">
-                    <x-jet-input type="text" wire:model="search" placeholder="Search Maintenances..." class="w-full"></x-jet-input>
+                    <x-input-dark type="text" wire:model="search" placeholder="Search Maintenances..." class="w-full"></x-input-dark>
                 </div>
 
                 <div class="space-x-2 flex items-center">

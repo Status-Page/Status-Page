@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex-col space-y-4">
             <div class="flex justify-between">
                 <div class="w-1/3 flex space-x-2">
-                    <x-jet-input type="text" wire:model="search" placeholder="Search Past Maintenances..." class="w-full"></x-jet-input>
+                    <x-input-dark type="text" wire:model="search" placeholder="Search Past Maintenances..." class="w-full"></x-input-dark>
                 </div>
 
                 <div class="space-x-2 flex items-center">
@@ -52,6 +52,8 @@
                             <x-table.cell>
                                 @can('edit_incidents')
                                     <button wire:loading.attr="disabled" wire:click="changeVisibility({{ $incident->id }}, {{ $incident->visibility }})" data-title="{{ __('Click to Change') }}" data-placement="top" class="text-indigo-600 hover:text-indigo-900">{{ $incident->visibility ? 'True' : 'False' }}</button>
+                                @elsecan
+                                    {{ $incident->visibility ? 'True' : 'False' }}
                                 @endcan
                             </x-table.cell>
                             <x-table.cell>

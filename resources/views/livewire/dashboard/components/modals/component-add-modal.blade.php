@@ -14,19 +14,19 @@
             <x-slot name="content">
                 <div class="col-span-6 sm:col-span-4 mb-4">
                     <x-jet-label for="name" class="text-lg" value="{{ __('Name') }}" />
-                    <x-jet-input id="name" type="text" class="mt-1 block w-full" wire:model="comp.name" />
+                    <x-input-dark id="name" type="text" class="mt-1 block w-full" wire:model="comp.name" />
                     @error('comp.name') <span class="text-red-500">{{ $message }}</span> @enderror
                 </div>
 
                 <div class="col-span-6 sm:col-span-4 mb-4">
                     <x-jet-label for="link" class="text-lg" value="{{ __('Link URL') }}" />
-                    <x-jet-input id="link" type="text" class="mt-1 block w-full" wire:model="comp.link" />
+                    <x-input-dark id="link" type="text" class="mt-1 block w-full" wire:model="comp.link" />
                     @error('comp.link') <span class="text-red-500">{{ $message }}</span> @enderror
                 </div>
 
                 <div class="col-span-6 sm:col-span-4 mb-4">
                     <x-jet-label for="description" class="text-lg" value="{{ __('Description') }}" />
-                    <x-jet-input id="description" type="text" class="mt-1 block w-full" wire:model="comp.description" />
+                    <x-input-dark id="description" type="text" class="mt-1 block w-full" wire:model="comp.description" />
                     @error('comp.description') <span class="text-red-500">{{ $message }}</span> @enderror
                 </div>
 
@@ -42,13 +42,13 @@
 
                 <div class="col-span-6 sm:col-span-4 mb-4">
                     <x-jet-label for="order" class="text-lg" value="{{ __('Order') }}" />
-                    <x-jet-input id="order" type="number" class="mt-1 block w-full" wire:model="comp.order" />
+                    <x-input-dark id="order" type="number" class="mt-1 block w-full" wire:model="comp.order" />
                     @error('comp.order') <span class="text-red-500">{{ $message }}</span> @enderror
                 </div>
 
                 <div class="col-span-6 sm:col-span-4 mb-4">
                     <x-jet-label for="visible" class="text-lg" value="{{ __('Visible') }}" />
-                    <x-jet-input id="visible" type="checkbox" class="mt-1 block" wire:model="comp.visibility" />
+                    <x-input-dark id="visible" type="checkbox" class="mt-1 block" wire:model="comp.visibility" />
                     @error('comp.visibility') <span class="text-red-500">{{ $message }}</span> @enderror
                 </div>
             </x-slot>
