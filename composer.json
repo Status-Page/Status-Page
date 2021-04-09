@@ -19,6 +19,7 @@
         "php": "^7.4|^8.0",
         "ext-json": "*",
         "configcat/configcat-client": "^5.2",
+        "doctrine/dbal": "^3.0",
         "fedeisas/laravel-mail-css-inliner": "^4.0",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
@@ -38,7 +39,6 @@
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^5.0",
-        "oscarafdev/migrations-generator": "^2.0",
         "phpunit/phpunit": "^9.3.3"
     },
     "config": {
