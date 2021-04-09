@@ -62,7 +62,7 @@ class StatusSeeder extends Seeder
         DB::table('statuses')->insert([
             'order' => '2',
             'name' => 'Degraded Performance',
-            'long_description' => 'We are having some minor issues',
+            'long_description' => 'Some services have performance issues',
             'color' => 'text-yellow-400',
             'bg_color' => 'bg-yellow-100',
             'border_color' => 'border-yellow-400',
@@ -95,57 +95,5 @@ class StatusSeeder extends Seeder
             'border_color' => 'border-blue-500',
             'heroicon_svg' => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd" /></svg>',
         ]);
-
-        try {
-            Role::findByName('super_admin')->delete();
-            Role::findByName('admin')->delete();
-            Role::findByName('reporter')->delete();
-        }catch (Exception $exception){}
-
-        Role::create(['name' => 'super_admin']);
-        $admin = Role::create(['name' => 'admin']);
-        $reporter = Role::create(['name' => 'reporter']);
-
-        $models = ['incidents', 'components', 'componentgroups', 'metrics', 'metric_points', 'statuses', 'users'];
-
-        $reporterModelsShow = ['incidents', 'components', 'componentgroups', 'metrics', 'metric_points', 'statuses'];
-        $reporterModelsAdd = ['incidents'];
-        $reporterModelsEdit = ['incidents', 'components', 'metric_points'];
-        $reporterModelsDelete = ['incidents'];
-
-        /**
-         * @var $permissions Permission[]
-         */
-        $permissions = [];
-
-        foreach ($models as $model){
-            array_push($permissions, Permission::create(['name' => 'read_'.$model]));
-            array_push($permissions, Permission::create(['name' => 'add_'.$model]));
-            array_push($permissions, Permission::create(['name' => 'edit_'.$model]));
-            array_push($permissions, Permission::create(['name' => 'delete_'.$model]));
-        }
-
-        foreach ($permissions as $permission){
-            $permission->assignRole($admin);
-
-            if(str_starts_with($permission->name, 'read_') && in_array(explode('_', $permission->name)[1], $reporterModelsShow)){
-                $permission->assignRole($reporter);
-            }
-
-            if(str_starts_with($permission->name, 'add_') && in_array(explode('_', $permission->name)[1], $reporterModelsAdd)){
-                $permission->assignRole($reporter);
-            }
-
-            if(str_starts_with($permission->name, 'edit_') && in_array(explode('_', $permission->name)[1], $reporterModelsEdit)){
-                $permission->assignRole($reporter);
-            }
-
-            if(str_starts_with($permission->name, 'delete_') && in_array(explode('_', $permission->name)[1], $reporterModelsDelete)){
-                $permission->assignRole($reporter);
-            }
-        }
-
-        User::find(1)->assignRole('super_admin');
-        User::find(2)->assignRole('super_admin');
     }
 }
