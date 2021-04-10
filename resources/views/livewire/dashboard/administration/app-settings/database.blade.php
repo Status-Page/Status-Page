@@ -21,7 +21,7 @@
                         </button>
                     @endif
                 </div>
-                <x-jet-input id="{{ $setting['key'] }}" type="{{ $setting['type'] }}" class="mt-1 block w-full" wire:model.defer="settings.{{ $loop->index }}.{{ $setting['type'] == 'checkbox' ? 'boolval' : 'value' }}" autocomplete="{{ $setting['key'] }}" />
+                <x-jet-input id="{{ $setting['key'] }}" type="{{ $setting['type'] }}" class="mt-1 block {{ $setting['type'] == 'checkbox' ? 'h-6 w-6' : 'w-full' }}" wire:model.defer="settings.{{ $loop->index }}.{{ $setting['type'] == 'checkbox' ? 'boolval' : 'value' }}" autocomplete="{{ $setting['key'] }}" />
                 <x-jet-input-error for="{{ $setting['key'] }}" class="mt-2" />
             </div>
         @endforeach
