@@ -2,6 +2,12 @@
 ## [Unreleased]
 
 
+<a name="v1.6.3"></a>
+## [v1.6.3] - 2021-04-10
+### Bug Fixes
+- **Updater:** Remove seeder.... ([662eadd](https://github.com/Status-Page/Status-Page/commit/662eadd9f4a8579168fad6924db3d34c4865d8c6))
+
+
 <a name="v1.6.2"></a>
 ## [v1.6.2] - 2021-04-10
 ### Bug Fixes
@@ -251,7 +257,8 @@
 <a name="v1.0.0"></a>
 ## v1.0.0 - 2021-02-21
 
-[Unreleased]: https://github.com/Status-Page/Status-Page/compare/v1.6.2...HEAD
+[Unreleased]: https://github.com/Status-Page/Status-Page/compare/v1.6.3...HEAD
+[v1.6.3]: https://github.com/Status-Page/Status-Page/compare/v1.6.2...v1.6.3
 [v1.6.2]: https://github.com/Status-Page/Status-Page/compare/v1.6.1...v1.6.2
 [v1.6.1]: https://github.com/Status-Page/Status-Page/compare/v1.6.0...v1.6.1
 [v1.6.0]: https://github.com/Status-Page/Status-Page/compare/v1.5.4...v1.6.0
