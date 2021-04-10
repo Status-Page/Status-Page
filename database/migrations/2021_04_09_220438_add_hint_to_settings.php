@@ -19,7 +19,8 @@ class AddHintToSettings extends Migration
         });
 
         Artisan::call('db:seed', [
-            '--class' => 'StatusSeeder'
+            '--class' => 'StatusSeeder',
+            '--force'
         ]);
 
         $settings = [
