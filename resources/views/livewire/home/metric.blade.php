@@ -1,7 +1,5 @@
 <div>
-    <div class="bg-white text-black dark:bg-discordBlack dark:text-white px-4 py-5 sm:px-6 mt-2 shadow sm:rounded-md">
-        <canvas id="metric-{{ $metric->id }}-{{ time() }}" width="400" height="150"></canvas>
-    </div>
+    <canvas id="metric-{{ $metric->id }}-{{ time() }}" width="400" height="150"></canvas>
     <script>
         var event{{ $metric->id }} = new Event('refreshJavaScript-{{ $metric->id }}');
 
@@ -22,10 +20,7 @@
                 options: {
                     responsive: true,
                     title: {
-                        display: true,
-                        fontSize: 20,
-                        fontColor: '{{ session()->get('darkmode', \App\Models\Setting::getBoolean('darkmode_default')) ? '#ffffff' : '#000000' }}',
-                        text: '{{ $metric->title }}'
+                        display: false,
                     },
                     scales: {
                         yAxes: [{

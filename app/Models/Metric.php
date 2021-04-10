@@ -20,6 +20,17 @@ class Metric extends Model
         return $this->hasMany(MetricPoint::class)->latest();
     }
 
+    public function expand(){
+        return $this->collapse == 'expand_always' ? 'Always' : 'On click';
+    }
+
+    public function shouldExpand(): string
+    {
+        if($this->collapse == 'expand_always')
+            return 'true';
+        return 'false';
+    }
+
     /**
      * @param $lastHours
      * @return object

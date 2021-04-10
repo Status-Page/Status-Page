@@ -24,6 +24,7 @@ class MetricAddModal extends Component
         'metric.suffix' => 'string|max:255',
         'metric.order' => 'integer',
         'metric.visibility' => 'boolean',
+        'metric.collapse' => 'required|string',
     ];
 
     public function render()
@@ -36,6 +37,7 @@ class MetricAddModal extends Component
         $this->metric->suffix = '';
         $this->metric->order = 0;
         $this->metric->visibility = false;
+        $this->metric->collapse = 'expand_always';
 
         $this->modal = true;
     }

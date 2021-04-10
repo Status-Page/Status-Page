@@ -34,6 +34,7 @@
                     <x-table.heading>{{ __('Suffix') }}</x-table.heading>
                     <x-table.heading>{{ __('Order') }}</x-table.heading>
                     <x-table.heading>{{ __('Visibility') }}</x-table.heading>
+                    <x-table.heading>{{ __('Expand') }}</x-table.heading>
                     <x-table.heading></x-table.heading>
                 </x-slot>
                 <x-slot name="body">
@@ -52,6 +53,7 @@
                                 <x-table.cell>{{ $metric->suffix }}</x-table.cell>
                                 <x-table.cell>{{ $metric->order }}</x-table.cell>
                                 <x-table.cell>{{ $metric->visibility ? 'True' : 'False' }}</x-table.cell>
+                                <x-table.cell>{{ $metric->expand() }}</x-table.cell>
                                 <x-table.cell>
                                     <div class="space-x-2 flex items-center">
                                         @can('edit_metrics')

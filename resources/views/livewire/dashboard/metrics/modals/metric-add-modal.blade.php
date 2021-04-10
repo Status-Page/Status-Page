@@ -35,6 +35,15 @@
                     <x-input-dark id="visibility" type="checkbox" class="mt-1 block" wire:model="metric.visibility" />
                     <x-jet-input-error for="metric.visibility" class="mt-2" />
                 </div>
+
+                <div class="col-span-6 sm:col-span-4 mb-4">
+                    <x-jet-label for="collapse" class="text-lg" value="{{ __('Expand') }}" />
+                    <select id="collapse" wire:model="metric.collapse" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md dark:bg-discordDark dark:border-discordBlack">
+                        <option value="expand_always">Expand always</option>
+                        <option value="expand_click">Expand on Click</option>
+                    </select>
+                    <x-jet-input-error for="metric.collapse" class="mt-2" />
+                </div>
             </x-slot>
 
             <x-slot name="footer">
