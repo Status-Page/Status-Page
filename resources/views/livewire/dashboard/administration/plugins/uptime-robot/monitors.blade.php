@@ -3,7 +3,7 @@
         <h2 class="font-semibold text-xl text-gray-800 dark:text-white leading-tight">
             {{ __('uptimerobot.title_prefix') }} {{ __('uptimerobot.title') }}
         </h2>
-        <p class="text-white dark:text-gray-400">Note: Data shown here is updated every minute.</p>
+        <p class="text-white dark:text-gray-400">{{ __('uptimerobot.subtitle') }}</p>
     </x-slot>
 
     <div class="py-12">
@@ -31,12 +31,12 @@
             </div>
             <x-table>
                 <x-slot name="head">
-                    <x-table.heading>{{ __('ID') }}</x-table.heading>
-                    <x-table.heading>{{ __('Monitor ID') }}</x-table.heading>
-                    <x-table.heading>{{ __('Name') }}</x-table.heading>
-                    <x-table.heading>{{ __('Component') }}</x-table.heading>
-                    <x-table.heading>{{ __('Metric') }}</x-table.heading>
-                    <x-table.heading>{{ __('Data Import') }}</x-table.heading>
+                    <x-table.heading>{{ __('uptimerobot.table.head.id') }}</x-table.heading>
+                    <x-table.heading>{{ __('uptimerobot.table.head.monitor_id') }}</x-table.heading>
+                    <x-table.heading>{{ __('uptimerobot.table.head.name') }}</x-table.heading>
+                    <x-table.heading>{{ __('uptimerobot.table.head.component') }}</x-table.heading>
+                    <x-table.heading>{{ __('uptimerobot.table.head.metric') }}</x-table.heading>
+                    <x-table.heading>{{ __('uptimerobot.table.head.data_import') }}</x-table.heading>
                     <x-table.heading></x-table.heading>
                 </x-slot>
                 <x-slot name="body">
@@ -49,9 +49,9 @@
                             <x-table.cell>{{ $monitor->metric_id ? $monitor->metric()->first()->title : 'None' }}</x-table.cell>
                             <x-table.cell>
                                 @can('edit_settings')
-                                    <button wire:loading.attr="disabled" wire:click="changePause({{ $monitor->id }}, {{ $monitor->paused }})" data-title="{{ __('Click to Change') }}" data-placement="top" class="text-indigo-600 hover:text-indigo-900">{{ $monitor->paused ? 'Paused' : 'Active' }}</button>
+                                    <button wire:loading.attr="disabled" wire:click="changePause({{ $monitor->id }}, {{ $monitor->paused }})" data-title="{{ __('Click to Change') }}" data-placement="top" class="text-indigo-600 hover:text-indigo-900">{{ $monitor->paused ? __('uptimerobot.table.body.data_import_paused') : __('uptimerobot.table.body.data_import_active') }}</button>
                                 @elsecan
-                                    {{ $monitor->paused ? 'Paused' : 'Active' }}
+                                    {{ $monitor->paused ? __('uptimerobot.table.body.data_import_paused') : __('uptimerobot.table.body.data_import_active') }}
                                 @endcan
                             </x-table.cell>
                             <x-table.cell>
