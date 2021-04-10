@@ -2,6 +2,13 @@
 ## [Unreleased]
 
 
+<a name="v1.6.4"></a>
+## [v1.6.4] - 2021-04-10
+### Bug Fixes
+- **ComponentSelection:** "1" after each ComponentGroup name ([fb91d7d](https://github.com/Status-Page/Status-Page/commit/fb91d7ddb6eaeb77351f11ab1186b6dbcb3dd672))
+- **MobileNavigation:** Add missing link to UR ([f0b33b0](https://github.com/Status-Page/Status-Page/commit/f0b33b0a2b160a94b37aaf604f8d47007c29e9bc))
+
+
 <a name="v1.6.3"></a>
 ## [v1.6.3] - 2021-04-10
 ### Bug Fixes
@@ -257,7 +264,8 @@
 <a name="v1.0.0"></a>
 ## v1.0.0 - 2021-02-21
 
-[Unreleased]: https://github.com/Status-Page/Status-Page/compare/v1.6.3...HEAD
+[Unreleased]: https://github.com/Status-Page/Status-Page/compare/v1.6.4...HEAD
+[v1.6.4]: https://github.com/Status-Page/Status-Page/compare/v1.6.3...v1.6.4
 [v1.6.3]: https://github.com/Status-Page/Status-Page/compare/v1.6.2...v1.6.3
 [v1.6.2]: https://github.com/Status-Page/Status-Page/compare/v1.6.1...v1.6.2
 [v1.6.1]: https://github.com/Status-Page/Status-Page/compare/v1.6.0...v1.6.1
