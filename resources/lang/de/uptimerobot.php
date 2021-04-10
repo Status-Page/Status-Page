@@ -24,6 +24,7 @@ return [
             'component' => 'Komponente',
             'metric' => 'Metrik',
             'data_import' => 'Daten-Import',
+            'status' => 'UR-Status',
         ],
         'body' => [
             'data_import_active' => 'Aktiv',
