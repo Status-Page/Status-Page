@@ -1,6 +1,6 @@
 <div class="mt-12">
     <h2 class="text-2xl">
-        Past Incidents
+        {{ __('home.past_incidents.title') }}
     </h2>
     @for($i = 0; $i <= \App\Models\Setting::getInteger('incidents_pastIncidentDays'); $i++)
         <div class="mb-8">
@@ -27,7 +27,7 @@
                 @endforeach
             @else
                 <div class="mb-2 text-gray-400">
-                    No incidents reported.
+                    {{ __('home.past_incidents.no_incidents') }}
                 </div>
             @endif
         </div>

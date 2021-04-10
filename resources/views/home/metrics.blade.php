@@ -2,23 +2,23 @@
     <div class="mt-12">
         <div class="flex justify-between">
             <h2 class="text-2xl">
-                Metrics
+                {{ __('home.metrics.title') }}
             </h2>
             <div class="space-x-2 flex items-center">
-                <x-input.group borderless paddingless for="lastHours" label="Last" inline="true">
+                <x-input.group borderless paddingless for="lastHours" label="{{ __('home.metrics.last') }}" inline="true">
                     <x-input.select wire:model="lastHours" id="lastHours" class="rounded-md">
-                        <option value="24">1 Day</option>
-                        <option value="48">2 Days</option>
-                        <option value="72">3 Days</option>
-                        <option value="168">7 Days</option>
+                        <option value="24">{{ trans_choice('home.metrics.day', 1, ['value' => 1]) }}</option>
+                        <option value="48">{{ trans_choice('home.metrics.day', 2, ['value' => 2]) }}</option>
+                        <option value="72">{{ trans_choice('home.metrics.day', 3, ['value' => 3]) }}</option>
+                        <option value="168">{{ trans_choice('home.metrics.day', 7, ['value' => 7]) }}</option>
                     </x-input.select>
                 </x-input.group>
-                <x-input.group borderless paddingless for="interval" label="Interval" inline="true">
+                <x-input.group borderless paddingless for="interval" label="{{ __('home.metrics.interval') }}" inline="true">
                     <x-input.select wire:model="interval" id="interval" class="rounded-md">
-                        <!-- <option value="5">5 Minutes</option>
-                        <option value="15">15 Minutes</option> -->
-                        <option value="30">30 Minutes</option>
-                        <option value="60">1 Hour</option>
+                        <!-- <option value="5">{{ trans_choice('home.metrics.minutes', 5, ['value' => 5]) }}</option>
+                        <option value="15">{{ trans_choice('home.metrics.minutes', 15, ['value' => 15]) }}</option> -->
+                        <option value="30">{{ trans_choice('home.metrics.minutes', 30, ['value' => 30]) }}</option>
+                        <option value="60">{{ trans_choice('home.metrics.hours', 1, ['value' => 1]) }}</option>
                     </x-input.select>
                 </x-input.group>
             </div>

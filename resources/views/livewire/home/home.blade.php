@@ -16,7 +16,7 @@
                     @auth()
                         <div>
                             <a href="{{ route('dashboard') }}" target="_blank">
-                                <x-jet-button class="text-right dark:bg-discordGrey">Open Dashboard</x-jet-button>
+                                <x-jet-button class="text-right dark:bg-discordGrey">{{ __('home.open_dashboard') }}</x-jet-button>
                             </a>
                         </div>
                     @endauth
