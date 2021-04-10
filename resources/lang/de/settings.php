@@ -20,4 +20,5 @@ return [
     */
     'actionlog_backlog' => 'ActionLog Backlog',
     'metrics_cache' => 'Metrik-Daten zwischenspeichern',
+    'uptimerobot_key' => 'Uptime Robot Schreibgeschützter API-Schlüssel',
 ];
