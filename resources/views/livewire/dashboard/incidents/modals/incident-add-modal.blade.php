@@ -50,7 +50,7 @@
                     <x-jet-label for="incidentComponents" class="text-lg" value="{{ __('incidents.new_incident.modal.affected_components') }}" />
                     <select id="incidentComponents" multiple wire:model="incidentComponents" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md dark:bg-discordDark dark:border-discordBlack">
                         @foreach(\App\Models\ComponentGroup::all() as $group)
-                            <optgroup label="{{ $group->name }}{{ $group->visibility ?: ' (Not Visible)' }}">
+                            <optgroup label="{{ $group->name }}{{ $group->visibility == 1 ? '' : ' (Not Visible)' }}">
                                 @foreach($group->components() as $component)
                                     <option value="{{ $component->id }}">{{ $component->name }}</option>
                                 @endforeach
