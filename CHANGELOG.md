@@ -2,6 +2,15 @@
 ## [Unreleased]
 
 
+<a name="v1.7.0"></a>
+## [v1.7.0] - 2021-04-10
+### Features
+- **Metrics:** Metrics are now collapsable ([ab30a5a](https://github.com/Status-Page/Status-Page/commit/ab30a5ab73e8a96d67957b057580422b387c11ea))
+- **RunCron:** Run task scheduler externally ([baa1cae](https://github.com/Status-Page/Status-Page/commit/baa1cae022cb41b52b9426457fd5971d3d2a0905))
+- **UptimeRobot:** Check for active Maintenance Windows ([2e5c19f](https://github.com/Status-Page/Status-Page/commit/2e5c19f3bb0f2a54a735396515d865b624e521f2))
+- **i18n:** Add Translation strings for 'Home' ([70f1c8e](https://github.com/Status-Page/Status-Page/commit/70f1c8ed4bb6ca14c1b00e3d92ed609b9a1db531))
+
+
 <a name="v1.6.5"></a>
 ## [v1.6.5] - 2021-04-10
 ### Bug Fixes
@@ -271,7 +280,8 @@
 <a name="v1.0.0"></a>
 ## v1.0.0 - 2021-02-21
 
-[Unreleased]: https://github.com/Status-Page/Status-Page/compare/v1.6.5...HEAD
+[Unreleased]: https://github.com/Status-Page/Status-Page/compare/v1.7.0...HEAD
+[v1.7.0]: https://github.com/Status-Page/Status-Page/compare/v1.6.5...v1.7.0
 [v1.6.5]: https://github.com/Status-Page/Status-Page/compare/v1.6.4...v1.6.5
 [v1.6.4]: https://github.com/Status-Page/Status-Page/compare/v1.6.3...v1.6.4
 [v1.6.3]: https://github.com/Status-Page/Status-Page/compare/v1.6.2...v1.6.3
