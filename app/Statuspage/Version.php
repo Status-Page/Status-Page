@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Http;
 class Version
 {
     public static function getVersion(){
-        return 'v1.6.1';
+        return 'v1.6.2';
     }
 
     public static function getLatestVersion() {
