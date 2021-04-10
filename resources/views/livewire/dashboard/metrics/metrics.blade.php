@@ -44,7 +44,7 @@
                                 <x-table.cell>
                                     {{ $metric->title }}
                                     @if(\App\Statuspage\Helper\SPHelper::isManagedMetric($metric->id))
-                                        <button data-title="{{ __('This Metric is managed from a plugin.') }}" data-placement="top" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 focus:outline-none cursor-default">
+                                        <button data-title="{{ __('This Metric is managed by a plugin.') }}" data-placement="top" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 focus:outline-none cursor-default">
                                             Managed
                                         </button>
                                     @endif
