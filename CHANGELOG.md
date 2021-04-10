@@ -2,6 +2,35 @@
 ## [Unreleased]
 
 
+<a name="v1.6.0"></a>
+## [v1.6.0] - 2021-04-10
+### Bug Fixes
+- **Database:** Split up Seeders ([a02964e](https://github.com/Status-Page/Status-Page/commit/a02964e24a4b2c22c7c3733cdcf1a2c2f66eaf51))
+- **Incidents:** Texts can now be longer ([#33](https://github.com/Status-Page/Status-Page/issues/33)) ([319cfc3](https://github.com/Status-Page/Status-Page/commit/319cfc33819027e9a72e7558bd4a1a2f574e0517))
+- **ManagedComment:** Changed spelling ([f48fc0f](https://github.com/Status-Page/Status-Page/commit/f48fc0f5a4c2f3e58772b4ac4e8db74a7674e7e3))
+- **Metrics:** Possible fix for the Metric Caching ([6d18909](https://github.com/Status-Page/Status-Page/commit/6d18909fb48df79fe071bf7afb769514a0d79a12))
+- **Settings:** Make Checkbox bigger ([fb4870b](https://github.com/Status-Page/Status-Page/commit/fb4870bea7dad7be3000276db33ce100338d2a6f))
+- **Statuses:** Update Colors for better contrast ([d6a7cc4](https://github.com/Status-Page/Status-Page/commit/d6a7cc410247ce48e803f04da25123a4b3c14915))
+- **Statuses:** Correct the Strings ([78a4392](https://github.com/Status-Page/Status-Page/commit/78a439265e18797ff464951f1f1c55bbb0c38096))
+
+### Build
+- **deps:** bump laravel/framework from 8.36.1 to 8.36.2 ([#32](https://github.com/Status-Page/Status-Page/issues/32)) ([39f84cd](https://github.com/Status-Page/Status-Page/commit/39f84cd42bb96e2442ee2e567ddaad9104e9f4e8))
+- **deps:** bump typescript from 4.2.3 to 4.2.4 ([#31](https://github.com/Status-Page/Status-Page/issues/31)) ([087b093](https://github.com/Status-Page/Status-Page/commit/087b09304508b2f033847eada07d200d428d69cd))
+- **deps:** bump laravel/framework from 8.34.0 to 8.36.1 ([#30](https://github.com/Status-Page/Status-Page/issues/30)) ([15a7550](https://github.com/Status-Page/Status-Page/commit/15a7550474e3fa80e147790b626fdf9a51655a3e))
+- **deps:** bump predis/predis from 1.1.6 to 1.1.7 ([#27](https://github.com/Status-Page/Status-Page/issues/27)) ([ea007e9](https://github.com/Status-Page/Status-Page/commit/ea007e951105a6b716fa74d38a0adcbd202717d7))
+- **deps-dev:** bump tailwindcss from 2.0.4 to 2.1.1 ([#29](https://github.com/Status-Page/Status-Page/issues/29)) ([e1e9dea](https://github.com/Status-Page/Status-Page/commit/e1e9dea764da0b234cf2d2b5507b2932161c67e7))
+- **deps-dev:** bump laravel-mix from 6.0.13 to 6.0.16 ([#28](https://github.com/Status-Page/Status-Page/issues/28)) ([cc72493](https://github.com/Status-Page/Status-Page/commit/cc72493368077b998fd1aecb008ed3a403b58ada))
+- **deps-dev:** bump postcss-import from 14.0.0 to 14.0.1 ([#26](https://github.com/Status-Page/Status-Page/issues/26)) ([a6e50c9](https://github.com/Status-Page/Status-Page/commit/a6e50c91ee7585ad0b5106694f0b59dd9edbb59d))
+- **deps-dev:** bump postcss from 8.2.8 to 8.2.9 ([#24](https://github.com/Status-Page/Status-Page/issues/24)) ([9fbc459](https://github.com/Status-Page/Status-Page/commit/9fbc459247f46361f93f31174e27f162af1188f4))
+- **deps-dev:** bump fakerphp/faker from 1.13.0 to 1.14.1 ([#23](https://github.com/Status-Page/Status-Page/issues/23)) ([6b55a8d](https://github.com/Status-Page/Status-Page/commit/6b55a8d77bb28daae14acca25bb28ff648184d2f))
+- **deps-dev:** bump [@tailwindcss](https://github.com/tailwindcss)/forms from 0.3.0 to 0.3.2 ([#22](https://github.com/Status-Page/Status-Page/issues/22)) ([9d2738e](https://github.com/Status-Page/Status-Page/commit/9d2738e7042f40ee20524a4e3303b5fb5ef37500))
+
+### Features
+- **UptimeRobot:** Added refresh button ([ad9fd6a](https://github.com/Status-Page/Status-Page/commit/ad9fd6a393f479a4fab566a0d62dfe07d5e9e24d))
+- **UptimeRobot:** Added UptimeRobot as data source for component status and metrics ([c8516c3](https://github.com/Status-Page/Status-Page/commit/c8516c3db2eb8c4d5637ae658410de29cfc4ee54))
+- **i18n:** Updated translations ([b8b6255](https://github.com/Status-Page/Status-Page/commit/b8b625531c6bcaaa08700acc5957a51c60939fb4))
+
+
 <a name="v1.5.4"></a>
 ## [v1.5.4] - 2021-03-26
 ### Bug Fixes
@@ -210,7 +239,8 @@
 <a name="v1.0.0"></a>
 ## v1.0.0 - 2021-02-21
 
-[Unreleased]: https://github.com/Status-Page/Status-Page/compare/v1.5.4...HEAD
+[Unreleased]: https://github.com/Status-Page/Status-Page/compare/v1.6.0...HEAD
+[v1.6.0]: https://github.com/Status-Page/Status-Page/compare/v1.5.4...v1.6.0
 [v1.5.4]: https://github.com/Status-Page/Status-Page/compare/v1.5.3...v1.5.4
 [v1.5.3]: https://github.com/Status-Page/Status-Page/compare/v1.5.2...v1.5.3
 [v1.5.2]: https://github.com/Status-Page/Status-Page/compare/v1.5.1...v1.5.2
