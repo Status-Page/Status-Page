@@ -34,6 +34,7 @@
                     <x-table.heading>{{ __('uptimerobot.table.head.id') }}</x-table.heading>
                     <x-table.heading>{{ __('uptimerobot.table.head.monitor_id') }}</x-table.heading>
                     <x-table.heading>{{ __('uptimerobot.table.head.name') }}</x-table.heading>
+                    <x-table.heading>{{ __('uptimerobot.table.head.status') }}</x-table.heading>
                     <x-table.heading>{{ __('uptimerobot.table.head.component') }}</x-table.heading>
                     <x-table.heading>{{ __('uptimerobot.table.head.metric') }}</x-table.heading>
                     <x-table.heading>{{ __('uptimerobot.table.head.data_import') }}</x-table.heading>
@@ -45,6 +46,7 @@
                             <x-table.cell>{{ $monitor->id }}</x-table.cell>
                             <x-table.cell>{{ $monitor->monitor_id }}</x-table.cell>
                             <x-table.cell>{{ $monitor->friendly_name }}</x-table.cell>
+                            <x-table.cell>{{ $monitor->status_id }}</x-table.cell>
                             <x-table.cell>{{ $monitor->component_id ? $monitor->component()->first()->name : 'None' }}</x-table.cell>
                             <x-table.cell>{{ $monitor->metric_id ? $monitor->metric()->first()->title : 'None' }}</x-table.cell>
                             <x-table.cell>
@@ -64,7 +66,7 @@
                         </x-table.row>
                     @empty
                         <x-table.row>
-                            <x-table.cell colspan="7">
+                            <x-table.cell colspan="8">
                                 <div class="flex justify-center items-center">
                                     <span class="font-medium py-8 text-gray-400 text-xl">No results...</span>
                                 </div>

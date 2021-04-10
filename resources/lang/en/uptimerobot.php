@@ -26,6 +26,7 @@ return [
             'id' => 'ID',
             'monitor_id' => 'Monitor ID',
             'name' => 'Name',
+            'status' => 'UR Status',
             'component' => 'Component',
             'metric' => 'Metric',
             'data_import' => 'Data Import',
