@@ -21,4 +21,5 @@ return [
     'actionlog_backlog' => 'ActionLog Backlog',
     'metrics_cache' => 'Metrik-Daten zwischenspeichern',
     'uptimerobot_key' => 'Uptime Robot Schreibgeschützter API-Schlüssel',
+    'external_cron' => 'Befehlsausführung von schedule:run von außen zulassen',
 ];
