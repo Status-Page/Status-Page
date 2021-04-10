@@ -7,6 +7,7 @@
 
 namespace App\Models;
 
+use App\Events\ComponentDeleting;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,6 +15,10 @@ use Illuminate\Database\Eloquent\Model;
 class Component extends Model
 {
     use HasFactory;
+
+    protected $dispatchesEvents = [
+        'deleting' => ComponentDeleting::class,
+    ];
 
     protected $fillable = [
         'status_id'

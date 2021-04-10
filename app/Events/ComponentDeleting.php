@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Models\Component;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -14,14 +15,16 @@ class ComponentDeleting
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+    public Component $component;
+
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Component $component)
     {
-        //
+        $this->component = $component;
     }
 
     /**

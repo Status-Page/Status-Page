@@ -7,10 +7,13 @@
 
 namespace App\Providers;
 
+use App\Events\ComponentDeleting;
+use App\Events\MetricDeleting;
+use App\Listeners\RemoveComponentFromUR;
+use App\Listeners\RemoveMetricFromUR;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -22,6 +25,12 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
+        ],
+        ComponentDeleting::class => [
+            RemoveComponentFromUR::class,
+        ],
+        MetricDeleting::class => [
+            RemoveMetricFromUR::class,
         ],
     ];
 

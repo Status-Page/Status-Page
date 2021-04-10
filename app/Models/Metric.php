@@ -7,7 +7,7 @@
 
 namespace App\Models;
 
-use Cache;
+use App\Events\MetricDeleting;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -15,6 +15,10 @@ use Illuminate\Database\Eloquent\Model;
 class Metric extends Model
 {
     use HasFactory;
+
+    protected $dispatchesEvents = [
+        'deleting' => MetricDeleting::class,
+    ];
 
     public function points(){
         return $this->hasMany(MetricPoint::class)->latest();
