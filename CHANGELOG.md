@@ -2,6 +2,12 @@
 ## [Unreleased]
 
 
+<a name="v1.7.1"></a>
+## [v1.7.1] - 2021-04-10
+### Bug Fixes
+- **UptimeRobot:** Add Listeners to Components ([c066d17](https://github.com/Status-Page/Status-Page/commit/c066d1713836ca4e75f6b51e0d4b78db463c56aa))
+
+
 <a name="v1.7.0"></a>
 ## [v1.7.0] - 2021-04-10
 ### Features
@@ -280,7 +286,8 @@
 <a name="v1.0.0"></a>
 ## v1.0.0 - 2021-02-21
 
-[Unreleased]: https://github.com/Status-Page/Status-Page/compare/v1.7.0...HEAD
+[Unreleased]: https://github.com/Status-Page/Status-Page/compare/v1.7.1...HEAD
+[v1.7.1]: https://github.com/Status-Page/Status-Page/compare/v1.7.0...v1.7.1
 [v1.7.0]: https://github.com/Status-Page/Status-Page/compare/v1.6.5...v1.7.0
 [v1.6.5]: https://github.com/Status-Page/Status-Page/compare/v1.6.4...v1.6.5
 [v1.6.4]: https://github.com/Status-Page/Status-Page/compare/v1.6.3...v1.6.4
