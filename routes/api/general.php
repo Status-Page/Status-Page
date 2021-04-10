@@ -5,6 +5,7 @@
  * Using / Editing this without my consent is not allowed.
  */
 
+use App\Models\Setting;
 use App\Statuspage\API\ResponseGenerator;
 use App\Statuspage\Version;
 use Illuminate\Support\Facades\Route;
@@ -27,3 +28,16 @@ Route::get('/version', function () {
         )
     ));
 })->name('api.version');
+
+Route::post('/run/cron', function (){
+    if(Setting::getBoolean('external_cron')){
+        Artisan::call('schedule:run');
+        return ResponseGenerator::generateResponse(array(
+            'message' => 'Tasks were executed!'
+        ));
+    }else{
+        return ResponseGenerator::generateResponse(array(
+            'message' => 'This feature is not activated.'
+        ), 403);
+    }
+});
