@@ -15,8 +15,8 @@
                 </x-input.group>
                 <x-input.group borderless paddingless for="interval" label="{{ __('home.metrics.interval') }}" inline="true">
                     <x-input.select wire:model="interval" id="interval" class="rounded-md">
-                        <!-- <option value="5">{{ trans_choice('home.metrics.minutes', 5, ['value' => 5]) }}</option>
-                        <option value="15">{{ trans_choice('home.metrics.minutes', 15, ['value' => 15]) }}</option> -->
+                        <!-- <option value="5">{{ trans_choice('home.metrics.minutes', 5, ['value' => 5]) }}</option> -->
+                        <option value="15">{{ trans_choice('home.metrics.minutes', 15, ['value' => 15]) }}</option>
                         <option value="30">{{ trans_choice('home.metrics.minutes', 30, ['value' => 30]) }}</option>
                         <option value="60">{{ trans_choice('home.metrics.hours', 1, ['value' => 1]) }}</option>
                     </x-input.select>

@@ -39,7 +39,7 @@ class CacheMetricData implements ShouldQueue
             foreach ($metrics as $metric){
                 Cache::put('metric_'.$metric->id.'_'.$this->lastHours.'_60', $metric->getIntervalPointsLastHours($this->lastHours));
                 Cache::put('metric_'.$metric->id.'_'.$this->lastHours.'_30', $metric->getIntervalPointsLastHours($this->lastHours, 30));
-                // Cache::put('metric_'.$metric->id.'_'.$this->lastHours.'_15', $metric->getIntervalPointsLastHours($this->lastHours, 15));
+                Cache::put('metric_'.$metric->id.'_'.$this->lastHours.'_15', $metric->getIntervalPointsLastHours($this->lastHours, 15));
                 // Cache::put('metric_'.$metric->id.'_'.$this->lastHours.'_5', $metric->getIntervalPointsLastHours($this->lastHours, 5));
             }
         }
