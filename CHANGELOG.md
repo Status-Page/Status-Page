@@ -2,6 +2,12 @@
 ## [Unreleased]
 
 
+<a name="v1.6.1"></a>
+## [v1.6.1] - 2021-04-10
+### Bug Fixes
+- **Update:** Update shouldn't get stuck in the migrations now ([4fc1c26](https://github.com/Status-Page/Status-Page/commit/4fc1c26e6ed3a297d6432a87b5676ea93b7a83e3))
+
+
 <a name="v1.6.0"></a>
 ## [v1.6.0] - 2021-04-10
 ### Bug Fixes
@@ -239,7 +245,8 @@
 <a name="v1.0.0"></a>
 ## v1.0.0 - 2021-02-21
 
-[Unreleased]: https://github.com/Status-Page/Status-Page/compare/v1.6.0...HEAD
+[Unreleased]: https://github.com/Status-Page/Status-Page/compare/v1.6.1...HEAD
+[v1.6.1]: https://github.com/Status-Page/Status-Page/compare/v1.6.0...v1.6.1
 [v1.6.0]: https://github.com/Status-Page/Status-Page/compare/v1.5.4...v1.6.0
 [v1.5.4]: https://github.com/Status-Page/Status-Page/compare/v1.5.3...v1.5.4
 [v1.5.3]: https://github.com/Status-Page/Status-Page/compare/v1.5.2...v1.5.3
