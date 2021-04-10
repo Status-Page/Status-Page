@@ -51,6 +51,7 @@ class FetchUptimeRobotData extends Command
                 Log::error('[UPTIMEROBOT_IMPORT] API Call fails:', $urdata['error']);
                 return 1;
             }
+            // dd($urdata);
 
             $urtable = (new UptimeRobotMonitor())->getTable();
             DB::table($urtable)->update([
@@ -62,12 +63,12 @@ class FetchUptimeRobotData extends Command
                     $mon = new UptimeRobotMonitor();
                     $mon->monitor_id = $monitor['id'];
                     $mon->friendly_name = $monitor['friendly_name'];
-                    $mon->status_id = $monitor['status'];
+                    $mon->status_id = $this->hasActiveMaintenanceWindow($monitor['mwindows']) ? 0 : $monitor['status'];
                     $mon->save();
                 }else{
                     $mon = UptimeRobotMonitor::query()->where('monitor_id', $monitor['id'])->first();
                     $mon->available = true;
-                    $mon->status_id = $monitor['status'];
+                    $mon->status_id = $this->hasActiveMaintenanceWindow($monitor['mwindows']) ? 0 : $monitor['status'];
                     $mon->save();
 
                     if(!$mon->paused && $mon->available){
@@ -79,7 +80,7 @@ class FetchUptimeRobotData extends Command
                             }
                         }
 
-                        if($mon->metric_id){
+                        if($mon->metric_id && !$this->hasActiveMaintenanceWindow($monitor['mwindows'])){
                             $metric_point = new MetricPoint();
                             $metric_point->metric_id = $mon->metric_id;
                             $metric_point->value = doubleval($monitor['response_times'][0]['value']);
@@ -92,5 +93,15 @@ class FetchUptimeRobotData extends Command
             DB::table($urtable)->where('available', false)->delete();
         }
         return 0;
+    }
+
+    private function hasActiveMaintenanceWindow(array $mwindows): bool
+    {
+        $hasActive = false;
+        for ($i = 0; $i < count($mwindows); $i++){
+            if($mwindows[$i]['status'] == 1)
+                $hasActive = true;
+        }
+        return $hasActive;
     }
 }

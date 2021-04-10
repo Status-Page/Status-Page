@@ -32,6 +32,7 @@ class UptimeRobot
     {
         return Http::asForm()->withHeaders($this->getDefaultHeaders())->post($this->getUrl('getMonitors'), $this->mergeData([
             'response_times' => 1,
+            'mwindows' => 1,
             'timezone' => 1,
             'response_times_limit' => 5,
         ]))->json();
