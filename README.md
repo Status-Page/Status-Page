@@ -95,7 +95,7 @@ Translation Status:
 </a>
 
 ## Running queued Jobs
-To run queue Jobs you should use [supervisor](https://laravel.com/docs/8.x/queues#supervisor-configuration).
+To run queued Jobs you should use [supervisor](https://laravel.com/docs/8.x/queues#supervisor-configuration).
 
 The configuration file (statuspage.conf) for this app would be like this:
 ```
