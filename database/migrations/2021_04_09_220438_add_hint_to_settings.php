@@ -18,11 +18,6 @@ class AddHintToSettings extends Migration
             $table->mediumText('hint')->nullable()->after('encrypted');
         });
 
-        Artisan::call('db:seed', [
-            '--class' => 'StatusSeeder',
-            '--force'
-        ]);
-
         $settings = [
             [
                 'key' => 'uptimerobot_key',
