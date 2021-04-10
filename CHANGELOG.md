@@ -2,6 +2,13 @@
 ## [Unreleased]
 
 
+<a name="v1.6.5"></a>
+## [v1.6.5] - 2021-04-10
+### Bug Fixes
+- **Metrics:** Increase the Interval for the Cache ([0717481](https://github.com/Status-Page/Status-Page/commit/07174812464f8cdb9ba680ce93ad5c7a1047a5bc))
+- **UptimeRobot:** Add UR Status to Table ([c8f099d](https://github.com/Status-Page/Status-Page/commit/c8f099dab4454edafce149029dadcc62911890f9))
+
+
 <a name="v1.6.4"></a>
 ## [v1.6.4] - 2021-04-10
 ### Bug Fixes
@@ -264,7 +271,8 @@
 <a name="v1.0.0"></a>
 ## v1.0.0 - 2021-02-21
 
-[Unreleased]: https://github.com/Status-Page/Status-Page/compare/v1.6.4...HEAD
+[Unreleased]: https://github.com/Status-Page/Status-Page/compare/v1.6.5...HEAD
+[v1.6.5]: https://github.com/Status-Page/Status-Page/compare/v1.6.4...v1.6.5
 [v1.6.4]: https://github.com/Status-Page/Status-Page/compare/v1.6.3...v1.6.4
 [v1.6.3]: https://github.com/Status-Page/Status-Page/compare/v1.6.2...v1.6.3
 [v1.6.2]: https://github.com/Status-Page/Status-Page/compare/v1.6.1...v1.6.2
