@@ -15,7 +15,7 @@ class Monitors extends Component
 {
     use WithPerPagePagination;
 
-    protected $listeners = ['refreshData'];
+    protected $listeners = ['refreshData' => '$refresh'];
 
     public $search = '';
 
@@ -50,7 +50,6 @@ class Monitors extends Component
         $this->resetPage();
     }
 
-    public function refreshData(){
-        // Placeholder
+    public function reload(){
     }
 }
