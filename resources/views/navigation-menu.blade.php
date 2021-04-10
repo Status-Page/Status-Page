@@ -172,7 +172,7 @@
 
                                 @if(\App\Models\Setting::getString('uptimerobot_key') != '')
                                     <div class="block px-4 py-2 text-xs text-gray-400">
-                                        {{ __('Uptime Robot') }}
+                                        {{ __('Plugins - Uptime Robot') }}
                                     </div>
 
                                     @can('read_settings')
@@ -245,7 +245,7 @@
         </div>
 
         <!-- Responsive Settings Options -->
-        <div class="pt-4 pb-1 border-t border-gray-200">
+        <div class="pt-4 pb-1 border-t border-gray-200 dark:border-discordBlack">
             <div class="flex items-center px-4">
                 @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                     <div class="flex-shrink-0 mr-3">
@@ -261,6 +261,10 @@
 
             <div class="mt-3 space-y-1">
                 <!-- Account Management -->
+                <div class="block px-4 py-2 text-xs text-gray-400">
+                    {{ __('Manage Account') }}
+                </div>
+
                 <x-jet-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
                     {{ __('Profile') }}
                 </x-jet-responsive-nav-link>
@@ -271,7 +275,12 @@
                     </x-jet-responsive-nav-link>
                 @endif
 
+                <div class="border-t border-gray-100 dark:border-discordBlack"></div>
+
                 @hasanyrole('admin|super_admin')
+                    <div class="block px-4 py-2 text-xs text-gray-400">
+                        {{ __('Administrator Settings') }}
+                    </div>
                     @can('read_settings')
                         <x-jet-responsive-nav-link href="{{ route('dashboard.admin.settings') }}" :active="request()->routeIs('dashboard.admin.settings')">
                             {{ __('Settings') }}
@@ -289,6 +298,22 @@
                             {{ __('Action Log') }}
                         </x-jet-responsive-nav-link>
                     @endcan
+
+                    <div class="border-t border-gray-100 dark:border-discordBlack"></div>
+
+                    @if(\App\Models\Setting::getString('uptimerobot_key') != '')
+                        <div class="block px-4 py-2 text-xs text-gray-400">
+                            {{ __('Plugins - Uptime Robot') }}
+                        </div>
+
+                        @can('read_settings')
+                            <x-jet-responsive-nav-link href="{{ route('dashboard.admin.plugins.uptimerobot') }}" :active="request()->routeIs('dashboard.admin.plugins.uptimerobot')">
+                                {{ __('uptimerobot.title') }}
+                            </x-jet-responsive-nav-link>
+                        @endcan
+
+                        <div class="border-t border-gray-100 dark:border-discordBlack"></div>
+                    @endif
                 @endhasanyrole
 
                 <!-- Authentication -->
