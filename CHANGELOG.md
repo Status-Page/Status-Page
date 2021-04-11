@@ -2,6 +2,15 @@
 ## [Unreleased]
 
 
+<a name="v1.7.2"></a>
+## [v1.7.2] - 2021-04-11
+### Bug Fixes
+- **UptimeRobot:** Maintenance Windows should work correctly now ([5595837](https://github.com/Status-Page/Status-Page/commit/55958374bc94bf583d9e84fac69ccab33ccea2b7))
+
+### Features
+- **Metrics:** Add 15 Minute interval ([57127e0](https://github.com/Status-Page/Status-Page/commit/57127e030c09344ae991f07711a54b0dccaa6cce))
+
+
 <a name="v1.7.1"></a>
 ## [v1.7.1] - 2021-04-10
 ### Bug Fixes
@@ -280,13 +289,14 @@
 <a name="v1.0.1"></a>
 ## [v1.0.1] - 2021-02-21
 
-<a name="v1.0"></a>
-## [v1.0] - 2021-02-21
-
 <a name="v1.0.0"></a>
-## v1.0.0 - 2021-02-21
+## [v1.0.0] - 2021-02-21
 
-[Unreleased]: https://github.com/Status-Page/Status-Page/compare/v1.7.1...HEAD
+<a name="v1.0"></a>
+## v1.0 - 2021-02-21
+
+[Unreleased]: https://github.com/Status-Page/Status-Page/compare/v1.7.2...HEAD
+[v1.7.2]: https://github.com/Status-Page/Status-Page/compare/v1.7.1...v1.7.2
 [v1.7.1]: https://github.com/Status-Page/Status-Page/compare/v1.7.0...v1.7.1
 [v1.7.0]: https://github.com/Status-Page/Status-Page/compare/v1.6.5...v1.7.0
 [v1.6.5]: https://github.com/Status-Page/Status-Page/compare/v1.6.4...v1.6.5
@@ -324,5 +334,5 @@
 [v1.1.1]: https://github.com/Status-Page/Status-Page/compare/v1.1.0...v1.1.1
 [v1.1.0]: https://github.com/Status-Page/Status-Page/compare/v1.0.2...v1.1.0
 [v1.0.2]: https://github.com/Status-Page/Status-Page/compare/v1.0.1...v1.0.2
-[v1.0.1]: https://github.com/Status-Page/Status-Page/compare/v1.0...v1.0.1
-[v1.0]: https://github.com/Status-Page/Status-Page/compare/v1.0.0...v1.0
+[v1.0.1]: https://github.com/Status-Page/Status-Page/compare/v1.0.0...v1.0.1
+[v1.0.0]: https://github.com/Status-Page/Status-Page/compare/v1.0...v1.0.0
