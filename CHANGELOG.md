@@ -1,8 +1,11 @@
 <a name="unreleased"></a>
 ## [Unreleased]
 
+
+<a name="v1.7.3"></a>
+## [v1.7.3] - 2021-04-12
 ### Code Update
-- **Caching:** Add Log outputs (161654b)
+- **Caching:** Add Log outputs ([161654b](https://github.com/Status-Page/Status-Page/commit/161654bd73e3046bde9d36b604e866d29ac4411c))
 
 
 <a name="v1.7.2"></a>
@@ -292,13 +295,14 @@
 <a name="v1.0.1"></a>
 ## [v1.0.1] - 2021-02-21
 
-<a name="v1.0.0"></a>
-## [v1.0.0] - 2021-02-21
-
 <a name="v1.0"></a>
-## v1.0 - 2021-02-21
+## [v1.0] - 2021-02-21
 
-[Unreleased]: https://github.com/Status-Page/Status-Page/compare/v1.7.2...HEAD
+<a name="v1.0.0"></a>
+## v1.0.0 - 2021-02-21
+
+[Unreleased]: https://github.com/Status-Page/Status-Page/compare/v1.7.3...HEAD
+[v1.7.3]: https://github.com/Status-Page/Status-Page/compare/v1.7.2...v1.7.3
 [v1.7.2]: https://github.com/Status-Page/Status-Page/compare/v1.7.1...v1.7.2
 [v1.7.1]: https://github.com/Status-Page/Status-Page/compare/v1.7.0...v1.7.1
 [v1.7.0]: https://github.com/Status-Page/Status-Page/compare/v1.6.5...v1.7.0
@@ -337,5 +341,5 @@
 [v1.1.1]: https://github.com/Status-Page/Status-Page/compare/v1.1.0...v1.1.1
 [v1.1.0]: https://github.com/Status-Page/Status-Page/compare/v1.0.2...v1.1.0
 [v1.0.2]: https://github.com/Status-Page/Status-Page/compare/v1.0.1...v1.0.2
-[v1.0.1]: https://github.com/Status-Page/Status-Page/compare/v1.0.0...v1.0.1
-[v1.0.0]: https://github.com/Status-Page/Status-Page/compare/v1.0...v1.0.0
+[v1.0.1]: https://github.com/Status-Page/Status-Page/compare/v1.0...v1.0.1
+[v1.0]: https://github.com/Status-Page/Status-Page/compare/v1.0.0...v1.0
