@@ -7,6 +7,7 @@ use App\Models\MetricPoint;
 use App\Models\Setting;
 use App\Models\UptimeRobotMonitor;
 use App\Statuspage\UptimeRobot\UptimeRobot;
+use Carbon\Carbon;
 use DB;
 use Illuminate\Console\Command;
 use Log;
@@ -63,12 +64,12 @@ class FetchUptimeRobotData extends Command
                     $mon = new UptimeRobotMonitor();
                     $mon->monitor_id = $monitor['id'];
                     $mon->friendly_name = $monitor['friendly_name'];
-                    $mon->status_id = $this->hasActiveMaintenanceWindow($monitor['mwindows']) ? 0 : $monitor['status'];
+                    $mon->status_id = $this->hasActiveMaintenanceWindow($monitor['mwindows'], $urdata['timezone']) ? 0 : $monitor['status'];
                     $mon->save();
                 }else{
                     $mon = UptimeRobotMonitor::query()->where('monitor_id', $monitor['id'])->first();
                     $mon->available = true;
-                    $mon->status_id = $this->hasActiveMaintenanceWindow($monitor['mwindows']) ? 0 : $monitor['status'];
+                    $mon->status_id = $this->hasActiveMaintenanceWindow($monitor['mwindows'], $urdata['timezone']) ? 0 : $monitor['status'];
                     $mon->save();
 
                     if(!$mon->paused && $mon->available){
@@ -80,7 +81,7 @@ class FetchUptimeRobotData extends Command
                             }
                         }
 
-                        if($mon->metric_id && !$this->hasActiveMaintenanceWindow($monitor['mwindows'])){
+                        if($mon->metric_id && !$this->hasActiveMaintenanceWindow($monitor['mwindows'], $urdata['timezone'])){
                             $metric_point = new MetricPoint();
                             $metric_point->metric_id = $mon->metric_id;
                             $metric_point->value = doubleval($monitor['response_times'][0]['value']);
@@ -95,11 +96,17 @@ class FetchUptimeRobotData extends Command
         return 0;
     }
 
-    private function hasActiveMaintenanceWindow(array $mwindows): bool
+    private function hasActiveMaintenanceWindow(array $mwindows, $tz = null): bool
     {
         $hasActive = false;
         for ($i = 0; $i < count($mwindows); $i++){
-            if($mwindows[$i]['status'] == 1)
+            $start_time = Carbon::createFromTimestamp($mwindows[$i]['start_time']);
+            if(str_starts_with($tz, '+'))
+                $start_time->addMinutes(str_replace('+', '', $tz));
+            if(str_starts_with($tz, '-'))
+                $start_time->subMinutes(str_replace('-', '', $tz));
+            $duration = $mwindows[$i]['duration'];
+            if($start_time->addMinutes($duration) > Carbon::now() && $mwindows[$i]['status'] == 1)
                 $hasActive = true;
         }
         return $hasActive;
