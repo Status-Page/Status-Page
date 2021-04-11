@@ -2,12 +2,12 @@
 
 ## Supported Versions
 
-We support the following Versions with Security Updates.
+We provide the following Versions with Security Updates:
 
-| Version | Supported          |
-| ------- | ------------------ |
-| 1.2.x   | :white_check_mark: |
-| < 1.2.0 | :x:                |
+| Version  | Supported          |
+| -------- | ------------------ |
+| 1.7.x    | :white_check_mark: |
+| <= 1.6.5 | :x:                |
 
 ## Reporting a Vulnerability
 
