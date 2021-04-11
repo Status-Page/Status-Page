@@ -1,6 +1,9 @@
 <a name="unreleased"></a>
 ## [Unreleased]
 
+### Code Update
+- **Caching:** Add Log outputs (161654b)
+
 
 <a name="v1.7.2"></a>
 ## [v1.7.2] - 2021-04-11
