@@ -26,6 +26,7 @@ class MetricUpdateModal extends Component
         'metric.suffix' => 'string|max:255',
         'metric.order' => 'integer',
         'metric.visibility' => 'boolean',
+        'metric.collapse' => 'string',
     ];
 
     public function render()
