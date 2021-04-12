@@ -7,18 +7,13 @@
             <div class="space-x-2 flex items-center">
                 <x-input.group borderless paddingless for="lastHours" label="{{ __('home.metrics.last') }}" inline="true">
                     <x-input.select wire:model="lastHours" id="lastHours" class="rounded-md">
+                        <option value="105">{{ trans_choice('home.metrics.minutes', 30, ['value' => 30]) }}</option>
+                        <option value="1">{{ trans_choice('home.metrics.hours', 1, ['value' => 1]) }}</option>
+                        <option value="12">{{ trans_choice('home.metrics.hours', 12, ['value' => 12]) }}</option>
                         <option value="24">{{ trans_choice('home.metrics.day', 1, ['value' => 1]) }}</option>
                         <option value="48">{{ trans_choice('home.metrics.day', 2, ['value' => 2]) }}</option>
                         <option value="72">{{ trans_choice('home.metrics.day', 3, ['value' => 3]) }}</option>
                         <option value="168">{{ trans_choice('home.metrics.day', 7, ['value' => 7]) }}</option>
-                    </x-input.select>
-                </x-input.group>
-                <x-input.group borderless paddingless for="interval" label="{{ __('home.metrics.interval') }}" inline="true">
-                    <x-input.select wire:model="interval" id="interval" class="rounded-md">
-                        <!-- <option value="5">{{ trans_choice('home.metrics.minutes', 5, ['value' => 5]) }}</option> -->
-                        <option value="15">{{ trans_choice('home.metrics.minutes', 15, ['value' => 15]) }}</option>
-                        <option value="30">{{ trans_choice('home.metrics.minutes', 30, ['value' => 30]) }}</option>
-                        <option value="60">{{ trans_choice('home.metrics.hours', 1, ['value' => 1]) }}</option>
                     </x-input.select>
                 </x-input.group>
             </div>
@@ -43,7 +38,7 @@
                             </div>
                         </div>
                         <div x-show="openMetric{{ $metric->id }}">
-                            <livewire:home.metric :metric="$metric" :interval="$interval" :last-hours="$lastHours" :key="time().$metric->id"/>
+                            <livewire:home.metric :metric="$metric" :last-hours="$lastHours" :key="time().$metric->id"/>
                         </div>
                     </div>
                 </div>

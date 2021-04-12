@@ -21,7 +21,6 @@ return [
     'metrics' => [
         'title' => 'Metrics',
         'last' => 'Last',
-        'interval' => 'Interval',
         'day' => ':value Day|:value Days',
         'hours' => ':value Hour|:value Hours',
         'minutes' => ':value Minute|:value Minutes',

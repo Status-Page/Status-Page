@@ -9,8 +9,10 @@ namespace App\Models;
 
 use App\Events\MetricDeleting;
 use Carbon\Carbon;
+use Carbon\CarbonInterval;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Metric extends Model
 {
@@ -21,7 +23,7 @@ class Metric extends Model
     ];
 
     public function points(){
-        return $this->hasMany(MetricPoint::class)->latest();
+        return $this->hasMany(MetricPoint::class);
     }
 
     public function expand(){
@@ -35,48 +37,48 @@ class Metric extends Model
         return 'false';
     }
 
-    /**
-     * @param $lastHours
-     * @return object
-     * @deprecated
-     */
-    public function getPointsLastHours($lastHours): object
-    {
+    public function getPointsSinceMinutes($minutes){
+        $points = $this->points()
+            ->select(['created_at as key', DB::raw('avg(value) as value')])
+            ->whereBetween('created_at', [Carbon::now()->setSeconds(0)->subMinutes($minutes), Carbon::now()])
+            ->groupBy(DB::raw('HOUR(`created_at`)'), DB::raw('MINUTE(`created_at`)'))
+            ->orderBy('created_at')
+            ->get();
+
+        return $this->formatForHomePage($points);
+    }
+
+    public function getPointsSinceHours($hours){
+        $points = $this->points()
+            ->select(['created_at as key', DB::raw('avg(value) as value')])
+            ->whereBetween('created_at', [Carbon::now()->setSeconds(0)->setMinutes(0)->subHours($hours), Carbon::now()])
+            ->groupBy(DB::raw('HOUR(`created_at`)'))
+            ->get();
+
+        return $this->formatForHomePage($points);
+    }
+
+    public function getPointsSinceDays($days){
+        $points = $this->points()
+            ->select(['created_at as key', DB::raw('avg(value) as value')])
+            ->whereBetween('created_at', [Carbon::now()->setSeconds(0)->setHours(0)->setMinutes(0)->subDays($days), Carbon::now()])
+            ->groupBy(DB::raw('DATE(`created_at`)'))
+            ->get();
+
+        return $this->formatForHomePage($points);
+    }
+
+    private function formatForHomePage($points){
         $return = (object) [
             'labels' => [],
             'points' => [],
         ];
-        for ($i = $lastHours-1; $i >= 0; $i--){
-            array_push($return->labels, Carbon::now()->subHours($i)->setMinutes(0)->format('H:i'));
 
-            $points = $this->points()->whereBetween('created_at', [Carbon::now()->subHours($i)->setMinutes(0), Carbon::now()->subHours($i-1)->setMinutes(0)])->get();
-            array_push($return->points, $points->avg('value') ?? 0);
+        foreach ($points as $point){
+            array_push($return->labels, Carbon::createFromTimeString($point->key)->format('d.m.Y - H:i'));
+            array_push($return->points, $point->value);
         }
 
         return $return;
-    }
-
-    public function getIntervalPointsLastHours($lastHours, $interval = 60): object
-    {
-        $return = (object) [
-            'labels' => [],
-            'points' => [],
-        ];
-        for ($i = $lastHours-1; $i >= 0; $i--){
-            for($j = 0; $j < 60; $j = $j+$interval){
-                if(Carbon::now()->subHours($i)->setMinutes($j) < Carbon::now()){
-                    array_push($return->labels, Carbon::now()->subHours($i)->setMinutes($j)->format('H:i'));
-
-                    $points = $this->getPoints($interval, $i, $j);
-                    array_push($return->points, $points->avg('value') ?? 0);
-                }
-            }
-        }
-
-        return $return;
-    }
-
-    private function getPoints($interval, $i, $j){
-        return $this->points()->whereBetween('created_at', [Carbon::now()->subHours($i)->setMinutes($j), Carbon::now()->subHours($i-1)->setMinutes($j+$interval)])->get();
     }
 }
