@@ -11,15 +11,12 @@ class Metric extends Component
     protected $listeners = ['update'];
 
     public \App\Models\Metric $metric;
-    public $interval;
     public $lastHours;
 
     public function render()
     {
         return view('livewire.home.metric', [
-            'metricData' => Setting::getBoolean('metrics_cache') && Cache::has('metric_'.$this->metric->id.'_'.($this->lastHours ?? '24').'_'.($this->interval ?? '60'))
-                            ? Cache::get('metric_'.$this->metric->id.'_'.($this->lastHours ?? '24').'_'.($this->interval ?? '60'))
-                            : $this->getMetricData(),
+            'metricData' => $this->getMetricData(),
         ]);
     }
 
@@ -28,6 +25,21 @@ class Metric extends Component
     }
 
     public function getMetricData(){
-        return $this->metric->getIntervalPointsLastHours($this->lastHours ?? 24, $this->interval ?? 60);
+        switch ($this->lastHours){
+            case 105:
+                return $this->metric->getPointsSinceMinutes(30);
+            case 1:
+                return $this->metric->getPointsSinceMinutes(60);
+            case 12:
+                return $this->metric->getPointsSinceMinutes(120);
+            case 24:
+                return $this->metric->getPointsSinceHours(24);
+            case 48:
+                return $this->metric->getPointsSinceDays(2);
+            case 72:
+                return $this->metric->getPointsSinceDays(3);
+            case 168:
+                return $this->metric->getPointsSinceDays(7);
+        }
     }
 }

@@ -1,5 +1,5 @@
 <div>
-    <canvas id="metric-{{ $metric->id }}-{{ time() }}" width="400" height="150"></canvas>
+    <canvas id="metric-{{ $metric->id }}-{{ time() }}" width="400" height="200"></canvas>
     <script>
         var event{{ $metric->id }} = new Event('refreshJavaScript-{{ $metric->id }}');
 

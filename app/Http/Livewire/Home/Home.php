@@ -13,8 +13,7 @@ use Session;
 
 class Home extends Component
 {
-    public $interval = 60;
-    public $lastHours = 24;
+    public $lastHours = 12;
 
     public bool $readyToLoad = false;
 
@@ -37,12 +36,7 @@ class Home extends Component
     }
 
     public function mount(){
-        $this->interval = Session::get('interval', $this->interval);
         $this->lastHours = Session::get('lastHours', $this->lastHours);
-    }
-
-    public function updatedInterval(){
-        Session::put('interval', $this->interval);
     }
 
     public function updatedLastHours(){
