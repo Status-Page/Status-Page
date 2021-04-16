@@ -2,6 +2,20 @@
 ## [Unreleased]
 
 
+<a name="v1.7.5"></a>
+## [v1.7.5] - 2021-04-16
+### Bug Fixes
+- **ComponentsAPI:** Description can be null ([346ae9d](https://github.com/Status-Page/Status-Page/commit/346ae9dce9159469ddbdf9001aae8548ef66397e))
+- **HomeMetrics:** Fix values ([b5bc418](https://github.com/Status-Page/Status-Page/commit/b5bc418411cbb574434f034a20f48494de08e322))
+- **MetricPoints:** Add missing orderBy ([ea1f665](https://github.com/Status-Page/Status-Page/commit/ea1f665eaec351916e2d7a367fbe03b1c11b632c))
+
+### Build
+- **deps:** bump laravel/framework from 8.36.2 to 8.37.0 ([#41](https://github.com/Status-Page/Status-Page/issues/41)) ([53ae40f](https://github.com/Status-Page/Status-Page/commit/53ae40ff9c877d15f173e626a58c37653d83a1b9))
+
+### Code Update
+- **Settings:** Remove metrics_cache from Settings ([0e4ac79](https://github.com/Status-Page/Status-Page/commit/0e4ac795a85cfc0026655ff8ecc4bf1c2f7ffd3b))
+
+
 <a name="v1.7.4"></a>
 ## [v1.7.4] - 2021-04-12
 ### Bug Fixes
@@ -312,7 +326,8 @@
 <a name="v1.0.0"></a>
 ## v1.0.0 - 2021-02-21
 
-[Unreleased]: https://github.com/Status-Page/Status-Page/compare/v1.7.4...HEAD
+[Unreleased]: https://github.com/Status-Page/Status-Page/compare/v1.7.5...HEAD
+[v1.7.5]: https://github.com/Status-Page/Status-Page/compare/v1.7.4...v1.7.5
 [v1.7.4]: https://github.com/Status-Page/Status-Page/compare/v1.7.3...v1.7.4
 [v1.7.3]: https://github.com/Status-Page/Status-Page/compare/v1.7.2...v1.7.3
 [v1.7.2]: https://github.com/Status-Page/Status-Page/compare/v1.7.1...v1.7.2
