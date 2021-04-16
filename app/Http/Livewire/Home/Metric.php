@@ -31,15 +31,17 @@ class Metric extends Component
             case 1:
                 return $this->metric->getPointsSinceMinutes(60);
             case 12:
-                return $this->metric->getPointsSinceMinutes(120);
+                return $this->metric->getPointsSinceHours(12);
             case 24:
                 return $this->metric->getPointsSinceHours(24);
             case 48:
-                return $this->metric->getPointsSinceDays(2);
+                return $this->metric->getPointsSinceHours(48);
             case 72:
-                return $this->metric->getPointsSinceDays(3);
+                return $this->metric->getPointsSinceHours(72);
             case 168:
                 return $this->metric->getPointsSinceDays(7);
+            case 720:
+                return $this->metric->getPointsSinceDays(30);
         }
     }
 }
