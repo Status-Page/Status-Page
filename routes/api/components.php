@@ -102,7 +102,7 @@ Route::match(['patch', 'put'], '/components/{id}', function (Request $request, $
         ], [
             'name' => 'string|min:3',
             'link' => 'nullable|url',
-            'description' => 'string|min:3',
+            'description' => 'nullable|string|min:3',
             'group' => 'required|integer|min:1',
             'visibility' => 'boolean',
             'status_id' => 'integer|min:1|max:6',
