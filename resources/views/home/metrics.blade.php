@@ -10,10 +10,11 @@
                         <option value="105">{{ trans_choice('home.metrics.minutes', 30, ['value' => 30]) }}</option>
                         <option value="1">{{ trans_choice('home.metrics.hours', 1, ['value' => 1]) }}</option>
                         <option value="12">{{ trans_choice('home.metrics.hours', 12, ['value' => 12]) }}</option>
-                        <option value="24">{{ trans_choice('home.metrics.day', 1, ['value' => 1]) }}</option>
+                        <option value="24">{{ trans_choice('home.metrics.hours', 24, ['value' => 24]) }}</option>
                         <option value="48">{{ trans_choice('home.metrics.day', 2, ['value' => 2]) }}</option>
                         <option value="72">{{ trans_choice('home.metrics.day', 3, ['value' => 3]) }}</option>
                         <option value="168">{{ trans_choice('home.metrics.day', 7, ['value' => 7]) }}</option>
+                        <option value="720">{{ trans_choice('home.metrics.day', 30, ['value' => 30]) }}</option>
                     </x-input.select>
                 </x-input.group>
             </div>
