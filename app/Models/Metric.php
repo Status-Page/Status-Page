@@ -53,6 +53,7 @@ class Metric extends Model
             ->select(['created_at as key', DB::raw('avg(value) as value')])
             ->whereBetween('created_at', [Carbon::now()->setSeconds(0)->setMinutes(0)->subHours($hours), Carbon::now()])
             ->groupBy(DB::raw('HOUR(`created_at`)'))
+            ->orderBy('created_at')
             ->get();
 
         return $this->formatForHomePage($points);
@@ -63,6 +64,7 @@ class Metric extends Model
             ->select(['created_at as key', DB::raw('avg(value) as value')])
             ->whereBetween('created_at', [Carbon::now()->setSeconds(0)->setHours(0)->setMinutes(0)->subDays($days), Carbon::now()])
             ->groupBy(DB::raw('DATE(`created_at`)'))
+            ->orderBy('created_at')
             ->get();
 
         return $this->formatForHomePage($points);
