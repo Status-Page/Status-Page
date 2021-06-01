@@ -246,16 +246,16 @@
         },
         {
             "name": "configcat/configcat-client",
-            "version": "v5.2.0",
+            "version": "v5.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/configcat/php-sdk.git",
-                "reference": "997c5db8f25cb2035fc1ffeda5fe7945266f91f2"
+                "reference": "414c821b9b49f031b49d4f83a5857897e512d5e6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/configcat/php-sdk/zipball/997c5db8f25cb2035fc1ffeda5fe7945266f91f2",
-                "reference": "997c5db8f25cb2035fc1ffeda5fe7945266f91f2",
+                "url": "https://api.github.com/repos/configcat/php-sdk/zipball/414c821b9b49f031b49d4f83a5857897e512d5e6",
+                "reference": "414c821b9b49f031b49d4f83a5857897e512d5e6",
                 "shasum": ""
             },
             "require": {
@@ -305,9 +305,9 @@
             ],
             "support": {
                 "issues": "https://github.com/configcat/php-sdk/issues",
-                "source": "https://github.com/configcat/php-sdk/tree/v5.2.0"
+                "source": "https://github.com/configcat/php-sdk/tree/v5.2.1"
             },
-            "time": "2021-01-22T12:24:48+00:00"
+            "time": "2021-05-31T16:11:48+00:00"
         },
         {
             "name": "dasprid/enum",
@@ -1463,16 +1463,16 @@
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "1.8.1",
+            "version": "1.8.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "35ea11d335fd638b5882ff1725228b3d35496ab1"
+                "reference": "dc960a912984efb74d0a90222870c72c87f10c91"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/35ea11d335fd638b5882ff1725228b3d35496ab1",
-                "reference": "35ea11d335fd638b5882ff1725228b3d35496ab1",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/dc960a912984efb74d0a90222870c72c87f10c91",
+                "reference": "dc960a912984efb74d0a90222870c72c87f10c91",
                 "shasum": ""
             },
             "require": {
@@ -1532,9 +1532,9 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/psr7/issues",
-                "source": "https://github.com/guzzle/psr7/tree/1.8.1"
+                "source": "https://github.com/guzzle/psr7/tree/1.8.2"
             },
-            "time": "2021-03-21T16:25:00+00:00"
+            "time": "2021-04-26T09:17:50+00:00"
         },
         {
             "name": "jaybizzle/crawler-detect",
