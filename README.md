@@ -82,8 +82,8 @@ php artisan view:cache
 php artisan event:cache
 ```
 
-## API Documentation
-You can find the API Documentation [here](https://herrtxbias-status.readme.io/reference).
+## Documentation
+You can find the Documentation [here](https://status-page-docs.netlify.app/).
 
 ## Translation
 If you want to help with translation, head over to [my translation page](https://translate.herrtxbias.net/projects/status-page/).
