@@ -17,8 +17,8 @@ Route::get('/ping', function () {
 });
 
 Route::get('/version', function () {
-    $lasttag = config('app.url') == 'https://status.herrtxbias.me' ? Version::getVersion() : \Illuminate\Support\Facades\Http::get('https://status.herrtxbias.me/api/v1/version');
-    $formatted_lasttag = $lasttag == Version::getVersion() ? Version::getVersion() : $lasttag->json()['data'];
+    $lasttag = preg_replace("/\s/", "", \Illuminate\Support\Facades\Http::get('https://raw.githubusercontent.com/Status-Page/Status-Page/master/VERSION')->body());
+    $formatted_lasttag = $lasttag == Version::getVersion() ? Version::getVersion() : $lasttag;
 
     return ResponseGenerator::generateMetaResponse(Version::getVersion(), array(
         'on_latest' => Version::getVersion() == $formatted_lasttag,
