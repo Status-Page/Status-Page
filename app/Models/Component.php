@@ -35,4 +35,8 @@ class Component extends Model
     public function group(){
         return $this->belongsTo(ComponentGroup::class, 'group')->first();
     }
+
+    public function linkedStatusProviders(){
+        return $this->belongsTo(LinkedStatusProvider::class)->withDefault();
+    }
 }

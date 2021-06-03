@@ -9,6 +9,7 @@ namespace App\Http\Livewire\Dashboard\Components\Modals;
 
 use App\Events\ActionLog;
 use App\Models\ComponentGroup;
+use App\Models\LinkedStatusComponent;
 use Auth;
 use Livewire\Component;
 
@@ -27,6 +28,7 @@ class ComponentUpdateModal extends Component
         'comp.status_id' => 'required|integer|min:1|max:6',
         'comp.order' => 'required|integer',
         'comp.visibility' => 'boolean',
+        'comp.linked_external_object_id' => 'nullable|integer',
     ];
 
     public function render()
@@ -41,7 +43,17 @@ class ComponentUpdateModal extends Component
     public function save(){
         $this->comp->user = Auth::id();
 
+        if($this->comp->linked_external_object_id == 'None' || !LinkedStatusComponent::query()->where('id', $this->comp->linked_external_object_id)->exists()){
+            $this->comp->linked_external_object_id = null;
+            $this->comp->linked_status_provider_id = null;
+        }
+
         $this->validate();
+
+        if ($this->comp->linked_external_object_id != null){
+            $this->comp->linked_status_provider_id = LinkedStatusComponent::query()->where('id', $this->comp->linked_external_object_id)->first()->linkedStatusProvider()->first()->id;
+        }
+
         $this->comp->save();
 
         ActionLog::dispatch(array(
