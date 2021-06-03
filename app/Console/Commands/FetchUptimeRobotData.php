@@ -52,7 +52,6 @@ class FetchUptimeRobotData extends Command
                 Log::error('[UPTIMEROBOT_IMPORT] API Call fails:', $urdata['error']);
                 return 1;
             }
-            // dd($urdata);
 
             $urtable = (new UptimeRobotMonitor())->getTable();
             DB::table($urtable)->update([
