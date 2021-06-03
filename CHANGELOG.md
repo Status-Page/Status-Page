@@ -2,6 +2,74 @@
 ## [Unreleased]
 
 
+<a name="v1.8.0"></a>
+## [v1.8.0] - 2021-06-03
+### Bug Fixes
+- **AdminMetrics:** Changing collapse wont fail anymore, added missing validation (Closes: [#38](https://github.com/Status-Page/Status-Page/issues/38)) ([3835814](https://github.com/Status-Page/Status-Page/commit/3835814341b792810e0682ed3c32d7a9923609f7))
+- **ComponentsAPI:** Description can be null ([bb37f77](https://github.com/Status-Page/Status-Page/commit/bb37f771de311cdd2c7aa9f0a9c95eb245f2d188))
+- **HomeMetrics:** Fix values ([d5c9808](https://github.com/Status-Page/Status-Page/commit/d5c9808f2530ea4a858e1478976d1d510657ad1a))
+- **MetricPoints:** Add missing orderBy ([62ad90f](https://github.com/Status-Page/Status-Page/commit/62ad90f5c46d6df4dc38fba946d5066bd55a23fa))
+- **Metrics:** Faster Loading, no Caching (Closes: [#37](https://github.com/Status-Page/Status-Page/issues/37)) ([274a00e](https://github.com/Status-Page/Status-Page/commit/274a00e5816dffec267c6b6633dcf148d219bac2))
+- **Version:** Version now gets fetched from GitHub ([4a27aa4](https://github.com/Status-Page/Status-Page/commit/4a27aa4e3fbeb0b6ac9d54d047be5eeadb6b4164))
+
+### Build
+- **deps:** bump ts-node from 9.1.1 to 10.0.0 ([#62](https://github.com/Status-Page/Status-Page/issues/62)) ([4a6b021](https://github.com/Status-Page/Status-Page/commit/4a6b021fa39652ec588dd4eff84b1d659a3dcac2))
+- **deps:** bump doctrine/dbal from 3.0.0 to 3.1.0 ([#42](https://github.com/Status-Page/Status-Page/issues/42)) ([90a5516](https://github.com/Status-Page/Status-Page/commit/90a5516f8b7a2971d5485ca0bffedb1d8c6b2449))
+- **deps:** bump typescript from 4.2.4 to 4.3.2 ([#68](https://github.com/Status-Page/Status-Page/issues/68)) ([f7ca3ec](https://github.com/Status-Page/Status-Page/commit/f7ca3ec51ec955183387b4354627b09a97b2993b))
+- **deps:** bump symfony/process from 5.2.7 to 5.3.0 ([#67](https://github.com/Status-Page/Status-Page/issues/67)) ([89f5297](https://github.com/Status-Page/Status-Page/commit/89f5297bcdfbbc5338a34c4a851540d40a71b621))
+- **deps:** bump symfony/process from 5.2.4 to 5.2.7 ([#53](https://github.com/Status-Page/Status-Page/issues/53)) ([9d2432f](https://github.com/Status-Page/Status-Page/commit/9d2432fd57bb6543010549829921e0927662729c))
+- **deps:** bump configcat/configcat-client from 5.2.0 to 5.2.1 ([#66](https://github.com/Status-Page/Status-Page/issues/66)) ([64baa58](https://github.com/Status-Page/Status-Page/commit/64baa582463e2f4473c166deb132d1b6f4c83a6b))
+- **deps:** bump laravel/framework from 8.37.0 to 8.44.0 ([#65](https://github.com/Status-Page/Status-Page/issues/65)) ([998062f](https://github.com/Status-Page/Status-Page/commit/998062fa40a7e83968c4d594df8b25778253d70f))
+- **deps:** bump laravel/framework from 8.36.2 to 8.37.0 ([#41](https://github.com/Status-Page/Status-Page/issues/41)) ([b6a84a0](https://github.com/Status-Page/Status-Page/commit/b6a84a0d6045c16e3878810768122c91854f755d))
+- **deps-dev:** bump postcss-import from 14.0.1 to 14.0.2 ([#57](https://github.com/Status-Page/Status-Page/issues/57)) ([9473fe4](https://github.com/Status-Page/Status-Page/commit/9473fe4f843fabac03566b14881a560e740eb405))
+- **deps-dev:** bump [@tailwindcss](https://github.com/tailwindcss)/typography from 0.4.0 to 0.4.1 ([#63](https://github.com/Status-Page/Status-Page/issues/63)) ([f68f9d8](https://github.com/Status-Page/Status-Page/commit/f68f9d87d31fe904a7642714b852963e3f8e1582))
+- **deps-dev:** bump laravel-mix from 6.0.18 to 6.0.19 ([#55](https://github.com/Status-Page/Status-Page/issues/55)) ([6c7c937](https://github.com/Status-Page/Status-Page/commit/6c7c937258e207beaac1173fef90def0dabc33b5))
+- **deps-dev:** bump postcss from 8.2.13 to 8.2.14 ([#54](https://github.com/Status-Page/Status-Page/issues/54)) ([17a890c](https://github.com/Status-Page/Status-Page/commit/17a890c09617588f44d85751cb932a4c8dad6b3c))
+- **deps-dev:** bump postcss from 8.2.14 to 8.3.0 ([#61](https://github.com/Status-Page/Status-Page/issues/61)) ([d90d0ad](https://github.com/Status-Page/Status-Page/commit/d90d0ad1ce1c1ffe3df98d0d06b9c1dd0119cdb2))
+- **deps-dev:** bump laravel-mix from 6.0.16 to 6.0.18 ([#45](https://github.com/Status-Page/Status-Page/issues/45)) ([7c28aec](https://github.com/Status-Page/Status-Page/commit/7c28aec5123ef4b1cc3ace504fcef5fece29b13f))
+- **deps-dev:** bump tailwindcss from 2.1.1 to 2.1.2 ([#47](https://github.com/Status-Page/Status-Page/issues/47)) ([f5d6ae0](https://github.com/Status-Page/Status-Page/commit/f5d6ae07ef17ebfa91cdd84a9875d71e21d279d6))
+- **deps-dev:** bump tailwindcss from 2.1.2 to 2.1.3 ([#69](https://github.com/Status-Page/Status-Page/issues/69)) ([300debe](https://github.com/Status-Page/Status-Page/commit/300debe008038103fb05df9ab90a210d53a76ac3))
+- **deps-dev:** bump postcss from 8.2.10 to 8.2.13 ([#48](https://github.com/Status-Page/Status-Page/issues/48)) ([6b81be5](https://github.com/Status-Page/Status-Page/commit/6b81be5054784e5382ace82a90c42eb8e988dd38))
+- **deps-dev:** bump autoprefixer from 10.2.5 to 10.2.6 ([#70](https://github.com/Status-Page/Status-Page/issues/70)) ([b0ea194](https://github.com/Status-Page/Status-Page/commit/b0ea1948760dc697ca8e16bb66054a3a50217e08))
+
+### Code Update
+- **Settings:** Remove metrics_cache from Settings ([5040037](https://github.com/Status-Page/Status-Page/commit/504003729ca4fefb1f760feb8eb6cd6f60b5e50d))
+
+### Features
+- **LinkedPages:** Pre-Release of the Linked Status Feature ([c2f5929](https://github.com/Status-Page/Status-Page/commit/c2f5929fdc4d9efa24e1c51d5ef341e51301f840))
+
+
+<a name="v1.7.6"></a>
+## [v1.7.6] - 2021-04-30
+### Build
+- **deps:** bump laravel/framework from 8.37.0 to 8.40.0 ([#51](https://github.com/Status-Page/Status-Page/issues/51)) ([802c5c2](https://github.com/Status-Page/Status-Page/commit/802c5c2225dcd019188c304dae3312672f3fbc1b))
+
+
+<a name="v1.7.5"></a>
+## [v1.7.5] - 2021-04-16
+### Bug Fixes
+- **ComponentsAPI:** Description can be null ([346ae9d](https://github.com/Status-Page/Status-Page/commit/346ae9dce9159469ddbdf9001aae8548ef66397e))
+- **HomeMetrics:** Fix values ([b5bc418](https://github.com/Status-Page/Status-Page/commit/b5bc418411cbb574434f034a20f48494de08e322))
+- **MetricPoints:** Add missing orderBy ([ea1f665](https://github.com/Status-Page/Status-Page/commit/ea1f665eaec351916e2d7a367fbe03b1c11b632c))
+
+### Build
+- **deps:** bump laravel/framework from 8.36.2 to 8.37.0 ([#41](https://github.com/Status-Page/Status-Page/issues/41)) ([53ae40f](https://github.com/Status-Page/Status-Page/commit/53ae40ff9c877d15f173e626a58c37653d83a1b9))
+
+### Code Update
+- **Settings:** Remove metrics_cache from Settings ([0e4ac79](https://github.com/Status-Page/Status-Page/commit/0e4ac795a85cfc0026655ff8ecc4bf1c2f7ffd3b))
+
+
+<a name="v1.7.4"></a>
+## [v1.7.4] - 2021-04-12
+### Bug Fixes
+- **AdminMetrics:** Changing collapse wont fail anymore, added missing validation (Closes: [#38](https://github.com/Status-Page/Status-Page/issues/38)) ([01179ad](https://github.com/Status-Page/Status-Page/commit/01179ad0baf733b4bee79e3bf2e101fe32ea2aa1))
+- **Metrics:** Faster Loading, no Caching (Closes: [#37](https://github.com/Status-Page/Status-Page/issues/37)) ([79604d9](https://github.com/Status-Page/Status-Page/commit/79604d9bdd7175550c344d09343980583796fae7))
+
+### Build
+- **deps-dev:** bump nunomaduro/collision from 5.3.0 to 5.4.0 ([#35](https://github.com/Status-Page/Status-Page/issues/35)) ([88c235f](https://github.com/Status-Page/Status-Page/commit/88c235f340bb6ce77f76e697ed2be36eae8f20f8))
+- **deps-dev:** bump postcss from 8.2.9 to 8.2.10 ([#36](https://github.com/Status-Page/Status-Page/issues/36)) ([c3f1b32](https://github.com/Status-Page/Status-Page/commit/c3f1b32dd47cbd6d02c0688d6564eb46cbfc306a))
+
+
 <a name="v1.7.3"></a>
 ## [v1.7.3] - 2021-04-12
 ### Code Update
@@ -295,13 +363,17 @@
 <a name="v1.0.1"></a>
 ## [v1.0.1] - 2021-02-21
 
-<a name="v1.0"></a>
-## [v1.0] - 2021-02-21
-
 <a name="v1.0.0"></a>
-## v1.0.0 - 2021-02-21
+## [v1.0.0] - 2021-02-21
 
-[Unreleased]: https://github.com/Status-Page/Status-Page/compare/v1.7.3...HEAD
+<a name="v1.0"></a>
+## v1.0 - 2021-02-21
+
+[Unreleased]: https://github.com/Status-Page/Status-Page/compare/v1.8.0...HEAD
+[v1.8.0]: https://github.com/Status-Page/Status-Page/compare/v1.7.6...v1.8.0
+[v1.7.6]: https://github.com/Status-Page/Status-Page/compare/v1.7.5...v1.7.6
+[v1.7.5]: https://github.com/Status-Page/Status-Page/compare/v1.7.4...v1.7.5
+[v1.7.4]: https://github.com/Status-Page/Status-Page/compare/v1.7.3...v1.7.4
 [v1.7.3]: https://github.com/Status-Page/Status-Page/compare/v1.7.2...v1.7.3
 [v1.7.2]: https://github.com/Status-Page/Status-Page/compare/v1.7.1...v1.7.2
 [v1.7.1]: https://github.com/Status-Page/Status-Page/compare/v1.7.0...v1.7.1
@@ -341,5 +413,5 @@
 [v1.1.1]: https://github.com/Status-Page/Status-Page/compare/v1.1.0...v1.1.1
 [v1.1.0]: https://github.com/Status-Page/Status-Page/compare/v1.0.2...v1.1.0
 [v1.0.2]: https://github.com/Status-Page/Status-Page/compare/v1.0.1...v1.0.2
-[v1.0.1]: https://github.com/Status-Page/Status-Page/compare/v1.0...v1.0.1
-[v1.0]: https://github.com/Status-Page/Status-Page/compare/v1.0.0...v1.0
+[v1.0.1]: https://github.com/Status-Page/Status-Page/compare/v1.0.0...v1.0.1
+[v1.0.0]: https://github.com/Status-Page/Status-Page/compare/v1.0...v1.0.0
