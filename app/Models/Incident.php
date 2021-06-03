@@ -178,4 +178,8 @@ class Incident extends Model
         return $this->belongsToMany(Component::class, 'incident_component');
     }
 
+    public function linkedStatusProviders(){
+        return $this->belongsTo(LinkedStatusProvider::class)->withDefault();
+    }
+
 }

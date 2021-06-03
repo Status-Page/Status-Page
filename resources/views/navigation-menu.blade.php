@@ -183,6 +183,18 @@
 
                                     <div class="border-t border-gray-100 dark:border-discordBlack"></div>
                                 @endif
+
+                                    <div class="block px-4 py-2 text-xs text-gray-400">
+                                        {{ __('Plugins - External Status Providers') }}
+                                    </div>
+
+                                @can('read_settings')
+                                    <x-jet-dropdown-link href="{{ route('dashboard.admin.plugins.linked_status') }}">
+                                        {{ __('linked_status.title') }}
+                                    </x-jet-dropdown-link>
+                                @endcan
+
+                                <div class="border-t border-gray-100 dark:border-discordBlack"></div>
                             @endhasanyrole
 
                             <!-- Authentication -->
@@ -314,6 +326,18 @@
 
                         <div class="border-t border-gray-100 dark:border-discordBlack"></div>
                     @endif
+
+                    <div class="block px-4 py-2 text-xs text-gray-400">
+                        {{ __('Plugins - External Status Providers') }}
+                    </div>
+
+                    @can('read_settings')
+                        <x-jet-responsive-nav-link href="{{ route('dashboard.admin.plugins.linked_status') }}" :active="request()->routeIs('dashboard.admin.plugins.linked_status')">
+                            {{ __('linked_status.title') }}
+                        </x-jet-responsive-nav-link>
+                    @endcan
+
+                    <div class="border-t border-gray-100 dark:border-discordBlack"></div>
                 @endhasanyrole
 
                 <!-- Authentication -->

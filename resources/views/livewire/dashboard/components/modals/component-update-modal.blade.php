@@ -46,9 +46,22 @@
                         </select>
                         @error('comp.status_id') <span class="text-red-500">{{ $message }}</span> @enderror
                     </div>
-                @else
-
                 @endif
+
+                <div class="col-span-6 sm:col-span-4 mb-4">
+                    <x-jet-label for="linked_component" class="text-lg" value="{{ __('Linked External Component') }}" />
+                    <select id="linked_component" wire:model="comp.linked_external_object_id" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md dark:bg-discordDark dark:border-discordBlack">
+                        <option value="None">None</option>
+                        @foreach(\App\Models\LinkedStatusProvider::all() as $provider)
+                            <optgroup label="{{ $provider->domain }}">
+                                @foreach($provider->linkedStatusComponents()->get() as $component)
+                                    <option value="{{ $component->id }}">{{ $component->getCombinedNames() }}</option>
+                                @endforeach
+                            </optgroup>
+                        @endforeach
+                    </select>
+                    <x-jet-input-error for="comp.linked_external_object_id" class="mt-2" />
+                </div>
 
                 <div class="col-span-6 sm:col-span-4 mb-4">
                     <x-jet-label for="order" class="text-lg" value="{{ __('Order') }}" />

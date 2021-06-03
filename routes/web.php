@@ -7,6 +7,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Livewire\Dashboard\Administration\AppSettings;
+use App\Http\Livewire\Dashboard\Administration\Plugins\LinkedStatus\ExternalPages;
 use App\Http\Livewire\Dashboard\Administration\Plugins\UptimeRobot\Monitors;
 use App\Http\Livewire\Dashboard\Administration\Users;
 use App\Http\Livewire\Dashboard\Administration\ViewActionLog;
@@ -47,4 +48,5 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function (){
     Route::get('/dashboard/admin/users', Users::class)->middleware(['can:read_users'])->name('dashboard.admin.users');
     Route::get('/dashboard/admin/actionlog', ViewActionLog::class)->middleware(['can:read_actionlog'])->name('dashboard.admin.actionlog');
     Route::get('/dashboard/admin/plugins/uptimerobot', Monitors::class)->middleware(['can:read_settings'])->name('dashboard.admin.plugins.uptimerobot');
+    Route::get('/dashboard/admin/plugins/linked_status', ExternalPages::class)->middleware(['can:read_settings'])->name('dashboard.admin.plugins.linked_status');
 });
