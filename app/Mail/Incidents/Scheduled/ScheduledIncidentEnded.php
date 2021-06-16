@@ -21,22 +21,15 @@ class ScheduledIncidentEnded extends Mailable implements ShouldQueue
     public Incident $incident;
 
     /**
-     * @var $updates IncidentUpdate[]
-     */
-    public $updates;
-
-    /**
      * Create a new message instance.
      *
      * @param Incident $incident
-     * @param IncidentUpdate[] $updates
      */
-    public function __construct($incident, $updates)
+    public function __construct($incident)
     {
         $this->incident = $incident;
-        $this->updates = $updates;
 
-        $this->subject = 'Scheduled Maintenance End: '.$incident->title;
+        $this->subject = 'Scheduled Maintenance Ended: '.$incident->title;
     }
 
     /**
@@ -46,7 +39,6 @@ class ScheduledIncidentEnded extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        //return $this->view('mail.incident-detail');
         return $this->markdown('vendor.notifications.email', [
             'greeting' => 'Hello '.$this->to[0]['name'].',',
             'introLines' => [
@@ -54,8 +46,8 @@ class ScheduledIncidentEnded extends Mailable implements ShouldQueue
                 'Your scheduled Maintenance '.$this->incident->title.' has ended now.',
             ],
             'actionText' => 'Open Dashboard',
-            'actionUrl' => route('dashboard.incidents.past'),
-            'displayableActionUrl' => route('dashboard.incidents.past'),
+            'actionUrl' => route('dashboard.maintenances.past'),
+            'displayableActionUrl' => route('dashboard.maintenances.past'),
             'outroLines' => [
                 ''
             ],

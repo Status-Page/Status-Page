@@ -8,6 +8,7 @@
 namespace App\Models;
 
 use App\Events\ActionLog;
+use App\Events\Incidents\IncidentUpdated;
 use App\Mail\Incidents\Scheduled\ScheduledIncidentEnded;
 use App\Mail\Incidents\Scheduled\ScheduledIncidentStarted;
 use Auth;
@@ -19,6 +20,10 @@ use Illuminate\Support\Facades\Mail;
 class Incident extends Model
 {
     use HasFactory;
+
+    protected $dispatchesEvents = [
+        'created' => IncidentUpdated::class,
+    ];
 
     public static function checkMaintenances(){
         /**
@@ -54,8 +59,7 @@ class Incident extends Model
                     'message' => 'Maintenance '.$maintenance->title.' (ID: '.$maintenance->id.')',
                 ));
 
-                $updates = $maintenance->incidentUpdates()->get();
-                Mail::to(User::query()->where('id', '=', $maintenance->user)->get())->queue(new ScheduledIncidentStarted($maintenance, $updates));
+                Mail::to($maintenance->getReporter())->send(new ScheduledIncidentStarted($maintenance));
             }
         }
 
@@ -102,9 +106,7 @@ class Incident extends Model
                     'type' => 2,
                     'message' => 'Maintenance '.$maintenance->title.' (ID: '.$maintenance->id.')',
                 ));
-
-                $updates = $maintenance->incidentUpdates()->get();
-                Mail::to(User::query()->where('id', '=', $maintenance->user)->get())->queue(new ScheduledIncidentEnded($maintenance, $updates));
+                Mail::to($maintenance->getReporter())->send(new ScheduledIncidentEnded($maintenance));
             }
         }
 
@@ -122,7 +124,7 @@ class Incident extends Model
 
     public function getImpactColor(){
         switch ($this->impact){
-            case 0:
+            default:
                 return 'black';
             case 1:
                 return 'yellow-400';
@@ -132,6 +134,21 @@ class Incident extends Model
                 return 'red-500';
             case 4:
                 return 'blue-500';
+        }
+    }
+
+    public function getImpactText(){
+        switch ($this->impact){
+            default:
+                return 'None';
+            case 1:
+                return 'Minor';
+            case 2:
+                return 'Major';
+            case 3:
+                return 'Critical';
+            case 4:
+                return 'Maintenance';
         }
     }
 

@@ -7,12 +7,17 @@
 
 namespace App\Models;
 
+use App\Events\Incidents\IncidentUpdateCreated;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class IncidentUpdate extends Model
 {
     use HasFactory;
+
+    protected $dispatchesEvents = [
+        'created' => IncidentUpdateCreated::class,
+    ];
 
     protected $fillable = [
         'incident_id'

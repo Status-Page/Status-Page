@@ -24,6 +24,7 @@ return [
     'footer_showDashboardLink' => 'Show Link to Dashboard in the Footer',
     'incidents_pastIncidentDays' => 'Incident Backlog on the Mainpage',
     'uptimerobot_key' => 'Uptime Robot Read Only API Key',
-    'external_cron' => 'Allow schedule:run command externally'
+    'external_cron' => 'Allow schedule:run command externally',
+    'subscriber_signup' => 'Allow users to subscribe via E-Mail'
 
 ];

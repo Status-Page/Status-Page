@@ -22,30 +22,37 @@
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
     </head>
     <body class="bg-gray-100 dark:bg-bodyBG font-sans antialiased">
-        <x-notification />
-        @if(config('app.env') == 'local' || config('app.env') == 'staging')
-            <div class="bg-red-600">
-                <div class="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8">
-                    <div class="flex items-center justify-between flex-wrap">
-                        <div class="w-0 flex-1 flex items-center">
-                            <p class="ml-3 font-medium text-white truncate">
+        <div class="flex flex-col min-h-screen">
+            <div class="flex-grow">
+                <x-notification />
+                @if(config('app.env') == 'local' || config('app.env') == 'staging')
+                    <div class="bg-red-600">
+                        <div class="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8">
+                            <div class="flex items-center justify-between flex-wrap">
+                                <div class="w-0 flex-1 flex items-center">
+                                    <p class="ml-3 font-medium text-white truncate">
                             <span class="md:hidden">
                                 Status-Page Staging
                             </span>
-                                <span class="hidden md:inline">
+                                        <span class="hidden md:inline">
                                     This is a {{ config('app.env') }} version of the Statuspage.
                                 </span>
-                            </p>
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                @endif
+                <div class="font-sans text-gray-900 dark:text-gray-100 antialiased">
+                    {{ $slot }}
                 </div>
             </div>
-        @endif
-        <div class="font-sans text-gray-900 dark:text-gray-100 antialiased">
-            {{ $slot }}
+            <div>
+                @include('global.footer')
+            </div>
         </div>
-        @include('global.footer')
         @livewireScripts
+        <script src="{{ mix('js/misc.js') }}" defer></script>
         <script>
             tippy('button', {
                 content:(reference)=>reference.getAttribute('data-title'),

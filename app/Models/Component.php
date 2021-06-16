@@ -8,6 +8,7 @@
 namespace App\Models;
 
 use App\Events\ComponentDeleting;
+use App\Events\Components\ComponentUpdated;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,6 +18,7 @@ class Component extends Model
     use HasFactory;
 
     protected $dispatchesEvents = [
+        'updated' => ComponentUpdated::class,
         'deleting' => ComponentDeleting::class,
     ];
 
@@ -38,5 +40,9 @@ class Component extends Model
 
     public function linkedStatusProviders(){
         return $this->belongsTo(LinkedStatusProvider::class)->withDefault();
+    }
+
+    public function subscribers(){
+        return $this->belongsToMany(Subscriber::class);
     }
 }

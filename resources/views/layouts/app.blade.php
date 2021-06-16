@@ -21,87 +21,93 @@
         <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
     </head>
     <body class="font-sans antialiased dark:bg-bodyBG">
-        <x-notification />
-        @if(config('app.env') == 'local' || config('app.env') == 'staging')
-            <div class="bg-red-600">
-                <div class="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8">
-                    <div class="flex items-center justify-between flex-wrap">
-                        <div class="w-0 flex-1 flex items-center">
-                            <p class="ml-3 font-medium text-white truncate">
+        <div class="flex flex-col min-h-screen">
+            <div class="flex-grow">
+                <x-notification />
+                @if(config('app.env') == 'local' || config('app.env') == 'staging')
+                    <div class="bg-red-600">
+                        <div class="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8">
+                            <div class="flex items-center justify-between flex-wrap">
+                                <div class="w-0 flex-1 flex items-center">
+                                    <p class="ml-3 font-medium text-white truncate">
                                 <span class="md:hidden">
                                     Status-Page {{ config('app.env') }}
                                 </span>
-                                <span class="hidden md:inline">
+                                        <span class="hidden md:inline">
                                     This is a {{ config('app.env') }} version of the Statuspage.<br>
                                     Set APP_ENV in '.env' to 'production', if you want to suppress this message.<br>
                                     Run 'php artisan config:cache' after changing this variable.
                                 </span>
-                            </p>
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        @endif
-        @if(config('app.debug') == true)
-            <div class="bg-red-600">
-                <div class="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8">
-                    <div class="flex items-center justify-between flex-wrap">
-                        <div class="w-0 flex-1 flex items-center">
-                            <p class="ml-3 font-medium text-white truncate">
+                @endif
+                @if(config('app.debug') == true)
+                    <div class="bg-red-600">
+                        <div class="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8">
+                            <div class="flex items-center justify-between flex-wrap">
+                                <div class="w-0 flex-1 flex items-center">
+                                    <p class="ml-3 font-medium text-white truncate">
                                 <span class="md:hidden">
                                     Debugging is enabled!
                                 </span>
-                                <span class="hidden md:inline">
+                                        <span class="hidden md:inline">
                                     Debugging is enabled! You should deactivate debugging, as you could leak confidential information about your installation.<br>
                                     Set APP_DEBUG in '.env' to 'false', if you want to suppress this message.<br>
                                     Run 'php artisan config:cache' after changing this variable.
                                 </span>
-                            </p>
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        @endif
-        @if(!\App\Statuspage\Version::getLatestVersion()->meta->on_latest)
-            <div class="bg-red-600">
-                <div class="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8">
-                    <div class="flex items-center justify-between flex-wrap">
-                        <div class="w-0 flex-1 flex items-center">
-                            <p class="ml-3 font-medium text-white truncate">
+                @endif
+                @if(!\App\Statuspage\Version::getLatestVersion()->meta->on_latest)
+                    <div class="bg-red-600">
+                        <div class="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8">
+                            <div class="flex items-center justify-between flex-wrap">
+                                <div class="w-0 flex-1 flex items-center">
+                                    <p class="ml-3 font-medium text-white truncate">
                                 <span class="md:hidden">
                                     Update available!
                                 </span>
-                                <span class="hidden md:inline">
+                                        <span class="hidden md:inline">
                                     There is an Update available!<br>
                                     New Version: {{ \App\Statuspage\Version::getLatestVersion()->meta->git->last_tag }}<br>
                                     Current Version: {{ \App\Statuspage\Version::getLatestVersion()->meta->git->tag }}
                                 </span>
-                            </p>
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                @endif
+                <x-jet-banner />
+
+                <div class="min-h-screen bg-gray-100 dark:bg-bodyBG dark:text-white">
+                @livewire('navigation-menu')
+
+                <!-- Page Heading -->
+                    @if (isset($header))
+                        <header class="bg-white shadow dark:bg-discordDark dark:text-white">
+                            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                                {{ $header }}
+                            </div>
+                        </header>
+                @endif
+
+                <!-- Page Content -->
+                    <main>
+                        {{ $slot }}
+                    </main>
                 </div>
             </div>
-        @endif
-        <x-jet-banner />
-
-        <div class="min-h-screen bg-gray-100 dark:bg-bodyBG dark:text-white">
-            @livewire('navigation-menu')
-
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow dark:bg-discordDark dark:text-white">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
-
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+            <div>
+                @include('global.footer')
+            </div>
         </div>
-        @include('global.footer')
 
         @stack('modals')
 

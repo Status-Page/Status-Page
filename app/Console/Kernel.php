@@ -42,6 +42,8 @@ class Kernel extends ConsoleKernel
             }
         })->everyFifteenMinutes()->description('Checks for a newer version.');
         $schedule->command('status:fetchuptimerobot')->everyMinute()->description('Import Data from UR');
+        $schedule->command('status:fetchexternalstatus')->everyMinute()->description('Import Date from external Status Pages');
+        $schedule->command('status:checksubscribers')->everyFiveMinutes()->description('Checks if there are any expired Subscribers and deletes them');
     }
 
     /**

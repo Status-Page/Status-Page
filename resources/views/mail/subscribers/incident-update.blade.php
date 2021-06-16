@@ -16,6 +16,13 @@
 
 @endforeach
 
+{{-- Incident Updates --}}
+@isset($incidentUpdates)
+@foreach ($incidentUpdates as $update)
+**{{ $update->getUpdateType() }}** - {{ $update->text }}<br>
+@endforeach
+@endisset
+
 {{-- Action Button --}}
 @isset($actionText)
 <?php
