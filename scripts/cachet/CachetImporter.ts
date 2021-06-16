@@ -9,6 +9,7 @@ import Settings = require("./models/Settings");
 import ComponentGroup = require("./models/Cachet/ComponentGroup");
 import Component = require("./models/Cachet/Component");
 import Metric = require("./models/Cachet/Metric");
+import Subscriber = require("./models/Cachet/Subscriber");
 
 class CachetImporter {
     private spio: AxiosInstance;
@@ -39,6 +40,10 @@ class CachetImporter {
 
                     this.fetchMetrics().then(value => {
                         console.log('Successfully added all Metrics!')
+
+                        this.fetchSubscribers().then(value => {
+                            console.log('Successfully added all Subscribers!')
+                        })
                     })
                 })
                 break
@@ -54,6 +59,13 @@ class CachetImporter {
             case 2:
                 this.fetchMetrics().then(value => {
                     console.log('Successfully added all Metrics!')
+                })
+                break
+
+            // Subscribers
+            case 4:
+                this.fetchSubscribers().then(value => {
+                    console.log('Successfully added all Subscribers!')
                 })
                 break
         }
@@ -131,6 +143,32 @@ class CachetImporter {
                 suffix: metric.suffix,
                 visibility: metric.display_chart
             })).data.data
+        }catch (e) {
+            console.error(`Error: ${e.message}`)
+        }
+    }
+
+    private async fetchSubscribers() {
+        try{
+            console.log('Fetching Subscribers from Cachet')
+            const subscribers = (await this.spio.get<Array<Subscriber>>('/subscribers')).data
+
+            for (const subscriber of subscribers){
+                await this.addSubscriber(subscriber)
+            }
+        }catch (e) {
+            console.error(`Error: ${e.message}`)
+        }
+    }
+
+    private async addSubscriber(subscriber: Subscriber) {
+        try {
+            if(subscriber.verified_at != null){
+                const newSubscriber = (await this.sp.post('/subscribers', {
+                    email: subscriber.email,
+                    email_verified: true
+                })).data.data
+            }
         }catch (e) {
             console.error(`Error: ${e.message}`)
         }
