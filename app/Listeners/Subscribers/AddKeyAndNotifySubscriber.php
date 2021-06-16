@@ -30,7 +30,9 @@ class AddKeyAndNotifySubscriber
     public function handle(SubscriberAdded $event)
     {
         $subscriber = $event->subscriber;
-        $key = $subscriber->generateVerificationKey();
-        Mail::to($subscriber->email)->send(new VerifySubscriberEmail($subscriber, $key));
+        if(!$subscriber->verified_email){
+            $key = $subscriber->generateVerificationKey();
+            Mail::to($subscriber->email)->send(new VerifySubscriberEmail($subscriber, $key));
+        }
     }
 }
