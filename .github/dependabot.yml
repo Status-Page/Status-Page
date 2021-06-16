@@ -7,7 +7,7 @@ version: 2
 updates:
   - package-ecosystem: "composer"
     directory: "/"
-    target-branch: "development"
+    target-branch: "master"
     schedule:
       interval: "daily"
     assignees:
@@ -16,7 +16,7 @@ updates:
       - "herrtxbias"
   - package-ecosystem: "npm"
     directory: "/"
-    target-branch: "development"
+    target-branch: "master"
     schedule:
       interval: "daily"
     assignees:
