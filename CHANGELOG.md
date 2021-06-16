@@ -70,6 +70,31 @@
 - **deps-dev:** bump postcss from 8.2.9 to 8.2.10 ([#36](https://github.com/Status-Page/Status-Page/issues/36)) ([c3f1b32](https://github.com/Status-Page/Status-Page/commit/c3f1b32dd47cbd6d02c0688d6564eb46cbfc306a))
 
 
+<a name="v1.7.5"></a>
+## [v1.7.5] - 2021-04-16
+### Bug Fixes
+- **ComponentsAPI:** Description can be null ([346ae9d](https://github.com/Status-Page/Status-Page/commit/346ae9dce9159469ddbdf9001aae8548ef66397e))
+- **HomeMetrics:** Fix values ([b5bc418](https://github.com/Status-Page/Status-Page/commit/b5bc418411cbb574434f034a20f48494de08e322))
+- **MetricPoints:** Add missing orderBy ([ea1f665](https://github.com/Status-Page/Status-Page/commit/ea1f665eaec351916e2d7a367fbe03b1c11b632c))
+
+### Build
+- **deps:** bump laravel/framework from 8.36.2 to 8.37.0 ([#41](https://github.com/Status-Page/Status-Page/issues/41)) ([53ae40f](https://github.com/Status-Page/Status-Page/commit/53ae40ff9c877d15f173e626a58c37653d83a1b9))
+
+### Code Update
+- **Settings:** Remove metrics_cache from Settings ([0e4ac79](https://github.com/Status-Page/Status-Page/commit/0e4ac795a85cfc0026655ff8ecc4bf1c2f7ffd3b))
+
+
+<a name="v1.7.4"></a>
+## [v1.7.4] - 2021-04-12
+### Bug Fixes
+- **AdminMetrics:** Changing collapse wont fail anymore, added missing validation (Closes: [#38](https://github.com/Status-Page/Status-Page/issues/38)) ([01179ad](https://github.com/Status-Page/Status-Page/commit/01179ad0baf733b4bee79e3bf2e101fe32ea2aa1))
+- **Metrics:** Faster Loading, no Caching (Closes: [#37](https://github.com/Status-Page/Status-Page/issues/37)) ([79604d9](https://github.com/Status-Page/Status-Page/commit/79604d9bdd7175550c344d09343980583796fae7))
+
+### Build
+- **deps-dev:** bump nunomaduro/collision from 5.3.0 to 5.4.0 ([#35](https://github.com/Status-Page/Status-Page/issues/35)) ([88c235f](https://github.com/Status-Page/Status-Page/commit/88c235f340bb6ce77f76e697ed2be36eae8f20f8))
+- **deps-dev:** bump postcss from 8.2.9 to 8.2.10 ([#36](https://github.com/Status-Page/Status-Page/issues/36)) ([c3f1b32](https://github.com/Status-Page/Status-Page/commit/c3f1b32dd47cbd6d02c0688d6564eb46cbfc306a))
+
+
 <a name="v1.7.3"></a>
 ## [v1.7.3] - 2021-04-12
 ### Code Update
@@ -372,6 +397,12 @@
 [Unreleased]: https://github.com/Status-Page/Status-Page/compare/v1.8.0...HEAD
 [v1.8.0]: https://github.com/Status-Page/Status-Page/compare/v1.7.6...v1.8.0
 [v1.7.6]: https://github.com/Status-Page/Status-Page/compare/v1.7.5...v1.7.6
+[v1.7.5]: https://github.com/Status-Page/Status-Page/compare/v1.7.4...v1.7.5
+[v1.7.4]: https://github.com/Status-Page/Status-Page/compare/v1.7.3...v1.7.4
+<a name="v1.0.0"></a>
+## v1.0.0 - 2021-02-21
+
+[Unreleased]: https://github.com/Status-Page/Status-Page/compare/v1.7.5...HEAD
 [v1.7.5]: https://github.com/Status-Page/Status-Page/compare/v1.7.4...v1.7.5
 [v1.7.4]: https://github.com/Status-Page/Status-Page/compare/v1.7.3...v1.7.4
 [v1.7.3]: https://github.com/Status-Page/Status-Page/compare/v1.7.2...v1.7.3
