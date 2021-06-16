@@ -1,0 +1,73 @@
+<div>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-white leading-tight">
+            {{ __('subscribers.title') }}
+        </h2>
+    </x-slot>
+
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex-col space-y-4">
+            <div class="flex justify-between">
+                <div class="w-1/3 flex space-x-2">
+                    <x-input-dark type="text" wire:model="search" placeholder="Search Subscribers..." class="w-full"></x-input-dark>
+                </div>
+
+                <div class="space-x-2 flex items-center">
+                    <x-input.group borderless paddingless for="perPage" label="Per Page">
+                        <x-input.select wire:model="perPage" id="perPage" class="rounded-md">
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </x-input.select>
+                    </x-input.group>
+
+                    @can('add_subscribers')
+                        @livewire('dashboard.administration.subscribers.subscriber-add-modal')
+                    @endcan
+                </div>
+            </div>
+            <x-table>
+                <x-slot name="head">
+                    <x-table.heading>{{ __('subscribers.table.head.id') }}</x-table.heading>
+                    <x-table.heading>{{ __('subscribers.table.head.email') }}</x-table.heading>
+                    <x-table.heading>{{ __('subscribers.table.head.email_verified') }}</x-table.heading>
+                    <x-table.heading>{{ __('subscribers.table.head.email_verified_at') }}</x-table.heading>
+                    <x-table.heading></x-table.heading>
+                </x-slot>
+                <x-slot name="body">
+                    @forelse($subscribers as $subscriber)
+                        <x-table.row wire:loading.class.delay="opacity-50">
+                            <x-table.cell>{{ $subscriber->id }}</x-table.cell>
+                            <x-table.cell>{{ $subscriber->email }}</x-table.cell>
+                            <x-table.cell>{{ $subscriber->email_verified ? 'True' : 'False' }}</x-table.cell>
+                            <x-table.cell>{{ $subscriber->email_verified_at }}</x-table.cell>
+                            <x-table.cell>
+                                <div class="space-x-2 flex items-center">
+                                    @can('update_subscribers')
+                                        <livewire:dashboard.administration.subscribers.subscriber-verification-modal :subscriber="$subscriber" :key="time().$subscriber->id" />
+                                    @endcan
+                                    @can('delete_subscribers')
+                                        <livewire:dashboard.administration.subscribers.subscriber-delete-modal :subscriber="$subscriber" :key="time().time().$subscriber->id" />
+                                    @endcan
+                                </div>
+                            </x-table.cell>
+                        </x-table.row>
+                    @empty
+                        <x-table.row>
+                            <x-table.cell colspan="6">
+                                <div class="flex justify-center items-center">
+                                    <span class="font-medium py-8 text-gray-400 text-xl">No results...</span>
+                                </div>
+                            </x-table.cell>
+                        </x-table.row>
+                    @endforelse
+                </x-slot>
+            </x-table>
+
+            <div>
+                {{ $subscribers->links() }}
+            </div>
+        </div>
+    </div>
+</div>

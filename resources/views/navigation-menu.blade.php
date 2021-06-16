@@ -162,6 +162,12 @@
                                     </x-jet-dropdown-link>
                                 @endcan
 
+                                @can('read_subscribers')
+                                    <x-jet-dropdown-link href="{{ route('dashboard.admin.subscribers') }}">
+                                        {{ __('Subscribers') }}
+                                    </x-jet-dropdown-link>
+                                @endcan
+
                                 @can('read_actionlog')
                                     <x-jet-dropdown-link href="{{ route('dashboard.admin.actionlog') }}">
                                         {{ __('Action Log') }}
@@ -302,6 +308,12 @@
                     @can('read_users')
                         <x-jet-responsive-nav-link href="{{ route('dashboard.admin.users') }}" :active="request()->routeIs('dashboard.admin.users')">
                             {{ __('Users') }}
+                        </x-jet-responsive-nav-link>
+                    @endcan
+
+                    @can('read_subscribers')
+                        <x-jet-responsive-nav-link href="{{ route('dashboard.admin.subscribers') }}" :active="request()->routeIs('dashboard.admin.subscribers')">
+                            {{ __('Subscribers') }}
                         </x-jet-responsive-nav-link>
                     @endcan
 
