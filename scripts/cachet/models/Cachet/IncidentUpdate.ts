@@ -4,18 +4,16 @@
  * Using / Editing this without my consent is not allowed.
  */
 
-class Incident {
+class IncidentUpdate {
     id: number
-    component_id: number
-    name: string
+    incident_id: number
     status: number
-    visible: number
     message: string
-    scheduled_at: string
+    user_id: number
     created_at: string
     updated_at: string
-    deleted_at: string
     human_status: string
+    permalink: string
 }
 
-export = Incident
+export = IncidentUpdate

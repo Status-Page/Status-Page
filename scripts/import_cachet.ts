@@ -57,7 +57,7 @@ rl.question('Cachet Domain (example: status.herrtxbias.net): ', answer => {
                 }
                 settings.sp.apiKey = answer
 
-                rl.question('Which data do you want to import? [0: All, 1: Components, 2: Metrics, 4: Subscribers] ', answer => {
+                rl.question('Which data do you want to import? [0: All, 1: Components, 2: Metrics, 3: Incidents, 4: Subscribers] ', answer => {
                     if(answer == ''){
                         console.error('No value provided. Restart the Script.')
                         return

@@ -10,6 +10,8 @@ import ComponentGroup = require("./models/Cachet/ComponentGroup");
 import Component = require("./models/Cachet/Component");
 import Metric = require("./models/Cachet/Metric");
 import Subscriber = require("./models/Cachet/Subscriber");
+import Incident = require("./models/Cachet/Incident");
+import IncidentUpdate = require("./models/Cachet/IncidentUpdate");
 
 class CachetImporter {
     private spio: AxiosInstance;
@@ -41,8 +43,12 @@ class CachetImporter {
                     this.fetchMetrics().then(value => {
                         console.log('Successfully added all Metrics!')
 
-                        this.fetchSubscribers().then(value => {
-                            console.log('Successfully added all Subscribers!')
+                        this.fetchIncidents().then(value => {
+                            console.log('Successfully added all Incidents!')
+
+                            this.fetchSubscribers().then(value => {
+                                console.log('Successfully added all Subscribers!')
+                            })
                         })
                     })
                 })
@@ -62,6 +68,13 @@ class CachetImporter {
                 })
                 break
 
+            // Incidents
+            case 3:
+                this.fetchIncidents().then(value => {
+                    console.log('Successfully added all Incidents!')
+                })
+                break
+
             // Subscribers
             case 4:
                 this.fetchSubscribers().then(value => {
@@ -74,7 +87,7 @@ class CachetImporter {
     private async fetchComponentGroups() {
         try{
             console.log(`Fetching Component Groups from Cachet`)
-            const componentGroups = (await this.spio.get<Array<ComponentGroup>>('/component-groups')).data
+            const componentGroups = (await this.spio.get<Array<ComponentGroup>>('/component-groups?per_page=100')).data
 
             for(const group of componentGroups){
                 await this.addComponentGroup(group)
@@ -126,7 +139,7 @@ class CachetImporter {
     private async fetchMetrics() {
         try{
             console.log(`Fetching Metrics from Cachet`)
-            const metrics = (await this.spio.get<Array<Metric>>('/metrics')).data
+            const metrics = (await this.spio.get<Array<Metric>>('/metrics?per_page=100')).data
 
             for(const metric of metrics){
                 await this.addMetric(metric)
@@ -148,10 +161,45 @@ class CachetImporter {
         }
     }
 
+    private async fetchIncidents() {
+        try{
+            console.log(`Fetching Incidents from Cachet`)
+            const models = (await this.spio.get<Array<Incident>>('/incidents?per_page=100')).data
+
+            for(const model of models){
+                const updates = (await this.spio.get<IncidentUpdate[]>(`/incidents/${model.id}/updates?per_page=100`)).data
+                await this.addIncident(model, updates)
+            }
+        }catch (e) {
+            console.error(`Error: ${e.message}`)
+        }
+    }
+
+    private async addIncident(model: Incident, updates: IncidentUpdate[]) {
+        try{
+            const newModel = (await this.sp.post(`/incidents`, {
+                title: model.name,
+                status: model.status,
+                impact: 1,
+                visibility: model.visible,
+                message: model.message,
+            })).data.data
+
+            for (const update of updates) {
+                const newUpdate = (await this.sp.post(`/incidents/${newModel.id}/updates`, {
+                    message: update.message,
+                    status: update.status,
+                })).data.data
+            }
+        }catch (e) {
+            console.error(`Error: ${e.message}`)
+        }
+    }
+
     private async fetchSubscribers() {
         try{
             console.log('Fetching Subscribers from Cachet')
-            const subscribers = (await this.spio.get<Array<Subscriber>>('/subscribers')).data
+            const subscribers = (await this.spio.get<Array<Subscriber>>('/subscribers?per_page=100')).data
 
             for (const subscriber of subscribers){
                 await this.addSubscriber(subscriber)
