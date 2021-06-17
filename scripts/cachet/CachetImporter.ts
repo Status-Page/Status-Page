@@ -87,7 +87,7 @@ class CachetImporter {
     private async fetchComponentGroups() {
         try{
             console.log(`Fetching Component Groups from Cachet`)
-            const componentGroups = (await this.spio.get<Array<ComponentGroup>>('/component-groups?per_page=100')).data
+            const componentGroups = (await this.spio.get('/components/groups?per_page=100')).data.data as ComponentGroup[]
 
             for(const group of componentGroups){
                 await this.addComponentGroup(group)
@@ -106,7 +106,7 @@ class CachetImporter {
                 collapse: group.collapsed == 0 ? 'expand_always' : 'expand_issue'
             })).data.data
 
-            const components = (await this.spio.get<Component[]>(`/components?group_id=${group.id}`)).data
+            const components = (await this.spio.get(`/components?group_id=${group.id}`)).data.data as Component[]
 
             for (const comp of components) {
                 try{
@@ -139,7 +139,7 @@ class CachetImporter {
     private async fetchMetrics() {
         try{
             console.log(`Fetching Metrics from Cachet`)
-            const metrics = (await this.spio.get<Array<Metric>>('/metrics?per_page=100')).data
+            const metrics = (await this.spio.get('/metrics?per_page=100')).data.data as Metric[]
 
             for(const metric of metrics){
                 await this.addMetric(metric)
@@ -164,10 +164,10 @@ class CachetImporter {
     private async fetchIncidents() {
         try{
             console.log(`Fetching Incidents from Cachet`)
-            const models = (await this.spio.get<Array<Incident>>('/incidents?per_page=100')).data
+            const models = (await this.spio.get('/incidents?per_page=100')).data.data as Incident[]
 
             for(const model of models){
-                const updates = (await this.spio.get<IncidentUpdate[]>(`/incidents/${model.id}/updates?per_page=100`)).data
+                const updates = (await this.spio.get(`/incidents/${model.id}/updates?per_page=100`)).data.data as IncidentUpdate[]
                 await this.addIncident(model, updates)
             }
         }catch (e) {
@@ -199,7 +199,7 @@ class CachetImporter {
     private async fetchSubscribers() {
         try{
             console.log('Fetching Subscribers from Cachet')
-            const subscribers = (await this.spio.get<Array<Subscriber>>('/subscribers?per_page=100')).data
+            const subscribers = (await this.spio.get('/subscribers?per_page=100')).data.data as Subscriber[]
 
             for (const subscriber of subscribers){
                 await this.addSubscriber(subscriber)
