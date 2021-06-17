@@ -2,6 +2,12 @@
 ## [Unreleased]
 
 
+<a name="v1.8.2"></a>
+## [v1.8.2] - 2021-06-17
+### Bug Fixes
+- **CachetImport:** 404s and not iterable data ([b7453e4](https://github.com/Status-Page/Status-Page/commit/b7453e4a7a580b47277729cb95fed192e088dfa8))
+
+
 <a name="v1.8.1"></a>
 ## [v1.8.1] - 2021-06-16
 ### Bug Fixes
@@ -375,13 +381,14 @@
 <a name="v1.0.1"></a>
 ## [v1.0.1] - 2021-02-21
 
-<a name="v1.0.0"></a>
-## [v1.0.0] - 2021-02-21
-
 <a name="v1.0"></a>
-## v1.0 - 2021-02-21
+## [v1.0] - 2021-02-21
 
-[Unreleased]: https://github.com/Status-Page/Status-Page/compare/v1.8.1...HEAD
+<a name="v1.0.0"></a>
+## v1.0.0 - 2021-02-21
+
+[Unreleased]: https://github.com/Status-Page/Status-Page/compare/v1.8.2...HEAD
+[v1.8.2]: https://github.com/Status-Page/Status-Page/compare/v1.8.1...v1.8.2
 [v1.8.1]: https://github.com/Status-Page/Status-Page/compare/v1.8.0...v1.8.1
 [v1.8.0]: https://github.com/Status-Page/Status-Page/compare/v1.7.6...v1.8.0
 [v1.7.6]: https://github.com/Status-Page/Status-Page/compare/v1.7.5...v1.7.6
@@ -426,5 +433,5 @@
 [v1.1.1]: https://github.com/Status-Page/Status-Page/compare/v1.1.0...v1.1.1
 [v1.1.0]: https://github.com/Status-Page/Status-Page/compare/v1.0.2...v1.1.0
 [v1.0.2]: https://github.com/Status-Page/Status-Page/compare/v1.0.1...v1.0.2
-[v1.0.1]: https://github.com/Status-Page/Status-Page/compare/v1.0.0...v1.0.1
-[v1.0.0]: https://github.com/Status-Page/Status-Page/compare/v1.0...v1.0.0
+[v1.0.1]: https://github.com/Status-Page/Status-Page/compare/v1.0...v1.0.1
+[v1.0]: https://github.com/Status-Page/Status-Page/compare/v1.0.0...v1.0
