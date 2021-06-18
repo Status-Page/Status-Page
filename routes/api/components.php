@@ -38,7 +38,7 @@ Route::post('/components', function (Request $request) {
 
         $component->name = $request->get('name');
         $component->link = $request->get('link');
-        $component->description = $request->get('description', '');
+        $component->description = $request->get('description', null);
         $component->group = $request->get('group');
         $component->visibility = $request->get('visibility', false);
         $component->status_id = $request->get('status_id', 1);
@@ -57,7 +57,7 @@ Route::post('/components', function (Request $request) {
         ], [
             'name' => 'required|string|min:3',
             'link' => 'nullable|url',
-            'description' => 'string|min:3',
+            'description' => 'nullable|string|min:3',
             'group' => 'required|integer|min:1',
             'visibility' => 'boolean',
             'status_id' => 'integer|min:1|max:6',
