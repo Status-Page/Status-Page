@@ -42,8 +42,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if(!config('statuspage.disable_ratelimiter'))
-            $this->configureRateLimiting();
+        $this->configureRateLimiting();
 
         $this->routes(function () {
             Route::prefix('api')
@@ -65,7 +64,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function configureRateLimiting()
     {
         RateLimiter::for('api', function (Request $request) {
-            return Limit::perMinute(60)->by(optional($request->user())->id ?: $request->ip());
+            return Limit::perMinute(config('statuspage.disable_ratelimiter') ? 999999 : 60)->by(optional($request->user())->id ?: $request->ip());
         });
     }
 }
