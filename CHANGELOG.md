@@ -2,6 +2,19 @@
 ## [Unreleased]
 
 
+<a name="v1.8.3"></a>
+## [v1.8.3] - 2021-06-18
+### Bug Fixes
+- **Installer:** Fix Role not Found ([e1b489e](https://github.com/Status-Page/Status-Page/commit/e1b489eac5b8edd7ff5d811c2936c03ee4d18e50))
+
+### Build
+- **deps:** bump typescript from 4.3.2 to 4.3.4 ([#90](https://github.com/Status-Page/Status-Page/issues/90)) ([ff9c805](https://github.com/Status-Page/Status-Page/commit/ff9c805b88a391d8cb00226eaf369e979df39636))
+- **deps:** bump symfony/process from 5.3.0 to 5.3.2 ([#89](https://github.com/Status-Page/Status-Page/issues/89)) ([343a9f0](https://github.com/Status-Page/Status-Page/commit/343a9f0f8b539d1a0195625149144fbd83f26121))
+- **deps-dev:** bump laravel-mix from 6.0.20 to 6.0.22 ([#88](https://github.com/Status-Page/Status-Page/issues/88)) ([374ffb0](https://github.com/Status-Page/Status-Page/commit/374ffb049f3abec1a5bd012a605f137eb2897e02))
+- **deps-dev:** bump tailwindcss from 2.1.4 to 2.2.0 ([#91](https://github.com/Status-Page/Status-Page/issues/91)) ([6aa76f1](https://github.com/Status-Page/Status-Page/commit/6aa76f1b661ca0393c5dadb6cf46fec29f24c9d1))
+- **deps-dev:** bump postcss from 8.3.4 to 8.3.5 ([#92](https://github.com/Status-Page/Status-Page/issues/92)) ([928dafc](https://github.com/Status-Page/Status-Page/commit/928dafcf74b1e487212a7dd768b30de4f65a104a))
+
+
 <a name="v1.8.2"></a>
 ## [v1.8.2] - 2021-06-17
 ### Bug Fixes
@@ -387,7 +400,8 @@
 <a name="v1.0.0"></a>
 ## v1.0.0 - 2021-02-21
 
-[Unreleased]: https://github.com/Status-Page/Status-Page/compare/v1.8.2...HEAD
+[Unreleased]: https://github.com/Status-Page/Status-Page/compare/v1.8.3...HEAD
+[v1.8.3]: https://github.com/Status-Page/Status-Page/compare/v1.8.2...v1.8.3
 [v1.8.2]: https://github.com/Status-Page/Status-Page/compare/v1.8.1...v1.8.2
 [v1.8.1]: https://github.com/Status-Page/Status-Page/compare/v1.8.0...v1.8.1
 [v1.8.0]: https://github.com/Status-Page/Status-Page/compare/v1.7.6...v1.8.0
