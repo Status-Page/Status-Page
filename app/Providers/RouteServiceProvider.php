@@ -42,7 +42,8 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->configureRateLimiting();
+        if(!config('statuspage.disable_ratelimiter'))
+            $this->configureRateLimiting();
 
         $this->routes(function () {
             Route::prefix('api')
