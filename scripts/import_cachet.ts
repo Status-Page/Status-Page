@@ -43,7 +43,7 @@ rl.question('Cachet Domain (example: status.herrtxbias.net): ', answer => {
         }
         settings.cachet.apiKey = answer
 
-        rl.question('Status-Page API URL: ', answer => {
+        rl.question('Status-Page Domain  (example: status.herrtxbias.me): ', answer => {
             if(answer == ''){
                 console.error('No value provided. Restart the Script.')
                 return

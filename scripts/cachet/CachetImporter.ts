@@ -28,7 +28,7 @@ class CachetImporter {
         })
 
         this.sp = axios.create({
-            baseURL: `${settings.sp.url}${settings.sp.url.endsWith('/') ? '' : '/'}`,
+            baseURL: `https://${settings.sp.url}/api/v1`,
             headers: {
                 'Authorization': `Bearer ${settings.sp.apiKey}`
             }
@@ -88,12 +88,15 @@ class CachetImporter {
         try{
             console.log(`Fetching Component Groups from Cachet`)
             const componentGroups = (await this.spio.get('/components/groups?per_page=100')).data.data as ComponentGroup[]
+            console.log(`Fetched ${componentGroups.length} Component Groups`)
 
             for(const group of componentGroups){
+                console.log(`\tAdding Group ${group.name}`)
                 await this.addComponentGroup(group)
             }
         }catch (e) {
             console.error(`Error: ${e.message}`)
+            console.error(JSON.stringify(e.response.data))
         }
     }
 
@@ -110,13 +113,16 @@ class CachetImporter {
 
             for (const comp of components) {
                 try{
+                    console.log(`\t\tAdding Component ${comp.name}`)
                     await this.addComponent(comp, componentGroup.id)
                 }catch (e) {
                     console.error(`Error: ${e.message}`)
+                    console.error(JSON.stringify(e.response.data))
                 }
             }
         }catch (e) {
             console.error(`Error: ${e.message}`)
+            console.error(JSON.stringify(e.response.data))
         }
     }
 
@@ -133,6 +139,7 @@ class CachetImporter {
             })).data.data
         }catch (e) {
             console.error(`Error: ${e.message}`)
+            console.error(JSON.stringify(e.response.data))
         }
     }
 
@@ -140,12 +147,15 @@ class CachetImporter {
         try{
             console.log(`Fetching Metrics from Cachet`)
             const metrics = (await this.spio.get('/metrics?per_page=100')).data.data as Metric[]
+            console.log(`Fetched ${metrics.length} Metrics`)
 
             for(const metric of metrics){
+                console.log(`\tAdding Metric ${metric.name}`)
                 await this.addMetric(metric)
             }
         }catch (e) {
             console.error(`Error: ${e.message}`)
+            console.error(JSON.stringify(e.response.data))
         }
     }
 
@@ -158,6 +168,7 @@ class CachetImporter {
             })).data.data
         }catch (e) {
             console.error(`Error: ${e.message}`)
+            console.error(JSON.stringify(e.response.data))
         }
     }
 
@@ -165,13 +176,16 @@ class CachetImporter {
         try{
             console.log(`Fetching Incidents from Cachet`)
             const models = (await this.spio.get('/incidents?per_page=100')).data.data as Incident[]
+            console.log(`Fetched ${models.length} Incidents`)
 
             for(const model of models){
+                console.log(`\tAdding Incident ${model.name}`)
                 const updates = (await this.spio.get(`/incidents/${model.id}/updates?per_page=100`)).data.data as IncidentUpdate[]
                 await this.addIncident(model, updates)
             }
         }catch (e) {
             console.error(`Error: ${e.message}`)
+            console.error(JSON.stringify(e.response.data))
         }
     }
 
@@ -179,20 +193,25 @@ class CachetImporter {
         try{
             const newModel = (await this.sp.post(`/incidents`, {
                 title: model.name,
-                status: model.status,
+                status: model.status-1,
                 impact: 1,
                 visibility: model.visible,
                 message: model.message,
+                created_at: model.created_at,
+                updated_at: model.updated_at,
             })).data.data
 
             for (const update of updates) {
                 const newUpdate = (await this.sp.post(`/incidents/${newModel.id}/updates`, {
                     message: update.message,
-                    status: update.status,
+                    status: update.status-1,
+                    created_at: update.created_at,
+                    updated_at: update.updated_at,
                 })).data.data
             }
         }catch (e) {
             console.error(`Error: ${e.message}`)
+            console.error(JSON.stringify(e.response.data))
         }
     }
 
@@ -200,12 +219,15 @@ class CachetImporter {
         try{
             console.log('Fetching Subscribers from Cachet')
             const subscribers = (await this.spio.get('/subscribers?per_page=100')).data.data as Subscriber[]
+            console.log(`Fetched ${subscribers.length} Subscribers`)
 
             for (const subscriber of subscribers){
+                console.log(`\tAdding Subscriber ${subscriber.email}`)
                 await this.addSubscriber(subscriber)
             }
         }catch (e) {
             console.error(`Error: ${e.message}`)
+            console.error(JSON.stringify(e.response.data))
         }
     }
 
@@ -219,6 +241,7 @@ class CachetImporter {
             }
         }catch (e) {
             console.error(`Error: ${e.message}`)
+            console.error(JSON.stringify(e.response.data))
         }
     }
 }
