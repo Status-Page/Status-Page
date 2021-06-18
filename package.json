@@ -26,6 +26,6 @@
         "lodash": "^4.17.21",
         "postcss": "^8.3.5",
         "postcss-import": "^14.0.2",
-        "tailwindcss": "^2.1.4"
+        "tailwindcss": "^2.2.0"
     }
 }
