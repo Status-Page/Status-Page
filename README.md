@@ -117,6 +117,7 @@ stopwaitsecs=3600
 ### Requirements
 - Node.JS
 
+**Note:** You should enable the [Migration Mode](https://github.com/Status-Page/Status-Page/blob/bdeae330a40c88c33d85cd20063cca4a01f66730/.env.example#L15)!
 
 ### Import from statuspage.io
 You can import your components from statuspage.io, with a simple script.
