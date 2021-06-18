@@ -16,6 +16,11 @@ class AddSubscriberPermissions extends Migration
      */
     public function up()
     {
+        if(Role::query()->where('id', '=', 2)->count() == 0)
+            return;
+        if(Role::query()->where('id', '=', 3)->count() == 0)
+            return;
+
         $admin = Role::findById(2);
         $reporter = Role::findById(3);
 

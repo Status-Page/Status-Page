@@ -36,9 +36,9 @@ class PermissionSeeder extends Seeder
         $admin = Role::create(['name' => 'admin']);
         $reporter = Role::create(['name' => 'reporter']);
 
-        $models = ['incidents', 'components', 'componentgroups', 'metrics', 'metric_points', 'statuses', 'users'];
+        $models = ['incidents', 'components', 'componentgroups', 'metrics', 'metric_points', 'statuses', 'users', 'subscribers'];
 
-        $reporterModelsShow = ['incidents', 'components', 'componentgroups', 'metrics', 'metric_points', 'statuses'];
+        $reporterModelsShow = ['incidents', 'components', 'componentgroups', 'metrics', 'metric_points', 'statuses', 'subscribers'];
         $reporterModelsAdd = ['incidents'];
         $reporterModelsEdit = ['incidents', 'components', 'metric_points'];
         $reporterModelsDelete = ['incidents'];
