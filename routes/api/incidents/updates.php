@@ -10,6 +10,7 @@ use App\Models\Incident;
 use App\Models\IncidentUpdate;
 use App\Statuspage\API\APIHelpers;
 use App\Statuspage\API\ResponseGenerator;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -46,6 +47,11 @@ Route::post('/incidents/{id}/updates', function (Request $request, $id) {
         $incidentUpdate->incident_id = $incident->id;
         $incidentUpdate->user = $request->user()->id;
         $incidentUpdate->type = $incident->status == $incidentUpdate->status ? 0 : 1;
+
+        if(config('statuspage.migration_mode')){
+            $incidentUpdate->updated_at = $request->get('updated_at', Carbon::now());
+            $incidentUpdate->created_at = $request->get('created_at', Carbon::now());
+        }
 
         $validator = Validator::make([
             'message' => $incidentUpdate->text,

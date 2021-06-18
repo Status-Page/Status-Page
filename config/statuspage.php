@@ -15,5 +15,5 @@
 
 return [
     'use_configcat' => boolval(env('STATUSPAGE_USE_CONFIGCAT', true)),
-    'disable_ratelimiter' => env('STATUSPAGE_DISABLE_RATELIMITER', false),
+    'migration_mode' => env('STATUSPAGE_MIGRATION_MODE', false),
 ];

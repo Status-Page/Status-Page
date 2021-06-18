@@ -45,6 +45,11 @@ Route::post('/incidents', function (Request $request) {
         $component_status = $request->get('component_status', 0);
         $message = $request->get('message');
 
+        if(config('statuspage.migration_mode')){
+            $incident->updated_at = $request->get('updated_at', Carbon::now());
+            $incident->created_at = $request->get('created_at', Carbon::now());
+        }
+
         $incident->user = $request->user()->id;
         $incident->type = 0;
 
@@ -81,8 +86,8 @@ Route::post('/incidents', function (Request $request) {
             'text' => $message,
             'status' => $incident->status,
             'user' => $incident->user,
-            'updated_at' => Carbon::now(),
-            'created_at' => Carbon::now(),
+            'updated_at' => $incident->updated_at,
+            'created_at' => $incident->created_at,
         ]);
         $incident->components()->attach($components);
         if($component_status != 0){
