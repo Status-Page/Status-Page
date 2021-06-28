@@ -31,10 +31,10 @@ class NotifyComponentSubscribers
         $original = $component->getOriginal();
         $changes = $component->getChanges();
 
-        $oldStatus = $original['status_id'];
-        $newStatus = $changes['status_id'];
+        if(array_key_exists('status_id', $changes) && array_key_exists('status_id', $original)){
+            $newStatus = $changes['status_id'];
+            $oldStatus = $original['status_id'];
 
-        if(array_key_exists('status_id', $changes)){
             foreach ($component->subscribers()->get() as $subscriber){
                 Mail::to($subscriber->email)->send(new ComponentStatusUpdated($subscriber, $component, $oldStatus, $newStatus));
             }
