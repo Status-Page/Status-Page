@@ -2,6 +2,24 @@
 ## [Unreleased]
 
 
+<a name="v1.8.5"></a>
+## [v1.8.5] - 2021-06-29
+### Bug Fixes
+- **Backend:** fix some errors that came up during production use ([90661d0](https://github.com/Status-Page/Status-Page/commit/90661d075d92cb7137e8fc645cc4f00c7abb37b4))
+
+
+<a name="v1.8.4"></a>
+## [v1.8.4] - 2021-06-18
+### Bug Fixes
+- **CachetImporter:** Fix all Issues with the Importer ([68a2b72](https://github.com/Status-Page/Status-Page/commit/68a2b7206919453349a20cd067990631cc069bbd))
+- **ComponentAPI:** Description may be null ([6e5aea1](https://github.com/Status-Page/Status-Page/commit/6e5aea12a2c4f13b28c218a99580ddb88bd2b4d2))
+- **Migration:** Temp disable of Rate Limiter ([58df3f9](https://github.com/Status-Page/Status-Page/commit/58df3f9f402b5e9c6651d8a9ffaf58e313c087fd))
+- **Migration:** Temp disable of Rate Limiter ([70f0572](https://github.com/Status-Page/Status-Page/commit/70f0572d3701d3ff1dc1c76ff8b2139165ccd49e))
+
+### Code Refactoring
+- **MigrationMode:** Rename to Migration Mode ([fed19cd](https://github.com/Status-Page/Status-Page/commit/fed19cd969b64ba0ee7edf6be9af362eab7ce2fb))
+
+
 <a name="v1.8.3"></a>
 ## [v1.8.3] - 2021-06-18
 ### Bug Fixes
@@ -400,7 +418,9 @@
 <a name="v1.0.0"></a>
 ## v1.0.0 - 2021-02-21
 
-[Unreleased]: https://github.com/Status-Page/Status-Page/compare/v1.8.3...HEAD
+[Unreleased]: https://github.com/Status-Page/Status-Page/compare/v1.8.5...HEAD
+[v1.8.5]: https://github.com/Status-Page/Status-Page/compare/v1.8.4...v1.8.5
+[v1.8.4]: https://github.com/Status-Page/Status-Page/compare/v1.8.3...v1.8.4
 [v1.8.3]: https://github.com/Status-Page/Status-Page/compare/v1.8.2...v1.8.3
 [v1.8.2]: https://github.com/Status-Page/Status-Page/compare/v1.8.1...v1.8.2
 [v1.8.1]: https://github.com/Status-Page/Status-Page/compare/v1.8.0...v1.8.1
