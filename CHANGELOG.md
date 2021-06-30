@@ -2,6 +2,21 @@
 ## [Unreleased]
 
 
+<a name="v1.8.6"></a>
+## [v1.8.6] - 2021-06-30
+### Build
+- **deps:** bump doctrine/dbal from 3.1.0 to 3.1.1 ([#96](https://github.com/Status-Page/Status-Page/issues/96)) ([39a79a2](https://github.com/Status-Page/Status-Page/commit/39a79a2ccf48a1eac7aec320e5839625e4be3c7c))
+- **deps:** bump laravel/framework from 8.47.0 to 8.49.0 ([#107](https://github.com/Status-Page/Status-Page/issues/107)) ([e5f73ec](https://github.com/Status-Page/Status-Page/commit/e5f73ecd6ca918e1ec4c4bc3d4335061c8d18383))
+- **deps-dev:** bump nunomaduro/collision from 5.4.0 to 5.5.0 ([#97](https://github.com/Status-Page/Status-Page/issues/97)) ([d829720](https://github.com/Status-Page/Status-Page/commit/d829720a06f664d581dbae8b1f15f6a0ca9a5538))
+- **deps-dev:** bump phpunit/phpunit from 9.5.5 to 9.5.6 ([#99](https://github.com/Status-Page/Status-Page/issues/99)) ([4df3477](https://github.com/Status-Page/Status-Page/commit/4df34777980366b2de865e04a1b3641c9a8c71ad))
+- **deps-dev:** bump tailwindcss from 2.2.0 to 2.2.4 ([#101](https://github.com/Status-Page/Status-Page/issues/101)) ([c7ced48](https://github.com/Status-Page/Status-Page/commit/c7ced488e1eef6e0c632e9c7976f64a708e7711d))
+- **deps-dev:** bump laravel-mix from 6.0.22 to 6.0.25 ([#102](https://github.com/Status-Page/Status-Page/issues/102)) ([295ee6e](https://github.com/Status-Page/Status-Page/commit/295ee6e1a664aa770628d128d9224efb67ffd3bc))
+- **deps-dev:** bump alpinejs from 3.0.6 to 3.2.1 ([#106](https://github.com/Status-Page/Status-Page/issues/106)) ([244ea7d](https://github.com/Status-Page/Status-Page/commit/244ea7d5711b6e1f0dd01bdd046f300cfc1b0c25))
+
+### Features
+- **RunUpdate:** add queue:restart command to update ([#105](https://github.com/Status-Page/Status-Page/issues/105)) ([d0c13df](https://github.com/Status-Page/Status-Page/commit/d0c13df0d220c1d47dc19fd1a39ce4e25f4e20b8))
+
+
 <a name="v1.8.5"></a>
 ## [v1.8.5] - 2021-06-29
 ### Bug Fixes
@@ -418,7 +433,8 @@
 <a name="v1.0.0"></a>
 ## v1.0.0 - 2021-02-21
 
-[Unreleased]: https://github.com/Status-Page/Status-Page/compare/v1.8.5...HEAD
+[Unreleased]: https://github.com/Status-Page/Status-Page/compare/v1.8.6...HEAD
+[v1.8.6]: https://github.com/Status-Page/Status-Page/compare/v1.8.5...v1.8.6
 [v1.8.5]: https://github.com/Status-Page/Status-Page/compare/v1.8.4...v1.8.5
 [v1.8.4]: https://github.com/Status-Page/Status-Page/compare/v1.8.3...v1.8.4
 [v1.8.3]: https://github.com/Status-Page/Status-Page/compare/v1.8.2...v1.8.3
