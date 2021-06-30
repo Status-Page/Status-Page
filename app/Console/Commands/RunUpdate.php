@@ -68,6 +68,7 @@ class RunUpdate extends Command
                 $this->call('event:cache');
                 $this->call('view:cache');
                 $this->call('permission:cache-reset');
+                $this->call('queue:restart');
 
                 $this->call('up');
             }else{
@@ -116,6 +117,7 @@ class RunUpdate extends Command
                 $this->call('event:cache');
                 $this->call('view:cache');
                 $this->call('permission:cache-reset');
+                $this->call('queue:restart');
 
                 $this->call('up');
             }else{
