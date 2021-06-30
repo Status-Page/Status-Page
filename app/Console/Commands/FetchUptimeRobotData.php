@@ -48,8 +48,14 @@ class FetchUptimeRobotData extends Command
         if(Setting::getString('uptimerobot_key') != ''){
             $ur = new UptimeRobot(Setting::getString('uptimerobot_key'));
             $urdata = $ur->getMonitorsData();
-            if(!isset($urdata)) return 0;
-            if($urdata == null) return 0;
+            if(!isset($urdata)){
+                Log::error('[UPTIMEROBOT_IMPORT] API Call fails!');
+                return 1;
+            }
+            if($urdata == null){
+                Log::error('[UPTIMEROBOT_IMPORT] API Call fails!');
+                return 1;
+            };
             if($urdata['stat'] != 'ok'){
                 Log::error('[UPTIMEROBOT_IMPORT] API Call fails:', $urdata['error']);
                 return 1;
