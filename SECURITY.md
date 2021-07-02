@@ -6,8 +6,8 @@ We provide the following Versions with Security Updates:
 
 | Version  | Supported          |
 | -------- | ------------------ |
-| 1.7.x    | :white_check_mark: |
-| <= 1.6.5 | :x:                |
+| 1.8.x    | :white_check_mark: |
+| <= 1.7.6 | :x:                |
 
 ## Reporting a Vulnerability
 
