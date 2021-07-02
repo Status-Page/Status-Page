@@ -34,5 +34,8 @@ If applicable, add screenshots to help explain your problem.
  - Browser [e.g. stock browser, safari]
  - Version [e.g. 22]
 
+**Status-Page Version**
+You can find the current Version in the VERSION file.
+
 **Additional context**
 Add any other context about the problem here.
