@@ -31,25 +31,7 @@
     - supervisor
 
 # Installation
-``` shell
-git clone https://github.com/Status-Page/Status-Page
-cd status-page
-git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
-composer install
-npm install
-cp .env.example .env
-```
-Now edit the .env and fill it with your data in.
-``` shell
-php artisan status:install
-```
-Make sure the user of your webserver has write rights to the directories here.
-
-After the installation is complete, you can access the Dashboard via the route `/dashboard`.
-
-## After install
-- To be able to use all functions like caching etc. you should add the command to your crontab file at the end of the installation.
-- Follow the Instructions at "Running queued Jobs"
+This section has been moved to our [Documentation](https://status-page-docs.netlify.app/docs/main/installation/installing)
 
 ## Versioning
 We use semantic versioning. A version number has the following structure:
@@ -63,24 +45,11 @@ v 1 . 0 . 0
   |
   Major (Breaking changes to the Software)
 ````
-If you update using git-tags (default and recommended): Run ``php artisan status:update --tags``.
-
-If you update using git-pull on the master branch: Run ``php artisan status:update``.
-This will handle all necessary operations, as well as the git-pull.
+### Updating
+This section has been moved to our [Documentation](https://status-page-docs.netlify.app/docs/main/installation/upgrading#the-easy-way)
 
 ### Manual updating
-``` shell
-php artisan down
-git fetch origin
-git tag -l
-git checkout LATEST_TAG              # Insert the Latest Tag for LATEST_TAG
-composer install --no-dev -o --no-scripts
-php artisan migrate
-php artisan config:cache
-php artisan route:cache
-php artisan view:cache
-php artisan event:cache
-```
+This section has been moved to our [Documentation](https://status-page-docs.netlify.app/docs/main/installation/upgrading#the-hard-way)
 
 ## Documentation
 You can find the Documentation [here](https://status-page-docs.netlify.app/).
@@ -95,23 +64,7 @@ Translation Status:
 </a>
 
 ## Running queued Jobs
-To run queued Jobs you should use [supervisor](https://laravel.com/docs/8.x/queues#supervisor-configuration).
-
-The configuration file (statuspage.conf) for this app would be like this:
-```
-[program:statuspage]
-process_name=%(program_name)s_%(process_num)02d
-command=php /PATH/TO/APP/artisan queue:work redis --sleep=3 --tries=3 --max-time=3600
-autostart=true
-autorestart=true
-stopasgroup=true
-killasgroup=true
-user=www-data
-numprocs=8
-redirect_stderr=true
-stdout_logfile=/SPECIFY/LOG/FOLDER/HERE/worker.log
-stopwaitsecs=3600
-```
+This section has been moved to our [Documentation](https://status-page-docs.netlify.app/docs/main/setup/configuring-queue)
 
 ## Available Import Scripts
 ### Requirements
