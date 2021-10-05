@@ -24,7 +24,7 @@
         "axios": "^0.21",
         "laravel-mix": "^6.0.25",
         "lodash": "^4.17.21",
-        "postcss": "^8.3.5",
+        "postcss": "^8.3.9",
         "postcss-import": "^14.0.2",
         "tailwindcss": "^2.2.4"
     }
