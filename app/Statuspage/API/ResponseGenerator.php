@@ -27,6 +27,14 @@ class ResponseGenerator
             'Content-Type' => 'application/json'
         ]);
     }
+
+    public static function generateMetaData(string $data, array $meta){
+        return (object) array(
+            'meta' => (object) $meta,
+            'data' => $data
+        );
+    }
+
     public static function generateEmptyResponse($code = 204){
         return response(null, $code, [
             'Content-Type' => 'application/json'
