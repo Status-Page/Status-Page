@@ -5,5 +5,3 @@
  */
 
 require('./bootstrap');
-
-require('alpinejs');

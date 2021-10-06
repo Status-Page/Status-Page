@@ -19,7 +19,6 @@
     "devDependencies": {
         "@tailwindcss/forms": "^0.3.4",
         "@tailwindcss/typography": "^0.4.1",
-        "alpinejs": "^3.4.2",
         "autoprefixer": "^10.3.7",
         "axios": "^0.21",
         "laravel-mix": "^6.0.31",
