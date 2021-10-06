@@ -18,6 +18,7 @@ return [
     |
     */
 
+    'title' => 'Settings',
     'actionlog_backlog' => 'ActionLog Backlog',
     'darkmode_default' => 'Darkmode Default Value',
     'footer_show' => 'Show Footer',
