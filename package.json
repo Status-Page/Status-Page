@@ -22,7 +22,7 @@
         "alpinejs": "^3.4.2",
         "autoprefixer": "^10.3.7",
         "axios": "^0.21",
-        "laravel-mix": "^6.0.25",
+        "laravel-mix": "^6.0.31",
         "lodash": "^4.17.21",
         "postcss": "^8.3.9",
         "postcss-import": "^14.0.2",
