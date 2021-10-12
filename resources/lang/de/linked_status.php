@@ -17,4 +17,43 @@ return [
     'title_prefix' => 'Verknüpfter Status',
     'title' => 'Seiten',
     'subtitle' => 'Fügen Sie externe Statusseiten hinzu, um Komponenten / Vorfälle / Wartungen mit ihnen zu verbinden.',
+    'table' => [
+        'head' => [
+            'id' => 'ID',
+            'domain' => 'Domain',
+            'provider' => 'Anbieter',
+            'c_linked_incidents' => 'Verknüpfte Vorfälle erstellen',
+            'c_linked_maintenances' => 'Verknüpfte Wartungen erstellen',
+        ],
+        'body' => [
+            'actions' => [
+                'update' => 'Update',
+            ],
+        ],
+    ],
+    'modal_create' => [
+        'button' => 'Seite hinzufügen',
+        'title' => 'Seite hinzufügen',
+        'domain' => 'Domain',
+        'provider' => 'Anbieter',
+        'c_linked_incidents' => 'Verknüpfte Vorfälle erstellen',
+        'c_linked_maintenances' => 'Verknüpfte Wartungen erstellen',
+        'submit' => 'Speichern',
+    ],
+    'modal_update' => [
+        'button' => 'Update',
+        'title' => 'Seite aktualisieren',
+        'domain' => 'Domain',
+        'provider' => 'Anbieter',
+        'c_linked_incidents' => 'Verknüpfte Vorfälle erstellen',
+        'c_linked_maintenances' => 'Verknüpfte Wartungen erstellen',
+        'submit' => 'Update',
+    ],
+    'modal_delete' => [
+        'button' => 'Löschen',
+        'title' => 'Seite löschen',
+        'text_r1' => 'Sind Sie sicher, dass Sie die Seite ":name" löschen wollen?',
+        'text_r2' => 'Dies kann nicht rückgängig gemacht werden!',
+        'delete_button' => 'Seite löschen',
+    ],
 ];
