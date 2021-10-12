@@ -22,4 +22,20 @@ return [
     'metrics_cache' => 'Metrik-Daten zwischenspeichern',
     'uptimerobot_key' => 'Uptime Robot Schreibgeschützter API-Schlüssel',
     'external_cron' => 'Befehlsausführung von schedule:run von außen zulassen',
+    'subscriber_signup' => 'Erlauben Sie Benutzern, per E-Mail zu abonnieren',
+    /*
+ * Copyright (c) 2021 by HerrTxbias.
+ *
+ * Using / Editing this without my consent is not allowed.
+ */
+    /*
+    |--------------------------------------------------------------------------
+    | Status Language Lines
+    |--------------------------------------------------------------------------
+    |
+    | Please do not edit these lines, as they are managed by our translation
+    | system. Thank you.
+    |
+    */
+    'title' => 'Einstellungen',
 ];
