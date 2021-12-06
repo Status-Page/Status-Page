@@ -45,9 +45,11 @@
                                     @can('edit_incidents')
                                         <livewire:dashboard.incidents.modals.incident-update-update-modal :incident="$incident" :incident-update="$update" :key="time().$incident->id" />
                                     @endcan
-                                    @can('delete_incidents')
-                                        <livewire:dashboard.incidents.modals.incident-update-delete-modal :incident="$incident" :incident-update="$update" :key="time().time().$incident->id" />
-                                    @endcan
+                                    @if(count($incidentUpdates) != 1)
+                                        @can('delete_incidents')
+                                            <livewire:dashboard.incidents.modals.incident-update-delete-modal :incident="$incident" :incident-update="$update" :key="time().time().$incident->id" />
+                                        @endcan
+                                    @endif
                                 </div>
                             </x-table.cell>
                         </x-table.row>
