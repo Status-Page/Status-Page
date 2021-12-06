@@ -1,7 +1,7 @@
 <div>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-white leading-tight">
-            {{ __('incidents.title') }}
+            {{ __('incidents.incident_updates.title') }} "{{ $incident->title }}"
         </h2>
     </x-slot>
 
@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex-col space-y-4">
             <div class="flex justify-between">
                 <div class="w-1/3 flex space-x-2">
-                    <x-input-dark type="text" wire:model="search" placeholder="Search Incidents..." class="w-full"></x-input-dark>
+                    <!-- <x-input-dark type="text" wire:model="search" placeholder="Search Incidents..." class="w-full"></x-input-dark> -->
                 </div>
 
                 <div class="space-x-2 flex items-center">
@@ -21,43 +21,32 @@
                             <option value="100">100</option>
                         </x-input.select>
                     </x-input.group>
-
-                    @can('add_incidents')
-                        @livewire('dashboard.incidents.modals.incident-add-modal')
-                    @endcan
                 </div>
             </div>
             <x-table>
                 <x-slot name="head">
-                    <x-table.heading>{{ __('incidents.table.head.id') }}</x-table.heading>
-                    <x-table.heading>{{ __('incidents.table.head.title') }}</x-table.heading>
-                    <x-table.heading>{{ __('incidents.table.head.status') }}</x-table.heading>
-                    <x-table.heading>{{ __('incidents.table.head.impact') }}</x-table.heading>
-                    <x-table.heading>{{ __('incidents.table.head.reporter') }}</x-table.heading>
+                    <x-table.heading>{{ __('incidents.incident_updates.table.head.id') }}</x-table.heading>
+                    <x-table.heading>{{ __('incidents.incident_updates.table.head.update_type') }}</x-table.heading>
+                    <x-table.heading>{{ __('incidents.incident_updates.table.head.status_update') }}</x-table.heading>
+                    <x-table.heading>{{ __('incidents.incident_updates.table.head.text') }}</x-table.heading>
+                    <x-table.heading>{{ __('incidents.incident_updates.table.head.reporter') }}</x-table.heading>
                     <x-table.heading></x-table.heading>
                 </x-slot>
                 <x-slot name="body">
-                    @forelse($incidents as $incident)
+                    @forelse($incidentUpdates as $update)
                         <x-table.row wire:loading.class.delay="opacity-50">
-                            <x-table.cell>{{ $incident->id }}</x-table.cell>
-                            <x-table.cell>{{ $incident->title }}</x-table.cell>
-                            <x-table.cell>{{ $incident->getType() }}</x-table.cell>
-                            <x-table.cell>
-                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-{{ $incident->getImpactColor() }} text-white">
-                                    &nbsp;&nbsp;
-                                </span>
-                            </x-table.cell>
-                            <x-table.cell>{{ $incident->getReporter()->name }}</x-table.cell>
+                            <x-table.cell>{{ $update->id }}</x-table.cell>
+                            <x-table.cell>{{ $update->getType() }}</x-table.cell>
+                            <x-table.cell>{{ $update->getStatus() }}</x-table.cell>
+                            <x-table.cell class="markdown-content">{!! \Illuminate\Support\Str::markdown($update->text) !!}</x-table.cell>
+                            <x-table.cell>{{ $update->getReporter()->name }}</x-table.cell>
                             <x-table.cell>
                                 <div class="space-x-2 flex items-center">
-                                    @can('read_incidents')
-                                        <a href="{{ route('dashboard.incidents.updates', ['id' => $incident->id]) }}" class="text-indigo-600 hover:text-indigo-900 mr-2">{{ __('incidents.incident_updates.button') }}</a>
-                                    @endcan
                                     @can('edit_incidents')
-                                        <livewire:dashboard.incidents.modals.incident-update-modal :incident="$incident" :key="time().$incident->id" />
+                                        <livewire:dashboard.incidents.modals.incident-update-update-modal :incident="$incident" :incident-update="$update" :key="time().$incident->id" />
                                     @endcan
                                     @can('delete_incidents')
-                                        <livewire:dashboard.incidents.modals.incident-delete-modal :incident="$incident" :key="time().time().$incident->id" />
+                                        <livewire:dashboard.incidents.modals.incident-update-delete-modal :incident="$incident" :incident-update="$update" :key="time().time().$incident->id" />
                                     @endcan
                                 </div>
                             </x-table.cell>
@@ -75,7 +64,7 @@
             </x-table>
 
             <div>
-                {{ $incidents->links() }}
+                {{ $incidentUpdates->links() }}
             </div>
         </div>
     </div>

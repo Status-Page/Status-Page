@@ -14,6 +14,7 @@ use App\Http\Livewire\Dashboard\Administration\Users;
 use App\Http\Livewire\Dashboard\Administration\ViewActionLog;
 use App\Http\Livewire\Dashboard\Components\Components;
 use App\Http\Livewire\Dashboard\Incidents\Incidents;
+use App\Http\Livewire\Dashboard\Incidents\IncidentUpdates;
 use App\Http\Livewire\Dashboard\Incidents\PastIncidents;
 use App\Http\Livewire\Dashboard\Maintenances\Maintenances;
 use App\Http\Livewire\Dashboard\Maintenances\PastMaintenances;
@@ -50,6 +51,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function (){
     Route::get('/dashboard', [DashboardController::class, 'show'])->name('dashboard');
 
     Route::get('/dashboard/incidents', Incidents::class)->middleware(['can:read_incidents'])->name('dashboard.incidents');
+    Route::get('/dashboard/incidents/{id}/updates', IncidentUpdates::class)->middleware(['can:read_incidents'])->name('dashboard.incidents.updates');
     Route::get('/dashboard/incidents/past', PastIncidents::class)->middleware(['can:read_incidents'])->name('dashboard.incidents.past');
 
     Route::get('/dashboard/maintenances', Maintenances::class)->middleware(['can:read_incidents'])->name('dashboard.maintenances');

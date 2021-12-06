@@ -67,5 +67,35 @@ return [
             'delete_button' => 'Delete Incident',
         ]
     ],
+    'incident_updates' => [
+        'title' => 'Incident Updates for',
+        'button' => 'Incident Updates',
+        'table' => [
+            'head' => [
+                'id' => 'ID',
+                'update_type' => 'Update Type',
+                'status_update' => 'Status',
+                'text' => 'Text',
+                'reporter' => 'Reporter',
+            ],
+        ],
+        'update' => [
+            'button' => 'Update Entry',
+            'modal' => [
+                'title' => 'Update Incident Update',
+                'message' => 'Message',
+                'update_button' => 'Update',
+            ]
+        ],
+        'delete' => [
+            'button' => 'Delete',
+            'modal' => [
+                'title' => 'Delete Incident Update',
+                'text_r1' => 'Are you sure, you want to delete the Update :number for the Incident ":title"?',
+                'text_r2' => 'Be aware, that this could cause temporarily errors on your main page.',
+                'delete_button' => 'Delete Incident Update',
+            ]
+        ],
+    ],
 
 ];
