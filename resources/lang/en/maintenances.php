@@ -61,5 +61,35 @@ return [
             'update_button_without_message' => 'Update without Message',
         ]
     ],
+    'maintenance_updates' => [
+        'title' => 'Maintenance Updates for',
+        'button' => 'Maintenance Updates',
+        'table' => [
+            'head' => [
+                'id' => 'ID',
+                'update_type' => 'Update Type',
+                'status_update' => 'Status',
+                'text' => 'Text',
+                'reporter' => 'Reporter',
+            ],
+        ],
+        'update' => [
+            'button' => 'Update Entry',
+            'modal' => [
+                'title' => 'Update Maintenance Update',
+                'message' => 'Message',
+                'update_button' => 'Update',
+            ]
+        ],
+        'delete' => [
+            'button' => 'Delete',
+            'modal' => [
+                'title' => 'Delete Maintenance Update',
+                'text_r1' => 'Are you sure, you want to delete the Update :number for the Maintenance ":title"?',
+                'text_r2' => 'Be aware, that this could cause temporarily errors on your main page.',
+                'delete_button' => 'Delete Maintenance Update',
+            ]
+        ],
+    ],
 
 ];

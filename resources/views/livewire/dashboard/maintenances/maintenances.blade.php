@@ -54,6 +54,9 @@
                             <x-table.cell>{{ $maintenance->getReporter()->name }}</x-table.cell>
                             <x-table.cell>
                                 <div class="space-x-2 flex items-center">
+                                    @can('read_incidents')
+                                        <a href="{{ route('dashboard.maintenances.updates', ['id' => $maintenance->id]) }}" class="text-indigo-600 hover:text-indigo-900 mr-2">{{ __('maintenances.maintenance_updates.button') }}</a>
+                                    @endcan
                                     @can('edit_incidents')
                                         <livewire:dashboard.maintenances.modals.maintenance-update-modal :maintenance="$maintenance" :key="time().$maintenance->id" />
                                     @endcan
