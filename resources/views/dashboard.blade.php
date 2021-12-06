@@ -6,6 +6,14 @@
     </x-slot>
 
     <div class="py-12">
+        <div class="hidden">
+            <div class="text-gray-500 bg-black border-black"></div>
+            <div class="text-green-400 bg-green-100 border-green-500"></div>
+            <div class="text-yellow-500 bg-yellow-200 border-yellow-400"></div>
+            <div class="text-yellow-700 bg-yellow-200 border-yellow-700"></div>
+            <div class="text-red-500 bg-red-100 border-red-500"></div>
+            <div class="text-blue-500 bg-blue-100 border-blue-500"></div>
+        </div>
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <dl class="grid grid-cols-1 gap-5 sm:grid-cols-3">
                 <div class="bg-white dark:bg-discordDark overflow-hidden shadow rounded-lg">
