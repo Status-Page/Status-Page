@@ -31,7 +31,7 @@ return [
         ],
         'body' => [
             'actions' => [
-                'update' => 'Update'
+                'update' => 'Aktualisieren'
             ]
         ]
     ],
@@ -45,13 +45,13 @@ return [
         'submit' => 'Speichern',
     ],
     'modal_update' => [
-        'button' => 'Update',
+        'button' => 'Aktualisieren',
         'title' => 'Seite aktualisieren',
         'domain' => 'Domain',
         'provider' => 'Anbieter',
         'c_linked_incidents' => 'Verknüpfte Vorfälle erstellen',
         'c_linked_maintenances' => 'Verknüpfte Wartungen erstellen',
-        'submit' => 'Update',
+        'submit' => 'Aktualisieren',
     ],
     'modal_delete' => [
         'button' => 'Löschen',
