@@ -62,32 +62,32 @@ return [
         ]
     ],
     'maintenance_updates' => [
-        'title' => 'Maintenance Updates for',
-        'button' => 'Maintenance Updates',
+        'title' => 'Wartungsaktualisierungen für',
+        'button' => 'Wartungsaktualisierungen',
         'table' => [
             'head' => [
                 'id' => 'ID',
-                'update_type' => 'Update Type',
+                'update_type' => 'Typ aktualisieren',
                 'status_update' => 'Status',
                 'text' => 'Text',
-                'reporter' => 'Reporter',
+                'reporter' => 'Melder',
             ],
         ],
         'update' => [
-            'button' => 'Update Entry',
+            'button' => 'Eintrag aktualisieren',
             'modal' => [
-                'title' => 'Update Maintenance Update',
-                'message' => 'Message',
-                'update_button' => 'Update',
+                'title' => 'Wartungsaktualisierung Aktualisieren',
+                'message' => 'Nachricht',
+                'update_button' => 'Aktualisieren',
             ]
         ],
         'delete' => [
-            'button' => 'Delete',
+            'button' => 'Löschen',
             'modal' => [
-                'title' => 'Delete Maintenance Update',
-                'text_r1' => 'Are you sure, you want to delete the Update :number for the Maintenance ":title"?',
-                'text_r2' => 'Be aware, that this could cause temporarily errors on your main page.',
-                'delete_button' => 'Delete Maintenance Update',
+                'title' => 'Wartungsaktualisierung Löschen',
+                'text_r1' => 'Sind Sie sicher, dass Sie die Aktualisierung :number der Wartung ":title" löschen wollen?',
+                'text_r2' => 'Seien Sie sich bewusst, dass dies vorübergehend zu Fehlern auf Ihrer Hauptseite führen kann.',
+                'delete_button' => 'Wartungsaktualisierung Löschen',
             ]
         ],
     ],
