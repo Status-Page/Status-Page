@@ -44,7 +44,7 @@ return [
         ]
     ],
     'update_incident' => [
-        'button' => 'Update',
+        'button' => 'Aktualisieren',
         'modal' => [
             'title' => 'Update Vorfall',
             'incident_title' => 'Titel',
@@ -68,32 +68,32 @@ return [
         ]
     ],
     'incident_updates' => [
-        'title' => 'Incident Updates for',
-        'button' => 'Incident Updates',
+        'title' => 'Vorfallaktualisierungen für',
+        'button' => 'Vorfallaktualisierungen',
         'table' => [
             'head' => [
                 'id' => 'ID',
-                'update_type' => 'Update Type',
+                'update_type' => 'Typ aktualisieren',
                 'status_update' => 'Status',
                 'text' => 'Text',
-                'reporter' => 'Reporter',
+                'reporter' => 'Melder',
             ],
         ],
         'update' => [
-            'button' => 'Update Entry',
+            'button' => 'Eintrag aktualisieren',
             'modal' => [
-                'title' => 'Update Incident Update',
-                'message' => 'Message',
-                'update_button' => 'Update',
+                'title' => 'Vorfallaktualisierung aktualisieren',
+                'message' => 'Nachricht',
+                'update_button' => 'Aktualisieren',
             ]
         ],
         'delete' => [
-            'button' => 'Delete',
+            'button' => 'Löschen',
             'modal' => [
-                'title' => 'Delete Incident Update',
-                'text_r1' => 'Are you sure, you want to delete the Update :number for the Incident ":title"?',
-                'text_r2' => 'Be aware, that this could cause temporarily errors on your main page.',
-                'delete_button' => 'Delete Incident Update',
+                'title' => 'Vorfallaktualisierung löschen',
+                'text_r1' => 'Sind Sie sicher, dass Sie die Aktualisierung :number des Vorfalls ":title" löschen wollen?',
+                'text_r2' => 'Seien Sie sich bewusst, dass dies vorübergehend zu Fehlern auf Ihrer Hauptseite führen kann.',
+                'delete_button' => 'Vorfallaktualisierung löschen',
             ]
         ],
     ],
