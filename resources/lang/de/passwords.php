@@ -1,10 +1,12 @@
 <?php
-return [
-    /*
+/*
  * Copyright (c) 2021 by HerrTxbias.
  *
  * Using / Editing this without my consent is not allowed.
  */
+
+return [
+
     /*
     |--------------------------------------------------------------------------
     | Password Reset Language Lines
@@ -15,9 +17,11 @@ return [
     | has failed, such as for an invalid token or invalid new password.
     |
     */
+
     'reset' => 'Ihr Passwort wurde zurückgesetzt!',
     'sent' => 'Wir haben Ihnen den Link zum Zurücksetzen des Passworts per E-Mail zugesandt!',
     'throttled' => 'Bitte warten Sie, bevor Sie es erneut versuchen.',
     'token' => 'Dieser Passwort-Reset-Token ist ungültig.',
     'user' => "Wir können keinen Benutzer mit dieser E-Mail-Adresse finden.",
+
 ];
