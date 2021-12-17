@@ -1,10 +1,13 @@
 <?php
-return [
-    /*
+/*
  * Copyright (c) 2021 by HerrTxbias.
  *
  * Using / Editing this without my consent is not allowed.
  */
+
+
+return [
+
     /*
     |--------------------------------------------------------------------------
     | Global Language Lines
@@ -14,5 +17,7 @@ return [
     | system. Thank you.
     |
     */
+
     'abort' => 'Abbrechen',
+
 ];
