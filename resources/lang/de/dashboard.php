@@ -1,10 +1,13 @@
 <?php
-return [
-    /*
+/*
  * Copyright (c) 2021 by HerrTxbias.
  *
  * Using / Editing this without my consent is not allowed.
  */
+
+
+return [
+
     /*
     |--------------------------------------------------------------------------
     | Dashboard Language Lines
@@ -14,12 +17,14 @@ return [
     | system. Thank you.
     |
     */
+
     'title' => 'Dashboard',
-    'view_all' => 'Alle anzeigen',
-    'logged_in' => 'Sie sind eingeloggt!',
     'quick_view' => [
         'incidents' => 'Offene Vorfälle',
         'maintenances' => 'Offene Wartungen',
         'upcoming_maintenances' => 'Anstehende Wartungen',
     ],
+    'view_all' => 'Alle anzeigen',
+    'logged_in' => 'Sie sind eingeloggt!',
+
 ];
