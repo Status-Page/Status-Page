@@ -1,25 +1,13 @@
 <?php
-return [
-    'update_incident' => [
-        'modal' => [
-            'affected_components_hint' => 'Der Status für die Komponenten wird nicht automatisch gesetzt, wenn Sie diesen Incident aktualisieren. <br> Erst durch das Auflösen des Incidents werden alle Komponenten in den Zustand "Operational" versetzt.',
-            'title' => 'Update Vorfall',
-            'incident_title' => 'Titel',
-            'status' => 'Status',
-            'impact' => 'Einfluss',
-            'visible' => 'Sichtbar',
-            'affected_components' => 'Betroffene Komponenten',
-            'message' => 'Nachricht',
-            'update_button' => 'Update posten',
-            'update_button_without_message' => 'Update ohne Meldung',
-        ],
-        'button' => 'Update',
-    ],
-    /*
+/*
  * Copyright (c) 2021 by HerrTxbias.
  *
  * Using / Editing this without my consent is not allowed.
  */
+
+
+return [
+
     /*
     |--------------------------------------------------------------------------
     | Incident Language Lines
@@ -29,14 +17,15 @@ return [
     | system. Thank you.
     |
     */
+
     'title' => 'Vorfälle',
     'table' => [
         'head' => [
+            'id' => 'ID',
             'title' => 'Titel',
             'status' => 'Status',
             'impact' => 'Einfluss',
             'reporter' => 'Melder',
-            'id' => 'ID',
         ],
     ],
     'new_incident' => [
@@ -49,10 +38,25 @@ return [
             'visible' => 'Sichtbar',
             'affected_components' => 'Betroffene Komponenten',
             'affected_components_hint' => 'Betroffene Komponenten werden automatisch in einen Status gesetzt, der auf der Auswirkung basiert, sofern Sie diese Funktion nicht deaktivieren.',
+            'do_not_update_status' => 'Status nicht aktualisieren',
             'message' => 'Nachricht',
             'open_button' => 'Offener Vorfall',
-            'do_not_update_status' => 'Status nicht aktualisieren',
-        ],
+        ]
+    ],
+    'update_incident' => [
+        'button' => 'Update',
+        'modal' => [
+            'title' => 'Update Vorfall',
+            'incident_title' => 'Titel',
+            'status' => 'Status',
+            'impact' => 'Einfluss',
+            'visible' => 'Sichtbar',
+            'affected_components' => 'Betroffene Komponenten',
+            'affected_components_hint' => 'Der Status für die Komponenten wird nicht automatisch gesetzt, wenn Sie diesen Incident aktualisieren. <br> Erst durch das Auflösen des Incidents werden alle Komponenten in den Zustand "Operational" versetzt.',
+            'message' => 'Nachricht',
+            'update_button' => 'Update posten',
+            'update_button_without_message' => 'Update ohne Meldung',
+        ]
     ],
     'delete_incident' => [
         'button' => 'Löschen',
@@ -61,6 +65,37 @@ return [
             'text_r1' => 'Sind Sie sicher, dass Sie den Vorfall ":title" löschen wollen?',
             'text_r2' => 'Seien Sie sich bewusst, dass dies vorübergehend zu Fehlern auf Ihrer Hauptseite führen kann.',
             'delete_button' => 'Vorfall löschen',
+        ]
+    ],
+    'incident_updates' => [
+        'title' => 'Incident Updates for',
+        'button' => 'Incident Updates',
+        'table' => [
+            'head' => [
+                'id' => 'ID',
+                'update_type' => 'Update Type',
+                'status_update' => 'Status',
+                'text' => 'Text',
+                'reporter' => 'Reporter',
+            ],
+        ],
+        'update' => [
+            'button' => 'Update Entry',
+            'modal' => [
+                'title' => 'Update Incident Update',
+                'message' => 'Message',
+                'update_button' => 'Update',
+            ]
+        ],
+        'delete' => [
+            'button' => 'Delete',
+            'modal' => [
+                'title' => 'Delete Incident Update',
+                'text_r1' => 'Are you sure, you want to delete the Update :number for the Incident ":title"?',
+                'text_r2' => 'Be aware, that this could cause temporarily errors on your main page.',
+                'delete_button' => 'Delete Incident Update',
+            ]
         ],
     ],
+
 ];
