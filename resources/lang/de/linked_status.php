@@ -1,10 +1,13 @@
 <?php
-return [
-    /*
+/*
  * Copyright (c) 2021 by HerrTxbias.
  *
  * Using / Editing this without my consent is not allowed.
  */
+
+
+return [
+
     /*
     |--------------------------------------------------------------------------
     | LinkedStatus Language Lines
@@ -14,6 +17,7 @@ return [
     | system. Thank you.
     |
     */
+
     'title_prefix' => 'Verknüpfter Status',
     'title' => 'Seiten',
     'subtitle' => 'Fügen Sie externe Statusseiten hinzu, um Komponenten / Vorfälle / Wartungen mit ihnen zu verbinden.',
@@ -27,9 +31,9 @@ return [
         ],
         'body' => [
             'actions' => [
-                'update' => 'Update',
-            ],
-        ],
+                'update' => 'Update'
+            ]
+        ]
     ],
     'modal_create' => [
         'button' => 'Seite hinzufügen',
@@ -55,5 +59,5 @@ return [
         'text_r1' => 'Sind Sie sicher, dass Sie die Seite ":name" löschen wollen?',
         'text_r2' => 'Dies kann nicht rückgängig gemacht werden!',
         'delete_button' => 'Seite löschen',
-    ],
+    ]
 ];
