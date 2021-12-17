@@ -7,7 +7,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@tailwind screens;
+@tailwind variants;
 
 :root {
     --discord-blue: #7289DA;

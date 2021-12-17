@@ -24,7 +24,7 @@
     </head>
     <body class="bg-gray-100 dark:bg-bodyBG font-sans antialiased">
         <div class="flex flex-col min-h-screen">
-            <div class="flex-grow">
+            <div class="grow">
                 <x-notification />
                 @if(config('app.env') == 'local' || config('app.env') == 'staging')
                     <div class="bg-red-600">

@@ -34,7 +34,7 @@
                                     </svg>
                                 </button>
                             </div>
-                            <div class="flex-grow">
+                            <div class="grow">
                                 {{ $metric->title }}
                             </div>
                         </div>

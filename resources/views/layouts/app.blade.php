@@ -23,7 +23,7 @@
     </head>
     <body class="font-sans antialiased dark:bg-bodyBG">
         <div class="flex flex-col min-h-screen">
-            <div class="flex-grow">
+            <div class="grow">
                 <x-notification />
                 @if(config('app.env') == 'local' || config('app.env') == 'staging')
                     <div class="bg-red-600">

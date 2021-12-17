@@ -9,7 +9,7 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 module.exports = {
     darkMode: 'class',
 
-    purge: [
+    content: [
         './vendor/laravel/jetstream/**/*.blade.php',
         './storage/framework/views/*.php',
         './resources/**/*.blade.php',
@@ -31,14 +31,6 @@ module.exports = {
                 aGrey: '#58585f',
                 bodyBG: '#36393f',
             },
-        },
-    },
-
-    variants: {
-        extend: {
-            opacity: ['disabled'],
-            visibility: ['hover'],
-            zIndex: ['hover'],
         },
     },
 

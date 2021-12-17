@@ -22,7 +22,7 @@
     @else
         <div class="{{ $globalStatus->bg_color }} border-l-4 {{ $globalStatus->border_color }} p-4">
             <div class="flex">
-                <div class="flex-shrink-0 h-5 w-5 {{ $globalStatus->color }}">
+                <div class="shrink-0 h-5 w-5 {{ $globalStatus->color }}">
                     {!! $globalStatus->heroicon_svg !!}
                 </div>
                 <div class="ml-3">
