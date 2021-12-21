@@ -16,6 +16,7 @@
             <div class="bg-green-500 bg-blue-500 bg-red-500 bg-gray-500"></div>
             <div class="bg-black bg-yellow-400 bg-yellow-600 bg-red-500 bg-blue-500"></div>
             <div class="text-black text-yellow-400 text-yellow-600 text-red-500 text-blue-500"></div>
+            <div class="border-black border-yellow-400 border-yellow-600 border-red-500 border-blue-500"></div>
         </div>
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <dl class="grid grid-cols-1 gap-5 sm:grid-cols-3">
