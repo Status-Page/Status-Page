@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Http;
 class Version
 {
     public static function getVersion(){
-        return 'v1.9.3';
+        return 'v1.9.4';
     }
 
     public static function getLatestVersion() {
