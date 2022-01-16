@@ -250,16 +250,16 @@
         },
         {
             "name": "configcat/configcat-client",
-            "version": "v5.3.1",
+            "version": "v5.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/configcat/php-sdk.git",
-                "reference": "18b0c1bb1c5bec0ea6f4c68e1f898116562a1bf8"
+                "reference": "5c241bc11258f6fad9fa50f61fc810dceebea12c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/configcat/php-sdk/zipball/18b0c1bb1c5bec0ea6f4c68e1f898116562a1bf8",
-                "reference": "18b0c1bb1c5bec0ea6f4c68e1f898116562a1bf8",
+                "url": "https://api.github.com/repos/configcat/php-sdk/zipball/5c241bc11258f6fad9fa50f61fc810dceebea12c",
+                "reference": "5c241bc11258f6fad9fa50f61fc810dceebea12c",
                 "shasum": ""
             },
             "require": {
@@ -268,7 +268,7 @@
                 "monolog/monolog": "^1.6|^2.0",
                 "php": ">=5.5",
                 "psr/log": "^1.1",
-                "z4kn4fein/php-semver": "^1.0"
+                "z4kn4fein/php-semver": "^1.1"
             },
             "require-dev": {
                 "illuminate/cache": "^5.0",
@@ -309,9 +309,9 @@
             ],
             "support": {
                 "issues": "https://github.com/configcat/php-sdk/issues",
-                "source": "https://github.com/configcat/php-sdk/tree/v5.3.1"
+                "source": "https://github.com/configcat/php-sdk/tree/v5.4.0"
             },
-            "time": "2021-07-15T10:42:45+00:00"
+            "time": "2022-01-13T17:25:52+00:00"
         },
         {
             "name": "dasprid/enum",
@@ -6743,16 +6743,16 @@
         },
         {
             "name": "z4kn4fein/php-semver",
-            "version": "v1.0.1",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/z4kn4fein/php-semver.git",
-                "reference": "9b0dba84af87d7dc4a97087893f2874184ee8f97"
+                "reference": "0f2a2459a4b479328b867d89f255d1201867d01d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/z4kn4fein/php-semver/zipball/9b0dba84af87d7dc4a97087893f2874184ee8f97",
-                "reference": "9b0dba84af87d7dc4a97087893f2874184ee8f97",
+                "url": "https://api.github.com/repos/z4kn4fein/php-semver/zipball/0f2a2459a4b479328b867d89f255d1201867d01d",
+                "reference": "0f2a2459a4b479328b867d89f255d1201867d01d",
                 "shasum": ""
             },
             "require": {
@@ -6787,9 +6787,9 @@
             ],
             "support": {
                 "issues": "https://github.com/z4kn4fein/php-semver/issues",
-                "source": "https://github.com/z4kn4fein/php-semver/tree/v1.0.1"
+                "source": "https://github.com/z4kn4fein/php-semver/tree/v1.1.0"
             },
-            "time": "2020-01-03T01:04:18+00:00"
+            "time": "2022-01-09T03:12:36+00:00"
         }
     ],
     "packages-dev": [
