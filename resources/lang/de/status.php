@@ -1,15 +1,13 @@
 <?php
-return [
-    'Operational' => 'Funktionsfähig',
-    'Degraded Performance' => 'Eingeschränkte Leistung',
-    'Partial Outage' => 'Teilweiser Ausfall',
-    'Major Outage' => 'Kompletter Ausfall',
-    'Maintenance' => 'Wartung',
-    /*
+/*
  * Copyright (c) 2021 by HerrTxbias.
  *
  * Using / Editing this without my consent is not allowed.
  */
+
+
+return [
+
     /*
     |--------------------------------------------------------------------------
     | Status Language Lines
@@ -19,5 +17,12 @@ return [
     | system. Thank you.
     |
     */
+
     'Unknown' => 'Unbekannt',
+    'Operational' => 'Funktionsfähig',
+    'Degraded Performance' => 'Eingeschränkte Leistung',
+    'Partial Outage' => 'Teilweiser Ausfall',
+    'Major Outage' => 'Kompletter Ausfall',
+    'Maintenance' => 'Wartung',
+
 ];

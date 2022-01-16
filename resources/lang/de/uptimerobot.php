@@ -1,11 +1,13 @@
 <?php
-return [
-    'title' => 'Monitore',
-    /*
+/*
  * Copyright (c) 2021 by HerrTxbias.
  *
  * Using / Editing this without my consent is not allowed.
  */
+
+
+return [
+
     /*
     |--------------------------------------------------------------------------
     | UptimeRobot Language Lines
@@ -15,30 +17,32 @@ return [
     | system. Thank you.
     |
     */
+
     'title_prefix' => 'Uptime-Robot',
+    'title' => 'Monitore',
+    'subtitle' => 'Hinweis: Die hier angezeigten Daten werden jede Minute aktualisiert.',
     'table' => [
         'head' => [
             'id' => 'ID',
             'monitor_id' => 'Monitor-ID',
             'name' => 'Name',
+            'status' => 'UR-Status',
             'component' => 'Komponente',
             'metric' => 'Metrik',
             'data_import' => 'Daten-Import',
-            'status' => 'UR-Status',
         ],
         'body' => [
             'data_import_active' => 'Aktiv',
             'data_import_paused' => 'Pausiert',
             'actions' => [
-                'update' => 'Update',
-            ],
-        ],
+                'update' => 'Update'
+            ]
+        ]
     ],
     'modal_update' => [
         'title' => 'Monitor aktualisieren',
         'component' => 'Komponente',
         'metric' => 'Metrik',
         'submit' => 'Update',
-    ],
-    'subtitle' => 'Hinweis: Die hier angezeigten Daten werden jede Minute aktualisiert.',
+    ]
 ];

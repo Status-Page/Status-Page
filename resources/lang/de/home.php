@@ -1,12 +1,29 @@
 <?php
+/*
+ * Copyright (c) 2021 by HerrTxbias.
+ *
+ * Using / Editing this without my consent is not allowed.
+ */
+
 return [
+
+    /*
+    |--------------------------------------------------------------------------
+    | Home Language Lines
+    |--------------------------------------------------------------------------
+    |
+    | Please do not edit these lines, as they are managed by our translation
+    | system. Thank you.
+    |
+    */
+
+    'open_dashboard' => 'Dashboard öffnen',
     'metrics' => [
-        'minutes' => ':value Minute|:value Minuten',
         'title' => 'Metriken',
-        'interval' => 'Intervall',
-        'hours' => ':value Stunde|:value Stunden',
         'last' => 'Letzte',
         'day' => ':value Tag|:value Tage',
+        'hours' => ':value Stunde|:value Stunden',
+        'minutes' => ':value Minute|:value Minuten',
     ],
     'upcoming_maintenances' => [
         'title' => 'Planmäßige Wartung',
@@ -17,19 +34,5 @@ return [
         'title' => 'Vergangene Vorfälle',
         'no_incidents' => 'Keine Vorkommnisse gemeldet.',
     ],
-    /*
- * Copyright (c) 2021 by HerrTxbias.
- *
- * Using / Editing this without my consent is not allowed.
- */
-    /*
-    |--------------------------------------------------------------------------
-    | Home Language Lines
-    |--------------------------------------------------------------------------
-    |
-    | Please do not edit these lines, as they are managed by our translation
-    | system. Thank you.
-    |
-    */
-    'open_dashboard' => 'Dashboard öffnen',
+
 ];

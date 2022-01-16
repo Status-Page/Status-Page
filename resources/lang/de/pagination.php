@@ -1,10 +1,12 @@
 <?php
-return [
-    /*
+/*
  * Copyright (c) 2021 by HerrTxbias.
  *
  * Using / Editing this without my consent is not allowed.
  */
+
+return [
+
     /*
     |--------------------------------------------------------------------------
     | Pagination Language Lines
@@ -15,6 +17,8 @@ return [
     | you want to customize your views to better match your application.
     |
     */
+
     'previous' => '&laquo; Zurück',
     'next' => 'Weiter &raquo;',
+
 ];
