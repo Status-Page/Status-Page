@@ -13,6 +13,7 @@
             <div class="text-yellow-700 bg-yellow-200 border-yellow-700"></div>
             <div class="text-red-500 bg-red-100 border-red-500"></div>
             <div class="text-blue-500 bg-blue-100 border-blue-500"></div>
+            <div class="bg-gray-500 bg-green-400 bg-yellow-500 bg-yellow-700 bg-red-500 bg-blue-500"></div>ya
             <div class="bg-green-500 bg-blue-500 bg-red-500 bg-gray-500"></div>
             <div class="bg-black bg-yellow-400 bg-yellow-600 bg-red-500 bg-blue-500"></div>
             <div class="text-black text-yellow-400 text-yellow-600 text-red-500 text-blue-500"></div>
