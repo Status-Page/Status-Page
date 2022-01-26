@@ -23,7 +23,7 @@
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
-        "laravel/framework": "v8.79.0",
+        "laravel/framework": "v8.81.0",
         "laravel/jetstream": "^2.1",
         "laravel/sanctum": "^2.9",
         "laravel/tinker": "^2.5",
