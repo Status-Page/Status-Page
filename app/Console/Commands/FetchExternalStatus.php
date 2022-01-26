@@ -95,10 +95,10 @@ class FetchExternalStatus extends Command
                                     $comp->save();
                                 }
 
-                                $component_to_update = $provider->components()->where('linked_external_object_id', $comp->id)->first();
-                                if($component_to_update != null){
-                                    $component_to_update->status_id = $this->spStatusConverter($component->status);
-                                    $component_to_update->save();
+                                $components_to_update = $provider->components()->where('linked_external_object_id', $comp->id)->get();
+                                foreach ($components_to_update as $comp) {
+                                    $comp->status_id = $this->spStatusConverter($component->status);
+                                    $comp->save();
                                 }
                             }
                         }
