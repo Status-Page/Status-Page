@@ -7,6 +7,7 @@
 
 namespace App\Console;
 
+use App\Statuspage\Version;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Symfony\Component\Process\Exception\ProcessFailedException;
@@ -41,6 +42,9 @@ class Kernel extends ConsoleKernel
                 throw new ProcessFailedException($fetch);
             }
         })->everyFifteenMinutes()->description('Checks for a newer version.');
+        $schedule->call(function (){
+            Version::fetchLatestVersion();
+        })->everyFiveMinutes()->description('Fetches newest Version from GitHub.');
         $schedule->command('status:fetchuptimerobot')->everyMinute()->description('Import Data from UR');
         $schedule->command('status:fetchexternalstatus')->everyMinute()->description('Import Date from external Status Pages');
         $schedule->command('status:checksubscribers')->everyFiveMinutes()->description('Checks if there are any expired Subscribers and deletes them');
