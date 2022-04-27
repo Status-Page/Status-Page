@@ -18,7 +18,7 @@
     "require": {
         "php": "^7.4|^8.0",
         "ext-json": "*",
-        "configcat/configcat-client": "^5.2",
+        "configcat/configcat-client": "^6.0",
         "doctrine/dbal": "^3.0",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
