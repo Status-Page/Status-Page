@@ -23,7 +23,7 @@
                     </div>
                     <div class="text-right">
                         <p x-show="!open{{ $group->id }}" class="text-sm font-bold {{ $group->getStatus()->color }}">
-                            {{ $group->getStatus()->name }}
+                            {{ __($group->getStatus()->name) }}
                         </p>
                     </div>
                 </h3>
@@ -54,7 +54,7 @@
                                                 </div>
                                                 <div class="text-right">
                                                     <button class="text-sm font-bold {{ $component->status()->color }} cursor-default" data-title="Last update: {{ $component->updated_at }}" data-placement="top">
-                                                        {{ $component->status()->name }}
+                                                        {{ __($component->status()->name) }}
                                                     </button>
                                                 </div>
                                             </div>

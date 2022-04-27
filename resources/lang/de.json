@@ -1,0 +1,8 @@
+{
+    "Unknown": "Unbekannt",
+    "Operational": "Funktionsfähig",
+    "Degraded Performance": "Eingeschränkte Leistung",
+    "Partial Outage": "Teilweiser Ausfall",
+    "Major Outage": "Kompletter Ausfall",
+    "Maintenance": "Wartung"
+}
