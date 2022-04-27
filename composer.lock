@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9c0278f4c8448684e5724c87fd8008a9",
+    "content-hash": "e4b6953f06965e6c8804097848ce8d96",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -178,29 +178,29 @@
         },
         {
             "name": "configcat/configcat-client",
-            "version": "v5.4.0",
+            "version": "v6.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/configcat/php-sdk.git",
-                "reference": "5c241bc11258f6fad9fa50f61fc810dceebea12c"
+                "reference": "cfb416dfb82b5e206567403e159af84b501f743e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/configcat/php-sdk/zipball/5c241bc11258f6fad9fa50f61fc810dceebea12c",
-                "reference": "5c241bc11258f6fad9fa50f61fc810dceebea12c",
+                "url": "https://api.github.com/repos/configcat/php-sdk/zipball/cfb416dfb82b5e206567403e159af84b501f743e",
+                "reference": "cfb416dfb82b5e206567403e159af84b501f743e",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "guzzlehttp/guzzle": "^6.3 || ^7.0",
                 "monolog/monolog": "^1.6|^2.0",
-                "php": ">=5.5",
+                "php": ">=7.1",
                 "psr/log": "^1.1",
-                "z4kn4fein/php-semver": "^1.1"
+                "z4kn4fein/php-semver": "^1.2"
             },
             "require-dev": {
                 "illuminate/cache": "^5.0",
-                "phpunit/phpunit": "~4.0",
+                "phpunit/phpunit": "~7.0|^8",
                 "psr/cache": "^1.0",
                 "psr/simple-cache": "^1.0",
                 "squizlabs/php_codesniffer": "3.5.1"
@@ -237,9 +237,9 @@
             ],
             "support": {
                 "issues": "https://github.com/configcat/php-sdk/issues",
-                "source": "https://github.com/configcat/php-sdk/tree/v5.4.0"
+                "source": "https://github.com/configcat/php-sdk/tree/v6.0.0"
             },
-            "time": "2022-01-13T17:25:52+00:00"
+            "time": "2022-03-21T11:29:05+00:00"
         },
         {
             "name": "dasprid/enum",
@@ -1209,16 +1209,16 @@
         },
         {
             "name": "guzzlehttp/guzzle",
-            "version": "7.4.1",
+            "version": "7.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "ee0a041b1760e6a53d2a39c8c34115adc2af2c79"
+                "reference": "ac1ec1cd9b5624694c3a40be801d94137afb12b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/ee0a041b1760e6a53d2a39c8c34115adc2af2c79",
-                "reference": "ee0a041b1760e6a53d2a39c8c34115adc2af2c79",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/ac1ec1cd9b5624694c3a40be801d94137afb12b4",
+                "reference": "ac1ec1cd9b5624694c3a40be801d94137afb12b4",
                 "shasum": ""
             },
             "require": {
@@ -1251,12 +1251,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "GuzzleHttp\\": "src/"
-                },
                 "files": [
                     "src/functions_include.php"
-                ]
+                ],
+                "psr-4": {
+                    "GuzzleHttp\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -1313,7 +1313,7 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/guzzle/issues",
-                "source": "https://github.com/guzzle/guzzle/tree/7.4.1"
+                "source": "https://github.com/guzzle/guzzle/tree/7.4.2"
             },
             "funding": [
                 {
@@ -1329,7 +1329,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-12-06T18:43:05+00:00"
+            "time": "2022-03-20T14:16:28+00:00"
         },
         {
             "name": "guzzlehttp/promises",
@@ -1358,12 +1358,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "GuzzleHttp\\Promise\\": "src/"
-                },
                 "files": [
                     "src/functions_include.php"
-                ]
+                ],
+                "psr-4": {
+                    "GuzzleHttp\\Promise\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -1417,16 +1417,16 @@
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "2.1.0",
+            "version": "2.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "089edd38f5b8abba6cb01567c2a8aaa47cec4c72"
+                "reference": "c94a94f120803a18554c1805ef2e539f8285f9a2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/089edd38f5b8abba6cb01567c2a8aaa47cec4c72",
-                "reference": "089edd38f5b8abba6cb01567c2a8aaa47cec4c72",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/c94a94f120803a18554c1805ef2e539f8285f9a2",
+                "reference": "c94a94f120803a18554c1805ef2e539f8285f9a2",
                 "shasum": ""
             },
             "require": {
@@ -1450,7 +1450,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.1-dev"
+                    "dev-master": "2.2-dev"
                 }
             },
             "autoload": {
@@ -1512,7 +1512,7 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/psr7/issues",
-                "source": "https://github.com/guzzle/psr7/tree/2.1.0"
+                "source": "https://github.com/guzzle/psr7/tree/2.2.1"
             },
             "funding": [
                 {
@@ -1528,7 +1528,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-10-06T17:43:30+00:00"
+            "time": "2022-03-20T21:55:58+00:00"
         },
         {
             "name": "jaybizzle/crawler-detect",
@@ -6676,23 +6676,23 @@
         },
         {
             "name": "z4kn4fein/php-semver",
-            "version": "v1.1.0",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/z4kn4fein/php-semver.git",
-                "reference": "0f2a2459a4b479328b867d89f255d1201867d01d"
+                "reference": "6ca4561055daeaed96e5cf11c081693f75669e52"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/z4kn4fein/php-semver/zipball/0f2a2459a4b479328b867d89f255d1201867d01d",
-                "reference": "0f2a2459a4b479328b867d89f255d1201867d01d",
+                "url": "https://api.github.com/repos/z4kn4fein/php-semver/zipball/6ca4561055daeaed96e5cf11c081693f75669e52",
+                "reference": "6ca4561055daeaed96e5cf11c081693f75669e52",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.5"
+                "php": ">=7.1"
             },
             "require-dev": {
-                "phpunit/phpunit": "^4"
+                "phpunit/phpunit": "^7|^8"
             },
             "type": "library",
             "autoload": {
@@ -6710,7 +6710,7 @@
                     "email": "peter.csajtai@outlook.com"
                 }
             ],
-            "description": "Semantic version utility library with parser and comparator written in PHP. It provides full support for the semver 2.0.0 standards.",
+            "description": "Semantic Versioning library for PHP. It implements the full semantic version 2.0.0 specification and provides ability to parse, compare, and increment semantic versions.",
             "homepage": "https://github.com/z4kn4fein/php-semver",
             "keywords": [
                 "Semantic version",
@@ -6720,9 +6720,9 @@
             ],
             "support": {
                 "issues": "https://github.com/z4kn4fein/php-semver/issues",
-                "source": "https://github.com/z4kn4fein/php-semver/tree/v1.1.0"
+                "source": "https://github.com/z4kn4fein/php-semver/tree/v1.2.0"
             },
-            "time": "2022-01-09T03:12:36+00:00"
+            "time": "2022-03-21T10:34:32+00:00"
         }
     ],
     "packages-dev": [
