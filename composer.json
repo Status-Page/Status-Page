@@ -21,7 +21,7 @@
         "configcat/configcat-client": "^6.0",
         "doctrine/dbal": "^3.0",
         "fideloper/proxy": "^4.4",
-        "fruitcake/laravel-cors": "^2.0",
+        "fruitcake/laravel-cors": "^3.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "v8.83.9",
         "laravel/jetstream": "^2.1",
