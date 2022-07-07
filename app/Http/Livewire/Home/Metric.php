@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Home;
 
-use App\Models\Setting;
 use Cache;
 use Livewire\Component;
 

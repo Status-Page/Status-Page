@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Dashboard\Administration\AppSettings;
 
-use App\Models\Setting;
 use App\Models\Status;
 use Livewire\Component;
 

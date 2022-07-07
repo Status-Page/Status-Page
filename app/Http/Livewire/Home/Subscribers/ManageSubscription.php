@@ -2,12 +2,8 @@
 
 namespace App\Http\Livewire\Home\Subscribers;
 
-use App\Mail\Subscribers\ManageSubscriptionMail;
 use App\Models\Component as StatusComponent;
 use App\Models\Subscriber;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 
 class ManageSubscription extends Component

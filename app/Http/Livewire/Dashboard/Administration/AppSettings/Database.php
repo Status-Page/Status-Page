@@ -5,7 +5,6 @@ namespace App\Http\Livewire\Dashboard\Administration\AppSettings;
 use App\Models\Setting;
 use Artisan;
 use Crypt;
-use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 
 class Database extends Component

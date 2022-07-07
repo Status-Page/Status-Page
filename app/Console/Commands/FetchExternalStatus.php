@@ -8,7 +8,6 @@ use App\Models\LinkedStatusProvider;
 use DB;
 use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Http;
 
 class FetchExternalStatus extends Command

@@ -2,10 +2,7 @@
 
 namespace App\Mail\Subscribers;
 
-use App\Models\Component;
 use App\Models\Incident;
-use App\Models\IncidentUpdate;
-use App\Models\Status;
 use App\Models\Subscriber;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;

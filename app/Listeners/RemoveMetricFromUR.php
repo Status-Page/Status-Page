@@ -5,8 +5,6 @@ namespace App\Listeners;
 use App\Events\MetricDeleting;
 use App\Models\UptimeRobotMonitor;
 use App\Statuspage\Helper\SPHelper;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 
 class RemoveMetricFromUR
 {

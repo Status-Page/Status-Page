@@ -5,9 +5,7 @@
  * Using / Editing this without my consent is not allowed.
  */
 
-use App\Http\Resources\ComponentResource;
 use App\Http\Resources\SubscriberResource;
-use App\Models\Component;
 use App\Models\Subscriber;
 use App\Statuspage\API\APIHelpers;
 use App\Statuspage\API\ResponseGenerator;

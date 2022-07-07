@@ -2,7 +2,6 @@
 
 namespace App\Http\Middleware;
 
-use App\Exceptions\UserDeactivatedException;
 use Closure;
 use Exception;
 use Illuminate\Http\Request;

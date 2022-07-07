@@ -4,10 +4,7 @@ namespace App\Http\Livewire\Dashboard\Administration\Plugins\UptimeRobot;
 
 use App\Events\ActionLog;
 use App\Http\Livewire\DataTable\WithPerPagePagination;
-use App\Models\Setting;
 use App\Models\UptimeRobotMonitor;
-use App\Models\User;
-use App\Statuspage\UptimeRobot\UptimeRobot;
 use Auth;
 use Livewire\Component;
 

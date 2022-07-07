@@ -25,10 +25,6 @@ use App\Http\Livewire\Home\Subscribers\ManageSubscription;
 use App\Http\Livewire\Home\Subscribers\NewSubscriber;
 use App\Http\Livewire\Home\Subscribers\UnsubscribeSubscriber;
 use App\Http\Livewire\Home\Subscribers\VerifiedSubscriber;
-use App\Mail\Incidents\Scheduled\ScheduledIncidentStarted;
-use App\Models\Subscriber;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 
 /*

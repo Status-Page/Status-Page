@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Dashboard\Administration;
 
-use App\Events\ActionLog;
 use App\Http\Livewire\DataTable\WithPerPagePagination;
 use App\Models\Action;
 use Auth;
