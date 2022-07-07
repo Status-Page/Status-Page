@@ -7,7 +7,7 @@
 
 namespace App\Models;
 
-use App\Events\ComponentDeleting;
+use App\Events\Components\ComponentDeleting;
 use App\Events\Components\ComponentUpdated;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

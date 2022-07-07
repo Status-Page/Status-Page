@@ -42,6 +42,7 @@ class IncidentUpdated extends Mailable implements ShouldQueue
     public function build()
     {
         $unsubscribeKey = $this->subscriber->getUnsubscribeKey() ?: $this->subscriber->generateUnsubscribeKey();
+        $manageKey = $this->subscriber->getManageKey() ?: $this->subscriber->generateManageKey();
 
         return $this->markdown('mail.subscribers.incident-update', [
             'greeting' => 'Hello!',
@@ -59,6 +60,7 @@ class IncidentUpdated extends Mailable implements ShouldQueue
             ],
             'unsubscribe_id' => $this->subscriber->id,
             'unsubscribe_key' => $unsubscribeKey,
+            'manage_key' => $manageKey,
         ]);
     }
 }

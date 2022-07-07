@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Home\Subscribers;
 
-use App\Mail\Subscribers\VerifySubscriberEmail;
+use App\Mail\Subscribers\ManageSubscriptionMail;
 use App\Models\Subscriber;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;

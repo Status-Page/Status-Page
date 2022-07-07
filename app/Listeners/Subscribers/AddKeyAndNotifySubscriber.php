@@ -3,7 +3,7 @@
 namespace App\Listeners\Subscribers;
 
 use App\Events\Subscribers\SubscriberAdded;
-use App\Mail\Subscribers\VerifySubscriberEmail;
+use App\Mail\Subscribers\ManageSubscriptionMail;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Log;
@@ -32,7 +32,7 @@ class AddKeyAndNotifySubscriber
         $subscriber = $event->subscriber;
         if(!$subscriber->verified_email){
             $key = $subscriber->generateVerificationKey();
-            Mail::to($subscriber->email)->send(new VerifySubscriberEmail($subscriber, $key));
+            Mail::to($subscriber->email)->send(new ManageSubscriptionMail($subscriber, $key));
         }
     }
 }

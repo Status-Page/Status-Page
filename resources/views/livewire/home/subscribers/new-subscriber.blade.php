@@ -13,23 +13,27 @@
                     </div>
                 </div>
             </div>
-            </div>
         </div>
     </div>
     <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
-        @if(!$submitted)
-            <p class="inline text-3xl font-extrabold tracking-tight text-indigo-400 sm:block sm:text-4xl">Sign up to receive E-Mail Notifications</p>
-            <form class="mt-8 sm:flex" method="post">
-                @csrf
-                <label for="email" class="sr-only">Email address</label>
-                <input id="email" name="email" wire:model.lazy="email" type="email" autocomplete="email" required class="w-full px-5 py-3 placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs border-gray-700 rounded-md bg-discordBlack" placeholder="Enter your email">
+        <p class="inline text-3xl font-extrabold tracking-tight text-indigo-400 sm:block sm:text-4xl">Sign up or Manage your Notifications</p>
+        <div class="mt-4 sm:flex" method="post">
+            @if(!$submitted)
+                <input id="email" name="email" wire:model="email" type="email" autocomplete="email" required class="w-full px-5 py-3 placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 sm:max-w-xs border-gray-700 rounded-md bg-discordBlack" placeholder="Enter your email">
                 <div class="mt-3 rounded-md shadow sm:mt-0 sm:ml-3 sm:shrink-0">
-                    <button type="submit" class="w-full flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transform ease-in-out duration-500">
-                        Notify me
+                    <button type="submit" class="w-full flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transform ease-in-out duration-500" wire:click="signUp">
+                        Sign up
                     </button>
                 </div>
-            </form>
-        @elseif($submitted && $success)
+                <div class="mt-3 rounded-md shadow sm:mt-0 sm:ml-3 sm:shrink-0">
+                    <button type="submit" class="w-full flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transform ease-in-out duration-500" wire:click="manage">
+                        Manage
+                    </button>
+                </div>
+            @endif
+        </div>
+
+        @if($success)
             <div class="rounded-md bg-green-50 p-4">
                 <div class="flex">
                     <div class="shrink-0">
@@ -39,18 +43,31 @@
                         </svg>
                     </div>
                     <div class="ml-3">
-                        <h3 class="text-sm font-medium text-green-800">
-                            Successfully subscribed
-                        </h3>
-                        <div class="mt-2 text-sm text-green-700">
-                            <p>
-                                Please check your Mail and click the provided Link in the Verification Info. This Link will expire after 24 Hours.
-                            </p>
-                        </div>
+                        @if($managing)
+                            <h3 class="text-sm font-medium text-green-800">
+                                We have sent you an E-Mail!
+                            </h3>
+                            <div class="mt-2 text-sm text-green-700">
+                                <p>
+                                    Please check your Mail and click the provided Link to Manage your Subscription.
+                                </p>
+                            </div>
+                        @else
+                            <h3 class="text-sm font-medium text-green-800">
+                                Successfully subscribed
+                            </h3>
+                            <div class="mt-2 text-sm text-green-700">
+                                <p>
+                                    Please check your Mail and click the provided Link in the Verification Info. This Link will expire after 24 Hours.<br />
+                                    If you didn't receive an E-Mail, you may already have been subscribed!
+                                </p>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
-        @elseif($submitted && !$success)
+        @endif
+        @if($error)
             <div class="rounded-md bg-red-50 p-4">
                 <div class="flex">
                     <div class="shrink-0">
@@ -61,11 +78,11 @@
                     </div>
                     <div class="ml-3">
                         <h3 class="text-sm font-medium text-red-800">
-                            There were {{ $validation_errors->count() }} errors with your subscription
+                            There were {{ $errors->count() }} errors with your subscription
                         </h3>
                         <div class="mt-2 text-sm text-red-700">
                             <ul class="list-disc pl-5 space-y-1">
-                                @foreach($validation_errors->getMessages() as $message)
+                                @foreach($errors->getMessages() as $message)
                                     <li>{{ $message }}</li>
                                 @endforeach
                             </ul>

@@ -31,7 +31,7 @@ class NotifyIncidentUpdateSubscribers
         $incident = $update->incident();
 
         foreach (Subscriber::all() as $subscriber){
-            if ($subscriber->email_verified){
+            if ($subscriber->email_verified && $subscriber->incident_updates){
                 Mail::to($subscriber->email)->send(new IncidentUpdated($subscriber, $incident, $update));
             }
         }
