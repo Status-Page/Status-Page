@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d45a3338e4ff3701c4bd6cc993557b36",
+    "content-hash": "c8bb40629b3a941fde18f4f3fbbd2c94",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -1737,16 +1737,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v8.83.17",
+            "version": "v8.83.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "2cf142cd5100b02da248acad3988bdaba5635e16"
+                "reference": "db8188e9cc8359a5c6706fa9d9f55aad7f235077"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/2cf142cd5100b02da248acad3988bdaba5635e16",
-                "reference": "2cf142cd5100b02da248acad3988bdaba5635e16",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/db8188e9cc8359a5c6706fa9d9f55aad7f235077",
+                "reference": "db8188e9cc8359a5c6706fa9d9f55aad7f235077",
                 "shasum": ""
             },
             "require": {
@@ -1906,7 +1906,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2022-06-21T14:38:31+00:00"
+            "time": "2022-06-28T14:30:38+00:00"
         },
         {
             "name": "laravel/jetstream",
