@@ -20,6 +20,7 @@ return [
 
     'title' => 'Settings',
     'actionlog_backlog' => 'ActionLog Backlog',
+    'actionlog_disable_read_actions' => 'ActionLog Disable Read-Actions',
     'darkmode_default' => 'Darkmode Default Value',
     'footer_show' => 'Show Footer',
     'footer_showDashboardLink' => 'Show Link to Dashboard in the Footer',
