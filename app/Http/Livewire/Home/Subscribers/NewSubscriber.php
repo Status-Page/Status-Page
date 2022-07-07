@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Home\Subscribers;
 
 use App\Mail\Subscribers\ManageSubscriptionMail;
+use App\Mail\Subscribers\VerifySubscriberEmail;
 use App\Models\Subscriber;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
@@ -39,7 +40,7 @@ class NewSubscriber extends Component
                 $sub = $subQuery->first();
                 if(!$sub->email_verified){
                     $key = $sub->generateVerificationKey();
-                    Mail::to($sub->email)->send(new ManageSubscriptionMail($sub, $key));
+                    Mail::to($sub->email)->send(new VerifySubscriberEmail($sub, $key));
                 }else{
                     $manageKey = $sub->getManageKey();
                     Mail::to($sub->email)->send(new ManageSubscriptionMail($sub, $manageKey));

@@ -8,7 +8,7 @@
 namespace App\Http\Livewire\Dashboard\Administration\Subscribers;
 
 use App\Events\ActionLog;
-use App\Mail\Subscribers\ManageSubscriptionMail;
+use App\Mail\Subscribers\VerifySubscriberEmail;
 use App\Models\Subscriber;
 use Auth;
 use Illuminate\Support\Facades\Mail;
@@ -37,7 +37,7 @@ class SubscriberVerificationModal extends Component
         ));
 
         $key = $this->subscriber->generateVerificationKey();
-        Mail::to($this->subscriber->email)->send(new ManageSubscriptionMail($this->subscriber, $key));
+        Mail::to($this->subscriber->email)->send(new VerifySubscriberEmail($this->subscriber, $key));
 
         $this->modal = false;
         $this->emitUp('refreshData');
