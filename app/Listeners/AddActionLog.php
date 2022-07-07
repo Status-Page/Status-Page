@@ -8,8 +8,6 @@
 namespace App\Listeners;
 
 use App\Events\ActionLog;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 
 class AddActionLog
 {

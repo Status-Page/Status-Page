@@ -8,7 +8,6 @@
 namespace App\Mail\Incidents\Scheduled;
 
 use App\Models\Incident;
-use App\Models\IncidentUpdate;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;

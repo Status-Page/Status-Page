@@ -2,11 +2,9 @@
 
 namespace App\Listeners;
 
-use App\Events\ComponentDeleting;
+use App\Events\Components\ComponentDeleting;
 use App\Models\UptimeRobotMonitor;
 use App\Statuspage\Helper\SPHelper;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 
 class RemoveComponentFromUR
 {
@@ -23,7 +21,7 @@ class RemoveComponentFromUR
     /**
      * Handle the event.
      *
-     * @param  ComponentDeleting  $event
+     * @param  \App\Events\Components\ComponentDeleting  $event
      * @return void
      */
     public function handle(ComponentDeleting $event)

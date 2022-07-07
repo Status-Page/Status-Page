@@ -4,16 +4,10 @@ namespace App\Http\Livewire\Dashboard\Metrics\Modals;
 
 use App\Actions\Fortify\PasswordValidationRules;
 use App\Events\ActionLog;
-use App\Models\Incident;
-use App\Models\IncidentUpdate;
 use App\Models\Metric;
-use App\Models\User;
 use Auth;
 use Hash;
-use Illuminate\Validation\Rule;
-use Laravel\Fortify\Rules\Password;
 use Livewire\Component;
-use Spatie\Permission\Models\Role;
 
 class MetricUpdateModal extends Component
 {

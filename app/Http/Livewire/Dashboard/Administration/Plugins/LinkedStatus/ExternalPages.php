@@ -5,10 +5,6 @@ namespace App\Http\Livewire\Dashboard\Administration\Plugins\LinkedStatus;
 use App\Events\ActionLog;
 use App\Http\Livewire\DataTable\WithPerPagePagination;
 use App\Models\LinkedStatusProvider;
-use App\Models\Setting;
-use App\Models\UptimeRobotMonitor;
-use App\Models\User;
-use App\Statuspage\UptimeRobot\UptimeRobot;
 use Auth;
 use Livewire\Component;
 

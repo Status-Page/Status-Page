@@ -4,7 +4,6 @@ namespace App\Console\Commands;
 
 use App\Statuspage\Version;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Http;
 use Symfony\Component\Process\Process;
 
 class RunUpdate extends Command

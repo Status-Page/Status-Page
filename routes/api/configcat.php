@@ -5,7 +5,6 @@
  * Using / Editing this without my consent is not allowed.
  */
 
-use App\Statuspage\API\APIHelpers;
 use App\Statuspage\API\ResponseGenerator;
 use App\Statuspage\GlobalConfig;
 use Illuminate\Http\Request;

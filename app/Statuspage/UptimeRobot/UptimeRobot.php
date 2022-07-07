@@ -8,10 +8,6 @@
 namespace App\Statuspage\UptimeRobot;
 
 
-use Http;
-use Illuminate\Http\Client\Request;
-use Illuminate\Http\Client\Response;
-
 class UptimeRobot
 {
     private string $apiKey;

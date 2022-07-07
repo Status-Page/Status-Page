@@ -3,10 +3,10 @@
 namespace App\Models;
 
 use App\Events\Subscribers\SubscriberAdded;
+use App\Events\Subscribers\SubscriberDeletingEvent;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
 use Ramsey\Uuid\Guid\Guid;
 
@@ -18,6 +18,7 @@ class Subscriber extends Model
 
     protected $dispatchesEvents = [
         'created' => SubscriberAdded::class,
+        'deleting' => SubscriberDeletingEvent::class,
     ];
 
     public function generateVerificationKey(): string
@@ -43,6 +44,10 @@ class Subscriber extends Model
 
     public function getUnsubscribeKey(){
         return $this->unsubscribe_key;
+    }
+
+    public function getManageKey(){
+        return $this->manage_key;
     }
 
     public function verifyEmail() {

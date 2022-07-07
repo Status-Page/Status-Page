@@ -21,13 +21,10 @@ use App\Http\Livewire\Dashboard\Maintenances\MaintenanceUpdates;
 use App\Http\Livewire\Dashboard\Maintenances\PastMaintenances;
 use App\Http\Livewire\Dashboard\Metrics\Metrics;
 use App\Http\Livewire\Home\Home;
+use App\Http\Livewire\Home\Subscribers\ManageSubscription;
 use App\Http\Livewire\Home\Subscribers\NewSubscriber;
 use App\Http\Livewire\Home\Subscribers\UnsubscribeSubscriber;
 use App\Http\Livewire\Home\Subscribers\VerifiedSubscriber;
-use App\Mail\Incidents\Scheduled\ScheduledIncidentStarted;
-use App\Models\Subscriber;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,8 +41,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', Home::class)->name('home');
 
 Route::get('/subscribe', NewSubscriber::class)->name('subscribers.new');
-Route::post('/subscribe', NewSubscriber::class);
 Route::get('/subscribers/{subscriber}/verify/{key}', VerifiedSubscriber::class)->name('subscribers.verify');
+Route::get('/subscribers/{subscriber}/manage/{key}', ManageSubscription::class)->name('subscribers.manage');
 Route::get('/subscribers/{subscriber}/unsubscribe/{key}', UnsubscribeSubscriber::class)->name('subscribers.unsubscribe');
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function (){

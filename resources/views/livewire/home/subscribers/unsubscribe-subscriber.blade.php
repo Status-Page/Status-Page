@@ -8,11 +8,10 @@
                 <div class="space-x-2 flex items-center">
                     <div>
                         <a href="{{ route('home') }}">
-                            <x-jet-button class="text-right dark:bg-discordGrey">{{ __('Home') }}</x-jet-button>
+                            <x-jet-button class="text-right dark:bg-discordGrey">{{ __('home.home') }}</x-jet-button>
                         </a>
                     </div>
                 </div>
-            </div>
             </div>
         </div>
     </div>

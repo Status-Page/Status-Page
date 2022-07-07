@@ -3,7 +3,6 @@
 namespace App\Http\Livewire\Dashboard\Administration\AppSettings;
 
 use Artisan;
-use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 
 class General extends Component

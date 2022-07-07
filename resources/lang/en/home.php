@@ -17,6 +17,7 @@ return [
     |
     */
 
+    'home' => 'Home',
     'open_dashboard' => 'Open Dashboard',
     'metrics' => [
         'title' => 'Metrics',

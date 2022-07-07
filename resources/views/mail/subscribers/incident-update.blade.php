@@ -68,6 +68,10 @@
 <br />
 Unsubscribe from this notifications by clicking [this link]({{ route('subscribers.unsubscribe', ['subscriber' => $unsubscribe_id, 'key' => $unsubscribe_key]) }}).
 @endisset
+@isset($manage_key)
+<br />
+Manage this notifications by clicking [this link]({{ route('subscribers.manage', ['subscriber' => $unsubscribe_id, 'key' => $manage_key]) }}).
+@endisset
 @endslot
 @endisset
 @endcomponent

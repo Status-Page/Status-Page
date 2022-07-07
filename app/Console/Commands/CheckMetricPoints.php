@@ -7,7 +7,6 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Action;
 use App\Models\MetricPoint;
 use Carbon\Carbon;
 use Illuminate\Console\Command;

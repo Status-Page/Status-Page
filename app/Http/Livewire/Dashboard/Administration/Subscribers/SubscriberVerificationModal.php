@@ -9,9 +9,7 @@ namespace App\Http\Livewire\Dashboard\Administration\Subscribers;
 
 use App\Events\ActionLog;
 use App\Mail\Subscribers\VerifySubscriberEmail;
-use App\Models\Incident;
 use App\Models\Subscriber;
-use App\Models\User;
 use Auth;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Component;

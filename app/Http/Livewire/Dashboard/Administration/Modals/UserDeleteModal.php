@@ -8,7 +8,6 @@
 namespace App\Http\Livewire\Dashboard\Administration\Modals;
 
 use App\Events\ActionLog;
-use App\Models\Incident;
 use App\Models\User;
 use Auth;
 use Livewire\Component;

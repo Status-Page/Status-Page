@@ -8,11 +8,9 @@
 namespace App\Http\Livewire\Dashboard\Maintenances\Modals;
 
 use App\Events\ActionLog;
-use App\Models\ComponentGroup;
 use App\Models\Incident;
 use App\Models\IncidentUpdate;
 use Auth;
-use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 
 class MaintenanceAddModal extends Component

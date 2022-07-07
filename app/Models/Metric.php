@@ -9,7 +9,6 @@ namespace App\Models;
 
 use App\Events\MetricDeleting;
 use Carbon\Carbon;
-use Carbon\CarbonInterval;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;

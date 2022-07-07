@@ -7,12 +7,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Status;
 use App\Models\User;
 use Exception;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 use Schema;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;

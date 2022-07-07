@@ -3,7 +3,7 @@
 use App\Models\Setting;
 use Illuminate\Database\Migrations\Migration;
 
-class AddSubscriberSettings extends Migration
+class AddActionLogSettings extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddSubscriberSettings extends Migration
     {
         $settings = [
             [
-                'key' => 'subscriber_signup',
+                'key' => 'actionlog_disable_read_actions',
                 'boolval' => false,
                 'type' => 'checkbox',
             ],
@@ -38,6 +38,7 @@ class AddSubscriberSettings extends Migration
      */
     public function down()
     {
-        //
+        $set = Setting::query()->where('key', '=', 'actionlog_disable_read_actions')->first();
+        $set->delete();
     }
 }

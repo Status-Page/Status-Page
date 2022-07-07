@@ -2,18 +2,11 @@
 
 namespace App\Http\Livewire\Dashboard\Administration\Plugins\UptimeRobot\Modals;
 
-use App\Actions\Fortify\PasswordValidationRules;
 use App\Events\ActionLog;
-use App\Models\Incident;
-use App\Models\IncidentUpdate;
 use App\Models\UptimeRobotMonitor;
-use App\Models\User;
 use Auth;
 use Hash;
-use Illuminate\Validation\Rule;
-use Laravel\Fortify\Rules\Password;
 use Livewire\Component;
-use Spatie\Permission\Models\Role;
 
 class UpdateMonitor extends Component
 {

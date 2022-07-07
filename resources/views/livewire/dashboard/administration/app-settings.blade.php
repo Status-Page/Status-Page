@@ -10,6 +10,8 @@
             <livewire:dashboard.administration.app-settings.general />
             <x-jet-section-border />
             <livewire:dashboard.administration.app-settings.database />
+            <x-jet-section-border />
+            <livewire:dashboard.administration.app-settings.statuses />
         </div>
     </div>
 </div>

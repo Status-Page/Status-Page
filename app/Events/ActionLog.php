@@ -8,11 +8,9 @@
 namespace App\Events;
 
 use App\Models\Action;
-use Illuminate\Broadcasting\Channel;
+use App\Models\Setting;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
@@ -29,6 +27,10 @@ class ActionLog
      */
     public function __construct($action)
     {
+        $disableReadActions = Setting::getBoolean('actionlog_disable_read_actions');
+
+        if($action['type'] === 0 && $disableReadActions)
+            return;
         $this->action = new Action();
         $this->action->user = $action['user'];
         $this->action->type = $action['type'];
