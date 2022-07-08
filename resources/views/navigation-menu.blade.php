@@ -160,6 +160,12 @@
                                     </x-jet-dropdown-link>
                                 @endcan
 
+                                @can('read_settings')
+                                    <x-jet-dropdown-link href="{{ route('dashboard.admin.custom-styles.list') }}">
+                                        {{ __('custom-styles.title') }}
+                                    </x-jet-dropdown-link>
+                                @endcan
+
                                 @can('read_users')
                                     <x-jet-dropdown-link href="{{ route('dashboard.admin.users') }}">
                                         {{ __('users.title') }}
@@ -310,6 +316,12 @@
                     @can('read_settings')
                         <x-jet-responsive-nav-link href="{{ route('dashboard.admin.settings') }}" :active="request()->routeIs('dashboard.admin.settings')">
                             {{ __('settings.title') }}
+                        </x-jet-responsive-nav-link>
+                    @endcan
+
+                    @can('read_settings')
+                        <x-jet-responsive-nav-link href="{{ route('dashboard.admin.custom-styles.list') }}" :active="request()->routeIs('dashboard.admin.custom-styles.list')">
+                            {{ __('custom-styles.title') }}
                         </x-jet-responsive-nav-link>
                     @endcan
 

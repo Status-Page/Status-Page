@@ -7,6 +7,9 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Livewire\Dashboard\Administration\AppSettings;
+use App\Http\Livewire\Dashboard\Administration\CustomStyles\CustomStyleCreate;
+use App\Http\Livewire\Dashboard\Administration\CustomStyles\CustomStyleList;
+use App\Http\Livewire\Dashboard\Administration\CustomStyles\CustomStyleUpdate;
 use App\Http\Livewire\Dashboard\Administration\Plugins\LinkedStatus\ExternalPages;
 use App\Http\Livewire\Dashboard\Administration\Plugins\UptimeRobot\Monitors;
 use App\Http\Livewire\Dashboard\Administration\Subscribers\Subscribers;
@@ -61,6 +64,11 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function (){
     Route::get('/dashboard/metrics', Metrics::class)->middleware(['can:read_metrics'])->name('dashboard.metrics');
 
     Route::get('/dashboard/admin/settings', AppSettings::class)->middleware(['can:read_settings'])->name('dashboard.admin.settings');
+
+    Route::get('/dashboard/admin/custom-styles', CustomStyleList::class)->middleware(['can:read_settings'])->name('dashboard.admin.custom-styles.list');
+    Route::get('/dashboard/admin/custom-styles/create', CustomStyleCreate::class)->middleware(['can:read_settings'])->name('dashboard.admin.custom-styles.create');
+    Route::get('/dashboard/admin/custom-styles/{id}', CustomStyleUpdate::class)->middleware(['can:read_settings'])->name('dashboard.admin.custom-styles.update');
+
     Route::get('/dashboard/admin/users', Users::class)->middleware(['can:read_users'])->name('dashboard.admin.users');
     Route::get('/dashboard/admin/subscribers', Subscribers::class)->middleware(['can:read_subscribers'])->name('dashboard.admin.subscribers');
     Route::get('/dashboard/admin/actionlog', ViewActionLog::class)->middleware(['can:read_actionlog'])->name('dashboard.admin.actionlog');
