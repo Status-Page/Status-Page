@@ -3,7 +3,15 @@
         <div class="max-w-3xl mx-auto">
             <div class="mt-12 text-4xl flex justify-between">
                 <div>
-                    <h1 class="inline">{{ config('app.name') }}</h1>
+                    @if(\App\Models\CustomStyle::hasActiveStyles('enable_header'))
+                        @foreach(\App\Models\CustomStyle::getActiveStyles('enable_header') as $style)
+                            @if($style->enable_header)
+                                {!! $style->header !!}
+                            @endif
+                        @endforeach
+                    @else
+                        <h1 class="inline">{{ config('app.name') }}</h1>
+                    @endif
                 </div>
                 <div class="space-x-2 flex items-center">
                     <div>

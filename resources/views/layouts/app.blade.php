@@ -20,6 +20,14 @@
         <script src="https://unpkg.com/@popperjs/core@2"></script>
         <script src="https://unpkg.com/tippy.js@6"></script>
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.x/dist/alpine.min.js" defer></script>
+
+        @if(\App\Models\CustomStyle::hasActiveStyles())
+            @foreach(\App\Models\CustomStyle::getActiveStyles() as $style)
+                @if($style->custom_css !== '')
+                    <style>{!! $style->custom_css !!}</style>
+                @endif
+            @endforeach
+        @endif
     </head>
     <body class="font-sans antialiased dark:bg-bodyBG">
         <div class="flex flex-col min-h-screen">

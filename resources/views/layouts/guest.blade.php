@@ -21,6 +21,14 @@
         <script src="https://unpkg.com/tippy.js@6"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.x/dist/alpine.min.js" defer></script>
+
+        @if(\App\Models\CustomStyle::hasActiveStyles())
+            @foreach(\App\Models\CustomStyle::getActiveStyles() as $style)
+                @if($style->custom_css !== '')
+                    <style>{!! $style->custom_css !!}</style>
+                @endif
+            @endforeach
+        @endif
     </head>
     <body class="bg-gray-100 dark:bg-bodyBG font-sans antialiased">
         <div class="flex flex-col min-h-screen">
