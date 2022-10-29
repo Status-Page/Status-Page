@@ -1,0 +1,28 @@
+{% extends 'base/dashboard.html' %}
+{% load helpers %}
+{% load render_table from django_tables2 %}
+{% load buttons %}
+
+{% block title %}
+View Backup Codes
+{% endblock %}
+
+{% block controls %}
+  <a href="{% url 'users:device_list' %}" class="bg-blue-500 hover:bg-blue-400 text-white px-2 py-2 rounded-md font-medium" type="button">
+    Go back
+  </a>
+{% endblock %}
+
+{% block dashboard_content %}
+  <div class="flex flex-col bg-zinc-200 dark:bg-zinc-800 rounded-md px-2 py-2 space-y-4">
+    <div class="text-2xl">Recovery Codes</div>
+    <div>Store these recovery codes in a secure password manager.<br>They can be used to recover access to your account if your two factor authentication device is lost.</div>
+    <div class="flex flex-row space-y-2">
+      <div class="grid grid-cols-2 gap-4">
+        {% for code in backup_codes %}
+          <div class="bg-zinc-300 dark:bg-zinc-900 rounded-md font-[monospace] px-2 py-2 text-lg">{{ code.token }}</div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

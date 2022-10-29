@@ -1,0 +1,96 @@
+{% extends 'base/dashboard.html' %}
+{% load helpers %}
+{% load form_helpers %}
+
+{% block title %}
+User Preferences
+{% endblock %}
+
+{% block dashboard_content %}
+  <form method="post" action="" id="preferences-update" class="grow bg-zinc-100 dark:bg-zinc-800 p-2 ring-1 ring-zinc-500 rounded-md shadow-lg">
+    {% csrf_token %}
+
+    {# Built-in preferences #}
+    <div class="space-y-4">
+      {% for group, fields in form.fieldsets %}
+        <div>
+          <div class="mb-4">
+            <div class="text-2xl">{{ group }}</div>
+          </div>
+          {% for name in fields %}
+            <div class="mb-2">
+              {% render_field form|getfield:name %}
+            </div>
+          {% endfor %}
+        </div>
+      {% endfor %}
+    </div>
+
+    {# Plugin preferences #}
+    <div class="space-y-4">
+      {% with plugin_fields=form.plugin_fields %}
+        {% if plugin_fields %}
+          <div>
+            <div class="mb-4">
+              <h5 class="text-2xl">Plugins</h5>
+            </div>
+            {% for name in plugin_fields %}
+              <div class="mb-2">
+                {% render_field form|getfield:name %}
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+    </div>
+
+    {# Table configurations #}
+    <div>
+      <div class="mb-4">
+        <div class="text-2xl">Table Configurations</div>
+      </div>
+      <div>
+        {% if request.user.config.data.tables %}
+          <label class="col-sm-3 col-form-label text-lg">
+            Clear table preferences
+          </label>
+          <div>
+            <table class="text-left w-full object-list divide-y divide-gray-400 dark:divide-gray-400">
+              <thead>
+                <tr>
+                  <th>
+                    <input type="checkbox" class="toggle h-4 w-4 rounded border-gray-300 text-indigo-600" title="Toggle All">
+                  </th>
+                  <th>Table</th>
+                  <th>Ordering</th>
+                  <th>Columns</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                {% for table, prefs in request.user.config.data.tables.items %}
+                  <tr class="py-1">
+                    <td>
+                      <input type="checkbox" name="pk" value="tables.{{ table }}" class="h-4 w-4 rounded border-gray-300 text-indigo-600" />
+                    </td>
+                    <td>{{ table }}</td>
+                    <td>{{ prefs.ordering|join:", "|placeholder }}</td>
+                    <td>{{ prefs.columns|join:", "|placeholder }}</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        {% else %}
+          <div>
+            <p class="text-gray-500 dark:text-gray-400">None found</p>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="my-3 flex flex-row items-center justify-end space-x-2">
+      <a class="border border-gray-500 hover:bg-gray-500 hover:text-white text-gray-500 px-2 py-1 rounded-md font-medium h-8 flex items-center" href="{% url 'users:profile' %}">Cancel</a>
+      <button type="submit" name="_update" class="bg-green-500 hover:bg-green-400 text-white px-2 py-1 rounded-md font-medium h-8 flex items-center">Save</button>
+    </div>
+  </form>
+{% endblock %}

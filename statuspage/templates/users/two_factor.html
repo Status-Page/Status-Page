@@ -1,0 +1,34 @@
+{% extends 'base/dashboard.html' %}
+{% load helpers %}
+{% load render_table from django_tables2 %}
+{% load buttons %}
+{% load form_helpers %}
+
+{% block title %}
+Two Factor Devices
+{% endblock %}
+
+{% block controls %}
+  <div class="flex flex-row">
+    <form action="{% url 'users:device_add' %}" method="get" class="flex flex-row items-end space-x-1">
+      {% render_form form %}
+      <button class="bg-green-500 hover:bg-green-400 text-white px-2 py-2 rounded-md font-medium" type="submit">
+        <i class="mdi mdi-plus-thick"></i> Add
+      </button>
+    </form>
+    {% if show_generate_backup_codes %}
+      <form action="{% url 'users:device_list' %}" method="post" class="flex flex-row items-end space-x-1">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="generate_backup_codes">
+        <button class="bg-green-500 hover:bg-green-400 text-white px-2 py-2 rounded-md font-medium" type="submit">
+          Generate Backup Codes
+        </button>
+      </form>
+    {% endif %}
+  </div>
+{% endblock %}
+
+{% block dashboard_content %}
+  {% render_table table 'inc/table.html' %}
+  {% include 'inc/paginator.html' with paginator=table.paginator page=table.page rounded='md:rounded-b-lg' %}
+{% endblock %}

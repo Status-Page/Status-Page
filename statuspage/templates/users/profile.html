@@ -1,0 +1,73 @@
+{% extends 'base/dashboard.html' %}
+{% load helpers %}
+{% load render_table from django_tables2 %}
+
+{% block title %}
+User Profile
+{% endblock %}
+
+{% block dashboard_content %}
+  <div class="flex flex-col space-y-4">
+    <div class="flex flex-row space-x-4">
+      <div class="grow bg-zinc-100 dark:bg-zinc-800 p-2 space-y-2 ring-1 ring-zinc-500 rounded-md shadow-lg">
+        <div class="text-2xl">Account Details</div>
+        <div class="px-4">
+          <table class="text-left w-full">
+            <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+              <tr>
+                <th scope="row" class="pr-6 py-1">Username</th>
+                <td>{{ request.user.username }}</td>
+              </tr>
+              <tr>
+                <th scope="row" class="pr-6 py-1">Full Name</th>
+                <td>
+                  {% if request.user.first_name or request.user.last_name %}
+                    {{ request.user.first_name }} {{ request.user.last_name }}
+                  {% else %}
+                    {{ ''|placeholder }}
+                  {% endif %}
+                </td>
+              </tr>
+              <tr>
+                <th scope="row" class="pr-6 py-1">Email</th>
+                <td>{{ request.user.email|placeholder }}</td>
+              </tr>
+              <tr>
+                <th scope="row" class="pr-6 py-1">Account Created</th>
+                <td>{{ request.user.date_joined|annotated_date }}</td>
+              </tr>
+              <tr>
+                <th scope="row" class="pr-6 py-1">Superuser</th>
+                <td>{% checkmark request.user.is_superuser %}</td>
+              </tr>
+              <tr>
+                <th scope="row" class="pr-6 py-1">Admin Access</th>
+                <td>{% checkmark request.user.is_staff %}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="grow bg-zinc-100 dark:bg-zinc-800 p-2 space-y-2 ring-1 ring-zinc-500 rounded-md shadow-lg">
+        <div class="text-2xl">Assigned Groups</div>
+        <div class="px-4">
+          <ul class="divide-y divide-gray-200 dark:divide-gray-700">
+            {% for group in request.user.groups.all %}
+              <li class="py-1">{{ group }}</li>
+            {% empty %}
+              <li class="py-1">None</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% if perms.extras.view_objectchange %}
+      <div class="bg-zinc-100 dark:bg-zinc-800 p-2 space-y-2 ring-1 ring-zinc-500 rounded-md shadow-lg">
+        <div class="text-2xl text-center">Recent Activity</div>
+        <div>
+          {% render_table changelog_table 'inc/table.html' %}
+        </div>
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}

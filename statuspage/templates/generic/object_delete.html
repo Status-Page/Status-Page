@@ -1,0 +1,12 @@
+{% extends 'base/dashboard.html' %}
+{% load form_helpers %}
+{% load helpers %}
+
+{% block title %}Delete {{ object|meta:"verbose_name" }}?{% endblock %}
+
+
+{% block dashboard_content %}
+  <div class="flex flex-row justify-center">
+    {% include 'htmx/delete_form.html' %}
+  </div>
+{% endblock %}

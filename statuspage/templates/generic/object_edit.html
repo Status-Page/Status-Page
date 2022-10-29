@@ -1,0 +1,72 @@
+{% extends 'base/dashboard.html' %}
+{% load form_helpers %}
+{% load helpers %}
+
+{% block title %}
+  {% if object.pk %}Editing {{ object|meta:"verbose_name" }} {{ object }}{% else %}Add a new {{ object|meta:"verbose_name" }}{% endif %}
+{% endblock title %}
+
+{% block dashboard_content %}
+<div class="bg-zinc-200 dark:bg-zinc-800 shadow px-4 py-2 rounded-md">
+  <form action="" method="post" enctype="multipart/form-data" class="form-object-edit mt-5">
+    {% csrf_token %}
+
+    {% block form %}
+      {% if form.fieldsets %}
+
+        {# Render hidden fields #}
+        {% for field in form.hidden_fields %}
+          {{ field }}
+        {% endfor %}
+
+        {# Render grouped fields according to Form #}
+        <div class="space-y-4 divide-y dark:divide-gray-500">
+          {% for group, fields in form.fieldsets %}
+            <div class="">
+              {% if group %}
+                <div class="mb-4">
+                  <span class="text-2xl">{{ group }}</span>
+                </div>
+              {% endif %}
+              <div class="space-y-4">
+                {% for name in fields %}
+                  {% with field=form|getfield:name %}
+                    {% if not field.field.widget.is_hidden %}
+                      {% render_field field %}
+                    {% endif %}
+                  {% endwith %}
+                {% endfor %}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+
+      {% else %}
+        {# Render all fields in a single group #}
+        <div class="">
+          {% render_form form %}
+        </div>
+      {% endif %}
+
+    {% endblock form %}
+
+    <div class="my-3 flex flex-row items-center justify-end space-x-2">
+      {% block buttons %}
+        {% if object.pk %}
+          <button type="submit" name="_update" class="bg-green-500 hover:bg-green-400 text-white px-2 py-1 rounded-md font-medium h-8 flex items-center">
+            Save
+          </button>
+        {% else %}
+          <button type="submit" name="_create" class="bg-green-500 hover:bg-green-400 text-white px-2 py-1 rounded-md font-medium h-8 flex items-center">
+            Create
+          </button>
+          <button type="submit" name="_addanother" class="border border-green-500 hover:bg-green-500 hover:text-white text-green-500 px-2 py-1 rounded-md font-medium h-8 flex items-center">
+            Create & Add Another
+          </button>
+        {% endif %}
+        <a class="border border-gray-500 hover:bg-gray-500 hover:text-white text-gray-500 px-2 py-1 rounded-md font-medium h-8 flex items-center" href="{{ return_url }}">Cancel</a>
+      {% endblock buttons %}
+    </div>
+  </form>
+</div>
+{% endblock %}

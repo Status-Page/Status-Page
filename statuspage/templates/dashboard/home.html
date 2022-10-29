@@ -1,0 +1,78 @@
+{% extends 'base/dashboard.html' %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block dashboard_content %}
+  <div>
+    <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {% if perms.incidents.view_incident %}
+      <div class="relative overflow-hidden rounded-lg bg-white dark:bg-zinc-800 px-4 pt-5 pb-12 shadow sm:px-6 sm:pt-6">
+        <dt>
+          <div class="absolute rounded-md bg-indigo-500 p-3 text-white">
+            <!-- Heroicon name: outline/exclamation-triangle -->
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+            </svg>
+          </div>
+          <p class="ml-16 truncate text-sm font-medium text-gray-500">Open Incidents</p>
+        </dt>
+        <dd class="ml-16 flex items-baseline pb-6 sm:pb-7">
+          <p class="text-2xl font-semibold text-gray-900 dark:text-gray-100">{{ open_incidents }}</p>
+          <div class="absolute inset-x-0 bottom-0 bg-gray-50 dark:bg-zinc-900 px-4 py-4 sm:px-6">
+            <div class="text-sm">
+              <a href="{% url 'incidents:incident_list' %}" class="font-medium text-indigo-600 hover:text-indigo-500"> View all<span class="sr-only"> Total Open Incidents</span></a>
+            </div>
+          </div>
+        </dd>
+      </div>
+      {% endif %}
+
+      {% if perms.maintenances.view_maintenance %}
+      <div class="relative overflow-hidden rounded-lg bg-white dark:bg-zinc-800 px-4 pt-5 pb-12 shadow sm:px-6 sm:pt-6">
+        <dt>
+          <div class="absolute rounded-md bg-indigo-500 p-3 text-white">
+            <!-- Heroicon name: outline/wrench -->
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75a4.5 4.5 0 01-4.884 4.484c-1.076-.091-2.264.071-2.95.904l-7.152 8.684a2.548 2.548 0 11-3.586-3.586l8.684-7.152c.833-.686.995-1.874.904-2.95a4.5 4.5 0 016.336-4.486l-3.276 3.276a3.004 3.004 0 002.25 2.25l3.276-3.276c.256.565.398 1.192.398 1.852z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.867 19.125h.008v.008h-.008v-.008z" />
+            </svg>
+          </div>
+          <p class="ml-16 truncate text-sm font-medium text-gray-500">Open Maintenances</p>
+        </dt>
+        <dd class="ml-16 flex items-baseline pb-6 sm:pb-7">
+          <p class="text-2xl font-semibold text-gray-900 dark:text-gray-100">{{ open_maintenances }}</p>
+          <div class="absolute inset-x-0 bottom-0 bg-gray-50 dark:bg-zinc-900 px-4 py-4 sm:px-6">
+            <div class="text-sm">
+              <a href="{% url 'maintenances:maintenance_list' %}" class="font-medium text-indigo-600 hover:text-indigo-500"> View all<span class="sr-only"> Total Open Maintenances</span></a>
+            </div>
+          </div>
+        </dd>
+      </div>
+      {% endif %}
+
+      {% if perms.maintenances.view_maintenance %}
+      <div class="relative overflow-hidden rounded-lg bg-white dark:bg-zinc-800 px-4 pt-5 pb-12 shadow sm:px-6 sm:pt-6">
+        <dt>
+          <div class="absolute rounded-md bg-indigo-500 p-3 text-white">
+            <!-- Heroicon name: outline/clock -->
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <p class="ml-16 truncate text-sm font-medium text-gray-500">Upcoming Maintenances</p>
+        </dt>
+        <dd class="ml-16 flex items-baseline pb-6 sm:pb-7">
+          <p class="text-2xl font-semibold text-gray-900 dark:text-gray-100">{{ upcoming_maintenances }}</p>
+          <div class="absolute inset-x-0 bottom-0 bg-gray-50 dark:bg-zinc-900 px-4 py-4 sm:px-6">
+            <div class="text-sm">
+              <a href="{% url 'maintenances:maintenance_list' %}" class="font-medium text-indigo-600 hover:text-indigo-500"> View all<span class="sr-only"> Total Upcoming Maintenances</span></a>
+            </div>
+          </div>
+        </dd>
+      </div>
+      {% endif %}
+    </dl>
+  </div>
+{% endblock %}

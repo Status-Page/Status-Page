@@ -1,0 +1,17 @@
+{% extends 'base/dashboard.html' %}
+{% load helpers %}
+{% load render_table from django_tables2 %}
+{% load buttons %}
+
+{% block title %}
+API Tokens
+{% endblock %}
+
+{% block controls %}
+  {% add_button model %}
+{% endblock %}
+
+{% block dashboard_content %}
+  {% render_table table 'inc/table.html' %}
+  {% include 'inc/paginator.html' with paginator=table.paginator page=table.page rounded='md:rounded-b-lg' %}
+{% endblock %}

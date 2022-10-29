@@ -1,5 +1,5 @@
 .idea
 *.sqlite3
 node_modules/
-dist/
+statuspage/theme/static/css/dist/
 __pycache__

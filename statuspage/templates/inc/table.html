@@ -1,0 +1,59 @@
+{% load django_tables2 %}
+
+<div class="flex flex-col">
+  <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+      <div class="overflow-hidden ring-1 ring-black ring-opacity-5 {{ table.rounded }}">
+        <table {% if table.attrs %} {{ table.attrs.as_html }}{% endif %}>
+          {% if table.show_header %}
+            <thead class="bg-gray-50 dark:bg-zinc-900">
+              <tr>
+                {% for column in table.columns %}
+                  {% if column.orderable %}
+                    <th {{ column.attrs.th.as_html }} class="">
+                      {% if column.is_ordered %}
+                        <div class="float-right">
+                          <a href="{% querystring table.prefixed_order_by_field='' %}"
+                             class="text-red-500"
+                          ><i class="mdi mdi-close"></i></a>
+                        </div>
+                      {% endif %}
+                      <a href="{% querystring table.prefixed_order_by_field=column.order_by_alias.next %}"
+                      >{{ column.header }}</a>
+                    </th>
+                  {% else %}
+                    <th {{ column.attrs.th.as_html }} class="px-3 py-3.5 text-left font-semibold text-gray-900 dark:text-gray-100">{{ column.header }}</th>
+                  {% endif %}
+                {% endfor %}
+              </tr>
+            </thead>
+          {% endif %}
+          <tbody class="divide-y divide-gray-200 dark:divide-gray-700 bg-white dark:bg-zinc-800">
+            {% for row in table.page.object_list|default:table.rows %}
+              <tr {{ row.attrs.as_html }}>
+              {% for column, cell in row.items %}
+                <td {{ column.attrs.td.as_html }} class="whitespace-nowrap px-3 py-4 text-black dark:text-gray-200">{{ cell }}</td>
+              {% endfor %}
+              </tr>
+            {% empty %}
+              {% if table.empty_text %}
+                <tr>
+                  <td colspan="{{ table.columns|length }}" class="text-center text-gray-500 dark:text-gray-400 py-4">&mdash; {{ table.empty_text }} &mdash;</td>
+                </tr>
+              {% endif %}
+            {% endfor %}
+          </tbody>
+          {% if table.has_footer %}
+            <tfoot>
+              <tr>
+                {% for column in table.columns %}
+                  <td>{{ column.footer }}</td>
+                {% endfor %}
+              </tr>
+            </tfoot>
+          {% endif %}
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

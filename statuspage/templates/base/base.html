@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>{% block title %}Home{% endblock %} | Status-Page</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="{% static 'statuspage-tailwind.css'%}?v={{ settings.VERSION }}" />
+    <link rel="stylesheet" href="{% static 'statuspage-external.css'%}?v={{ settings.VERSION }}" />
+    <link rel="stylesheet" href="{% static 'statuspage.css'%}?v={{ settings.VERSION }}" />
+    <link rel="stylesheet" href="{% static 'statuspage-ss-select-styles.css'%}?v={{ settings.VERSION }}" />
+
+		<script defer src="{% static 'statuspage-alpine.js' %}?v={{ settings.VERSION }}"></script>
+		<script src="{% static 'statuspage.js' %}?v={{ settings.VERSION }}"></script>
+
+		<script>
+			window.CSRF_TOKEN = "{{ csrf_token }}";
+		</script>
+
+		{% block head %}{% endblock %}
+	</head>
+
+	<body class="dark">
+    {# User messages #}
+    {% include 'inc/messages.html' %}
+
+		{% block body %}{% endblock %}
+	</body>
+</html>

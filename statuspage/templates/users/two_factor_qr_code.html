@@ -1,0 +1,31 @@
+{% extends 'base/dashboard.html' %}
+{% load helpers %}
+{% load render_table from django_tables2 %}
+{% load buttons %}
+
+{% block title %}
+View QR Code
+{% endblock %}
+
+{% block controls %}
+  <a href="{% url 'users:device_list' %}" class="bg-blue-500 hover:bg-blue-400 text-white px-2 py-2 rounded-md font-medium" type="button">
+    Go back
+  </a>
+{% endblock %}
+
+{% block dashboard_content %}
+<div class="flex flex-col space-y-2 items-center">
+  <div class="text-2xl">Two Factor QR Code</div>
+  <div class="text-black bg-white w-64 h-64">{{ qr_code }}</div>
+  <div class="bg-zinc-300 dark:bg-zinc-900 rounded-md font-[monospace] px-2 py-2 text-lg">{{ config_url }}</div>
+  <div class="pt-8">
+    <form action="" method="post" class="flex flex-row space-x-2 items-center">
+      {% csrf_token %}
+      <input type="text" name="token" autocomplete="two-factor" placeholder="Enter Two Factor Code" class="rounded-md border-gray-300 shadow-sm text-black dark:text-white dark:bg-zinc-900 dark:border-zinc-700">
+      <button class="bg-blue-500 hover:bg-blue-400 text-white px-2 py-2 rounded-md font-medium" type="submit">
+        Verify
+      </button>
+    </form>
+  </div>
+</div>
+{% endblock %}

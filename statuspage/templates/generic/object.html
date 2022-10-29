@@ -1,0 +1,28 @@
+{% extends 'base/dashboard.html' %}
+{% load buttons %}
+{% load helpers %}
+{% load perms %}
+{% load render_table from django_tables2 %}
+
+{% block title %}
+{{ object|meta:"verbose_name"|bettertitle }}: {{ object.title }}
+{% endblock %}
+
+{% block controls %}
+  {% if request.user|can_change:object %}
+    {% edit_button object %}
+  {% endif %}
+  {% if request.user|can_delete:object %}
+    {% delete_button object %}
+  {% endif %}
+{% endblock %}
+
+{% block dashboard_content %}
+  <div class="flex flex-col space-y-4">
+    <div class="grid grid-cols-2 gap-4">
+      <div class="flex flex-col space-y-2">{% block page_left %}{% endblock %}</div>
+      <div class="flex flex-col space-y-2">{% block page_right %}{% endblock %}</div>
+    </div>
+    {% block page_full %}{% endblock %}
+  </div>
+{% endblock %}

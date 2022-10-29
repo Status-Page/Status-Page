@@ -1,0 +1,11 @@
+{% extends 'base/dashboard.html' %}
+{% load buttons %}
+{% load static %}
+
+{% block title %}
+{{ object|meta:"verbose_name"|bettertitle }}: {{ object.title }}
+{% endblock %}
+
+{% block dashboard_content %}
+  Maintenance Update
+{% endblock %}

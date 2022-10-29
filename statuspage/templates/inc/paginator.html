@@ -1,0 +1,123 @@
+{% load helpers %}
+
+<div class="flex items-center justify-between {{ rounded }} border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-zinc-900 px-4 py-3 sm:px-6">
+  <div class="flex flex-1 justify-between sm:hidden">
+    {% if page.has_previous %}
+      <a href="{% querystring request page=page.previous_page_number %}" class="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Previous</a>
+    {% endif %}
+    {% if page.has_next %}
+    <a href="{% querystring request page=page.next_page_number %}" class="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Next</a>
+    {% endif %}
+  </div>
+  <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+    <div>
+      <p class="text-sm text-gray-700 dark:text-gray-300">
+        Showing
+        <span class="font-medium">{{ page.start_index }}</span>
+        to
+        <span class="font-medium">{{ page.end_index }}</span>
+        of
+        <span class="font-medium">{{ page.paginator.count }}</span>
+        results
+      </p>
+    </div>
+    <div>
+      <nav class="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
+        {% if page.has_previous %}
+          <a href="{% querystring request page=page.previous_page_number %}" class="relative inline-flex items-center rounded-l-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-zinc-800 px-2 py-2 text-sm font-medium text-gray-500 dark:text-gray-300 hover:bg-gray-50 focus:z-20">
+            <span class="sr-only">Previous</span>
+            <!-- Heroicon name: mini/chevron-left -->
+            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd" />
+            </svg>
+          </a>
+        {% else %}
+          <span class="relative inline-flex items-center rounded-l-md border border-gray-300 dark:border-gray-700 bg-gray-200 dark:bg-zinc-800 px-2 py-2 text-sm font-medium text-gray-500 dark:text-gray-300 focus:z-20">
+            <span class="sr-only">Previous</span>
+            <!-- Heroicon name: mini/chevron-left -->
+            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd" />
+            </svg>
+          </span>
+        {% endif %}
+        {% for p in page.smart_pages %}
+          {% if p %}
+            <a href="{% querystring request page=p %}"
+               class="relative inline-flex items-center border px-4 py-2 text-sm font-medium focus:z-20 {% if page.number == p %}z-10 bg-indigo-50 dark:bg-indigo-900 border-indigo-500 text-indigo-400{% else %} bg-white dark:bg-zinc-800 border-gray-300 dark:border-gray-700 text-gray-500 dark:text-gray-300 hover:bg-gray-50{% endif %}"
+            >
+              {{ p }}
+            </a>
+          {% else %}
+            <span class="relative inline-flex items-center border border-gray-300 dark:border-gray-700 bg-white dark:bg-zinc-800 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-400">&hellip;</span>
+          {% endif %}
+        {% endfor %}
+        {% if page.has_next %}
+          <a href="{% querystring request page=page.next_page_number %}" class="relative inline-flex items-center rounded-r-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-zinc-800 px-2 py-2 text-sm font-medium text-gray-500 dark:text-gray-300 hover:bg-gray-50 focus:z-20">
+            <span class="sr-only">Next</span>
+            <!-- Heroicon name: mini/chevron-right -->
+            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+            </svg>
+          </a>
+        {% else %}
+          <span class="relative inline-flex items-center rounded-r-md border border-gray-300 dark:border-gray-700 bg-gray-200 dark:bg-zinc-800 px-2 py-2 text-sm font-medium text-gray-500 dark:text-gray-300 focus:z-20">
+            <span class="sr-only">Next</span>
+            <!-- Heroicon name: mini/chevron-right -->
+            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+            </svg>
+          </span>
+        {% endif %}
+      </nav>
+    </div>
+    {% if page %}
+      <div>
+        <div class="relative inline-block text-left" x-data="{
+            open: false,
+            close(focusAfter) {
+              if (! this.open) return;
+              this.open = false;
+              focusAfter && focusAfter.focus()
+            },
+          }"
+        >
+          <div>
+            <button @click="open = !open" x-ref="paginator_dropdown_button" type="button" class="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none" id="menu-button" aria-expanded="true" aria-haspopup="true">
+              Per Page
+              <!-- Heroicon name: mini/chevron-down -->
+              <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+              </svg>
+            </button>
+          </div>
+
+          <div x-show="open"
+               x-transition:enter="transition ease-out duration-100"
+               x-transition:enter-start="transform opacity-0 scale-95"
+               x-transition:enter-end="transform opacity-100 scale-100"
+               x-transition:leave="transition ease-in duration-75"
+               x-transition:leave-start="transform opacity-100 scale-100"
+               x-transition:leave-end="transform opacity-0 scale-95"
+               x-on:click.outside="close($refs.paginator_dropdown_button)"
+               class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+               role="menu"
+               aria-orientation="vertical"
+               aria-labelledby="menu-button"
+               tabindex="-1"
+          >
+            <div class="py-1" role="none">
+              {% for n in page.paginator.get_page_lengths %}
+                <a href="{% querystring request per_page=n %}"
+                   class="text-gray-700 block px-4 py-2 text-sm"
+                   role="menuitem"
+                   tabindex="-1"
+                   id="page-{{ n }}"
+                >{{ n }}</a>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</div>

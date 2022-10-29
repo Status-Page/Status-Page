@@ -1,0 +1,14 @@
+{% if applied_filters %}
+  <div class="space-x-1 mb-2">
+    {% for filter in applied_filters %}
+      <a href="{{ filter.link_url }}" class="px-2 py-0.5 rounded-full bg-blue-500 text-white text-sm">
+        <i class="mdi mdi-close"></i> {{ filter.link_text }}
+      </a>
+    {% endfor %}
+    {% if applied_filters|length > 1 %}
+      <a href="?" class="px-2 py-0.5 rounded-full bg-red-500 text-white text-sm">
+        <i class="mdi mdi-tag-off"></i> Clear all
+      </a>
+    {% endif %}
+  </div>
+{% endif %}

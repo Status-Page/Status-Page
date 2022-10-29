@@ -1,0 +1,81 @@
+{% extends 'base/dashboard.html' %}
+{% load django_tables2 %}
+{% load buttons %}
+{% load static %}
+{% load helpers %}
+
+{% block title %}
+{{ model|meta:"verbose_name_plural"|bettertitle }}
+{% endblock %}
+
+{% block controls %}
+  {% if 'add' in actions %}
+    {% add_button model %}
+  {% endif %}
+{% endblock %}
+
+{% block dashboard_content %}
+  <div x-data="{ tab: 'results' }">
+    {% if filter_form %}
+      <div class="mb-2">
+        <div class="sm:hidden">
+          <label for="tabs" class="sr-only">Select a tab</label>
+          <select @change="tab = $event.target.value" x-bind:value="tab" id="tabs" name="tabs" class="block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm text-black">
+            <option value="results">Results</option>
+            <option value="filters">Filters</option>
+          </select>
+        </div>
+        <div class="hidden sm:block">
+          <nav class="isolate flex divide-x divide-gray-200 dark:divide-gray-700 rounded-lg shadow" aria-label="Tabs">
+            <button @click="tab = 'results'" :class="tab === 'results' ? 'text-gray-900 dark:text-gray-100' : 'text-gray-500 hover:text-gray-700 dark:hover:text-gray-600'" class="rounded-l-lg group relative min-w-0 flex-1 overflow-hidden bg-white dark:bg-zinc-800 py-4 px-4 text-sm font-medium text-center hover:bg-gray-50 dark:hover:bg-zinc-700 focus:z-10" aria-current="page">
+              <span>Results</span>
+              <span aria-hidden="true" :class="tab === 'results' ? 'bg-indigo-500 absolute inset-x-0 bottom-0 h-0.5' : 'bg-transparent absolute inset-x-0 bottom-0 h-0.5'"></span>
+            </button>
+            <button @click="tab = 'filters'" :class="tab === 'filters' ? 'text-gray-900 dark:text-gray-100' : 'text-gray-500 hover:text-gray-700 dark:hover:text-gray-600'" class="rounded-r-lg group relative min-w-0 flex-1 overflow-hidden bg-white dark:bg-zinc-800 py-4 px-4 text-sm font-medium text-center hover:bg-gray-50 dark:hover:bg-zinc-700 focus:z-10">
+              <span>Filters {% if filter_form %}{% badge filter_form.changed_data|length bg_color="bg-blue-500" %}{% endif %}</span>
+              <span aria-hidden="true" :class="tab === 'filters' ? 'bg-indigo-500 absolute inset-x-0 bottom-0 h-0.5' : 'bg-transparent absolute inset-x-0 bottom-0 h-0.5'"></span>
+            </button>
+          </nav>
+        </div>
+      </div>
+    {% endif %}
+    <div x-show="tab == 'results'">
+      {% if filter_form %}
+        {% applied_filters filter_form request.GET %}
+      {% endif %}
+
+      {% include 'inc/table_controls_htmx.html' with table_modal="ObjectTable_config" %}
+      <form method="post" class="mt-4">
+        {% csrf_token %}
+        <input type="hidden" name="return_url" value="{% if return_url %}{{ return_url }}{% else %}{{ request.path }}{% if request.GET %}?{{ request.GET.urlencode }}{% endif %}{% endif %}" />
+
+        <div id="object_list">
+          {% include 'htmx/table.html' %}
+        </div>
+
+        {# Form buttons #}
+        <div class="print:hidden bulk-buttons mt-4">
+          <div class="bulk-button-group">
+            {% block bulk_buttons %}
+              {% if 'bulk_edit' in actions %}
+                {% bulk_edit_button model query_params=request.GET %}
+              {% endif %}
+              {% if 'bulk_delete' in actions %}
+                {% bulk_delete_button model query_params=request.GET %}
+              {% endif %}
+            {% endblock %}
+          </div>
+        </div>
+      </form>
+    </div>
+    {% if filter_form %}
+      <div x-show="tab == 'filters'">
+        {% include 'inc/filter_list.html' %}
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}
+
+{% block modals %}
+  {% table_config_form table table_name="ObjectTable" %}
+{% endblock %}

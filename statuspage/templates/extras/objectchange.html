@@ -1,0 +1,143 @@
+{% extends 'base/dashboard.html' %}
+{% load helpers %}
+
+{% block title %}{{ object }}{% endblock %}
+
+{% block dashboard_content %}
+  <div class="row mb-3">
+      <div class="col col-md-5">
+          <div class="card">
+              <h5 class="card-header">
+                  Change
+              </h5>
+              <div class="card-body">
+                  <table class="table table-hover attr-table">
+                      <tr>
+                          <th scope="row">Time</th>
+                          <td>
+                              {{ object.time|annotated_date }}
+                          </td>
+                      </tr>
+                      <tr>
+                          <th scope="row">User</th>
+                          <td>
+                              {% if object.user.get_full_name %}
+                                {{ object.user.get_full_name }} ({{ object.user_name }})
+                              {% else %}
+                                {{ object.user_name }}
+                              {% endif %}
+                          </td>
+                      </tr>
+                      <tr>
+                          <th scope="row">Action</th>
+                          <td>
+                              {{ object.get_action_display }}
+                          </td>
+                      </tr>
+                      <tr>
+                          <th scope="row">Object Type</th>
+                          <td>
+                              {{ object.changed_object_type }}
+                          </td>
+                      </tr>
+                      <tr>
+                          <th scope="row">Object</th>
+                          <td>
+                              {% if object.changed_object and object.changed_object.get_absolute_url %}
+                                  {{ object.changed_object|linkify }}
+                              {% else %}
+                                  {{ object.object_repr }}
+                              {% endif %}
+                          </td>
+                      </tr>
+                      <tr>
+                          <th scope="row">Request Id</th>
+                          <td>
+                              {{ object.request_id }}
+                          </td>
+                      </tr>
+                  </table>
+              </div>
+          </div>
+      </div>
+      <div class="col col-md-7">
+          <div class="card">
+              <div class="card-header">
+                  <h5 class="d-inline">Difference</h5>
+                  <div class="btn-group btn-group-sm float-end print:hidden">
+                      <a {% if prev_change %}href="{% url 'extras:objectchange' pk=prev_change.pk %}"{% else %}disabled{% endif %} class="btn btn-outline-secondary">
+                          <i class="mdi mdi-chevron-left" aria-hidden="true"></i> Previous
+                      </a>
+                      <a {% if next_change %}href="{% url 'extras:objectchange' pk=next_change.pk %}"{% else %}disabled{% endif %} class="btn btn-outline-secondary">
+                          Next <i class="mdi mdi-chevron-right" aria-hidden="true"></i>
+                      </a>
+                  </div>
+              </div>
+              <div class="card-body">
+                  {% if diff_added == diff_removed %}
+                      <span class="text-muted" style="margin-left: 10px;">
+                          {% if object.action == 'create' %}
+                              Object Created
+                          {% elif object.action == 'delete' %}
+                              Object Deleted
+                          {% else %}
+                              No Changes
+                          {% endif %}
+                      </span>
+                  {% else %}
+                      <pre class="change-diff change-removed">{{ diff_removed|json }}</pre>
+                      <pre class="change-diff change-added">{{ diff_added|json }}</pre>
+                  {% endif %}
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="row mb-3">
+      <div class="col col-md-6">
+          <div class="card">
+              <h5 class="card-header">
+                  Pre-Change Data
+              </h5>
+              <div class="card-body">
+              {% if object.prechange_data %}
+                  <pre class="change-data">{% for k, v in object.prechange_data.items %}{% spaceless %}
+                      <span{% if k in diff_removed %} class="removed"{% endif %}>{{ k }}: {{ v|json }}</span>
+                  {% endspaceless %}{% endfor %}
+                  </pre>
+              {% elif non_atomic_change %}
+                  Warning: Comparing non-atomic change to previous change record (<a href="{% url 'extras:objectchange' pk=prev_change.pk %}">{{ prev_change.pk }}</a>)
+              {% else %}
+                  <span class="text-muted">None</span>
+              {% endif %}
+              </div>
+          </div>
+      </div>
+      <div class="col col-md-6">
+          <div class="card">
+              <h5 class="card-header">
+                  Post-Change Data
+              </h5>
+              <div class="card-body">
+                  {% if object.postchange_data %}
+                      <pre class="change-data">{% for k, v in object.postchange_data.items %}{% spaceless %}
+                          <span{% if k in diff_added %} class="added"{% endif %}>{{ k }}: {{ v|json }}</span>
+                          {% endspaceless %}{% endfor %}
+                      </pre>
+                  {% else %}
+                      <span class="text-muted">None</span>
+                  {% endif %}
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="row mb-3">
+      <div class="col col-md-12">
+          {% include 'inc/panel_table.html' with table=related_changes_table heading='Related Changes' panel_class='default' %}
+          {% if related_changes_count > related_changes_table.rows|length %}
+              <div class="float-end">
+                  <a href="{% url 'extras:objectchange_list' %}?request_id={{ object.request_id }}" class="btn btn-primary">See All {{ related_changes_count|add:"1" }} Changes</a>
+              </div>
+          {% endif %}
+      </div>
+  </div>
+{% endblock %}

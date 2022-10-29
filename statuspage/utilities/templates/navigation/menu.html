@@ -1,0 +1,49 @@
+{% load utils %}
+
+{% for item in nav_items %}
+  <a href="{% url item.link %}" class="{% dashboard_link_active item.link %}{% if mobile %} block{% endif %} px-3 py-2 rounded-md text-sm font-medium">{{ item.link_text }}</a>
+{% endfor %}
+
+{% for dropdown, groups, items in nav_dropdowns %}
+  <div class="relative inline-block text-left{% if mobile %} w-full{% endif %}" x-data="{ open: false }">
+    <div>
+      <button @click="open = !open" type="button" class="inline-flex w-full rounded-md bg-indigo-600 hover:bg-indigo-500 hover:bg-opacity-75 px-4 py-2 text-sm font-medium focus:outline-none text-white" id="menu-button" aria-expanded="true" aria-haspopup="true">
+        {{ dropdown.label }}
+        <!-- Heroicon name: mini/chevron-down -->
+        <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+        </svg>
+      </button>
+    </div>
+
+    <div
+      x-show="open"
+      @click.outside="open = false"
+      x-transition:enter="transition ease-out duration-100"
+      x-transition:enter-start="transform opacity-0 scale-95"
+      x-transition:enter-end="transform opacity-100 scale-100"
+      x-transition:leave="transition ease-in duration-75"
+      x-transition:leave-start="transform opacity-100 scale-100"
+      x-transition:leave-end="transform opacity-0 scale-95"
+      class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none py-1"
+      role="menu"
+      aria-orientation="vertical"
+      aria-labelledby="menu-button"
+      tabindex="-1"
+    >
+      {% for item in items %}
+        <a href="{% url item.link %}" class="{% dashboard_dropdown_active item.link %}{% if mobile %} block{% endif %} text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1">{{ item.link_text }}</a>
+      {% endfor %}
+      <div class="divide-y divide-gray-100">
+        {% for group, items in groups %}
+          <div class="py-1" role="none">
+            <p class="px-4 py-1 text-gray-500 text-sm">{{ group.label }}</p>
+            {% for item in items %}
+              <a href="{% url item.link %}" class="{% dashboard_dropdown_active item.link %}{% if mobile %} block{% endif %} text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1">{{ item.link_text }}</a>
+            {% endfor %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endfor %}
