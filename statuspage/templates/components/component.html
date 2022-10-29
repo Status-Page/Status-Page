@@ -1,5 +1,66 @@
-{% extends 'base/dashboard.html' %}
+{% extends 'generic/object.html' %}
+{% load buttons %}
+{% load static %}
+{% load helpers %}
 
-{% block dashboard_content %}
-Component
+{% block page_left %}
+  <div class="grow bg-zinc-100 dark:bg-zinc-800 p-2 space-y-2 ring-1 ring-zinc-500 rounded-md shadow-lg">
+    <div class="text-2xl">Component</div>
+    <div class="px-4">
+      <table class="text-left w-full">
+        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+          <tr>
+            <th scope="row" class="pr-6 py-1">Name</th>
+            <td>{{ object.name }}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="pr-6 py-1">Link</th>
+            <td>{{ object.link|placeholder }}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="pr-6 py-1">Description</th>
+            <td>{{ object.description|placeholder }}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="pr-6 py-1">Visible</th>
+            <td>{% checkmark object.visibility %}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="pr-6 py-1">Status</th>
+            <td>{% badge object.get_status_display bg_color=object.get_status_color %}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}
+
+{% block page_right %}
+  {% if object.component_group %}
+    <div class="grow bg-zinc-100 dark:bg-zinc-800 p-2 space-y-2 ring-1 ring-zinc-500 rounded-md shadow-lg">
+      <div class="text-2xl">Component Group</div>
+      <div class="px-4">
+        <table class="text-left w-full">
+          <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+            <tr>
+              <th scope="row" class="pr-6 py-1">Name</th>
+              <td>{{ object.component_group.name }}</td>
+            </tr>
+            <tr>
+              <th scope="row" class="pr-6 py-1">Description</th>
+              <td>{{ object.component_group.description|placeholder }}</td>
+            </tr>
+            <tr>
+              <th scope="row" class="pr-6 py-1">Visible</th>
+              <td>{% checkmark object.component_group.visibility %}</td>
+            </tr>
+            <tr>
+              <th scope="row" class="pr-6 py-1">Collapse</th>
+              <td>{{ object.component_group.get_collapse_display }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  {% endif %}
 {% endblock %}
