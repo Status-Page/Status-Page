@@ -33,6 +33,7 @@ _patterns = [
     path('dashboard/components/', include('components.urls')),
     path('dashboard/incidents/', include('incidents.urls')),
     path('dashboard/maintenances/', include('maintenances.urls')),
+    path('dashboard/metrics/', include('metrics.urls')),
     path('dashboard/extras/', include('extras.urls')),
     path('dashboard/user/', include('users.urls')),
 

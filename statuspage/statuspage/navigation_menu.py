@@ -86,6 +86,13 @@ DEFAULT_MENU = Menu(
                 get_model_item('components', 'component', 'Components'),
             ),
         ),
+        MenuDropdown(
+            label='Metrics',
+            groups=(),
+            items=(
+                get_model_item('metrics', 'metric', 'Metrics'),
+            ),
+        ),
     ),
 )
 

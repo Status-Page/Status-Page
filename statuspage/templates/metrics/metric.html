@@ -1,0 +1,44 @@
+{% extends 'generic/object.html' %}
+{% load buttons %}
+{% load static %}
+{% load helpers %}
+
+{% block page_left %}
+  <div class="grow bg-zinc-100 dark:bg-zinc-800 p-2 space-y-2 ring-1 ring-zinc-500 rounded-md shadow-lg">
+    <div class="text-2xl">Metric</div>
+    <div class="px-4">
+      <table class="text-left w-full">
+        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+          <tr>
+            <th scope="row" class="pr-6 py-1">Title</th>
+            <td>{{ object.title }}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="pr-6 py-1">Suffix</th>
+            <td>{{ object.suffix }}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="pr-6 py-1">Visible</th>
+            <td>{% checkmark object.visibility %}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="pr-6 py-1">Expand</th>
+            <td>{{ object.get_expand_display }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}
+
+{% block page_right %}
+{% endblock %}
+
+{% block page_full %}
+  <div class="grow bg-zinc-100 dark:bg-zinc-800 p-2 space-y-2 ring-1 ring-zinc-500 rounded-md shadow-lg">
+    <div class="text-2xl">Metric Preview</div>
+    <div class="px-4">
+      {% metric metric=object range='12h' %}
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,39 @@
+<canvas id="metric-{{ metric.id }}" width="400" height="200"></canvas>
+<script>
+  const ctx = document.getElementById('metric-{{ metric.id }}').getContext('2d');
+  new window.Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: {{ labels }},
+      datasets: [{
+        label: '{{ metric.suffix }}',
+        data: {{ points }},
+        backgroundColor: [
+          'rgba(85, 153, 255, 0.2)',
+        ],
+        borderColor: [
+          'rgba(85, 153, 255, 1)',
+        ],
+        borderWidth: 2,
+      }]
+    },
+    options: {
+      responsive: true,
+      title: {
+        display: false,
+      },
+      scales: {
+        yAxes: [{
+          ticks: {
+            stacked: true,
+          },
+        }],
+      },
+      elements: {
+        point:{
+          radius: 0.75,
+        },
+      },
+    },
+  });
+</script>

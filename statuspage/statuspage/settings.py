@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'maintenances',
     'users',
     'utilities',
+    'metrics',
     'django_rq',
     'drf_yasg',
     'queuing',
