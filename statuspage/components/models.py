@@ -25,7 +25,7 @@ class ComponentGroup(StatusPageModel):
     )
 
     class Meta:
-        ordering = ['pk']
+        ordering = ['order', 'pk']
 
     def __str__(self):
         return self.name
