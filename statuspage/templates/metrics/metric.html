@@ -3,6 +3,14 @@
 {% load static %}
 {% load helpers %}
 
+{% block extra_controls %}
+  {% if perms.metrics.delete_metricpoint %}
+    <a href="{% url 'metrics:metricpoints_delete' pk=object.id %}" class="bg-red-500 hover:bg-red-400 text-white px-2 py-2 rounded-md font-medium" type="button">
+      <i class="mdi mdi-trash-can-outline"></i> Delete Metric Points
+    </a>
+  {% endif %}
+{% endblock %}
+
 {% block page_left %}
   <div class="grow bg-zinc-100 dark:bg-zinc-800 p-2 space-y-2 ring-1 ring-zinc-500 rounded-md shadow-lg">
     <div class="text-2xl">Metric</div>

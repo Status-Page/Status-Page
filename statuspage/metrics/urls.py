@@ -13,6 +13,7 @@ urlpatterns = [
     path('<int:pk>/', views.MetricView.as_view(), name='metric'),
     path('<int:pk>/edit/', views.MetricEditView.as_view(), name='metric_edit'),
     path('<int:pk>/delete/', views.MetricDeleteView.as_view(), name='metric_delete'),
+    path('<int:pk>/metric-points/delete/', views.MetricPointsDeleteView.as_view(), name='metricpoints_delete'),
     path('<int:pk>/changelog/', ObjectChangeLogView.as_view(), name='metric_changelog', kwargs={
         'model': Metric,
     }),

@@ -15,6 +15,7 @@
   {% if request.user|can_delete:object %}
     {% delete_button object %}
   {% endif %}
+  {% block extra_controls %}{% endblock %}
 {% endblock %}
 
 {% block dashboard_content %}
