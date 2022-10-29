@@ -1,8 +1,6 @@
 from django.utils import timezone
 from django import template
-from metrics.models import MetricPoint
-from django.db import models
-from django.db.models import functions
+from metrics.choices import MetricRangeChoices
 
 register = template.Library()
 
@@ -58,28 +56,28 @@ def checkmark(value, show_false=True, true='Yes', false='No'):
 @register.inclusion_tag('builtins/metric.html')
 def metric(metric, range):
     match range:
-        case '30m':
+        case MetricRangeChoices.MINUTES_30:
             datenow = timezone.now().replace(microsecond=0, second=0)
             daterange = datenow - timezone.timedelta(minutes=30)
-        case '1h':
+        case MetricRangeChoices.HOURS_1:
             datenow = timezone.now().replace(microsecond=0, second=0, minute=0)
             daterange = datenow - timezone.timedelta(hours=1)
-        case '12h':
+        case MetricRangeChoices.HOURS_12:
             datenow = timezone.now().replace(microsecond=0, second=0, minute=0)
             daterange = datenow - timezone.timedelta(hours=12)
-        case '24h':
+        case MetricRangeChoices.DAYS_1:
             datenow = timezone.now().replace(microsecond=0, second=0, minute=0, hour=0)
             daterange = datenow - timezone.timedelta(days=1)
-        case '2d':
+        case MetricRangeChoices.DAYS_2:
             datenow = timezone.now().replace(microsecond=0, second=0, minute=0, hour=0)
             daterange = datenow - timezone.timedelta(days=2)
-        case '3d':
+        case MetricRangeChoices.DAYS_3:
             datenow = timezone.now().replace(microsecond=0, second=0, minute=0, hour=0)
             daterange = datenow - timezone.timedelta(days=3)
-        case '7d':
+        case MetricRangeChoices.DAYS_7:
             datenow = timezone.now().replace(microsecond=0, second=0, minute=0, hour=0)
             daterange = datenow - timezone.timedelta(days=7)
-        case '30d':
+        case MetricRangeChoices.DAYS_30:
             datenow = timezone.now().replace(microsecond=0, second=0, minute=0, hour=0)
             daterange = datenow - timezone.timedelta(days=30)
         case _:
