@@ -13,7 +13,8 @@ class QueuingConfig(AppConfig):
         jobs = list(map(lambda j: j.func_name, scheduler.get_jobs()))
 
         tasks = [
-            (maintenance_automation, '* * * * *')
+            (maintenance_automation, '* * * * *'),
+            (metric_automation, '0 0 * * *'),
         ]
 
         for task, cron_string in tasks:
@@ -66,3 +67,12 @@ def maintenance_automation():
         maintenance.components.update(status=ComponentStatusChoices.OPERATIONAL)
         maintenance.status = MaintenanceStatusChoices.COMPLETED
         maintenance.save()
+
+
+def metric_automation():
+    from metrics.models import MetricPoint
+
+    datenow = timezone.now().replace(microsecond=0, second=0, minute=0, hour=0)
+    daterange = datenow - timezone.timedelta(days=31)
+
+    MetricPoint.objects.filter(created__lte=daterange).delete()
