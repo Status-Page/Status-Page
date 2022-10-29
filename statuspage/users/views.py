@@ -13,7 +13,7 @@ from django_otp import devices_for_user
 from django_otp.models import Device
 from django_otp.plugins.otp_totp.models import TOTPDevice
 from django_otp.plugins.otp_static.models import StaticToken, StaticDevice
-from otp_yubikey.models import YubikeyDevice
+from otp_yubikey.models import RemoteYubikeyDevice
 
 from extras.models import ObjectChange
 from extras.tables import ObjectChangeTable
@@ -293,7 +293,7 @@ class TokenDeleteView(LoginRequiredMixin, View):
 def get_model_and_form(device_type):
     device_types = {
         'totp': (TOTPDevice, TwoFactorTOTPForm),
-        'yubikey': (YubikeyDevice, TwoFactorYubikeyForm),
+        'yubikey': (RemoteYubikeyDevice, TwoFactorYubikeyForm),
         'static': (StaticDevice, TwoFactorTOTPForm),
     }
     if device_type not in device_types:

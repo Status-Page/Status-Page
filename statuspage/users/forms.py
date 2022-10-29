@@ -4,7 +4,7 @@ from django.contrib.postgres.forms import SimpleArrayField
 from django.utils.safestring import mark_safe
 from django_otp.plugins.otp_totp.models import TOTPDevice
 from django_otp.plugins.otp_static.models import StaticToken
-from otp_yubikey.models import YubikeyDevice
+from otp_yubikey.models import RemoteYubikeyDevice
 
 from statuspage.formfields import IPNetworkFormField
 from statuspage.preferences import PREFERENCES
@@ -153,7 +153,7 @@ class TwoFactorYubikeyForm(TailwindMixin, forms.ModelForm):
     )
 
     class Meta:
-        model = YubikeyDevice
+        model = RemoteYubikeyDevice
         fields = [
             'name',
         ]
