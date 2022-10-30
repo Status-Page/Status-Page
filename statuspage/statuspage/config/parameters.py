@@ -41,20 +41,6 @@ PARAMS = (
         field=forms.IntegerField
     ),
 
-    # Validation
-    ConfigParam(
-        name='CUSTOM_VALIDATORS',
-        label='Custom validators',
-        default={},
-        description="Custom validation rules (JSON)",
-        field=forms.JSONField,
-        field_kwargs={
-            'widget': forms.Textarea(
-                attrs={'class': 'vLargeTextField'}
-            ),
-        },
-    ),
-
     # User preferences
     ConfigParam(
         name='DEFAULT_USER_PREFERENCES',

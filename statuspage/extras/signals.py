@@ -1,8 +1,11 @@
 from django.contrib.contenttypes.models import ContentType
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 from statuspage.request_context import get_request
 from .choices import ObjectChangeActionChoices
-from .models import ObjectChange
+from .models import ObjectChange, ConfigRevision
+
 
 #
 # Change logging
@@ -70,3 +73,11 @@ def handle_deleted_object(sender, instance, **kwargs):
         objectchange.user = request.user
         objectchange.request_id = request.id
         objectchange.save()
+
+
+@receiver(post_save, sender=ConfigRevision)
+def update_config(sender, instance, **kwargs):
+    """
+    Update the cached Status-Page configuration when a new ConfigRevision is created.
+    """
+    instance.activate()

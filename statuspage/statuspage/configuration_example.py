@@ -34,6 +34,19 @@ REDIS = {
         # Set this to True to skip TLS certificate verification
         # This can expose the connection to attacks, be careful
         # 'INSECURE_SKIP_TLS_VERIFY': False,
+    },
+    'caching': {
+        'HOST': 'localhost',
+        'PORT': 6379,
+        # Comment out `HOST` and `PORT` lines and uncomment the following if using Redis Sentinel
+        # 'SENTINELS': [('mysentinel.redis.example.com', 6379)],
+        # 'SENTINEL_SERVICE': 'netbox',
+        'PASSWORD': '',
+        'DATABASE': 1,
+        'SSL': False,
+        # Set this to True to skip TLS certificate verification
+        # This can expose the connection to attacks, be careful
+        # 'INSECURE_SKIP_TLS_VERIFY': False,
     }
 }
 

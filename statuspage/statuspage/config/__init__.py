@@ -74,11 +74,10 @@ class Config:
 
     def _populate_from_db(self):
         """Cache data from latest ConfigRevision, then populate from cache"""
-        # from extras.models import ConfigRevision
+        from extras.models import ConfigRevision
 
         try:
-            # revision = ConfigRevision.objects.last()
-            revision = None
+            revision = ConfigRevision.objects.last()
             if revision is None:
                 logger.debug("No previous configuration found in database; proceeding with default values")
                 return

@@ -103,6 +103,39 @@ TASKS_REDIS_DATABASE = TASKS_REDIS.get('DATABASE', 0)
 TASKS_REDIS_SSL = TASKS_REDIS.get('SSL', False)
 TASKS_REDIS_SKIP_TLS_VERIFY = TASKS_REDIS.get('INSECURE_SKIP_TLS_VERIFY', False)
 
+# Caching
+if 'caching' not in REDIS:
+    raise ImproperlyConfigured(
+        "REDIS section in configuration.py is missing caching subsection."
+    )
+CACHING_REDIS_HOST = REDIS['caching'].get('HOST', 'localhost')
+CACHING_REDIS_PORT = REDIS['caching'].get('PORT', 6379)
+CACHING_REDIS_DATABASE = REDIS['caching'].get('DATABASE', 0)
+CACHING_REDIS_PASSWORD = REDIS['caching'].get('PASSWORD', '')
+CACHING_REDIS_SENTINELS = REDIS['caching'].get('SENTINELS', [])
+CACHING_REDIS_SENTINEL_SERVICE = REDIS['caching'].get('SENTINEL_SERVICE', 'default')
+CACHING_REDIS_PROTO = 'rediss' if REDIS['caching'].get('SSL', False) else 'redis'
+CACHING_REDIS_SKIP_TLS_VERIFY = REDIS['caching'].get('INSECURE_SKIP_TLS_VERIFY', False)
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': f'{CACHING_REDIS_PROTO}://{CACHING_REDIS_HOST}:{CACHING_REDIS_PORT}/{CACHING_REDIS_DATABASE}',
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+            'PASSWORD': CACHING_REDIS_PASSWORD,
+        }
+    }
+}
+if CACHING_REDIS_SENTINELS:
+    DJANGO_REDIS_CONNECTION_FACTORY = 'django_redis.pool.SentinelConnectionFactory'
+    CACHES['default']['LOCATION'] = f'{CACHING_REDIS_PROTO}://{CACHING_REDIS_SENTINEL_SERVICE}/{CACHING_REDIS_DATABASE}'
+    CACHES['default']['OPTIONS']['CLIENT_CLASS'] = 'django_redis.client.SentinelClient'
+    CACHES['default']['OPTIONS']['SENTINELS'] = CACHING_REDIS_SENTINELS
+if CACHING_REDIS_SKIP_TLS_VERIFY:
+    CACHES['default']['OPTIONS'].setdefault('CONNECTION_POOL_KWARGS', {})
+    CACHES['default']['OPTIONS']['CONNECTION_POOL_KWARGS']['ssl_cert_reqs'] = False
+
 if LOGIN_TIMEOUT is not None:
     # Django default is 1209600 seconds (14 days)
     SESSION_COOKIE_AGE = LOGIN_TIMEOUT
@@ -161,6 +194,7 @@ MIDDLEWARE = [
     'django_browser_reload.middleware.BrowserReloadMiddleware',
     'statuspage.middleware.APIVersionMiddleware',
     'statuspage.middleware.ObjectChangeMiddleware',
+    'statuspage.middleware.DynamicConfigMiddleware',
 ]
 
 ROOT_URLCONF = 'statuspage.urls'
