@@ -221,8 +221,6 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'statuspage.wsgi.application'
-
 AUTHENTICATION_BACKENDS = [
     'statuspage.authentication.ObjectPermissionBackend',
 ]
