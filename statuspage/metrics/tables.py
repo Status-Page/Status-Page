@@ -8,10 +8,9 @@ class MetricTable(StatusPageTable):
     title = tables.Column(
         linkify=True,
     )
-    status = columns.ChoiceFieldColumn()
     visibility = columns.BooleanColumn()
 
     class Meta(StatusPageTable.Meta):
         model = Metric
-        fields = ('pk', 'id', 'title', 'status', 'visibility', 'expand', 'created', 'last_updated')
-        default_columns = ('id', 'title', 'status', 'visibility', 'expand')
+        fields = ('pk', 'id', 'title', 'suffix', 'visibility', 'expand', 'created', 'last_updated')
+        default_columns = ('id', 'title', 'suffix', 'visibility', 'expand')

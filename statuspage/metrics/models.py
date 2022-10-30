@@ -1,6 +1,4 @@
-from django.utils import timezone
 from django.db import models
-from django.db.models import functions
 from django.template import Context, Template
 from django.utils.safestring import mark_safe
 
