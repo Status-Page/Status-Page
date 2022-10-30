@@ -14,6 +14,67 @@ class ConfigParam:
 
 
 PARAMS = (
+    # General
+    ConfigParam(
+        name='SITE_TITLE',
+        label='Site Title',
+        default='Status-Page',
+        description='The Title of the Page',
+    ),
+    ConfigParam(
+        name='SITE_SUBSCRIBERS',
+        label='Subscriptions',
+        description='Enable Notification Subscriptions (Requires correct E-Mail server setup)',
+        default=False,
+        field=forms.BooleanField,
+    ),
+
+    # Custom Styling
+    ConfigParam(
+        name='CUSTOM_STYLE_HEADER',
+        label='Header HTML',
+        default='',
+        field_kwargs={
+            'widget': forms.Textarea(
+                attrs={'class': 'vLargeTextField'}
+            ),
+        },
+    ),
+    ConfigParam(
+        name='CUSTOM_STYLE_HEADER_DISABLE_CORE',
+        label='Disable Header from Status-Page',
+        default=False,
+        field=forms.BooleanField,
+    ),
+
+    ConfigParam(
+        name='CUSTOM_STYLE_FOOTER',
+        label='Footer HTML',
+        default='',
+        field_kwargs={
+            'widget': forms.Textarea(
+                attrs={'class': 'vLargeTextField'}
+            ),
+        },
+    ),
+    ConfigParam(
+        name='CUSTOM_STYLE_FOOTER_DISABLE_CORE',
+        label='Disable Footer from Status-Page',
+        default=False,
+        field=forms.BooleanField,
+    ),
+
+    ConfigParam(
+        name='CUSTOM_STYLE_CSS',
+        label='Custom CSS',
+        default='',
+        field_kwargs={
+            'widget': forms.Textarea(
+                attrs={'class': 'vLargeTextField'}
+            ),
+        },
+    ),
+
     # Security
     ConfigParam(
         name='ALLOWED_URL_SCHEMES',

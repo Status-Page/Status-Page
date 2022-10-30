@@ -12,6 +12,13 @@ from .models import ConfigRevision
 @admin.register(ConfigRevision)
 class ConfigRevisionAdmin(admin.ModelAdmin):
     fieldsets = [
+        ('Site', {
+            'fields': ('SITE_TITLE', 'SITE_SUBSCRIBERS',),
+        }),
+        ('Custom Styles', {
+            'fields': ('CUSTOM_STYLE_HEADER', 'CUSTOM_STYLE_HEADER_DISABLE_CORE', 'CUSTOM_STYLE_FOOTER',
+                       'CUSTOM_STYLE_FOOTER_DISABLE_CORE', 'CUSTOM_STYLE_CSS',),
+        }),
         ('Security', {
             'fields': ('ALLOWED_URL_SCHEMES',),
         }),
