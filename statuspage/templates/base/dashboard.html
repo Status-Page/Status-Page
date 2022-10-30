@@ -1,6 +1,7 @@
 {% extends 'base/layout.html' %}
 {% load utils %}
 {% load navigation %}
+{% load static %}
 
 {% block content %}
   <div class="min-h-full">
@@ -17,7 +18,7 @@
         <div class="flex h-16 items-center justify-between">
           <div class="flex items-center">
             <div class="flex-shrink-0">
-              <img class="" src="https://raw.githubusercontent.com/Status-Page/Assets/master/logo_light/logo.svg" alt="Status-Page">
+              <img class="" src="{% static 'logo.svg' %}" alt="Status-Page">
             </div>
             <div class="hidden md:block">
               <div class="ml-10 flex items-baseline space-x-4">

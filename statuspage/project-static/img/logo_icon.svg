@@ -1,0 +1,8 @@
+<?xml version="1.0" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+    <g fill="#98eb17" color="#98eb17" transform="translate(0, 0) scale(0.64)">
+        <svg width="100.0" height="100.0" x="0.0" y="0.0" viewBox="0 0 100 100">
+            <path d="M50,5C25.1,5,5,25.1,5,50s20.1,45,45,45s45-20.1,45-45S74.9,5,50,5z M50.9,65.6l-8.7,8.7l0,0l0,0l-8.7-8.7l0,0L18,50.2  l8.7-8.7l15.4,15.4l31.2-31.2l8.7,8.7L50.9,65.6L50.9,65.6z"></path>
+        </svg>
+    </g>
+</svg>
