@@ -1,0 +1,58 @@
+site_name: Status-Page Documentation
+site_dir: statuspage/project-static/docs
+site_url: https://docs.status-page.dev/
+repo_name: status-page/status-page
+repo_url: https://github.com/status-page/status-page
+edit_uri: 'edit/main/docs/'
+theme:
+  name: material
+  icon:
+    repo: fontawesome/brands/github
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/lightbulb-outline
+        name: Switch to Dark Mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/lightbulb
+        name: Switch to Light Mode
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          setup_commands:
+            - import os
+            - import django
+            - os.chdir('statuspage/')
+            - os.environ.setdefault("DJANGO_SETTINGS_MODULE", "statuspage.settings")
+            - django.setup()
+          options:
+            heading_level: 3
+            members_order: source
+            show_root_heading: true
+            show_root_full_path: false
+            show_root_toc_entry: false
+            show_source: false
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/status-page/status-page
+markdown_extensions:
+    - admonition
+    - attr_list
+    - pymdownx.emoji:
+        emoji_index: !!python/name:materialx.emoji.twemoji
+        emoji_generator: !!python/name:materialx.emoji.to_svg
+    - pymdownx.superfences:
+        custom_fences:
+          - name: mermaid
+            class: mermaid
+            format: !!python/name:pymdownx.superfences.fence_code_format
+    - pymdownx.tabbed:
+        alternate_style: true
+nav:
+    - Introduction: 'index.md'

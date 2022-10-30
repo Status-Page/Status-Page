@@ -2,6 +2,8 @@
 *.sqlite3
 node_modules/
 statuspage/theme/static/css/dist/
+/statuspage/project-static/docs/*
+!/statuspage/project-static/docs/.gitkeep
 __pycache__
 
 configuration.py
