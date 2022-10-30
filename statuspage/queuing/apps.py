@@ -1,3 +1,5 @@
+import logging
+
 import django_rq
 from django.apps import AppConfig
 from django.db.models import Q
@@ -15,6 +17,7 @@ class QueuingConfig(AppConfig):
         tasks = [
             (maintenance_automation, '* * * * *'),
             (metric_automation, '0 0 * * *'),
+            (housekeeping, '0 4 * * *'),
         ]
 
         for task, cron_string in tasks:
@@ -76,3 +79,52 @@ def metric_automation():
     daterange = datenow - timezone.timedelta(days=31)
 
     MetricPoint.objects.filter(created__lte=daterange).delete()
+
+
+def housekeeping():
+    from datetime import timedelta
+    from importlib import import_module
+
+    from django.conf import settings
+    from django.db import DEFAULT_DB_ALIAS
+    from django.utils import timezone
+
+    from extras.models import ObjectChange
+    from statuspage.config import Config
+
+    config = Config()
+
+    logger = logging.Logger('statuspage.housekeeping')
+
+    # Clear expired authentication sessions (essentially replicating the `clearsessions` command)
+    logger.info('[*] Clearing expired authentication sessions')
+    logger.debug(f"\tConfigured session engine: {settings.SESSION_ENGINE}")
+    engine = import_module(settings.SESSION_ENGINE)
+    try:
+        engine.SessionStore.clear_expired()
+        logger.info("\tSessions cleared.")
+    except NotImplementedError:
+        logger.error(
+            f"\tThe configured session engine ({settings.SESSION_ENGINE}) does not support "
+            f"clearing sessions; skipping."
+        )
+
+    # Delete expired ObjectRecords
+    logger.info("[*] Checking for expired changelog records")
+    if config.CHANGELOG_RETENTION:
+        cutoff = timezone.now() - timedelta(days=config.CHANGELOG_RETENTION)
+        logger.debug(f"\tRetention period: {config.CHANGELOG_RETENTION} days")
+        logger.debug(f"\tCut-off time: {cutoff}")
+        expired_records = ObjectChange.objects.filter(time__lt=cutoff).count()
+        if expired_records:
+            logger.info(
+                f"\tDeleting {expired_records} expired records... ",
+            )
+            ObjectChange.objects.filter(time__lt=cutoff)._raw_delete(using=DEFAULT_DB_ALIAS)
+            logger.info("Done.")
+        else:
+            logger.info("\tNo expired records found.")
+    else:
+        logger.info(
+            f"\tSkipping: No retention period specified (CHANGELOG_RETENTION = {config.CHANGELOG_RETENTION})"
+        )

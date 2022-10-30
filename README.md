@@ -30,7 +30,7 @@
 | SMTP Mail Server | ---             | yes      |
 
 # Installation & Updates
-Please have a look at our [Documentation](https://status-page-docs.netlify.app/docs/main/installation/installing).
+Please have a look at our [Documentation](https://docs.status-page.dev/).
 
 ## Versioning
 We use semantic versioning. A version number has the following structure:
@@ -46,7 +46,7 @@ v 1 . 0 . 0
 ````
 
 ## Documentation
-You can find the Documentation [here](https://status-page-docs.netlify.app/).
+You can find the Documentation [here](https://docs.status-page.dev/).
 
 ## Other Licenses and Acknowledgements
 ### Tailwind UI
