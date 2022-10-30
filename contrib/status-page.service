@@ -1,0 +1,22 @@
+[Unit]
+Description=Status-Page WSGI Service
+Documentation=https://docs.status-page.dev/
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+
+User=status-page
+Group=status-page
+PIDFile=/var/tmp/status-page.pid
+WorkingDirectory=/opt/status-page
+
+ExecStart=/opt/status-page/venv/bin/gunicorn --pid /var/tmp/status-page.pid --pythonpath /opt/status-page/status-page --config /opt/status-page/gunicorn.py statuspage.wsgi
+
+Restart=on-failure
+RestartSec=30
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

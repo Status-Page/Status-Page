@@ -336,7 +336,9 @@ else:
     }
 
 RQ_QUEUES = {
+    'high': RQ_PARAMS,
     'default': RQ_PARAMS,
+    'low': RQ_PARAMS,
 }
 
 for plugin_name in PLUGINS:
