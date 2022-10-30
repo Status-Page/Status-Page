@@ -48,26 +48,6 @@ v 1 . 0 . 0
 ## Documentation
 You can find the Documentation [here](https://status-page-docs.netlify.app/).
 
-## Available Import Scripts
-### Requirements
-- Node.JS
-
-**Note:** You should enable the [Migration Mode](https://github.com/Status-Page/Status-Page/blob/bdeae330a40c88c33d85cd20063cca4a01f66730/.env.example#L15)!
-
-### Import from statuspage.io
-You can import your components from statuspage.io, with a simple script.
-To use it, run the following command:
-``` shell
-npm run statuspage-import
-```
-
-### Import from Cachet
-You can import your components from Cachet, with a simple script.
-To use it, run the following command:
-``` shell
-npm run cachet-import
-```
-
 ## Other Licenses and Acknowledgements
 ### Tailwind UI
 We are using Tailwind UI Components in this App. You are **NOT** allowed to reuse these Components in your own App!
@@ -75,5 +55,5 @@ We are using Tailwind UI Components in this App. You are **NOT** allowed to reus
 See their [License](https://www.notion.so/Tailwind-UI-License-644418bb34ad4fa29aac9b82e956a867) for more information.
 
 ### NetBox
-As you may have noticed, the base structure for many parts of the app are derived
+As you may have noticed, the base structure for many parts of the app is derived
 from [NetBox](https://github.com/netbox-community/netbox), this made development much easier.
