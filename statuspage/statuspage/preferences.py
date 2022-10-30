@@ -49,11 +49,11 @@ PREFERENCES = {
 }
 
 # Register plugin preferences
-#if registry['plugins']['preferences']:
-#    plugin_preferences = {}
+if registry['plugins']['preferences']:
+    plugin_preferences = {}
 
-#    for plugin_name, preferences in registry['plugins']['preferences'].items():
-#        for name, userpreference in preferences.items():
-#            PREFERENCES[f'plugins.{plugin_name}.{name}'] = userpreference
+    for plugin_name, preferences in registry['plugins']['preferences'].items():
+        for name, userpreference in preferences.items():
+            PREFERENCES[f'plugins.{plugin_name}.{name}'] = userpreference
 
-#    PREFERENCES.update(plugin_preferences)
+    PREFERENCES.update(plugin_preferences)
