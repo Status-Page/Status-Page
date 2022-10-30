@@ -19,5 +19,6 @@ class APIRootView(APIView):
 
         return Response({
             'extras': reverse('extras-api:api-root', request=request, format=format),
+            'plugins': reverse('plugins-api:api-root', request=request, format=format),
             'users': reverse('users-api:api-root', request=request, format=format),
         })

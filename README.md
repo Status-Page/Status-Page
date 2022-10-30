@@ -19,6 +19,7 @@
 - Two Factor Authentication
 - Markdown support in incident / maintenance messages
 - Subscriptions for Notifications
+- Custom Plugins
 
 # Requirements
 | Dependency       | Minimum Version | Optional |

@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from typing import Sequence, Optional
 
-# from extras.registry import registry
+from extras.registry import registry
 
 #
 # Nav menu data classes
@@ -105,19 +105,26 @@ MENUS = [
 # Add plugin menus
 #
 
-# if registry['plugins']['menu_items']:
-#    plugin_menu_groups = []
+if registry['plugins']['menu_items']:
+    plugin_menu_groups = []
 
-#    for plugin_name, items in registry['plugins']['menu_items'].items():
-#        plugin_menu_groups.append(
-#            MenuGroup(
-#                label=plugin_name,
-#                items=items
-#            )
-#        )
+    for plugin_name, items in registry['plugins']['menu_items'].items():
+        plugin_menu_groups.append(
+            MenuGroup(
+                label=plugin_name,
+                items=items
+            )
+        )
 
-#    PLUGIN_MENU = Menu(
-#        groups=plugin_menu_groups
-#    )
+    PLUGIN_MENU = Menu(
+        dropdowns=(
+            MenuDropdown(
+                label='Plugins',
+                items=(),
+                groups=plugin_menu_groups,
+            ),
+        ),
+        items=(),
+    )
 
-#    MENUS.append(PLUGIN_MENU)
+    MENUS.append(PLUGIN_MENU)

@@ -2,6 +2,7 @@
 {% load buttons %}
 {% load helpers %}
 {% load perms %}
+{% load plugins %}
 {% load render_table from django_tables2 %}
 
 {% block title %}
@@ -9,6 +10,7 @@
 {% endblock %}
 
 {% block controls %}
+  {% plugin_buttons object %}
   {% if request.user|can_change:object %}
     {% edit_button object %}
   {% endif %}
@@ -21,9 +23,10 @@
 {% block dashboard_content %}
   <div class="flex flex-col space-y-4">
     <div class="grid grid-cols-2 gap-4">
-      <div class="flex flex-col space-y-2">{% block page_left %}{% endblock %}</div>
-      <div class="flex flex-col space-y-2">{% block page_right %}{% endblock %}</div>
+      <div class="flex flex-col space-y-2">{% block page_left %}{% endblock %}{% plugin_left_page object %}</div>
+      <div class="flex flex-col space-y-2">{% block page_right %}{% endblock %}{% plugin_right_page object %}</div>
     </div>
     {% block page_full %}{% endblock %}
+    {% plugin_full_width_page object %}
   </div>
 {% endblock %}

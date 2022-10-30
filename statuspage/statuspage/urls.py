@@ -1,4 +1,6 @@
 from django.conf import settings
+
+from extras.plugins.urls import plugin_patterns, plugin_api_patterns, plugin_admin_patterns
 from .admin import admin_site
 from django.urls import path, include, re_path
 from statuspage.views import HomeView, DashboardHomeView
@@ -46,8 +48,13 @@ _patterns = [
     re_path(r'^api/swagger(?P<format>.json|.yaml)$', schema_view.without_ui(cache_timeout=86400),
             name='schema_swagger'),
 
+    # Plugins
+    path('plugins/', include((plugin_patterns, 'plugins'))),
+    path('api/plugins/', include((plugin_api_patterns, 'plugins-api'))),
+
     # Admin
     path('admin/background-tasks/', include('django_rq.urls')),
+    path('admin/plugins/', include(plugin_admin_patterns)),
     path('admin/', admin_site.urls),
 
     path('__reload__/', include('django_browser_reload.urls')),
