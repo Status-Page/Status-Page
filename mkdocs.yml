@@ -6,6 +6,7 @@ repo_url: https://github.com/status-page/status-page
 edit_uri: 'edit/main/docs/'
 theme:
   name: material
+  custom_dir: docs/_theme/
   icon:
     repo: fontawesome/brands/github
   palette:
@@ -54,5 +55,18 @@ markdown_extensions:
             format: !!python/name:pymdownx.superfences.fence_code_format
     - pymdownx.tabbed:
         alternate_style: true
+extra_css:
+    - extra.css
 nav:
     - Introduction: 'index.md'
+    - Installation:
+        - Install Status-Page: 'installation/index.md'
+        - 1. PostgreSQL: 'installation/1-postgresql.md'
+        - 2. Redis: 'installation/2-redis.md'
+        - 3. Status-Page: 'installation/3-status-page.md'
+        - 4. Gunicorn: 'installation/4-gunicorn.md'
+        - 5. HTTP Server: 'installation/5-http-server.md'
+        - Upgrading Status-Page: 'installation/upgrading.md'
+    - Release Notes:
+        - Overview: 'release-notes/index.md'
+        - Version 2.0: 'release-notes/version-2.0.md'
