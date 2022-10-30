@@ -28,7 +28,6 @@
 | PostgreSQL       | 10              | no       |
 | Redis            | 4.0             | no       |
 | SMTP Mail Server | ---             | yes      |
-| supervisor       |                 | yes      |
 
 # Installation & Updates
 Please have a look at our [Documentation](https://status-page-docs.netlify.app/docs/main/installation/installing).
