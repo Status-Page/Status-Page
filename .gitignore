@@ -3,3 +3,5 @@
 node_modules/
 statuspage/theme/static/css/dist/
 __pycache__
+
+configuration.py
