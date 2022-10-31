@@ -64,18 +64,29 @@
                      aria-labelledby="user-menu-button"
                      tabindex="-1"
                 >
-                  <a href="{% url 'users:profile' %}" class="{% dashboard_dropdown_active 'users:profile' %} block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1">Profile</a>
-                  <a href="{% url 'users:preferences' %}" class="{% dashboard_dropdown_active 'users:preferences' %} block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1">Preferences</a>
-                  <a href="{% url 'users:change_password' %}" class="{% dashboard_dropdown_active 'users:change_password' %} block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1">Password</a>
-                  <a href="{% url 'users:token_list' %}" class="{% dashboard_dropdown_active 'users:token_list' %} block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1">API Tokens</a>
-                  <a href="{% url 'users:device_list' %}" class="{% dashboard_dropdown_active 'users:device_list' %} block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1">2FA Devices</a>
-                  {% if request.user.is_staff %}
-                    <a href="{% url 'admin:index' %}" class="{% dashboard_dropdown_active 'admin:index' %} block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1">Admin {% badge '2FA Required' %}</a>
-                  {% endif %}
-                  {% if perms.extras.view_objectchange %}
-                    <a href="{% url 'extras:objectchange_list' %}" class="{% dashboard_dropdown_active 'extras:objectchange_list' %} block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1">Changelog</a>
-                  {% endif %}
-                  <a href="{% url 'logout' %}" class="{% dashboard_dropdown_active 'logout' %} block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1">Sign out</a>
+                  <div class="divide-y divide-gray-200">
+                    <div class="py-1" role="none">
+                      <p class="px-4 py-1 text-gray-500 text-sm">User</p>
+                      <a href="{% url 'users:profile' %}" class="{% dashboard_dropdown_active 'users:profile' %} block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1">Profile</a>
+                      <a href="{% url 'users:preferences' %}" class="{% dashboard_dropdown_active 'users:preferences' %} block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1">Preferences</a>
+                      <a href="{% url 'users:change_password' %}" class="{% dashboard_dropdown_active 'users:change_password' %} block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1">Password</a>
+                      <a href="{% url 'users:token_list' %}" class="{% dashboard_dropdown_active 'users:token_list' %} block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1">API Tokens</a>
+                      <a href="{% url 'users:device_list' %}" class="{% dashboard_dropdown_active 'users:device_list' %} block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1">2FA Devices</a>
+                    </div>
+                    {% if request.user.is_staff %}
+                      <div class="py-1" role="none">
+                          <a href="{% url 'admin:index' %}" class="{% dashboard_dropdown_active 'admin:index' %} block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1">Admin {% badge '2FA Required' %}</a>
+                      </div>
+                    {% endif %}
+                    {% if perms.extras.view_objectchange %}
+                      <div class="py-1" role="none">
+                          <a href="{% url 'extras:objectchange_list' %}" class="{% dashboard_dropdown_active 'extras:objectchange_list' %} block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1">Changelog</a>
+                      </div>
+                    {% endif %}
+                    <div class="py-1" role="none">
+                      <a href="{% url 'logout' %}" class="{% dashboard_dropdown_active 'logout' %} block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1">Sign out</a>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

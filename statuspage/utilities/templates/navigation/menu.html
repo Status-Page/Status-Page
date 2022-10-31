@@ -34,7 +34,7 @@
       {% for item in items %}
         <a href="{% url item.link %}" class="{% dashboard_dropdown_active item.link %}{% if mobile %} block{% endif %} text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1">{{ item.link_text }}</a>
       {% endfor %}
-      <div class="divide-y divide-gray-100">
+      <div class="divide-y divide-gray-200">
         {% for group, items in groups %}
           <div class="py-1" role="none">
             <p class="px-4 py-1 text-gray-500 text-sm">{{ group.label }}</p>
