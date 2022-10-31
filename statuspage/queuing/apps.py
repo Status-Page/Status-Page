@@ -16,6 +16,7 @@ class QueuingConfig(AppConfig):
 
         tasks = [
             (maintenance_automation, '* * * * *'),
+            (subscriber_automation, '* * * * *'),
             (metric_automation, '0 0 * * *'),
             (housekeeping, '0 4 * * *'),
         ]
@@ -79,6 +80,13 @@ def metric_automation():
     daterange = datenow - timezone.timedelta(days=31)
 
     MetricPoint.objects.filter(created__lte=daterange).delete()
+
+
+def subscriber_automation():
+    from subscribers.models import Subscriber
+
+    daterange = timezone.now() - timezone.timedelta(days=1)
+    Subscriber.objects.filter(created__lte=daterange, email_verified_at=None).delete()
 
 
 def housekeeping():

@@ -1,0 +1,14 @@
+Hello!
+
+Please verify your E-Mail at {{ site_title }} to recieve notifications about the page.
+
+Click the following Link to verify your E-Mail: {{ verification_url }}
+
+This link is only valid for 24 hours.
+
+Greetings,
+{{ site_title }}
+
+---
+Management URL: {{ management_url }}
+Unsubscribe URL: {{ unsubscribe_url }}

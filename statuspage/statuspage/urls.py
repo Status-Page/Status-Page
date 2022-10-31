@@ -3,7 +3,7 @@ from django.conf import settings
 from extras.plugins.urls import plugin_patterns, plugin_api_patterns, plugin_admin_patterns
 from .admin import admin_site
 from django.urls import path, include, re_path
-from statuspage.views import HomeView, DashboardHomeView
+from statuspage.views import HomeView, DashboardHomeView, SubscriberVerifyView, SubscriberManageView, SubscriberUnsubscribeView
 from users.views import LoginView, LogoutView
 from statuspage.api.views import APIRootView
 from drf_yasg import openapi
@@ -27,6 +27,11 @@ schema_view = get_schema_view(
 _patterns = [
     # Base Views
     path('', HomeView.as_view(), name='home'),
+
+    path('subscribers/<str:management_key>/verify', SubscriberVerifyView.as_view(), name='subscriber_verify'),
+    path('subscribers/<str:management_key>/manage', SubscriberManageView.as_view(), name='subscriber_manage'),
+    path('subscribers/<str:management_key>/unsubscribe', SubscriberUnsubscribeView.as_view(), name='subscriber_unsubscribe'),
+
     path('dashboard/', DashboardHomeView.as_view(), name='dashboard'),
     path('dashboard/login/', LoginView.as_view(), name='login'),
     path('dashboard/logout/', LogoutView.as_view(), name='logout'),
@@ -36,6 +41,7 @@ _patterns = [
     path('dashboard/incidents/', include('incidents.urls')),
     path('dashboard/maintenances/', include('maintenances.urls')),
     path('dashboard/metrics/', include('metrics.urls')),
+    path('dashboard/subscribers/', include('subscribers.urls')),
     path('dashboard/extras/', include('extras.urls')),
     path('dashboard/user/', include('users.urls')),
 

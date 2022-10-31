@@ -7,7 +7,6 @@ from django.core.exceptions import ImproperlyConfigured
 from django.template.loader import get_template
 
 from extras.registry import registry
-from utilities.choices import ButtonColorChoices
 
 from extras.plugins.utils import import_object
 

@@ -32,7 +32,7 @@ except ModuleNotFoundError as e:
         )
     raise
 
-for parameter in ['ALLOWED_HOSTS', 'DATABASE', 'SECRET_KEY', 'REDIS']:
+for parameter in ['ALLOWED_HOSTS', 'DATABASE', 'SECRET_KEY', 'REDIS', 'SITE_URL']:
     if not hasattr(configuration, parameter):
         raise ImproperlyConfigured(f"Required parameter {parameter} is missing from configuration.")
 
@@ -40,6 +40,7 @@ ALLOWED_HOSTS = getattr(configuration, 'ALLOWED_HOSTS')
 DATABASE = getattr(configuration, 'DATABASE')
 REDIS = getattr(configuration, 'REDIS')
 SECRET_KEY = getattr(configuration, 'SECRET_KEY')
+SITE_URL = getattr(configuration, 'SITE_URL')
 
 ADMINS = getattr(configuration, 'ADMINS', [])
 AUTH_PASSWORD_VALIDATORS = getattr(configuration, 'AUTH_PASSWORD_VALIDATORS', [])
@@ -151,6 +152,7 @@ EMAIL_USE_SSL = EMAIL.get('USE_SSL', False)
 EMAIL_USE_TLS = EMAIL.get('USE_TLS', False)
 EMAIL_TIMEOUT = EMAIL.get('TIMEOUT', 10)
 SERVER_EMAIL = EMAIL.get('FROM_EMAIL')
+DEFAULT_FROM_EMAIL = EMAIL.get('FROM_EMAIL')
 
 LOGIN_URL = f'/{BASE_PATH}dashboard/login/'
 LOGIN_REDIRECT_URL = f'/{BASE_PATH}dashboard/'
@@ -173,6 +175,7 @@ INSTALLED_APPS = [
     'users',
     'utilities',
     'metrics',
+    'subscribers',
     'django_rq',
     'drf_yasg',
     'queuing',
@@ -200,10 +203,11 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'statuspage.urls'
 
 TEMPLATES_DIR = f'{BASE_DIR}/templates'
+EMAIL_TEMPLATES_DIR = f'{BASE_DIR}/emails'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATES_DIR],
+        'DIRS': [TEMPLATES_DIR, EMAIL_TEMPLATES_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'builtins': [
@@ -257,11 +261,6 @@ MEDIA_URL = '/{}media/'.format(BASE_PATH)
 
 # Disable default limit of 1000 fields per request. Needed for bulk deletion of objects. (Added in Django 1.10.)
 DATA_UPLOAD_MAX_NUMBER_FIELDS = None
-
-# Messages
-MESSAGE_TAGS = {
-    messages.ERROR: 'danger',
-}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

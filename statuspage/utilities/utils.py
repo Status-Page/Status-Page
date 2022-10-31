@@ -1,3 +1,5 @@
+from django.conf import settings
+from django.core.mail import send_mail as django_send_mail
 from django.core.serializers import serialize
 import json
 
@@ -7,6 +9,8 @@ import bleach
 
 from incidents.choices import IncidentImpactChoices
 from components.choices import ComponentStatusChoices
+from statuspage.config import get_config
+
 
 def get_viewname(model, action=None, rest_api=False):
     """
@@ -270,3 +274,14 @@ def dict_to_filter_params(d, prefix=''):
         else:
             params[k] = val
     return params
+
+
+def send_mail(subject, html_message, message, recipient_list):
+    config = get_config()
+    django_send_mail(
+        subject=f'{settings.EMAIL_SUBJECT_PREFIX}{subject}',
+        message=f'{message}',
+        html_message=f'{html_message}',
+        from_email=f'{config.SITE_TITLE} <{settings.DEFAULT_FROM_EMAIL}>',
+        recipient_list=recipient_list,
+    )

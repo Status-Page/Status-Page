@@ -1,0 +1,63 @@
+{% extends 'generic/object.html' %}
+{% load buttons %}
+{% load static %}
+{% load helpers %}
+{% load plugins %}
+{% load perms %}
+
+{% block controls %}
+  {% plugin_buttons object %}
+  {% if request.user|can_delete:object %}
+    {% if not object.email_verified_at %}
+      <a href="?action=resend_verification_mail" class="bg-green-500 hover:bg-green-400 text-white px-2 py-2 rounded-md font-medium" type="button">
+        Resend Verification Mail
+      </a>
+    {% endif %}
+    {% if object.email_verified_at %}
+      <a href="?action=reset_verification" class="bg-yellow-500 hover:bg-yellow-400 text-white px-2 py-2 rounded-md font-medium" type="button">
+        Reset Verification State
+      </a>
+    {% endif %}
+    {% delete_button object %}
+  {% endif %}
+  {% block extra_controls %}{% endblock %}
+{% endblock %}
+
+{% block page_left %}
+  <div class="grow bg-zinc-100 dark:bg-zinc-800 p-2 space-y-2 ring-1 ring-zinc-500 rounded-md shadow-lg">
+    <div class="text-2xl">Subscriber</div>
+    <div class="px-4">
+      <table class="text-left w-full">
+        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+          <tr>
+            <th scope="row" class="pr-6 py-1">E-Mail</th>
+            <td>{{ object.email }}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="pr-6 py-1">E-Mail Verified at</th>
+            <td>{{ object.email_verified_at|placeholder }}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="pr-6 py-1">Incident Notifications</th>
+            <td>{% checkmark object.incident_subscriptions %}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}
+
+{% block page_right %}
+  <div class="grow bg-zinc-100 dark:bg-zinc-800 p-2 space-y-2 ring-1 ring-zinc-500 rounded-md shadow-lg">
+    <div class="text-2xl">Subcribed Components</div>
+    <div class="px-4 flex flex-col">
+      <div class="grid grid-cols-4 py-1">
+        {% for component in object.component_subscriptions.all %}
+          <div class="border border-gray-200 dark:border-gray-700 px-2">{{ component|linkify }}</div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block page_full %}{% endblock %}

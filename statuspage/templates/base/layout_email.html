@@ -1,0 +1,10 @@
+{% extends 'base/base_email.html' %}
+
+{% block body %}
+  <div style="min-height: 100vh; background-color: rgb(82 82 91); color: rgb(255 255 255); display: flex; flex-direction: column;">
+    <div style="text-align: center; font-size: 1.5rem; line-height: 2rem; padding-top: 1rem; padding-bottom: 1rem;"><a href="{{ site_url }}" style="text-decoration-line: none; color: #ffffff;">{{ site_title }}</a></div>
+    <div style="flex-grow: 1; background-color: rgb(39 39 42); display: flex; flex-direction: row; justify-content: center; padding-left: 1.5rem; padding-right: 1.5rem; padding-top: 1.5rem; height: 100%;">
+      {% block content %}{% endblock %}
+    </div>
+  </div>
+{% endblock body %}

@@ -2,6 +2,7 @@ import platform
 import sys
 
 from django.conf import settings
+from django.contrib import messages
 from django.db.models import Q
 from django.shortcuts import redirect, render
 from django.utils import timezone
@@ -17,6 +18,7 @@ from incidents.choices import IncidentStatusChoices
 from maintenances.models import Maintenance
 from maintenances.choices import MaintenanceStatusChoices
 from statuspage.views.generic import BaseView
+from subscribers.models import Subscriber
 
 
 class HomeView(BaseView):
@@ -65,6 +67,73 @@ class DashboardHomeView(BaseView):
             'open_maintenances': len(open_maintenances),
             'upcoming_maintenances': len(upcoming_maintenances),
         })
+
+
+class SubscriberVerifyView(BaseView):
+    def get(self, request, **kwargs):
+        subscriber = Subscriber.get_by_management_key(**kwargs)
+
+        if not subscriber:
+            messages.error(request, 'This Subscriber has not been found.')
+            return redirect('home')
+
+        if subscriber.email_verified_at:
+            messages.error(request, 'This E-Mail is already verified.')
+            return redirect('subscriber_manage', **kwargs)
+
+        subscriber.email_verified_at = timezone.now()
+        subscriber.save()
+        messages.success(request, 'This E-Mail has been verified.')
+        return redirect('subscriber_manage', **kwargs)
+
+
+class SubscriberManageView(BaseView):
+    template_name = 'home/subscribers/manage.html'
+
+    def get(self, request, **kwargs):
+        subscriber = Subscriber.get_by_management_key(**kwargs)
+
+        if not subscriber:
+            messages.error(request, 'This Subscriber has not been found.')
+            return redirect('home')
+
+        if not subscriber.email_verified_at:
+            messages.error(request, 'This E-Mail is not verified.')
+            return redirect('home')
+
+        return render(request, self.template_name)
+
+
+class SubscriberUnsubscribeView(BaseView):
+    template_name = 'home/subscribers/unsubscribe.html'
+
+    def get(self, request, **kwargs):
+        subscriber = Subscriber.get_by_management_key(**kwargs)
+
+        if not subscriber:
+            messages.error(request, 'This Subscriber has not been found.')
+            return redirect('home')
+
+        if not subscriber.email_verified_at:
+            messages.error(request, 'This E-Mail is not verified.')
+            return redirect('home')
+
+        return render(request, self.template_name)
+
+    def post(self, request, **kwargs):
+        subscriber = Subscriber.get_by_management_key(**kwargs)
+
+        if not subscriber:
+            messages.error(request, 'This Subscriber has not been found.')
+            return redirect('home')
+
+        if not subscriber.email_verified_at:
+            messages.error(request, 'This E-Mail is not verified.')
+            return redirect('home')
+
+        subscriber.delete()
+        messages.success(request, 'Successfully unsubscribed.')
+        return redirect('home')
 
 
 @requires_csrf_token

@@ -83,6 +83,11 @@
                           <a href="{% url 'extras:objectchange_list' %}" class="{% dashboard_dropdown_active 'extras:objectchange_list' %} block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1">Changelog</a>
                       </div>
                     {% endif %}
+                    {% if perms.subscribers.view_subscriber and config.SITE_SUBSCRIBERS %}
+                      <div class="py-1" role="none">
+                          <a href="{% url 'subscribers:subscriber_list' %}" class="{% dashboard_dropdown_active 'subscribers:subscriber_list' %} block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1">Subscribers</a>
+                      </div>
+                    {% endif %}
                     <div class="py-1" role="none">
                       <a href="{% url 'logout' %}" class="{% dashboard_dropdown_active 'logout' %} block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1">Sign out</a>
                     </div>

@@ -1,3 +1,4 @@
+from django.contrib.auth.models import AnonymousUser
 from django.contrib.contenttypes.models import ContentType
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -21,13 +22,6 @@ def handle_changed_object(sender, instance, **kwargs):
 
     request = get_request()
     m2m_changed = False
-
-    def is_same_object(instance, webhook_data):
-        return (
-            ContentType.objects.get_for_model(instance) == webhook_data['content_type'] and
-            instance.pk == webhook_data['object_id'] and
-            request.id == webhook_data['request_id']
-        )
 
     # Determine the type of change being made
     if kwargs.get('created'):
@@ -53,7 +47,10 @@ def handle_changed_object(sender, instance, **kwargs):
             )
         else:
             objectchange = instance.to_objectchange(action)
-            objectchange.user = request.user
+            if not isinstance(request.user, AnonymousUser):
+                objectchange.user = request.user
+            else:
+                objectchange.user_name = 'anonymous'
             objectchange.request_id = request.id
             objectchange.save()
 
@@ -70,7 +67,10 @@ def handle_deleted_object(sender, instance, **kwargs):
     # Record an ObjectChange if applicable
     if hasattr(instance, 'to_objectchange'):
         objectchange = instance.to_objectchange(ObjectChangeActionChoices.ACTION_DELETE)
-        objectchange.user = request.user
+        if not isinstance(request.user, AnonymousUser):
+            objectchange.user = request.user
+        else:
+            objectchange.user_name = 'anonymous'
         objectchange.request_id = request.id
         objectchange.save()
 
