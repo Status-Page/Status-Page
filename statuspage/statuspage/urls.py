@@ -38,17 +38,20 @@ _patterns = [
 
     # Apps
     path('dashboard/components/', include('components.urls')),
+    path('dashboard/extras/', include('extras.urls')),
     path('dashboard/incidents/', include('incidents.urls')),
     path('dashboard/maintenances/', include('maintenances.urls')),
     path('dashboard/metrics/', include('metrics.urls')),
     path('dashboard/subscribers/', include('subscribers.urls')),
-    path('dashboard/extras/', include('extras.urls')),
     path('dashboard/user/', include('users.urls')),
 
     # API
     path('api/', APIRootView.as_view(), name='api-root'),
-    path('api/users/', include('users.api.urls')),
+    path('api/components/', include('components.api.urls')),
     path('api/extras/', include('extras.api.urls')),
+    path('api/incidents/', include('incidents.api.urls')),
+    path('api/maintenances/', include('maintenances.api.urls')),
+    path('api/users/', include('users.api.urls')),
     path('api/docs/', schema_view.with_ui('swagger', cache_timeout=86400), name='api_docs'),
     path('api/redoc/', schema_view.with_ui('redoc', cache_timeout=86400), name='api_redocs'),
     re_path(r'^api/swagger(?P<format>.json|.yaml)$', schema_view.without_ui(cache_timeout=86400),

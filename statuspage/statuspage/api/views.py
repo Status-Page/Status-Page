@@ -18,7 +18,10 @@ class APIRootView(APIView):
     def get(self, request, format=None):
 
         return Response({
+            'components': reverse('components-api:api-root', request=request, format=format),
             'extras': reverse('extras-api:api-root', request=request, format=format),
+            'incidents': reverse('incidents-api:api-root', request=request, format=format),
+            'maintenances': reverse('maintenances-api:api-root', request=request, format=format),
             'plugins': reverse('plugins-api:api-root', request=request, format=format),
             'users': reverse('users-api:api-root', request=request, format=format),
         })
