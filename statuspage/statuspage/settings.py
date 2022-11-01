@@ -3,7 +3,6 @@ import os
 import sys
 import platform
 
-from django.contrib import messages
 from django.core.exceptions import ImproperlyConfigured
 
 from statuspage.config import PARAMS
@@ -65,6 +64,7 @@ LOGGING = getattr(configuration, 'LOGGING', {})
 # LOGIN_REQUIRED = getattr(configuration, 'LOGIN_REQUIRED', False)
 LOGIN_REQUIRED = True
 LOGIN_TIMEOUT = getattr(configuration, 'LOGIN_TIMEOUT', None)
+MEDIA_ROOT = getattr(configuration, 'MEDIA_ROOT', os.path.join(BASE_DIR, 'media')).rstrip('/')
 PLUGINS = getattr(configuration, 'PLUGINS', [])
 PLUGINS_CONFIG = getattr(configuration, 'PLUGINS_CONFIG', {})
 RQ_DEFAULT_TIMEOUT = getattr(configuration, 'RQ_DEFAULT_TIMEOUT', 300)

@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.views.static import serve
 
 from extras.plugins.urls import plugin_patterns, plugin_api_patterns, plugin_admin_patterns
 from .admin import admin_site
@@ -56,6 +57,8 @@ _patterns = [
     path('api/redoc/', schema_view.with_ui('redoc', cache_timeout=86400), name='api_redocs'),
     re_path(r'^api/swagger(?P<format>.json|.yaml)$', schema_view.without_ui(cache_timeout=86400),
             name='schema_swagger'),
+
+    path('media/<path:path>', serve, {'document_root': settings.MEDIA_ROOT}),
 
     # Plugins
     path('plugins/', include((plugin_patterns, 'plugins'))),

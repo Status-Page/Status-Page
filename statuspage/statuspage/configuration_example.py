@@ -124,6 +124,10 @@ LOGGING = {}
 # re-authenticate. (Default: 1209600 [14 days])
 LOGIN_TIMEOUT = None
 
+# The file path where uploaded media such as image attachments are stored. A trailing slash is not needed. Note that
+# the default value of this setting is derived from the installed location.
+# MEDIA_ROOT = '/opt/status-page/statuspage/media'
+
 # Overwrite Field Choices for specific Models (Note that this may break functionality!
 # Please check the docs, before overwriting any choices.
 FIELD_CHOICES = {}

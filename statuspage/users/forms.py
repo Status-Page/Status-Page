@@ -3,7 +3,6 @@ from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm as 
 from django.contrib.postgres.forms import SimpleArrayField
 from django.utils.safestring import mark_safe
 from django_otp.plugins.otp_totp.models import TOTPDevice
-from django_otp.plugins.otp_static.models import StaticToken
 from otp_yubikey.models import RemoteYubikeyDevice
 
 from statuspage.formfields import IPNetworkFormField
