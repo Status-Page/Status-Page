@@ -4,6 +4,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 from statuspage.request_context import get_request
+from subscribers.models import Subscriber
 from .choices import ObjectChangeActionChoices
 from .models import ObjectChange, ConfigRevision
 
@@ -49,6 +50,8 @@ def handle_changed_object(sender, instance, **kwargs):
             objectchange = instance.to_objectchange(action)
             if not isinstance(request.user, AnonymousUser):
                 objectchange.user = request.user
+            elif isinstance(instance, Subscriber):
+                objectchange.user_name = instance.email
             else:
                 objectchange.user_name = 'anonymous'
             objectchange.request_id = request.id
@@ -69,6 +72,8 @@ def handle_deleted_object(sender, instance, **kwargs):
         objectchange = instance.to_objectchange(ObjectChangeActionChoices.ACTION_DELETE)
         if not isinstance(request.user, AnonymousUser):
             objectchange.user = request.user
+        elif isinstance(instance, Subscriber):
+            objectchange.user_name = instance.email
         else:
             objectchange.user_name = 'anonymous'
         objectchange.request_id = request.id
