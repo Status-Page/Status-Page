@@ -347,7 +347,7 @@ class TagColumn(tables.TemplateColumn):
     {% for tag in value.all %}
         {% tag tag url_name %}
     {% empty %}
-        <span class="text-muted">&mdash;</span>
+        <span class="text-gray-400">&mdash;</span>
     {% endfor %}
     """
 

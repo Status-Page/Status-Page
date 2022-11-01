@@ -304,7 +304,7 @@ export function createToast(
 
   if (typeof extra !== 'undefined') {
     const extraElement = document.createElement('small');
-    extraElement.setAttribute('class', 'text-muted');
+    extraElement.setAttribute('class', 'text-gray-400');
     header.appendChild(extraElement);
   }
 
