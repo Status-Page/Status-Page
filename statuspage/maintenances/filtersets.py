@@ -65,7 +65,7 @@ class MaintenanceUpdateFilterSet(StatusPageModelFilterSet):
     maintenance = django_filters.ModelMultipleChoiceFilter(
         field_name='maintenance__title',
         queryset=Maintenance.objects.all(),
-        to_field_name='name',
+        to_field_name='title',
         conjoined=True,
         label='Maintenance (Title)',
     )

@@ -22,6 +22,8 @@ class APIRootView(APIView):
             'extras': reverse('extras-api:api-root', request=request, format=format),
             'incidents': reverse('incidents-api:api-root', request=request, format=format),
             'maintenances': reverse('maintenances-api:api-root', request=request, format=format),
+            'metrics': reverse('metrics-api:api-root', request=request, format=format),
+            'subscribers': reverse('subscribers-api:api-root', request=request, format=format),
             'plugins': reverse('plugins-api:api-root', request=request, format=format),
             'users': reverse('users-api:api-root', request=request, format=format),
         })

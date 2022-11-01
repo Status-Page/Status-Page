@@ -52,6 +52,8 @@ _patterns = [
     path('api/extras/', include('extras.api.urls')),
     path('api/incidents/', include('incidents.api.urls')),
     path('api/maintenances/', include('maintenances.api.urls')),
+    path('api/metrics/', include('metrics.api.urls')),
+    path('api/subscribers/', include('subscribers.api.urls')),
     path('api/users/', include('users.api.urls')),
     path('api/docs/', schema_view.with_ui('swagger', cache_timeout=86400), name='api_docs'),
     path('api/redoc/', schema_view.with_ui('redoc', cache_timeout=86400), name='api_redocs'),

@@ -50,7 +50,7 @@ class Subscriber(StatusPageModel):
 
         super().save(*args, **kwargs)
 
-        if is_new:
+        if is_new and self.email_verified_at is not None:
             components = Component.objects.all()
             for component in components:
                 self.component_subscriptions.add(component)
