@@ -36,6 +36,12 @@
             </div>
           {% endfor %}
         </div>
+        <div class="px-8 py-2 text-gray-400 text-sm">
+          {% if incident_maintenance.end_at %}<div>Ends at: {{ incident_maintenance.end_at }}</div>{% endif %}
+          {% with incident_maintenance.components|get_visible_components|join_components_with_groups as affected_components %}
+            {% if affected_components %}<div>Affected Components: {{ affected_components }}</div>{% endif %}
+          {% endwith %}
+        </div>
       </div>
     {% empty %}
       <div class="rounded-md {{ status.0 }} p-4">
@@ -116,7 +122,9 @@
           <div class="px-8 py-2 text-gray-400 text-sm">
             <div>Scheduled at: {{ maintenance.scheduled_at }}</div>
             <div>Ends at: {{ maintenance.end_at }}</div>
-            <div>Affected Components: {{ maintenance.components|get_visible_components|join_components_with_groups }}</div>
+            {% with maintenance.components|get_visible_components|join_components_with_groups as affected_components %}
+              {% if affected_components %}<div>Affected Components: {{ affected_components }}</div>{% endif %}
+            {% endwith %}
           </div>
         </div>
       {% endfor %}
@@ -155,6 +163,11 @@
                       </div>
                     </div>
                   {% endfor %}
+                </div>
+                <div class="py-2 text-gray-400 text-sm">
+                  {% with incident_maintenance.components|get_visible_components|join_components_with_groups as affected_components %}
+                    {% if affected_components %}<div>Affected Components: {{ affected_components }}</div>{% endif %}
+                  {% endwith %}
                 </div>
               </div>
             {% empty %}
