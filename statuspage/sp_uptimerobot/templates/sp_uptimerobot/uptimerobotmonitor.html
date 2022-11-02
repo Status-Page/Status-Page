@@ -1,0 +1,42 @@
+{% extends 'generic/object.html' %}
+{% load buttons %}
+{% load static %}
+{% load helpers %}
+
+{% block page_left %}
+  <div class="grow bg-zinc-100 dark:bg-zinc-800 p-2 space-y-2 ring-1 ring-zinc-500 rounded-md shadow-lg">
+    <div class="text-2xl">UptimeRobot Monitor</div>
+    <div class="px-4">
+      <table class="text-left w-full">
+        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+          <tr>
+            <th scope="row" class="pr-6 py-1">Name</th>
+            <td>{{ object.friendly_name }}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="pr-6 py-1">Monitor Id</th>
+            <td>{{ object.monitor_id }}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="pr-6 py-1">Status</th>
+            <td>{% badge object.get_status_display bg_color=object.get_status_color %}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="pr-6 py-1">Component</th>
+            <td>{{ object.component|placeholder }}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="pr-6 py-1">Metric</th>
+            <td>{{ object.metric|placeholder }}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="pr-6 py-1">Paused</th>
+            <td>{% checkmark object.paused %}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}
+
+{% block page_right %}{% endblock %}

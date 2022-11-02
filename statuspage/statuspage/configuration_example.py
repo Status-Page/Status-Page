@@ -132,16 +132,18 @@ LOGIN_TIMEOUT = None
 # Please check the docs, before overwriting any choices.
 FIELD_CHOICES = {}
 
-PLUGINS = []
+PLUGINS = [
+    # 'sp_uptimerobot', # Built-In Plugin for UptimeRobot integration
+    # 'sp_external_status_providers', # Built-In Plugin for integrating external Status Pages
+]
 
 # Plugins configuration settings. These settings are used by various plugins that the user may have installed.
 # Each key in the dictionary is the name of an installed plugin and its value is a dictionary of settings.
-# PLUGINS_CONFIG = {
-#     'my_plugin': {
-#         'foo': 'bar',
-#         'buzz': 'bazz'
-#     }
-# }
+PLUGINS_CONFIG = {
+    'sp_uptimerobot': {
+        'uptime_robot_api_key': '',
+    },
+}
 
 # Maximum execution time for background tasks, in seconds.
 RQ_DEFAULT_TIMEOUT = 300

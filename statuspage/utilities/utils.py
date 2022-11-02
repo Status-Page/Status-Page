@@ -7,6 +7,7 @@ from django.http import QueryDict
 from mptt.models import MPTTModel
 import bleach
 
+from extras.plugins import PluginConfig
 from incidents.choices import IncidentImpactChoices
 from components.choices import ComponentStatusChoices
 from statuspage.config import get_config
@@ -19,7 +20,7 @@ def get_viewname(model, action=None, rest_api=False):
     :param action: A string indicating the desired action (if any); e.g. "add" or "list"
     :param rest_api: A boolean indicating whether this is a REST API view
     """
-    is_plugin = False
+    is_plugin = isinstance(model._meta.app_config, PluginConfig)
     app_label = model._meta.app_label
     model_name = model._meta.model_name
 

@@ -23,16 +23,19 @@ class ChoiceSetMeta(type):
         # Define choice tuples and color maps
         attrs['_choices'] = []
         attrs['colors'] = {}
+        attrs['labels'] = {}
         for choice in attrs['CHOICES']:
             if isinstance(choice[1], (list, tuple)):
                 grouped_choices = []
                 for c in choice[1]:
                     grouped_choices.append((c[0], c[1]))
+                    attrs['labels'][c[0]] = c[1]
                     if len(c) == 3:
                         attrs['colors'][c[0]] = c[2]
                 attrs['_choices'].append((choice[0], grouped_choices))
             else:
                 attrs['_choices'].append((choice[0], choice[1]))
+                attrs['labels'][choice[0]] = choice[1]
                 if len(choice) == 3:
                     attrs['colors'][choice[0]] = choice[2]
 
