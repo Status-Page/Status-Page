@@ -236,6 +236,14 @@ def get_visible_components(value: any) -> Any:
     return value.filter(visibility=True)
 
 
+@register.filter
+def join_components_with_groups(value: any) -> Any:
+    """
+    Template to return only visibly components
+    """
+    return mark_safe(", ".join(list(map(lambda c: f'{c.component_group.name} &mdash; {c.name}' if c.component_group else c.name, value))))
+
+
 #
 # Tags
 #

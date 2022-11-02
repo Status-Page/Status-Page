@@ -83,6 +83,45 @@
       {% endif %}
     {% endfor %}
   </div>
+  {% if upcoming_maintenances|length > 0 %}
+    <div class="flex flex-col space-y-4">
+        <div class="text-2xl">Upcoming Maintenances</div>
+      {% for maintenance in upcoming_maintenances %}
+        <div class="border-4 {{ maintenance.get_impact_border_color }} rounded-md">
+          <div class="px-8 py-2 {{ maintenance.get_impact_color }} text-white">{{ maintenance.title }}</div>
+          <div class="px-8 py-2 flex flex-col space-y-4">
+            {% for update in maintenance.updates.all %}
+              <div class="flex flex-col space-y-0.5">
+                <div class="flex flex-row space-x-2">
+                  <div class="font-bold">
+                    {% if update.new_status %}
+                      {{ update.get_status_display }}
+                    {% else %}
+                      Update
+                    {% endif %}
+                  </div>
+                  <div>&mdash;</div>
+                  <div>{{ update.text|markdown }}</div>
+                </div>
+                <div class="text-gray-400">
+                  {{ update.created }} by {% if update.user.get_full_name %}
+                    {{ update.user.get_full_name }}
+                  {% else %}
+                    Automation
+                  {% endif %}
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+          <div class="px-8 py-2 text-gray-400 text-sm">
+            <div>Scheduled at: {{ maintenance.scheduled_at }}</div>
+            <div>Ends at: {{ maintenance.end_at }}</div>
+            <div>Affected Components: {{ maintenance.components|get_visible_components|join_components_with_groups }}</div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
   <div class="flex flex-col space-y-4">
     <div class="text-2xl">Past Incidents</div>
     <div class="flex flex-col space-y-8">

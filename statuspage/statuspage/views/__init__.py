@@ -41,10 +41,16 @@ class HomeView(BaseView):
             visibility=True,
         )
         open_maintenances = Maintenance.objects.filter(
+            ~Q(status=MaintenanceStatusChoices.SCHEDULED),
             ~Q(status=MaintenanceStatusChoices.COMPLETED),
             visibility=True,
         )
         open_incidents_maintenances = list(chain(open_incidents, open_maintenances))
+
+        upcoming_maintenances = Maintenance.objects.filter(
+            status=MaintenanceStatusChoices.SCHEDULED,
+            visibility=True,
+        )
 
         datenow = timezone.now().replace(microsecond=0, second=0, minute=0, hour=0)
         datenow_end = timezone.now().replace(microsecond=0, second=59, minute=59, hour=23)
@@ -101,6 +107,7 @@ class HomeView(BaseView):
             'status': status,
             'open_incidents_maintenances': open_incidents_maintenances,
             'componentgroups_components': componentgroups_components,
+            'upcoming_maintenances': upcoming_maintenances,
             'resolved_incidents_maintenances': resolved_incidents_maintenances,
         })
 
