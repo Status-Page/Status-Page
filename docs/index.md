@@ -3,4 +3,4 @@
 ## Getting Started
 
 * Check out the [installation guide](./installation/index.md) to get your deployment up and running
-* Or the [Docker image](https://github.com/status-page/status-page-docker)
+* Or the [Docker image](https://github.com/status-page/status-page-docker) (coming soon...)
