@@ -89,6 +89,26 @@
       {% endif %}
     {% endfor %}
   </div>
+  {% if metrics|length > 0 %}
+    <div class="flex flex-col space-y-4">
+      {% for m in metrics %}
+        <div class="grow bg-zinc-100 dark:bg-zinc-800 p-2 space-y-2 rounded-md shadow-lg">
+          <div x-data="{ open: false }" class="px-2 py-2">
+            <div @click="open = !open" role="button" class="flex flex-row space-x-4 items-center">
+              <div>
+                <i class="mdi mdi-plus-circle" x-show="!open"></i>
+                <i class="mdi mdi-minus-circle-outline" x-show="open"></i>
+              </div>
+              <div class="text-lg">{{ m.title }}</div>
+            </div>
+            <div class="flex flex-col divide-y divide-zinc-200 dark:divide-zinc-700" x-show="open">
+              {% metric metric=m range='12h' %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
   {% if upcoming_maintenances|length > 0 %}
     <div class="flex flex-col space-y-4">
         <div class="text-2xl">Upcoming Maintenances</div>

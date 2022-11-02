@@ -22,6 +22,7 @@ from incidents.models import Incident
 from incidents.choices import IncidentStatusChoices
 from maintenances.models import Maintenance
 from maintenances.choices import MaintenanceStatusChoices
+from metrics.models import Metric
 from statuspage.views.generic import BaseView
 from subscribers.forms import PublicSubscriberForm, PublicSubscriberManagementForm
 from subscribers.models import Subscriber, send_subscriber_management_key_mail
@@ -101,12 +102,15 @@ class HomeView(BaseView):
 
         componentgroups_components = list(chain(component_groups, ungrouped_components))
 
+        metrics = Metric.objects.filter(visibility=True)
+
         return render(request, self.template_name, {
             'component_groups': component_groups,
             'ungrouped_components': ungrouped_components,
             'status': status,
             'open_incidents_maintenances': open_incidents_maintenances,
             'componentgroups_components': componentgroups_components,
+            'metrics': metrics,
             'upcoming_maintenances': upcoming_maintenances,
             'resolved_incidents_maintenances': resolved_incidents_maintenances,
         })
