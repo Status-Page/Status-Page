@@ -1,0 +1,22 @@
+{% extends 'base/home.html' %}
+{% load helpers %}
+{% load form_helpers %}
+
+{% block controls %}
+  <div>
+    <a href="{% url 'home' %}" class="bg-indigo-500 hover:bg-indigo-600 text-white shadow px-4 py-2 rounded-md" role="button">Home</a>
+  </div>
+{% endblock %}
+
+{% block home_content %}
+  <div class="text-2xl">Manage your Subscription</div>
+  <div class="flex flex-col space-y-4">
+    <form action="" method="post">
+      {% csrf_token %}
+      <div class="flex flex-col space-y-2">
+        {% render_form form %}
+        <button type="submit" class="bg-indigo-500 hover:bg-indigo-600 text-white shadow px-4 py-2 rounded-md">Request E-Mail</button>
+      </div>
+    </form>
+  </div>
+{% endblock %}

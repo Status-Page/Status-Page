@@ -1,8 +1,13 @@
-{% extends 'base/layout.html' %}
+{% extends 'base/home.html' %}
 {% load helpers %}
 
-{% block content %}
-<div class="flex flex-col space-y-8">
+{% block controls %}
+  <div>
+    <a href="{% url 'subscriber_subscribe' %}" class="bg-indigo-500 hover:bg-indigo-600 text-white shadow px-4 py-2 rounded-md" role="button">Get Notifications</a>
+  </div>
+{% endblock %}
+
+{% block home_content %}
   <div class="flex flex-col space-y-4">
     {% for incident in open_incidents %}
       <div>{{ incident.title }}</div>
@@ -10,6 +15,17 @@
         {% for update in incident.incident_updates.all %}
           <div>{{ update.text|markdown }}</div>
         {% endfor %}
+      </div>
+    {% empty %}
+      <div class="rounded-md {{ status.0 }} p-4">
+        <div class="flex items-center">
+          <div class="flex-shrink-0">
+            <i class="mdi {{ status.2 }} text-xl"></i>
+          </div>
+          <div class="ml-3">
+            <h3 class="text-sm font-medium {{ status.1 }}">{{ status.3 }}</h3>
+          </div>
+        </div>
       </div>
     {% endfor %}
   </div>
@@ -33,5 +49,4 @@
       </div>
     {% endfor %}
   </div>
-</div>
-{% endblock content %}
+{% endblock %}

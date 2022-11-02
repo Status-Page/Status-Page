@@ -1,0 +1,26 @@
+{% extends 'base/home.html' %}
+{% load helpers %}
+{% load form_helpers %}
+
+{% block controls %}
+  <div>
+    <a href="{% url 'home' %}" class="bg-indigo-500 hover:bg-indigo-600 text-white shadow px-4 py-2 rounded-md" role="button">Home</a>
+  </div>
+{% endblock %}
+
+{% block home_content %}
+  <div class="text-2xl">Subscribe</div>
+  <div class="flex flex-col space-y-4">
+    <form action="" method="post">
+      {% csrf_token %}
+      <div class="flex flex-col space-y-2">
+        {% render_form form %}
+        <button type="submit" class="bg-indigo-500 hover:bg-indigo-600 text-white shadow px-4 py-2 rounded-md">Subscribe</button>
+      </div>
+    </form>
+    <div class="text-gray-400">
+      Lost the last E-Mail and you want to Manage your Subscription?
+      <a href="{% url 'subscriber_management_key' %}" class="text-blue-400">Click here</a>
+    </div>
+  </div>
+{% endblock %}

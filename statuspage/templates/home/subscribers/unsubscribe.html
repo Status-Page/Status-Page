@@ -1,12 +1,22 @@
-{% extends 'base/layout.html' %}
+{% extends 'base/home.html' %}
 {% load helpers %}
 
-{% block content %}
-<div class="flex flex-col space-y-8">
-  Unsubscribe<br>
+{% block controls %}
+  <div>
+    <a href="{% url 'subscriber_manage' management_key=subscriber.management_key %}" class="bg-indigo-500 hover:bg-indigo-600 text-white shadow px-4 py-2 rounded-md" role="button">Manage</a>
+  </div>
+  <div>
+    <a href="{% url 'home' %}" class="bg-indigo-500 hover:bg-indigo-600 text-white shadow px-4 py-2 rounded-md" role="button">Home</a>
+  </div>
+{% endblock %}
+
+{% block home_content %}
+<div class="flex flex-col space-y-2">
+  <div class="text-2xl">Unsubscribe</div>
+  <div class="text-xl">Are you sure, you want to unsubscribe to all Notifications?</div>
   <form method="post">
     {% csrf_token %}
-    <button type="submit">Unsubscribe now!</button>
+    <button type="submit" class="bg-indigo-500 hover:bg-indigo-600 text-white shadow px-4 py-2 rounded-md">Unsubscribe now!</button>
   </form>
 </div>
-{% endblock content %}
+{% endblock %}

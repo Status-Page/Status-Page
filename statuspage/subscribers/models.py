@@ -14,7 +14,9 @@ from utilities.utils import send_mail
 
 
 class Subscriber(StatusPageModel):
-    email = models.EmailField()
+    email = models.EmailField(
+        unique=True,
+    )
     email_verified_at = models.DateTimeField(
         blank=True,
         null=True,
@@ -50,7 +52,7 @@ class Subscriber(StatusPageModel):
 
         super().save(*args, **kwargs)
 
-        if is_new and self.email_verified_at is not None:
+        if is_new and self.email_verified_at is None:
             components = Component.objects.all()
             for component in components:
                 self.component_subscriptions.add(component)
@@ -75,11 +77,31 @@ def send_subscriber_verify_mail(subscriber):
         'unsubscribe_url': settings.SITE_URL + reverse('subscriber_unsubscribe', kwargs={'management_key': subscriber.management_key}),
     })
 
-    message = render_to_string('subscribers/verification.txt', context)
-    html_message = render_to_string('subscribers/verification.html', context)
+    message = render_to_string('emails/subscribers/verification.txt', context)
+    html_message = render_to_string('emails/subscribers/verification.html', context)
 
     send_mail(
         subject=f'Verify your Subscription to {config.SITE_TITLE}',
+        message=message,
+        html_message=html_message,
+        recipient_list=[subscriber.email],
+    )
+
+
+def send_subscriber_management_key_mail(subscriber):
+    config = get_config()
+    context = ({
+        'site_url': f'{settings.SITE_URL}',
+        'site_title': f'{config.SITE_TITLE}',
+        'management_url': settings.SITE_URL + reverse('subscriber_manage', kwargs={'management_key': subscriber.management_key}),
+        'unsubscribe_url': settings.SITE_URL + reverse('subscriber_unsubscribe', kwargs={'management_key': subscriber.management_key}),
+    })
+
+    message = render_to_string('emails/subscribers/management-key.txt', context)
+    html_message = render_to_string('emails/subscribers/management-key.html', context)
+
+    send_mail(
+        subject=f'Manage your Subscription at {config.SITE_TITLE}',
         message=message,
         html_message=html_message,
         recipient_list=[subscriber.email],

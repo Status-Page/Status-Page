@@ -1,8 +1,11 @@
 import platform
 import sys
+import uuid
 
+import django_rq
 from django.conf import settings
 from django.contrib import messages
+from django.db import IntegrityError
 from django.db.models import Q
 from django.shortcuts import redirect, render
 from django.utils import timezone
@@ -12,13 +15,15 @@ from django.template import loader
 from django.template.exceptions import TemplateDoesNotExist
 from django.http import HttpResponseServerError
 
-from components.models import ComponentGroup
+from components.choices import ComponentStatusChoices
+from components.models import ComponentGroup, Component
 from incidents.models import Incident
 from incidents.choices import IncidentStatusChoices
 from maintenances.models import Maintenance
 from maintenances.choices import MaintenanceStatusChoices
 from statuspage.views.generic import BaseView
-from subscribers.models import Subscriber
+from subscribers.forms import PublicSubscriberForm, PublicSubscriberManagementForm
+from subscribers.models import Subscriber, send_subscriber_management_key_mail
 
 
 class HomeView(BaseView):
@@ -28,19 +33,49 @@ class HomeView(BaseView):
         component_groups = ComponentGroup.objects.filter(
             visibility=True,
         )
+        ungrouped_components = Component.objects.filter(component_group=None)
         open_incidents = Incident.objects.filter(
             ~Q(status=IncidentStatusChoices.RESOLVED),
+            visibility=True,
+        )
+        open_maintenances = Maintenance.objects.filter(
+            ~Q(status=MaintenanceStatusChoices.COMPLETED),
             visibility=True,
         )
         resolved_incidents = Incident.objects.filter(
             status=IncidentStatusChoices.RESOLVED,
             visibility=True,
         )
+        resolved_maintenances = Maintenance.objects.filter(
+            status=MaintenanceStatusChoices.COMPLETED,
+            visibility=True,
+        )
+
+        components = Component.objects.all()
+        degraded_components = list(filter(lambda c: c.status == ComponentStatusChoices.DEGRADED_PERFORMANCE, components))
+        partial_components = list(filter(lambda c: c.status == ComponentStatusChoices.PARTIAL_OUTAGE, components))
+        major_components = list(filter(lambda c: c.status == ComponentStatusChoices.MAJOR_OUTAGE, components))
+        maintenance_components = list(filter(lambda c: c.status == ComponentStatusChoices.MAINTENANCE, components))
+
+        if len(maintenance_components) > 0:
+            status = ('bg-blue-200', 'text-blue-800', 'mdi-wrench text-blue-500', 'Some systems are undergoing maintenance')
+        elif len(major_components) > 0:
+            status = ('bg-red-200', 'text-red-800', 'mdi-alert-circle text-red-500', 'There is a major system outage')
+        elif len(partial_components) > 0:
+            status = ('bg-orange-200', 'text-orange-800', 'mdi-alert-circle text-orange-500', 'There is a partial system outage')
+        elif len(degraded_components) > 0:
+            status = ('bg-yellow-200', 'text-yellow-800', 'mdi-alert-circle text-yellow-500', 'Some systems are having perfomance issues')
+        else:
+            status = ('bg-green-200', 'text-green-800', 'mdi-check-circle text-green-500', 'All systems operational')
 
         return render(request, self.template_name, {
             'component_groups': component_groups,
+            'ungrouped_components': ungrouped_components,
+            'status': status,
             'open_incidents': open_incidents,
+            'open_maintenances': open_maintenances,
             'resolved_incidents': resolved_incidents,
+            'resolved_maintenances': resolved_maintenances,
         })
 
 
@@ -66,6 +101,63 @@ class DashboardHomeView(BaseView):
             'open_incidents': len(open_incidents),
             'open_maintenances': len(open_maintenances),
             'upcoming_maintenances': len(upcoming_maintenances),
+        })
+
+
+class SubscriberSubscribeView(BaseView):
+    template_name = 'home/subscribers/subscribe.html'
+
+    def get(self, request):
+        form = PublicSubscriberForm()
+
+        return render(request, self.template_name, {
+            'form': form,
+        })
+
+    def post(self, request):
+        form = PublicSubscriberForm(data=request.POST)
+
+        if form.is_valid():
+            email = form.cleaned_data.get('email')
+            try:
+                subscriber = Subscriber()
+                subscriber.email = email
+                subscriber.save()
+            except IntegrityError:
+                pass
+            messages.success(request, 'Successfully subscribed to Updates. Please check your Mails for verification.')
+
+        return render(request, self.template_name, {
+            'form': form,
+        })
+
+
+class SubscriberRequestManagementKeyView(BaseView):
+    template_name = 'home/subscribers/request-management-key.html'
+
+    def get(self, request):
+        form = PublicSubscriberForm()
+
+        return render(request, self.template_name, {
+            'form': form,
+        })
+
+    def post(self, request):
+        form = PublicSubscriberForm(data=request.POST)
+
+        if form.is_valid():
+            email = form.cleaned_data.get('email')
+            try:
+                subscriber = Subscriber.objects.get(email=email)
+                subscriber.management_key = uuid.uuid4()
+                subscriber.save()
+                django_rq.enqueue(send_subscriber_management_key_mail, subscriber)
+            except:
+                pass
+            messages.success(request, 'Successfully requested the E-Mail.')
+
+        return render(request, self.template_name, {
+            'form': form,
         })
 
 
@@ -101,7 +193,34 @@ class SubscriberManageView(BaseView):
             messages.error(request, 'This E-Mail is not verified.')
             return redirect('home')
 
-        return render(request, self.template_name)
+        form = PublicSubscriberManagementForm(instance=subscriber)
+
+        return render(request, self.template_name, {
+            'form': form,
+            'subscriber': subscriber,
+        })
+
+    def post(self, request, **kwargs):
+        subscriber = Subscriber.get_by_management_key(**kwargs)
+
+        if not subscriber:
+            messages.error(request, 'This Subscriber has not been found.')
+            return redirect('home')
+
+        if not subscriber.email_verified_at:
+            messages.error(request, 'This E-Mail is not verified.')
+            return redirect('home')
+
+        form = PublicSubscriberManagementForm(instance=subscriber, data=request.POST)
+
+        if form.is_valid():
+            messages.success(request, 'Successfully updated the Subscription preferences')
+            form.save()
+
+        return render(request, self.template_name, {
+            'form': form,
+            'subscriber': subscriber,
+        })
 
 
 class SubscriberUnsubscribeView(BaseView):
@@ -118,7 +237,9 @@ class SubscriberUnsubscribeView(BaseView):
             messages.error(request, 'This E-Mail is not verified.')
             return redirect('home')
 
-        return render(request, self.template_name)
+        return render(request, self.template_name, {
+            'subscriber': subscriber,
+        })
 
     def post(self, request, **kwargs):
         subscriber = Subscriber.get_by_management_key(**kwargs)

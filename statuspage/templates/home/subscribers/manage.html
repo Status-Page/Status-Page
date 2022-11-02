@@ -1,8 +1,25 @@
-{% extends 'base/layout.html' %}
+{% extends 'base/home.html' %}
 {% load helpers %}
+{% load form_helpers %}
 
-{% block content %}
+{% block controls %}
+  <div>
+    <a href="{% url 'subscriber_unsubscribe' management_key=subscriber.management_key %}" class="bg-indigo-500 hover:bg-indigo-600 text-white shadow px-4 py-2 rounded-md" role="button">Unsubscribe</a>
+  </div>
+  <div>
+    <a href="{% url 'home' %}" class="bg-indigo-500 hover:bg-indigo-600 text-white shadow px-4 py-2 rounded-md" role="button">Home</a>
+  </div>
+{% endblock %}
+
+{% block home_content %}
 <div class="flex flex-col space-y-8">
-  Manage
+  <div class="text-2xl">Manage Subscription</div>
+  <form action="" method="post">
+      {% csrf_token %}
+      <div class="flex flex-col space-y-2">
+        {% render_form form %}
+        <button type="submit" class="bg-indigo-500 hover:bg-indigo-600 text-white shadow px-4 py-2 rounded-md">Update</button>
+      </div>
+    </form>
 </div>
-{% endblock content %}
+{% endblock %}

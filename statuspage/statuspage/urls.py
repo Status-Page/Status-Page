@@ -4,7 +4,8 @@ from django.views.static import serve
 from extras.plugins.urls import plugin_patterns, plugin_api_patterns, plugin_admin_patterns
 from .admin import admin_site
 from django.urls import path, include, re_path
-from statuspage.views import HomeView, DashboardHomeView, SubscriberVerifyView, SubscriberManageView, SubscriberUnsubscribeView
+from statuspage.views import HomeView, DashboardHomeView, SubscriberVerifyView, SubscriberManageView, \
+    SubscriberUnsubscribeView, SubscriberSubscribeView, SubscriberRequestManagementKeyView
 from users.views import LoginView, LogoutView
 from statuspage.api.views import APIRootView
 from drf_yasg import openapi
@@ -29,6 +30,8 @@ _patterns = [
     # Base Views
     path('', HomeView.as_view(), name='home'),
 
+    path('subscribers/subscribe', SubscriberSubscribeView.as_view(), name='subscriber_subscribe'),
+    path('subscribers/reqeust-management-key', SubscriberRequestManagementKeyView.as_view(), name='subscriber_management_key'),
     path('subscribers/<str:management_key>/verify', SubscriberVerifyView.as_view(), name='subscriber_verify'),
     path('subscribers/<str:management_key>/manage', SubscriberManageView.as_view(), name='subscriber_manage'),
     path('subscribers/<str:management_key>/unsubscribe', SubscriberUnsubscribeView.as_view(), name='subscriber_unsubscribe'),

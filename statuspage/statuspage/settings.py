@@ -203,11 +203,10 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'statuspage.urls'
 
 TEMPLATES_DIR = f'{BASE_DIR}/templates'
-EMAIL_TEMPLATES_DIR = f'{BASE_DIR}/emails'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATES_DIR, EMAIL_TEMPLATES_DIR],
+        'DIRS': [TEMPLATES_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'builtins': [

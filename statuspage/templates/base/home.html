@@ -1,0 +1,18 @@
+{% extends 'base/layout.html' %}
+
+{% block content %}
+  <div class="container mx-auto max-w-3xl">
+    <div class="flex flex-col space-y-8 pt-6">
+      <div class="flex flex-row justify-between items-end">
+        <div class="text-5xl">{{ config.SITE_TITLE }}</div>
+        <div class="flex flex-row space-x-4 items-center">
+          <div>
+            <button class="color-mode-toggle"><i class="color-mode-icon mdi"></i></button>
+          </div>
+          {% block controls %}{% endblock %}
+        </div>
+      </div>
+      {% block home_content %}{% endblock %}
+    </div>
+  </div>
+{% endblock content %}

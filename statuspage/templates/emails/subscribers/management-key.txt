@@ -1,0 +1,11 @@
+Hello!
+
+Click the following Link to manage your Subscription at {{ site_title }}: {{ management_url }}
+
+This link is only valid for 24 hours.
+
+Greetings,
+{{ site_title }}
+
+---
+Unsubscribe URL: {{ unsubscribe_url }}
