@@ -1,5 +1,7 @@
 import collections
 import inspect
+
+import django_rq
 from packaging import version
 
 from django.apps import AppConfig
@@ -9,7 +11,7 @@ from django.template.loader import get_template
 from extras.registry import registry
 
 from extras.plugins.utils import import_object
-
+from queuing.apps import get_func_name
 
 # Initialize plugin registry
 registry['plugins'] = {
@@ -57,6 +59,7 @@ class PluginConfig(AppConfig):
     menu_items = 'navigation.menu_items'
     template_extensions = 'template_content.template_extensions'
     user_preferences = 'preferences.preferences'
+    schedules = 'queuing.schedules'
 
     def ready(self):
         plugin_name = self.name.rsplit('.', 1)[-1]
@@ -75,6 +78,11 @@ class PluginConfig(AppConfig):
         user_preferences = import_object(f"{self.__module__}.{self.user_preferences}")
         if user_preferences is not None:
             register_user_preferences(plugin_name, user_preferences)
+
+        # Register schedules (if defined)
+        schedules = import_object(f"{self.__module__}.{self.schedules}")
+        if schedules is not None:
+            register_schedules(plugin_name, schedules)
 
     @classmethod
     def validate(cls, user_config, statuspage_version):
@@ -232,3 +240,24 @@ def register_user_preferences(plugin_name, preferences):
     Register a list of user preferences defined by a plugin.
     """
     registry['plugins']['preferences'][plugin_name] = preferences
+
+
+#
+# Schedules
+#
+
+def register_schedules(plugin_name, schedules):
+    """
+    Register a list of schedules defined by a plugin.
+    """
+    scheduler = django_rq.get_scheduler('default')
+    jobs = list(map(lambda j: j.func_name, scheduler.get_jobs()))
+
+    for method, cron_string in schedules:
+        func_name = get_func_name(method)
+        if func_name not in jobs:
+            scheduler.cron(
+                cron_string=cron_string,
+                func=method,
+                queue_name='default',
+            )
