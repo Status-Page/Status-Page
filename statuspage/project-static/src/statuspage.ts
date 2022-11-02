@@ -10,6 +10,7 @@ import { initTableConfig } from './tableConfig';
 import { initInterfaceTable } from './tables';
 import { initLinks } from './links';
 import { initHtmx } from './htmx';
+import { initPopups } from "./popups";
 
 function initDocument(): void {
   for (const init of [
@@ -25,6 +26,7 @@ function initDocument(): void {
     initInterfaceTable,
     initLinks,
     initHtmx,
+    initPopups,
   ]) {
     init();
   }

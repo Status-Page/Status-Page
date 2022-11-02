@@ -24,10 +24,10 @@ class ComponentStatusChoices(ChoiceSet):
     MAINTENANCE = 'maintenance'
 
     CHOICES = [
-        (UNKNOWN, 'Unknown', 'bg-black'),
-        (OPERATIONAL, 'Operational', 'bg-green-500'),
-        (DEGRADED_PERFORMANCE, 'Degraded Performance', 'bg-yellow-500'),
-        (PARTIAL_OUTAGE, 'Partial Outage', 'bg-orange-500'),
-        (MAJOR_OUTAGE, 'Major Outage', 'bg-red-500'),
-        (MAINTENANCE, 'Maintenance', 'bg-blue-500'),
+        (UNKNOWN, 'Unknown', ('bg-black', 'text-black')),
+        (OPERATIONAL, 'Operational', ('bg-green-500', 'text-green-500')),
+        (DEGRADED_PERFORMANCE, 'Degraded Performance', ('bg-yellow-500', 'text-yellow-500')),
+        (PARTIAL_OUTAGE, 'Partial Outage', ('bg-orange-500', 'text-orange-500')),
+        (MAJOR_OUTAGE, 'Major Outage', ('bg-red-500', 'text-red-500')),
+        (MAINTENANCE, 'Maintenance', ('bg-blue-500', 'text-blue-500')),
     ]

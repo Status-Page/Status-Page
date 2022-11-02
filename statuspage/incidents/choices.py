@@ -26,8 +26,8 @@ class IncidentImpactChoices(ChoiceSet):
     CRITICAL = 'critical'
 
     CHOICES = [
-        (NONE, 'None', 'bg-black'),
-        (MINOR, 'Minor', 'bg-yellow-500'),
-        (MAJOR, 'Major', 'bg-orange-500'),
-        (CRITICAL, 'Critical', 'bg-red-500'),
+        (NONE, 'None', ('bg-black', 'border-black', 'text-black')),
+        (MINOR, 'Minor', ('bg-yellow-500', 'border-yellow-500', 'text-yellow-500')),
+        (MAJOR, 'Major', ('bg-orange-500', 'border-orange-500', 'text-orange-500')),
+        (CRITICAL, 'Critical', ('bg-red-500', 'border-red-500', 'text-red-500')),
     ]

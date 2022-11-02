@@ -74,4 +74,9 @@ class Component(StatusPageModel):
         return reverse('components:component', args=[self.pk])
 
     def get_status_color(self):
-        return ComponentStatusChoices.colors.get(self.status)
+        (color, _) = ComponentStatusChoices.colors.get(self.status)
+        return color
+
+    def get_status_text_color(self):
+        (_, color) = ComponentStatusChoices.colors.get(self.status)
+        return color

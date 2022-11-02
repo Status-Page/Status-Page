@@ -23,5 +23,5 @@ class MaintenanceImpactChoices(ChoiceSet):
     MAINTENANCE = 'maintenance'
 
     CHOICES = [
-        (MAINTENANCE, 'Maintenance', 'bg-blue-500'),
+        (MAINTENANCE, 'Maintenance', ('bg-blue-500', 'border-blue-500', 'text-blue-500')),
     ]

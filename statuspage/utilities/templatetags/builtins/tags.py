@@ -1,5 +1,7 @@
 from django.utils import timezone
 from django import template
+
+from components.choices import ComponentStatusChoices
 from metrics.choices import MetricRangeChoices
 
 register = template.Library()
@@ -91,4 +93,39 @@ def metric(metric, range):
         'metric': metric,
         'labels': labels,
         'points': points,
+    }
+
+
+@register.inclusion_tag('builtins/componentgroup_status.html')
+def componentgroup_status(componentgroup):
+    components = componentgroup.components.all()
+
+    operational_components = list(filter(lambda c: c.status == ComponentStatusChoices.OPERATIONAL, components))
+    degraded_components = list(filter(lambda c: c.status == ComponentStatusChoices.DEGRADED_PERFORMANCE, components))
+    partial_components = list(filter(lambda c: c.status == ComponentStatusChoices.PARTIAL_OUTAGE, components))
+    major_components = list(filter(lambda c: c.status == ComponentStatusChoices.MAJOR_OUTAGE, components))
+    maintenance_components = list(filter(lambda c: c.status == ComponentStatusChoices.MAINTENANCE, components))
+
+    if len(maintenance_components) > 0:
+        text = maintenance_components[0].get_status_display()
+        color = maintenance_components[0].get_status_text_color()
+    elif len(major_components) > 0:
+        text = major_components[0].get_status_display()
+        color = major_components[0].get_status_text_color()
+    elif len(partial_components) > 0:
+        text = partial_components[0].get_status_display()
+        color = partial_components[0].get_status_text_color()
+    elif len(degraded_components) > 0:
+        text = degraded_components[0].get_status_display()
+        color = degraded_components[0].get_status_text_color()
+    elif len(operational_components) > 0:
+        text = operational_components[0].get_status_display()
+        color = operational_components[0].get_status_text_color()
+    else:
+        text = 'Unknown'
+        color = 'text-black'
+
+    return {
+        'text': text,
+        'color': color,
     }

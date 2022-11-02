@@ -1,6 +1,7 @@
 import platform
 import sys
 import uuid
+from itertools import chain
 
 import django_rq
 from django.conf import settings
@@ -34,6 +35,7 @@ class HomeView(BaseView):
             visibility=True,
         )
         ungrouped_components = Component.objects.filter(component_group=None)
+
         open_incidents = Incident.objects.filter(
             ~Q(status=IncidentStatusChoices.RESOLVED),
             visibility=True,
@@ -42,14 +44,37 @@ class HomeView(BaseView):
             ~Q(status=MaintenanceStatusChoices.COMPLETED),
             visibility=True,
         )
+        open_incidents_maintenances = list(chain(open_incidents, open_maintenances))
+
+        datenow = timezone.now().replace(microsecond=0, second=0, minute=0, hour=0)
+        datenow_end = timezone.now().replace(microsecond=0, second=59, minute=59, hour=23)
+        daterange = datenow - timezone.timedelta(days=7)
+
         resolved_incidents = Incident.objects.filter(
             status=IncidentStatusChoices.RESOLVED,
             visibility=True,
+            last_updated__range=(daterange, datenow_end),
         )
         resolved_maintenances = Maintenance.objects.filter(
             status=MaintenanceStatusChoices.COMPLETED,
             visibility=True,
+            last_updated__range=(daterange, datenow_end),
         )
+
+        resolved_incidents_maintenances = []
+
+        date_begin = list(datenow - timezone.timedelta(days=n) for n in range(7))
+        date_end = list(datenow_end - timezone.timedelta(days=n) for n in range(7))
+        for count in range(7):
+            local_list = []
+            begin = date_begin[count]
+            end = date_end[count]
+            for incident in resolved_incidents.filter(last_updated__range=(begin, end)):
+                local_list.append(incident)
+            for maintenance in resolved_maintenances.filter(last_updated__range=(begin, end)):
+                local_list.append(maintenance)
+
+            resolved_incidents_maintenances.append((date_begin[count], local_list))
 
         components = Component.objects.all()
         degraded_components = list(filter(lambda c: c.status == ComponentStatusChoices.DEGRADED_PERFORMANCE, components))
@@ -68,14 +93,15 @@ class HomeView(BaseView):
         else:
             status = ('bg-green-200', 'text-green-800', 'mdi-check-circle text-green-500', 'All systems operational')
 
+        componentgroups_components = list(chain(component_groups, ungrouped_components))
+
         return render(request, self.template_name, {
             'component_groups': component_groups,
             'ungrouped_components': ungrouped_components,
             'status': status,
-            'open_incidents': open_incidents,
-            'open_maintenances': open_maintenances,
-            'resolved_incidents': resolved_incidents,
-            'resolved_maintenances': resolved_maintenances,
+            'open_incidents_maintenances': open_incidents_maintenances,
+            'componentgroups_components': componentgroups_components,
+            'resolved_incidents_maintenances': resolved_incidents_maintenances,
         })
 
 

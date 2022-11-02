@@ -40,14 +40,23 @@ class Incident(IncidentMaintenanceModel):
         return reverse('incidents:incident', args=[self.pk])
 
     def get_impact_color(self):
-        return IncidentImpactChoices.colors.get(self.impact)
+        (color, _, __) = IncidentImpactChoices.colors.get(self.impact)
+        return color
+
+    def get_impact_border_color(self):
+        (_, color, __) = IncidentImpactChoices.colors.get(self.impact)
+        return color
+
+    def get_impact_text_color(self):
+        (_, __, color) = IncidentImpactChoices.colors.get(self.impact)
+        return color
 
 
 class IncidentUpdate(IncidentMaintenanceUpdateModel):
     incident = models.ForeignKey(
         to=Incident,
         on_delete=models.CASCADE,
-        related_name='incident_updates',
+        related_name='updates',
     )
     status = models.CharField(
         max_length=255,

@@ -9,12 +9,33 @@
 
 {% block home_content %}
   <div class="flex flex-col space-y-4">
-    {% for incident in open_incidents %}
-      <div>{{ incident.title }}</div>
-      <div class="flex flex-col space-y-2">
-        {% for update in incident.incident_updates.all %}
-          <div>{{ update.text|markdown }}</div>
-        {% endfor %}
+    {% for incident_maintenance in open_incidents_maintenances %}
+      <div class="border-4 {{ incident_maintenance.get_impact_border_color }} rounded-md">
+        <div class="px-8 py-2 {{ incident_maintenance.get_impact_color }} text-white">{{ incident_maintenance.title }}</div>
+        <div class="px-8 py-2 flex flex-col space-y-4">
+          {% for update in incident_maintenance.updates.all %}
+            <div class="flex flex-col space-y-0.5">
+              <div class="flex flex-row space-x-2">
+                <div class="font-bold">
+                  {% if update.new_status %}
+                    {{ update.get_status_display }}
+                  {% else %}
+                    Update
+                  {% endif %}
+                </div>
+                <div>&mdash;</div>
+                <div>{{ update.text|markdown }}</div>
+              </div>
+              <div class="text-gray-400">
+                {{ update.created }} by {% if update.user.get_full_name %}
+                  {{ update.user.get_full_name }}
+                {% else %}
+                  Automation
+                {% endif %}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
       </div>
     {% empty %}
       <div class="rounded-md {{ status.0 }} p-4">
@@ -29,24 +50,80 @@
       </div>
     {% endfor %}
   </div>
-  <div class="flex flex-col space-y-4">
-    {% for group in component_groups %}
-      <div>{{ group.name }}</div>
-      <div class="flex flex-col space-y-2">
-        {% for component in group.components|get_visible_components %}
-          <div>{{ component.name }}</div>
-        {% endfor %}
-      </div>
+  <div class="flex flex-col bg-zinc-300 dark:bg-zinc-800 divide-y divide-zinc-200 dark:divide-zinc-700 rounded-md">
+    {% for componentgroup_component in componentgroups_components %}
+      {% if componentgroup_component.components %}
+        {% with componentgroup_component as componentgroup %}
+          <div x-data="{ open: false }" class="px-4 py-4">
+            <div @click="open = !open" role="button" class="flex flex-row space-x-4 items-center">
+              <div>
+                <i class="mdi mdi-plus-circle text-lg" x-show="!open"></i>
+                <i class="mdi mdi-minus-circle-outline text-lg" x-show="open"></i>
+              </div>
+              <div class="grow">{{ componentgroup.name }}</div>
+              <div x-show="!open">{% componentgroup_status componentgroup=componentgroup %}</div>
+            </div>
+            <div class="flex flex-col pt-2 pl-8 divide-y divide-zinc-200 dark:divide-zinc-700" x-show="open">
+              {% for component in componentgroup.components|get_visible_components %}
+                <div class="flex flex-row justify-between items-center py-2">
+                  <div>{{ component.name }}</div>
+                  <div class="{{ component.get_status_text_color }}" data-last-update="{{ component.last_updated }}">{{ component.get_status_display }}</div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        {% endwith %}
+      {% else %}
+        {% with componentgroup_component as component %}
+          <div class="px-4 py-4 flex flex-row justify-between items-center">
+            <div>{{ component.name }}</div>
+            <div class="{{ component.get_status_text_color }}" data-last-update="{{ component.last_updated }}">{{ component.get_status_display }}</div>
+          </div>
+        {% endwith %}
+      {% endif %}
     {% endfor %}
   </div>
   <div class="flex flex-col space-y-4">
-    {% for incident in resolved_incidents %}
-      <div>{{ incident.title }}</div>
-      <div class="flex flex-col space-y-2">
-        {% for update in incident.incident_updates.all %}
-          <div>{{ update.text|markdown }}</div>
-        {% endfor %}
-      </div>
-    {% endfor %}
+    <div class="text-2xl">Past Incidents</div>
+    <div class="flex flex-col space-y-8">
+      {% for date, incidents_maintenances in resolved_incidents_maintenances %}
+        <div class="flex flex-col space-y-4 divide-y divide-gray-300 dark:divide-gray-500">
+          <div class="text-xl">{{ date|format_date }}</div>
+          <div class="flex flex-col space-y-2">
+            {% for incident_maintenance in incidents_maintenances %}
+              <div>
+                <div class="font-bold text-lg {{ incident_maintenance.get_impact_text_color }}">{{ incident_maintenance.title }}</div>
+                <div class="flex flex-col space-y-2">
+                  {% for update in incident_maintenance.updates.all %}
+                    <div class="flex flex-col space-y-0.5">
+                      <div class="flex flex-row space-x-2">
+                        <div class="font-bold">
+                          {% if update.new_status %}
+                            {{ update.get_status_display }}
+                          {% else %}
+                            Update
+                          {% endif %}
+                        </div>
+                        <div>&mdash;</div>
+                        <div>{{ update.text|markdown }}</div>
+                      </div>
+                      <div class="text-gray-400">
+                        {{ update.created }} by {% if update.user.get_full_name %}
+                          {{ update.user.get_full_name }}
+                        {% else %}
+                          Automation
+                        {% endif %}
+                      </div>
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+            {% empty %}
+              <div class="text-gray-400">No incidents or maintenances reported.</div>
+            {% endfor %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
   </div>
 {% endblock %}

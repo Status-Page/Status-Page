@@ -4,7 +4,9 @@ import re
 
 import yaml
 from django import template
+from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
+from django.utils import dateformat
 from django.utils.html import escape
 from django.utils.safestring import mark_safe
 from markdown import markdown
@@ -108,6 +110,14 @@ def tzoffset(value):
     Returns the hour offset of a given time zone using the current time.
     """
     return datetime.datetime.now(value).strftime('%z')
+
+
+@register.filter()
+def format_date(value, format=settings.SHORT_DATE_FORMAT):
+    """
+    Returns the hour offset of a given time zone using the current time.
+    """
+    return dateformat.format(value, format)
 
 
 #

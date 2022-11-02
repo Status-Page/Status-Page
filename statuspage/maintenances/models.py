@@ -49,14 +49,23 @@ class Maintenance(IncidentMaintenanceModel):
         return reverse('maintenances:maintenance', args=[self.pk])
 
     def get_impact_color(self):
-        return MaintenanceImpactChoices.colors.get(self.impact)
+        (color, _, __) = MaintenanceImpactChoices.colors.get(self.impact)
+        return color
+
+    def get_impact_border_color(self):
+        (_, color, __) = MaintenanceImpactChoices.colors.get(self.impact)
+        return color
+
+    def get_impact_text_color(self):
+        (_, __, color) = MaintenanceImpactChoices.colors.get(self.impact)
+        return color
 
 
 class MaintenanceUpdate(IncidentMaintenanceUpdateModel):
     maintenance = models.ForeignKey(
         to=Maintenance,
         on_delete=models.CASCADE,
-        related_name='maintenance_updates',
+        related_name='updates',
     )
     status = models.CharField(
         max_length=255,

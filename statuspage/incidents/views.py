@@ -20,7 +20,7 @@ class IncidentView(generic.ObjectView, ActionsMixin):
     queryset = Incident.objects.filter()
 
     def get_extra_context(self, request, instance):
-        queryset = instance.incident_updates.all()
+        queryset = instance.updates.all()
 
         actions = self.get_permitted_actions(request.user)
         has_bulk_actions = any([a.startswith('bulk_') for a in actions])
