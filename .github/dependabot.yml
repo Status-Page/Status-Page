@@ -1,0 +1,20 @@
+version: 2
+updates:
+  - package-ecosystem: "python"
+    directory: "/"
+    target-branch: "main"
+    schedule:
+      interval: "daily"
+    assignees:
+      - "herrtxbias"
+    reviewers:
+      - "herrtxbias"
+  - package-ecosystem: "npm"
+    directory: "/statuspage/project-static/"
+    target-branch: "main"
+    schedule:
+      interval: "daily"
+    assignees:
+      - "herrtxbias"
+    reviewers:
+      - "herrtxbias"
