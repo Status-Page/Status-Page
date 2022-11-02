@@ -3,7 +3,7 @@ from extras.plugins import PluginConfig
 
 class StatusPageUptimeRobotConfig(PluginConfig):
     name = 'sp_uptimerobot'
-    verbose_name = 'Uptime Robot'
+    verbose_name = '[SP] Uptime Robot'
     description = 'Uptime Robot Monitor Sync'
     version = '1.0'
     author = 'HerrTxbias'
