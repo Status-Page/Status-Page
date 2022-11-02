@@ -59,35 +59,44 @@ def checkmark(value, show_false=True, true='Yes', false='No'):
 def metric(metric, range):
     match range:
         case MetricRangeChoices.MINUTES_30:
+            datenow_end = timezone.now().replace(microsecond=0, second=59)
             datenow = timezone.now().replace(microsecond=0, second=0)
             daterange = datenow - timezone.timedelta(minutes=30)
         case MetricRangeChoices.HOURS_1:
+            datenow_end = timezone.now().replace(microsecond=0, second=59, minute=59)
             datenow = timezone.now().replace(microsecond=0, second=0, minute=0)
             daterange = datenow - timezone.timedelta(hours=1)
         case MetricRangeChoices.HOURS_12:
+            datenow_end = timezone.now().replace(microsecond=0, second=59, minute=59)
             datenow = timezone.now().replace(microsecond=0, second=0, minute=0)
             daterange = datenow - timezone.timedelta(hours=12)
         case MetricRangeChoices.DAYS_1:
+            datenow_end = timezone.now().replace(microsecond=0, second=59, minute=59, hour=23)
             datenow = timezone.now().replace(microsecond=0, second=0, minute=0, hour=0)
             daterange = datenow - timezone.timedelta(days=1)
         case MetricRangeChoices.DAYS_2:
+            datenow_end = timezone.now().replace(microsecond=0, second=59, minute=59, hour=23)
             datenow = timezone.now().replace(microsecond=0, second=0, minute=0, hour=0)
             daterange = datenow - timezone.timedelta(days=2)
         case MetricRangeChoices.DAYS_3:
+            datenow_end = timezone.now().replace(microsecond=0, second=59, minute=59, hour=23)
             datenow = timezone.now().replace(microsecond=0, second=0, minute=0, hour=0)
             daterange = datenow - timezone.timedelta(days=3)
         case MetricRangeChoices.DAYS_7:
+            datenow_end = timezone.now().replace(microsecond=0, second=59, minute=59, hour=23)
             datenow = timezone.now().replace(microsecond=0, second=0, minute=0, hour=0)
             daterange = datenow - timezone.timedelta(days=7)
         case MetricRangeChoices.DAYS_30:
+            datenow_end = timezone.now().replace(microsecond=0, second=59, minute=59, hour=23)
             datenow = timezone.now().replace(microsecond=0, second=0, minute=0, hour=0)
             daterange = datenow - timezone.timedelta(days=30)
         case _:
+            datenow_end = timezone.now().replace(microsecond=0, second=59, minute=59)
             datenow = timezone.now().replace(microsecond=0, second=0, minute=0)
             daterange = datenow - timezone.timedelta(hours=12)
 
-    labels = metric.get_metric_labels_json(now=datenow, range=daterange)
-    points = metric.get_metric_points_json(now=datenow, range=daterange)
+    labels = metric.get_metric_labels_json(now=datenow_end, range=daterange)
+    points = metric.get_metric_points_json(now=datenow_end, range=daterange)
 
     return {
         'metric': metric,

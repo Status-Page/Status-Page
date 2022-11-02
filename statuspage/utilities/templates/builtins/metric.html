@@ -1,7 +1,7 @@
 <canvas id="metric-{{ metric.id }}" width="400" height="200"></canvas>
 <script>
-  const ctx = document.getElementById('metric-{{ metric.id }}').getContext('2d');
-  new window.Chart(ctx, {
+  const ctx{{ metric.id }} = document.getElementById('metric-{{ metric.id }}').getContext('2d');
+  new window.Chart(ctx{{ metric.id }}, {
     type: 'line',
     data: {
       labels: {{ labels }},
