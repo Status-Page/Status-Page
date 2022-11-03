@@ -23,3 +23,4 @@ This page contains a history of all major and minor releases since v2.0.0. For m
 * Set Python requirement to 3.10
 * Fix Default files and requirements
 * Fix Assets
+* Make Component Group collapse choices actually work

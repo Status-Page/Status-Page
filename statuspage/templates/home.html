@@ -62,7 +62,7 @@
     {% for componentgroup_component in componentgroups_components %}
       {% if componentgroup_component.components %}
         {% with componentgroup_component as componentgroup %}
-          <div x-data="{ open: false }" class="px-4 py-4">
+          <div x-data="{ open: {{ componentgroup.should_expand }} }" class="px-4 py-4">
             <div @click="open = !open" role="button" class="flex flex-row space-x-4 items-center">
               <div>
                 <i class="mdi mdi-plus-circle text-lg" x-show="!open"></i>

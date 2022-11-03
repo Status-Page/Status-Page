@@ -2,6 +2,9 @@
 
 ## v2.0.8 (FUTURE)
 
+### Bug fixes
+* Make Component Group collapse choices actually work
+
 ---
 
 ## v2.0.7 (2022-11-04)

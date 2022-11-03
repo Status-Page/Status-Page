@@ -33,6 +33,15 @@ class ComponentGroup(StatusPageModel):
     def get_absolute_url(self):
         return reverse('components:componentgroup', args=[self.pk])
 
+    @property
+    def should_expand(self):
+        if self.collapse == ComponentGroupCollapseChoices.ALWAYS:
+            return 'true'
+        for component in self.components.all():
+            if component.status != ComponentStatusChoices.OPERATIONAL:
+                return 'true'
+        return 'false'
+
 
 class Component(StatusPageModel):
     name = models.CharField(
