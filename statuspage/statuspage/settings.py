@@ -81,8 +81,10 @@ for param in PARAMS:
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-    } | DATABASE,
+        *{
+            'ENGINE': 'django.db.backends.postgresql',
+        }, *DATABASE
+    },
 }
 
 if 'tasks' not in REDIS:
