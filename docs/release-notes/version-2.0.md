@@ -4,7 +4,7 @@
 
 ---
 
-## v2.0.0 (2022-11-XX)
+## v2.0.0 (2022-11-03)
 
 ### Enhancements
 * Rewrite of Status-Page in python, with django
