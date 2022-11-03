@@ -11,7 +11,7 @@ User=status-page
 Group=status-page
 WorkingDirectory=/opt/status-page
 
-ExecStart=/opt/status-page/venv/bin/python3 /opt/status-page/status-page/manage.py rqscheduler
+ExecStart=/opt/status-page/venv/bin/python3 /opt/status-page/statuspage/manage.py rqscheduler
 
 Restart=on-failure
 RestartSec=30

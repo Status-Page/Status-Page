@@ -2,6 +2,9 @@
 
 ## v2.0.6 (FUTURE)
 
+### Bug fixes
+* Fix Default files and requirements
+
 ---
 
 ## v2.0.5 (2022-11-03)

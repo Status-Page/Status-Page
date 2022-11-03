@@ -12,7 +12,7 @@ Group=status-page
 PIDFile=/var/tmp/status-page.pid
 WorkingDirectory=/opt/status-page
 
-ExecStart=/opt/status-page/venv/bin/gunicorn --pid /var/tmp/status-page.pid --pythonpath /opt/status-page/status-page --config /opt/status-page/gunicorn.py statuspage.wsgi
+ExecStart=/opt/status-page/venv/bin/gunicorn --pid /var/tmp/status-page.pid --pythonpath /opt/status-page/statuspage --config /opt/status-page/gunicorn.py statuspage.wsgi
 
 Restart=on-failure
 RestartSec=30
