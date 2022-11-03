@@ -2,9 +2,11 @@
 {% load helpers %}
 
 {% block controls %}
-  <div>
-    <a href="{% url 'subscriber_subscribe' %}" class="bg-indigo-500 hover:bg-indigo-600 text-white shadow px-4 py-2 rounded-md" role="button">Get Notifications</a>
-  </div>
+  {% if config.SITE_SUBSCRIBERS %}
+    <div>
+      <a href="{% url 'subscriber_subscribe' %}" class="bg-indigo-500 hover:bg-indigo-600 text-white shadow px-4 py-2 rounded-md" role="button">Get Notifications</a>
+    </div>
+  {% endif %}
 {% endblock %}
 
 {% block home_content %}

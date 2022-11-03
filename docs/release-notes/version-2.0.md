@@ -1,6 +1,7 @@
 # Status-Page v2.0
 
 ## v2.0.1 (FUTURE)
+* Add Missing Template parts from Dynamic Config
 
 ---
 
