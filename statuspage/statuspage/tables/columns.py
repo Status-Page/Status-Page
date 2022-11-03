@@ -240,7 +240,7 @@ class ChoiceFieldColumn(tables.Column):
     Render a model's static ChoiceField with its value from `get_FOO_display()` as a colored badge. Background color is
     set by the instance's get_FOO_color() method, if defined.
     """
-    DEFAULT_BG_COLOR = 'bg-grey-500'
+    DEFAULT_BG_COLOR = 'bg-gray-500'
 
     def render(self, record, bound_column, value):
         if value in self.empty_values:

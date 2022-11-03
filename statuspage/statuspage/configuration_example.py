@@ -133,8 +133,8 @@ LOGIN_TIMEOUT = None
 FIELD_CHOICES = {}
 
 PLUGINS = [
-    # 'sp_uptimerobot', # Built-In Plugin for UptimeRobot integration
-    # 'sp_external_status_providers', # Built-In Plugin for integrating external Status Pages
+    # 'sp_uptimerobot',  # Built-In Plugin for UptimeRobot integration
+    # 'sp_external_status_providers',  # Built-In Plugin for integrating external Status Pages
 ]
 
 # Plugins configuration settings. These settings are used by various plugins that the user may have installed.
