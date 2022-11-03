@@ -167,7 +167,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'tailwind',
     'django_browser_reload',
     'django_tables2',
     'components',

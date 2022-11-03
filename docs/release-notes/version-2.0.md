@@ -2,6 +2,9 @@
 
 ## v2.0.3 (FUTURE)
 
+### Bug fixes
+* Fix Settings
+
 ---
 
 ## v2.0.2 (2022-11-03)

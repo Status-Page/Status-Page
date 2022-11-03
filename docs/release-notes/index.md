@@ -19,3 +19,4 @@ This page contains a history of all major and minor releases since v2.0.0. For m
 * Rewrite of Status-Page in python, with django
 * Add Missing Template parts from Dynamic Config
 * Fix Database Settings
+* Fix Settings
