@@ -1,5 +1,3 @@
-import json
-
 from sp_external_status_providers.models import ExternalStatusPage, ExternalStatusComponent
 
 
