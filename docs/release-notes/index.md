@@ -22,3 +22,4 @@ This page contains a history of all major and minor releases since v2.0.0. For m
 * Fix Settings
 * Set Python requirement to 3.10
 * Fix Default files and requirements
+* Fix Assets

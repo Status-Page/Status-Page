@@ -2,6 +2,9 @@
 
 ## v2.0.7 (FUTURE)
 
+### Bug fixes
+* Fix Assets
+
 ---
 
 ## v2.0.6 (2022-11-03)

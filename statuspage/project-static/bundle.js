@@ -28,7 +28,7 @@ async function bundleStatusPage() {
     const result = await esbuild.build({
       ...options,
       entryPoints,
-      target: 'es2017',
+      target: 'es2018',
     });
     if (result.errors.length === 0) {
       for (const [targetName, sourceName] of Object.entries(entryPoints)) {
