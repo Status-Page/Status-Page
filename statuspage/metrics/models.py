@@ -54,6 +54,12 @@ class Metric(StatusPageModel):
             points.append(point.value)
         return mark_safe(json.dumps(points))
 
+    @property
+    def should_expand(self):
+        if self.expand == MetricExpandChoices.ALWAYS:
+            return 'true'
+        return 'false'
+
 
 class MetricPoint(StatusPageModel):
     metric = models.ForeignKey(

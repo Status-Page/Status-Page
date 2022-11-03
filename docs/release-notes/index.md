@@ -24,3 +24,5 @@ This page contains a history of all major and minor releases since v2.0.0. For m
 * Fix Default files and requirements
 * Fix Assets
 * Make Component Group collapse choices actually work
+* Make Metric collapse choices actually work
+* Make Component Links and Descriptions work

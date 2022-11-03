@@ -4,6 +4,8 @@
 
 ### Bug fixes
 * Make Component Group collapse choices actually work
+* Make Metric collapse choices actually work
+* Make Component Links and Descriptions work
 
 ---
 

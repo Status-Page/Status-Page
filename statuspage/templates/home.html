@@ -68,14 +68,28 @@
                 <i class="mdi mdi-plus-circle text-lg" x-show="!open"></i>
                 <i class="mdi mdi-minus-circle-outline text-lg" x-show="open"></i>
               </div>
-              <div class="grow">{{ componentgroup.name }}</div>
+              <div class="grow flex flex-row space-x-2 items-center">
+                {{ componentgroup.name }}
+                {% if componentgroup.description %}
+                  <div data-tooltip="{{ componentgroup.description }}"><i class="mdi mdi-help-circle-outline text-lg"></i></div>
+                {% endif %}
+              </div>
               <div x-show="!open">{% componentgroup_status componentgroup=componentgroup %}</div>
             </div>
             <div class="flex flex-col pt-2 pl-8 divide-y divide-zinc-200 dark:divide-zinc-700" x-show="open">
               {% for component in componentgroup.components|get_visible_components %}
                 <div class="flex flex-row justify-between items-center py-2">
-                  <div>{{ component.name }}</div>
-                  <div class="{{ component.get_status_text_color }}" data-last-update="{{ component.last_updated }}">{{ component.get_status_display }}</div>
+                  <div class="flex flex-row space-x-2 items-center">
+                    {% if component.link %}
+                      <a href="{{ component.link }}">{{ component.name }}</a>
+                    {% else %}
+                      {{ component.name }}
+                    {% endif %}
+                    {% if component.description %}
+                      <div data-tooltip="{{ component.description }}"><i class="mdi mdi-help-circle-outline text-lg"></i></div>
+                    {% endif %}
+                  </div>
+                  <div class="{{ component.get_status_text_color }}" data-tooltip="Last Update: {{ component.last_updated }}">{{ component.get_status_display }}</div>
                 </div>
               {% endfor %}
             </div>
@@ -84,8 +98,17 @@
       {% else %}
         {% with componentgroup_component as component %}
           <div class="px-4 py-4 flex flex-row justify-between items-center">
-            <div>{{ component.name }}</div>
-            <div class="{{ component.get_status_text_color }}" data-last-update="{{ component.last_updated }}">{{ component.get_status_display }}</div>
+            <div class="flex flex-row space-x-2 items-center">
+              {% if component.link %}
+                <a href="{{ component.link }}">{{ component.name }}</a>
+              {% else %}
+                {{ component.name }}
+              {% endif %}
+              {% if component.description %}
+                <div data-tooltip="{{ component.description }}"><i class="mdi mdi-help-circle-outline text-lg"></i></div>
+              {% endif %}
+            </div>
+            <div class="{{ component.get_status_text_color }}" data-tooltip="Last Update: {{ component.last_updated }}">{{ component.get_status_display }}</div>
           </div>
         {% endwith %}
       {% endif %}
@@ -95,7 +118,7 @@
     <div class="flex flex-col space-y-4">
       {% for m in metrics %}
         <div class="grow bg-zinc-100 dark:bg-zinc-800 p-2 space-y-2 rounded-md shadow-lg">
-          <div x-data="{ open: false }" class="px-2 py-2">
+          <div x-data="{ open: {{ m.should_expand }} }" class="px-2 py-2">
             <div @click="open = !open" role="button" class="flex flex-row space-x-4 items-center">
               <div>
                 <i class="mdi mdi-plus-circle" x-show="!open"></i>
