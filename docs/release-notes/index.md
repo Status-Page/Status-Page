@@ -20,3 +20,4 @@ This page contains a history of all major and minor releases since v2.0.0. For m
 * Add Missing Template parts from Dynamic Config
 * Fix Database Settings
 * Fix Settings
+* Set Python requirement to 3.10

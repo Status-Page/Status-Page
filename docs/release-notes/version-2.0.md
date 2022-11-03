@@ -2,6 +2,9 @@
 
 ## v2.0.5 (FUTURE)
 
+### Bug fixes
+* Set Python requirement to 3.10
+
 ---
 
 ## v2.0.4 (2022-11-03)
