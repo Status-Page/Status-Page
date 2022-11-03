@@ -1,6 +1,6 @@
 # Status-Page v2.0
 
-## v2.0.4 (FUTURE)
+## v2.0.4 (2022-11-03)
 
 ### Bug fixes
 * Fix Database Settings
