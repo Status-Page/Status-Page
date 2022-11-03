@@ -81,9 +81,13 @@ for param in PARAMS:
 
 DATABASES = {
     'default': {
-        *{
-            'ENGINE': 'django.db.backends.postgresql',
-        }, *DATABASE
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': DATABASE.get('NAME'),
+        'USER': DATABASE.get('USER'),
+        'PASSWORD': DATABASE.get('PASSWORD'),
+        'HOST': DATABASE.get('HOST'),
+        'PORT': DATABASE.get('PORT'),
+        'CONN_MAX_AGE': DATABASE.get('CONN_MAX_AGE'),
     },
 }
 

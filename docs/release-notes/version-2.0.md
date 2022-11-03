@@ -2,6 +2,9 @@
 
 ## v2.0.4 (FUTURE)
 
+### Bug fixes
+* Fix Database Settings
+
 ---
 
 ## v2.0.3 (2022-11-03)
