@@ -1,6 +1,6 @@
 # Status-Page v2.0
 
-## v2.0.5 (FUTURE)
+## v2.0.5 (2022-11-03)
 
 ### Bug fixes
 * Set Python requirement to 3.10
