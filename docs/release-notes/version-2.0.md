@@ -1,6 +1,6 @@
 # Status-Page v2.0
 
-## v2.0.7 (FUTURE)
+## v2.0.7 (2022-11-04)
 
 ### Bug fixes
 * Fix Assets
