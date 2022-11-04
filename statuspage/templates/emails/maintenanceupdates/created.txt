@@ -1,0 +1,22 @@
+Hello!
+
+The maintenance "{{ maintenance.title }}" has been updated.
+
+New Update:
+{% if update.new_status %}{{ update.get_status_display }}{% else %}Update{% endif %} - {{ update.text }}
+{% if components|length > 0 %}
+
+The following components are affected:
+{% for component in components %}
+- {{ component.name }}
+{% endfor %}
+
+{% endif %}
+Click the following Link to check out the Status Page: {{ site_url }}
+
+Greetings,
+{{ site_title }}
+
+---
+Management URL: {{ management_url }}
+Unsubscribe URL: {{ unsubscribe_url }}

@@ -1,0 +1,12 @@
+Hello!
+
+The status of the component {{ component.name }} has been updated from "{{ old_component.get_status_display }}" to "{{ component.get_status_display }}".
+
+Click the following Link to check out the Status Page: {{ site_url }}
+
+Greetings,
+{{ site_title }}
+
+---
+Management URL: {{ management_url }}
+Unsubscribe URL: {{ unsubscribe_url }}

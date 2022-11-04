@@ -1,0 +1,19 @@
+Hello!
+
+The incident "{{ incident.title }}" has been created with the impact "{{ incident.get_impact_display }}".
+{% if components|length > 0 %}
+
+The following components are affected:
+{% for component in components %}
+- {{ component.name }}
+{% endfor %}
+
+{% endif %}
+Click the following Link to check out the Status Page: {{ site_url }}
+
+Greetings,
+{{ site_title }}
+
+---
+Management URL: {{ management_url }}
+Unsubscribe URL: {{ unsubscribe_url }}

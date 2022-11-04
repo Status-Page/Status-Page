@@ -1,0 +1,43 @@
+{% extends 'base/layout_email.html' %}
+
+{% block content %}
+<div style="display: flex; flex-direction: column;">
+  <div style="font-size: 1.125rem; line-height: 1.75rem;">Hello!</div>
+  <div style="margin-top: 0.5rem;">The incident "{{ incident.title }}" has been created with the impact "{{ incident.get_impact_display }}".</div>
+  {% if components|length > 0 %}
+    <div style="margin-top: 0.5rem;">The following components are affected:</div>
+    <div style="margin-top: 0.5rem;">
+      <ul>
+        {% for component in components %}
+          <li>{{ component.name }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+  <div style="margin-top: 0.5rem; display: flex; flex-direction: row; justify-content: center;">
+    <div style="border-radius: 0.375rem; padding: 0.25rem 0.5rem; background-color: rgb(59 130 246);"><a href="{{ site_url }}" style="text-decoration-line: none; color: #ffffff; font-size: 1.25rem; line-height: 1.75rem;">View Status</a></div>
+  </div>
+  <div style="margin-top: 0.5rem;">
+    Greetings,<br>
+    {{ site_title }}
+  </div>
+  <div style="margin-top: 0.5rem;"></div>
+  <div style="margin-top: 0.5rem;">
+    <hr>
+  </div>
+  <div style="margin-top: 0.5rem; display: flex; flex-direction: column;">
+    <div style="margin-top: 0.25rem; display: flex; flex-direction: row; justify-content: center;">
+      <div>More Actions</div>
+    </div>
+    <div style="margin-top: 0.25rem; display: flex; flex-direction: row; justify-content: center;">
+      <div style="margin-left: 0.5rem; border-radius: 0.375rem; padding: 0.25rem 0.5rem; background-color: rgb(59 130 246);"><a href="{{ management_url }}" style="text-decoration-line: none; color: #ffffff;">Manage</a></div>
+      <div style="margin-left: 0.5rem; border-radius: 0.375rem; padding: 0.25rem 0.5rem; background-color: rgb(59 130 246);"><a href="{{ unsubscribe_url }}" style="text-decoration-line: none; color: #ffffff;">Unsubscribe</a></div>
+    </div>
+  </div>
+  <div style="margin-top: 2rem; font-size: 0.875rem; line-height: 1.25rem; color: rgb(161 161 170);">
+    Can't click any of the above Buttons?<br>
+    Manage: {{ management_url }}<br>
+    Unsubscribe: {{ unsubscribe_url }}
+  </div>
+</div>
+{% endblock content %}

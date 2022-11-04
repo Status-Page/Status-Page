@@ -28,3 +28,4 @@ This page contains a history of all major and minor releases since v2.0.0. For m
 * Make Component Links and Descriptions work
 * Add missing Plugin Views
 * Fix select Styles
+* Add missing E-Mail Templates for Notifications

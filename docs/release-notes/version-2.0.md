@@ -2,6 +2,9 @@
 
 ## v2.0.10 (FUTURE)
 
+### Bug fixes
+* Add missing E-Mail Templates for Notifications
+
 ---
 
 ## v2.0.10 (2022-11-04)
