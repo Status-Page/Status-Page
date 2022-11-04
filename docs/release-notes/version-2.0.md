@@ -2,6 +2,9 @@
 
 ## v2.0.10 (FUTURE)
 
+### Bug fixes
+* Fix select Styles
+
 ---
 
 ## v2.0.9 (2022-11-04)

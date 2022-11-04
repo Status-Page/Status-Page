@@ -13,7 +13,11 @@
 }
 
 .ss-main .ss-single-selected, .ss-main .ss-multi-selected {
-    @apply px-2 py-1 bg-white dark:bg-zinc-900 border-gray-300 dark:border-zinc-700 rounded-md shadow-sm h-10;
+    @apply px-2 py-1 bg-white dark:bg-zinc-900 border-gray-300 dark:border-zinc-700 rounded-md shadow-sm;
+}
+
+.ss-main .ss-single-selected {
+    @apply h-10;
 }
 
 .ss-main .ss-single-selected .placeholder, .ss-main .ss-multi-selected .placeholder {
