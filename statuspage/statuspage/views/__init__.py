@@ -3,7 +3,6 @@ import sys
 import uuid
 from itertools import chain
 
-import django_rq
 from django.conf import settings
 from django.contrib import messages
 from django.db import IntegrityError
@@ -23,9 +22,10 @@ from incidents.choices import IncidentStatusChoices
 from maintenances.models import Maintenance
 from maintenances.choices import MaintenanceStatusChoices
 from metrics.models import Metric
+from statuspage.config import get_config
 from statuspage.views.generic import BaseView
 from subscribers.forms import PublicSubscriberForm, PublicSubscriberManagementForm
-from subscribers.models import Subscriber, send_subscriber_management_key_mail
+from subscribers.models import Subscriber
 
 
 class HomeView(BaseView):
@@ -188,7 +188,8 @@ class SubscriberRequestManagementKeyView(BaseView):
                 subscriber = Subscriber.objects.get(email=email)
                 subscriber.management_key = uuid.uuid4()
                 subscriber.save()
-                django_rq.enqueue(send_subscriber_management_key_mail, subscriber)
+                config = get_config()
+                subscriber.send_mail(subject=f'Manage your Subscription at {config.SITE_TITLE}', template='subscribers/management-key')
             except:
                 pass
             messages.success(request, 'Successfully requested the E-Mail.')

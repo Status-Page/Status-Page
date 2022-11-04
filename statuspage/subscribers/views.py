@@ -1,9 +1,9 @@
-import django_rq
 from django.contrib import messages
 from django.shortcuts import redirect
 
+from statuspage.config import get_config
 from statuspage.views import generic
-from .models import Subscriber, send_subscriber_verify_mail
+from .models import Subscriber
 from . import tables
 from . import forms
 from . import filtersets
@@ -27,7 +27,11 @@ class SubscriberView(generic.ObjectView):
             return super().get(request, **kwargs)
 
         if action == 'resend_verification_mail' and not subscriber.email_verified_at:
-            django_rq.enqueue(send_subscriber_verify_mail, subscriber)
+            config = get_config()
+            subscriber.send_mail(
+                subject=f'Verify your Subscription to {config.SITE_TITLE}',
+                template='subscribers/verification',
+            )
             messages.success(request, 'Successfully resent verification mail.')
             return redirect('subscribers:subscriber', pk=subscriber.pk)
 

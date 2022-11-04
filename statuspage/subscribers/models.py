@@ -57,7 +57,11 @@ class Subscriber(StatusPageModel):
             for component in components:
                 self.component_subscriptions.add(component)
 
-            django_rq.enqueue(send_subscriber_verify_mail, self)
+            config = get_config()
+            self.send_mail(
+                subject=f'Verify your Subscription to {config.SITE_TITLE}',
+                template='subscribers/verification',
+            )
 
     @classmethod
     def get_by_management_key(cls, management_key):
@@ -66,43 +70,22 @@ class Subscriber(StatusPageModel):
         except:
             return None
 
+    def send_mail(self, subject, template, context=None):
+        if context is None:
+            context = {}
+        if not self.email_verified_at:
+            return None
+        config = get_config()
+        extra_context = ({
+            'site_url': f'{settings.SITE_URL}',
+            'site_title': f'{config.SITE_TITLE}',
+            'verification_url': settings.SITE_URL + reverse('subscriber_verify', kwargs={'management_key': self.management_key}),
+            'management_url': settings.SITE_URL + reverse('subscriber_manage', kwargs={'management_key': self.management_key}),
+            'unsubscribe_url': settings.SITE_URL + reverse('subscriber_unsubscribe', kwargs={'management_key': self.management_key}),
+            **context,
+        })
 
-def send_subscriber_verify_mail(subscriber):
-    config = get_config()
-    context = ({
-        'site_url': f'{settings.SITE_URL}',
-        'site_title': f'{config.SITE_TITLE}',
-        'verification_url': settings.SITE_URL + reverse('subscriber_verify', kwargs={'management_key': subscriber.management_key}),
-        'management_url': settings.SITE_URL + reverse('subscriber_manage', kwargs={'management_key': subscriber.management_key}),
-        'unsubscribe_url': settings.SITE_URL + reverse('subscriber_unsubscribe', kwargs={'management_key': subscriber.management_key}),
-    })
+        message = render_to_string(f'emails/{template}.txt', extra_context)
+        html_message = render_to_string(f'emails/{template}.html', extra_context)
 
-    message = render_to_string('emails/subscribers/verification.txt', context)
-    html_message = render_to_string('emails/subscribers/verification.html', context)
-
-    send_mail(
-        subject=f'Verify your Subscription to {config.SITE_TITLE}',
-        message=message,
-        html_message=html_message,
-        recipient_list=[subscriber.email],
-    )
-
-
-def send_subscriber_management_key_mail(subscriber):
-    config = get_config()
-    context = ({
-        'site_url': f'{settings.SITE_URL}',
-        'site_title': f'{config.SITE_TITLE}',
-        'management_url': settings.SITE_URL + reverse('subscriber_manage', kwargs={'management_key': subscriber.management_key}),
-        'unsubscribe_url': settings.SITE_URL + reverse('subscriber_unsubscribe', kwargs={'management_key': subscriber.management_key}),
-    })
-
-    message = render_to_string('emails/subscribers/management-key.txt', context)
-    html_message = render_to_string('emails/subscribers/management-key.html', context)
-
-    send_mail(
-        subject=f'Manage your Subscription at {config.SITE_TITLE}',
-        message=message,
-        html_message=html_message,
-        recipient_list=[subscriber.email],
-    )
+        django_rq.enqueue(send_mail, subject=subject, message=message, html_message=html_message, recipient_list=[self.email])
