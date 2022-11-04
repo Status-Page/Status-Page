@@ -1,4 +1,5 @@
 from statuspage.views import generic
+from statuspage.views.generic.mixins import ActionsMixin
 from .models import ExternalStatusPage, ExternalStatusComponent
 from . import tables
 from . import forms
@@ -12,8 +13,25 @@ class ExternalStatusPageListView(generic.ObjectListView):
     filterset_form = forms.ExternalStatusPageFilterForm
 
 
-class ExternalStatusPageView(generic.ObjectView):
+class ExternalStatusPageView(generic.ObjectView, ActionsMixin):
     queryset = ExternalStatusPage.objects.all()
+
+    def get_extra_context(self, request, instance):
+        queryset = instance.components.all()
+
+        actions = self.get_permitted_actions(request.user)
+        has_bulk_actions = any([a.startswith('bulk_') for a in actions])
+
+        table = tables.ExternalStatusComponentTable(queryset)
+        if 'pk' in table.base_columns and has_bulk_actions:
+            table.columns.show('pk')
+        table.configure(request)
+
+        return {
+            'model': queryset.model,
+            'table': table,
+            'actions': actions,
+        }
 
 
 class ExternalStatusPageEditView(generic.ObjectEditView):

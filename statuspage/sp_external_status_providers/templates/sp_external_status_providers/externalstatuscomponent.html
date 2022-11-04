@@ -1,0 +1,60 @@
+{% extends 'generic/object.html' %}
+{% load buttons %}
+{% load static %}
+{% load helpers %}
+
+{% block page_left %}
+  <div class="grow bg-zinc-100 dark:bg-zinc-800 p-2 space-y-2 ring-1 ring-zinc-500 rounded-md shadow-lg">
+    <div class="text-2xl">External Status Component</div>
+    <div class="px-4">
+      <table class="text-left w-full">
+        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+          <tr>
+            <th scope="row" class="pr-6 py-1">Name</th>
+            <td>{{ object.name }}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="pr-6 py-1">Page Object Id</th>
+            <td>{{ object.page_object_id }}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="pr-6 py-1">Component</th>
+            <td>{{ object.component|placeholder }}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="pr-6 py-1">Group Name</th>
+            <td>{{ object.group_name|placeholder }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}
+
+{% block page_right %}
+  <div class="grow bg-zinc-100 dark:bg-zinc-800 p-2 space-y-2 ring-1 ring-zinc-500 rounded-md shadow-lg">
+    <div class="text-2xl">External Status Page</div>
+    <div class="px-4">
+      <table class="text-left w-full">
+        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+          <tr>
+            <th scope="row" class="pr-6 py-1">Domain</th>
+            <td>{{ object.external_page|linkify }}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="pr-6 py-1">Provider</th>
+            <td>{{ object.external_page.get_provider_display }}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="pr-6 py-1">Create Incidents</th>
+            <td>{% checkmark object.external_page.create_incidents %}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="pr-6 py-1">Create Maintenances</th>
+            <td>{% checkmark object.external_page.create_maintenances %}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}

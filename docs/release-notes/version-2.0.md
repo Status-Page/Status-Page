@@ -2,6 +2,9 @@
 
 ## v2.0.9 (FUTURE)
 
+### Bug fixes
+* Add missing Plugin Views
+
 ---
 
 ## v2.0.8 (2022-11-04)

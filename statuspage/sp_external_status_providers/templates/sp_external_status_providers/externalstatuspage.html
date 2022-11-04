@@ -1,0 +1,57 @@
+{% extends 'generic/object.html' %}
+{% load buttons %}
+{% load static %}
+{% load helpers %}
+
+{% block page_left %}
+  <div class="grow bg-zinc-100 dark:bg-zinc-800 p-2 space-y-2 ring-1 ring-zinc-500 rounded-md shadow-lg">
+    <div class="text-2xl">External Status Page</div>
+    <div class="px-4">
+      <table class="text-left w-full">
+        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+          <tr>
+            <th scope="row" class="pr-6 py-1">Domain</th>
+            <td>{{ object.domain }}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="pr-6 py-1">Provider</th>
+            <td>{{ object.get_provider_display }}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="pr-6 py-1">Create Incidents</th>
+            <td>{% checkmark object.create_incidents %}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="pr-6 py-1">Create Maintenances</th>
+            <td>{% checkmark object.create_maintenances %}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}
+
+{% block page_full %}
+  <form method="post" class="form form-horizontal">
+    {% csrf_token %}
+    <input type="hidden" name="return_url" value="{% if return_url %}{{ return_url }}{% else %}{{ request.path }}{% if request.GET %}?{{ request.GET.urlencode }}{% endif %}{% endif %}" />
+
+    <div id="object_list">
+      {% include 'htmx/table.html' %}
+    </div>
+
+    {# Form buttons #}
+    <div class="print:hidden bulk-buttons mt-4">
+      <div class="bulk-button-group">
+        {% block bulk_buttons %}
+          {% if 'bulk_edit' in actions %}
+            {% bulk_edit_button model query_params=request.GET %}
+          {% endif %}
+          {% if 'bulk_delete' in actions %}
+            {% bulk_delete_button model query_params=request.GET %}
+          {% endif %}
+        {% endblock %}
+      </div>
+    </div>
+  </form>
+{% endblock %}

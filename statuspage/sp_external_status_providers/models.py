@@ -49,6 +49,7 @@ class ExternalStatusComponent(StatusPageModel):
     external_page = models.ForeignKey(
         to=ExternalStatusPage,
         on_delete=models.CASCADE,
+        related_name='components',
     )
     component = models.ForeignKey(
         to=Component,

@@ -26,3 +26,4 @@ This page contains a history of all major and minor releases since v2.0.0. For m
 * Make Component Group collapse choices actually work
 * Make Metric collapse choices actually work
 * Make Component Links and Descriptions work
+* Add missing Plugin Views
