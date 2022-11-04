@@ -1,6 +1,6 @@
 # Status-Page v2.0
 
-## v2.0.9 (FUTURE)
+## v2.0.9 (2022-11-04)
 
 ### Bug fixes
 * Add missing Plugin Views
