@@ -2,9 +2,10 @@
 {% load utils %}
 {% load navigation %}
 {% load static %}
+{% load helpers %}
 
 {% block content %}
-  <div class="min-h-full">
+  <div class="min-h-screen flex flex-col">
     <nav class="bg-indigo-600" x-data="{
         open: false,
         close(focusAfter) {
@@ -150,10 +151,43 @@
         </div>
       </div>
     </header>
-    <main>
+    <main class="grow">
       <div class="mx-auto py-4 sm:px-6 lg:px-8 dark:text-white">
         {% block dashboard_content %}{% endblock %}
       </div>
     </main>
+    <footer class="py-4 px-8 text-gray-500 dark:text-gray-300">
+      <div class="flex flex-row justify-between">
+        <div class="flex flex-row space-x-2">
+          <a type="button" href="{% static 'docs/' %}" target="_blank">
+            <div data-tooltip="Docs">
+              <i class="mdi mdi-book-open-variant text-blue-300 text-2xl"></i>
+            </div>
+          </a>
+
+          <a type="button" href="{% url 'api-root' %}" target="_blank">
+            <div data-tooltip="REST API">
+              <i class="mdi mdi-cloud-braces text-blue-300 text-2xl"></i>
+            </div>
+          </a>
+
+          <a type="button" href="{% url 'api_docs' %}" target="_blank">
+            <div data-tooltip="REST API documentation">
+              <i class="mdi mdi-book text-blue-300 text-2xl"></i>
+            </div>
+          </a>
+
+          <a type="button" href="https://github.com/status-page/status-page" target="_blank">
+            <div data-tooltip="Source Code">
+              <i class="mdi mdi-github text-blue-300 text-2xl"></i>
+            </div>
+          </a>
+        </div>
+        <div class="flex flex-row space-x-4">
+          <div>{% annotated_now %} {% now 'T' %}</div>
+          <div>{{ settings.HOSTNAME }} (v{{ settings.VERSION }})</div>
+        </div>
+      </div>
+    </footer>
   </div>
 {% endblock %}
