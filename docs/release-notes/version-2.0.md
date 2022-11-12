@@ -1,6 +1,9 @@
 # Status-Page v2.0
 
-## v2.0.12 (FUTURE)
+## v2.0.12 (2022-11-12)
+
+### Bug fixes
+* Add missing Media folder
 
 ---
 

@@ -29,3 +29,4 @@ This page contains a history of all major and minor releases since v2.0.0. For m
 * Add missing Plugin Views
 * Fix select Styles
 * Add missing E-Mail Templates for Notifications
+* Add missing Media folder
