@@ -13,7 +13,7 @@ class QueuingConfig(AppConfig):
 
     def ready(self):
         scheduler = django_rq.get_scheduler('default')
-        if not sys.argv[1:2] == ["collectstatic"]:
+        if sys.argv[1:2] == ["collectstatic"]:
             return None
         jobs = list(map(lambda j: j.func_name, scheduler.get_jobs()))
 
