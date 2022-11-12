@@ -2,6 +2,9 @@
 
 ## v2.0.13 (FUTURE)
 
+### Bug fixes
+* Fix redis connection within collectstatic command
+
 ---
 
 ## v2.0.12 (2022-11-12)
