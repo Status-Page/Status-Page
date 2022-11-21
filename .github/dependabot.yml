@@ -10,7 +10,7 @@ updates:
     reviewers:
       - "herrtxbias"
   - package-ecosystem: "npm"
-    directory: "/statuspage/project-static/"
+    directory: "/"
     target-branch: "main"
     schedule:
       interval: "daily"
