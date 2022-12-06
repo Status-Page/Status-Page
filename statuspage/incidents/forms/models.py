@@ -87,6 +87,10 @@ class IncidentUpdateForm(StatusPageModelForm):
         )),
     )
 
+    text = fields.CommentField(
+        label='Text',
+    )
+
     class Meta:
         model = IncidentUpdate
         fields = (
