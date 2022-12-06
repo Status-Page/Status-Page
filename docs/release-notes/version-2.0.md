@@ -1,6 +1,6 @@
 # Status-Page v2.0
 
-## v2.0.15 (FUTURE)
+## v2.0.15 (2022-12-06)
 
 ### Bug fixes
 * Incident Update edit text box
