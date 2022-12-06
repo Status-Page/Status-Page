@@ -2,6 +2,9 @@
 
 ## v2.0.15 (FUTURE)
 
+### Bug fixes
+* Incident Update edit text box
+
 ---
 
 ## v2.0.14 (2022-11-12)
