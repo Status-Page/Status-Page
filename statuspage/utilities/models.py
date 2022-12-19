@@ -16,7 +16,7 @@ class IncidentMaintenanceModel(StatusPageModel):
 
 class IncidentMaintenanceUpdateModel(StatusPageModel):
     text = models.CharField(
-        max_length=1024,
+        max_length=65536,
     )
     new_status = models.BooleanField(
         default=False,
