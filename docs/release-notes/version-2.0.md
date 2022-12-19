@@ -1,6 +1,6 @@
 # Status-Page v2.0
 
-## v2.0.16 (FUTURE)
+## v2.0.16 (2022-12-19)
 * Increase Incident and Maintenance Update Text Length
 
 ---
