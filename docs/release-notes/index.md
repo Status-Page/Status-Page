@@ -32,3 +32,4 @@ This page contains a history of all major and minor releases since v2.0.0. For m
 * Add missing Media folder
 * Fix redis connection within collectstatic command
 * Incident Update edit text box
+* Increase Incident and Maintenance Update Text Length
