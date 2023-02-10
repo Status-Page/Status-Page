@@ -8,7 +8,7 @@ We provide the following Versions with Security Updates:
 |----------|--------------------|----------------|
 | 2.0.x    | :white_check_mark: | Further notice |
 | 1.10.x   | :warning:          | Jul 8, 2023    |
-| 1.9.x    | :warning:          | Feb 2, 2023    |
+| 1.9.x    | :x:                | Feb 2, 2023    |
 | <= 1.8.x | :x:                |                |
 
 ## Reporting a Vulnerability
