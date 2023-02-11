@@ -32,4 +32,5 @@ class ComponentSerializer(StatusPageModelSerializer):
 
     class Meta:
         model = Component
-        fields = ('id', 'url', 'name', 'link', 'description', 'component_group', 'visibility', 'status', 'order')
+        fields = ('id', 'url', 'name', 'link', 'description', 'component_group', 'show_historic_incidents',
+                  'visibility', 'status', 'order')

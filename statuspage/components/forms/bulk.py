@@ -42,7 +42,8 @@ class ComponentBulkEditForm(StatusPageModelBulkEditForm):
 
     model = Component
     fieldsets = (
-        ('Component', ('description', 'link', 'component_group', 'visibility', 'status', 'order')),
+        ('Component', ('description', 'link', 'component_group', 'show_historic_incidents', 'visibility', 'status',
+                       'order')),
     )
     nullable_fields = ('link', 'description', 'component_group')
 

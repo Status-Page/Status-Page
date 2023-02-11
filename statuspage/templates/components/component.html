@@ -22,6 +22,10 @@
             <td>{{ object.description|placeholder }}</td>
           </tr>
           <tr>
+            <th scope="row" class="pr-6 py-1">Show Historic Incidents</th>
+            <td>{% checkmark object.show_historic_incidents %}</td>
+          </tr>
+          <tr>
             <th scope="row" class="pr-6 py-1">Visible</th>
             <td>{% checkmark object.visibility %}</td>
           </tr>

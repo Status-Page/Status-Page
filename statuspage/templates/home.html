@@ -78,18 +78,36 @@
             </div>
             <div class="flex flex-col pt-2 pl-8 divide-y divide-zinc-200 dark:divide-zinc-700" x-show="open">
               {% for component in componentgroup.components|get_visible_components %}
-                <div class="flex flex-row justify-between items-center py-2">
-                  <div class="flex flex-row space-x-2 items-center">
-                    {% if component.link %}
-                      <a href="{{ component.link }}">{{ component.name }}</a>
-                    {% else %}
-                      {{ component.name }}
-                    {% endif %}
-                    {% if component.description %}
-                      <div data-tooltip="{{ component.description }}"><i class="mdi mdi-help-circle-outline text-lg"></i></div>
-                    {% endif %}
+                <div>
+                  <div class="flex flex-row justify-between items-center py-2">
+                    <div class="flex flex-row space-x-2 items-center">
+                      {% if component.link %}
+                        <a href="{{ component.link }}">{{ component.name }}</a>
+                      {% else %}
+                        {{ component.name }}
+                      {% endif %}
+                      {% if component.description %}
+                        <div data-tooltip="{{ component.description }}"><i class="mdi mdi-help-circle-outline text-lg"></i></div>
+                      {% endif %}
+                    </div>
+                    <div class="{{ component.get_status_text_color }}" data-tooltip="Last Update: {{ component.last_updated }}">{{ component.get_status_display }}</div>
                   </div>
-                  <div class="{{ component.get_status_text_color }}" data-tooltip="Last Update: {{ component.last_updated }}">{{ component.get_status_display }}</div>
+                  {% if component.show_historic_incidents %}
+                    <div class="px-2 py-2">
+                      <div class="flex flex-row justify-around space-x-1">
+                        {% for date in component|get_historic_status %}
+                          <div data-tooltip="{{ date.date }}<br>Incident amount: {{ date.incidents|length }}">
+                            <div class="{{ date.color }} {{ date.hover_color }}" style="width: 5px; height: 2rem;"></div>
+                          </div>
+                        {% endfor %}
+                      </div>
+                      <div class="px-1 flex flex-row items-center space-x-4 text-gray-600 dark:text-gray-500">
+                        <div class="shrink-0">90 days ago</div>
+                        <div class="grow h-px w-full bg-gray-600 dark:bg-gray-500"></div>
+                        <div class="shrink-0">Today</div>
+                      </div>
+                    </div>
+                  {% endif %}
                 </div>
               {% endfor %}
             </div>
@@ -97,18 +115,36 @@
         {% endwith %}
       {% else %}
         {% with componentgroup_component as component %}
-          <div class="px-4 py-4 flex flex-row justify-between items-center">
-            <div class="flex flex-row space-x-2 items-center">
-              {% if component.link %}
-                <a href="{{ component.link }}">{{ component.name }}</a>
-              {% else %}
-                {{ component.name }}
-              {% endif %}
-              {% if component.description %}
-                <div data-tooltip="{{ component.description }}"><i class="mdi mdi-help-circle-outline text-lg"></i></div>
-              {% endif %}
+          <div>
+            <div class="px-4 py-4 flex flex-row justify-between items-center">
+              <div class="flex flex-row space-x-2 items-center">
+                {% if component.link %}
+                  <a href="{{ component.link }}">{{ component.name }}</a>
+                {% else %}
+                  {{ component.name }}
+                {% endif %}
+                {% if component.description %}
+                  <div data-tooltip="{{ component.description }}"><i class="mdi mdi-help-circle-outline text-lg"></i></div>
+                {% endif %}
+              </div>
+              <div class="{{ component.get_status_text_color }}" data-tooltip="Last Update: {{ component.last_updated }}">{{ component.get_status_display }}</div>
             </div>
-            <div class="{{ component.get_status_text_color }}" data-tooltip="Last Update: {{ component.last_updated }}">{{ component.get_status_display }}</div>
+            {% if component.show_historic_incidents %}
+              <div class="px-2 py-2">
+                <div class="flex flex-row justify-around space-x-1">
+                  {% for date in component|get_historic_status %}
+                    <div data-tooltip="{{ date.date }}<br>Incident amount: {{ date.incidents|length }}">
+                      <div class="{{ date.color }} {{ date.hover_color }}" style="width: 5px; height: 2rem;"></div>
+                    </div>
+                  {% endfor %}
+                </div>
+                <div class="px-1 flex flex-row items-center space-x-4 text-gray-600 dark:text-gray-500">
+                  <div class="shrink-0">90 days ago</div>
+                  <div class="grow h-px w-full bg-gray-600 dark:bg-gray-500"></div>
+                  <div class="shrink-0">Today</div>
+                </div>
+              </div>
+            {% endif %}
           </div>
         {% endwith %}
       {% endif %}

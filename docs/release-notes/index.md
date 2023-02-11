@@ -15,6 +15,9 @@ v 1 . 0 . 0
 
 This page contains a history of all major and minor releases since v2.0.0. For more detail on a specific patch release, please see the release notes page for that specific minor release.
 
+#### [Version 2.1](./version-2.1.md) (February 2023)
+* Add bars to components that show incidents for the past 90 days
+
 #### [Version 2.0](./version-2.0.md) (November 2022)
 * Rewrite of Status-Page in python, with django
 * Add Missing Template parts from Dynamic Config

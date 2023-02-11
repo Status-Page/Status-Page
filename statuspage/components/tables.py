@@ -12,11 +12,13 @@ class ComponentTable(StatusPageTable):
         verbose_name='Component Group'
     )
     status = columns.ChoiceFieldColumn()
+    show_historic_incidents = columns.BooleanColumn()
     visibility = columns.BooleanColumn()
 
     class Meta(StatusPageTable.Meta):
         model = Component
-        fields = ('pk', 'id', 'name', 'component_group', 'status', 'visibility', 'order', 'created', 'last_updated')
+        fields = ('pk', 'id', 'name', 'component_group', 'status', 'show_historic_incidents', 'visibility', 'order',
+                  'created', 'last_updated')
         default_columns = ('id', 'name', 'component_group', 'status', 'visibility', 'order')
 
 

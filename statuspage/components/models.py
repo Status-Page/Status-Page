@@ -61,6 +61,9 @@ class Component(StatusPageModel):
         blank=True,
         null=True,
     )
+    show_historic_incidents = models.BooleanField(
+        default=True,
+    )
     visibility = models.BooleanField(
         default=False,
     )
