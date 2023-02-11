@@ -9,6 +9,8 @@ from django.urls import NoReverseMatch, reverse
 from django.utils import timezone
 from django.utils.safestring import mark_safe
 
+from components.models import Component
+from incidents.choices import IncidentImpactChoices
 from utilities.forms import get_selected_values
 from utilities.forms.forms import TableConfigForm
 from utilities.utils import get_viewname
@@ -234,6 +236,42 @@ def get_visible_components(value: any) -> Any:
     Template to return only visibly components
     """
     return value.filter(visibility=True)
+
+
+@register.filter
+def get_historic_status(value: Component) -> Any:
+    """
+    Template to returm historic status
+    """
+    num_days = 90
+    start_date = datetime.date.today() + datetime.timedelta(days=1)
+    end_date = start_date - datetime.timedelta(days=num_days)
+
+    date_list = [end_date + datetime.timedelta(days=x) for x in range(num_days)]
+    date_incidents = []
+    for date in date_list:
+        end = date + datetime.timedelta(days=1)
+        incidents = value.incidents.filter(created__gte=date, created__lte=end)
+
+        hover_color = 'hover:bg-green-600'
+        color = 'bg-green-500'
+        if len(incidents.filter(impact=IncidentImpactChoices.MINOR)) > 0:
+            hover_color = 'hover:bg-yellow-600'
+            color = 'bg-yellow-500'
+        if len(incidents.filter(impact=IncidentImpactChoices.MAJOR)) > 0:
+            hover_color = 'hover:bg-orange-600'
+            color = 'bg-orange-500'
+        if len(incidents.filter(impact=IncidentImpactChoices.CRITICAL)) > 0:
+            hover_color = 'hover:bg-red-600'
+            color = 'bg-red-500'
+
+        date_incidents.append({
+            'date': date,
+            'hover_color': hover_color,
+            'color': color,
+            'incidents': incidents
+        })
+    return date_incidents
 
 
 @register.filter

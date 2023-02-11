@@ -43,7 +43,7 @@ class ComponentFilterForm(FilterForm):
     model = Component
     fieldsets = (
         (None, ('q',)),
-        ('Component', ('name', 'link', 'description', 'visibility', 'status', 'order')),
+        ('Component', ('name', 'link', 'description', 'show_historic_incidents', 'visibility', 'status', 'order')),
     )
     name = forms.CharField(
         required=False,
@@ -53,6 +53,12 @@ class ComponentFilterForm(FilterForm):
     )
     description = forms.CharField(
         required=False,
+    )
+    show_historic_incidents = forms.NullBooleanField(
+        required=False,
+        widget=StaticSelect(
+            choices=BOOLEAN_WITH_BLANK_CHOICES,
+        ),
     )
     visibility = forms.NullBooleanField(
         required=False,

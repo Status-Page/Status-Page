@@ -34,7 +34,7 @@ class ComponentFilterSet(StatusPageModelFilterSet):
 
     class Meta:
         model = Component
-        fields = ['id', 'name', 'link', 'description', 'visibility', 'status', 'order']
+        fields = ['id', 'name', 'link', 'description', 'show_historic_incidents', 'visibility', 'status', 'order']
 
     def search(self, queryset, name, value):
         if not value.strip():
