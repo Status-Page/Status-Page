@@ -1,6 +1,8 @@
 # Status-Page v2.0
 
 ## v2.0.16 (2022-12-19)
+
+### Bug fixes
 * Increase Incident and Maintenance Update Text Length
 
 ---

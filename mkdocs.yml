@@ -69,4 +69,5 @@ nav:
         - Upgrading Status-Page: 'installation/upgrading.md'
     - Release Notes:
         - Overview: 'release-notes/index.md'
+        - Version 2.1: 'release-notes/version-2.1.md'
         - Version 2.0: 'release-notes/version-2.0.md'
