@@ -17,6 +17,7 @@ This page contains a history of all major and minor releases since v2.0.0. For m
 
 #### [Version 2.1](./version-2.1.md) (February 2023)
 * Add bars to components that show incidents for the past 90 days
+* Add Markdown Styling
 
 #### [Version 2.0](./version-2.0.md) (November 2022)
 * Rewrite of Status-Page in python, with django
