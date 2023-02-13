@@ -2,6 +2,9 @@
 
 ## v2.1.1 (FUTURE)
 
+### Bug fixes
+* Add Markdown Styling
+
 ---
 
 ## v2.1.0 (2023-02-11)
