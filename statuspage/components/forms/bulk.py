@@ -26,6 +26,11 @@ class ComponentBulkEditForm(StatusPageModelBulkEditForm):
         widget=StaticSelect(),
         label='Component Group',
     )
+    show_historic_incidents = forms.NullBooleanField(
+        required=False,
+        widget=BulkEditNullBooleanSelect,
+        label='Show historic Incidents',
+    )
     visibility = forms.NullBooleanField(
         required=False,
         widget=BulkEditNullBooleanSelect,

@@ -2,6 +2,9 @@
 
 ## v2.1.2 (FUTURE)
 
+### Bug fixes
+* Add missing `show_historic_incidents` to component bulk edit form
+
 ---
 
 ## v2.1.1 (2023-02-17)
