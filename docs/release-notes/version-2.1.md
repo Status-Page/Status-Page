@@ -1,6 +1,6 @@
 # Status-Page v2.1
 
-## v2.1.1 (FUTURE)
+## v2.1.1 (2023-02-17)
 
 ### Bug fixes
 * Add Markdown Styling
