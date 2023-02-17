@@ -6,7 +6,7 @@
   {% endif %}
   <div class="container mx-auto max-w-4xl pb-8">
     <div class="flex flex-col space-y-8 pt-6">
-      {{ config.CUSTOM_STYLE_HEADER }}
+      {{ config.CUSTOM_STYLE_HEADER|safe }}
       {% if not config.CUSTOM_STYLE_HEADER_DISABLE_CORE %}
         <div class="flex flex-row justify-between items-end">
           <div class="text-5xl">{{ config.SITE_TITLE }}</div>
@@ -19,7 +19,7 @@
         </div>
       {% endif %}
       {% block home_content %}{% endblock %}
-      {{ config.CUSTOM_STYLE_FOOTER }}
+      {{ config.CUSTOM_STYLE_FOOTER|safe }}
       {% if not config.CUSTOM_STYLE_FOOTER_DISABLE_CORE %}
       {% endif %}
     </div>
