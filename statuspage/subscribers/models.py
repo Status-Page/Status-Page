@@ -61,6 +61,7 @@ class Subscriber(StatusPageModel):
             self.send_mail(
                 subject=f'Verify your Subscription to {config.SITE_TITLE}',
                 template='subscribers/verification',
+                ignore_email_verification=True,
             )
 
     @classmethod
@@ -70,10 +71,10 @@ class Subscriber(StatusPageModel):
         except:
             return None
 
-    def send_mail(self, subject, template, context=None):
+    def send_mail(self, subject, template, context=None, ignore_email_verification=False):
         if context is None:
             context = {}
-        if not self.email_verified_at:
+        if not self.email_verified_at and not ignore_email_verification:
             return None
         config = get_config()
         extra_context = ({
