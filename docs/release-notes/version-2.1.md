@@ -4,6 +4,7 @@
 
 ### Bug fixes
 * Add Markdown Styling
+* Subscriber verification E-mail
 
 ---
 
