@@ -5,6 +5,7 @@
 ### Bug fixes
 * Add Markdown Styling
 * Subscriber verification E-mail
+* Custom Header / Footer HTML Char Escaping
 
 ---
 
