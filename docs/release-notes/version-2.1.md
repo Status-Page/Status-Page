@@ -4,6 +4,7 @@
 
 ### Bug fixes
 * Add missing `show_historic_incidents` to component bulk edit form
+* Fix Maintenance Update Textbox
 
 ---
 
