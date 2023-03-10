@@ -79,6 +79,10 @@ class MaintenanceUpdateForm(StatusPageModelForm):
         )),
     )
 
+    text = fields.CommentField(
+        label='Text',
+    )
+
     class Meta:
         model = MaintenanceUpdate
         fields = (
