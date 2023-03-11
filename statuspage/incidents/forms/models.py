@@ -1,6 +1,6 @@
 from statuspage.forms import StatusPageModelForm
 from statuspage.request_context import get_request
-from utilities.forms import StaticSelect, StaticSelectMultiple
+from utilities.forms import StaticSelect, StaticSelectMultiple, DateTimePicker
 from utilities.utils import get_component_status_from_incident_impact
 from ..models import Incident, IncidentUpdate
 from utilities.forms.fields import fields
@@ -17,7 +17,7 @@ __all__ = (
 class IncidentForm(StatusPageModelForm):
     fieldsets = (
         ('Incident', (
-            'title', 'status', 'impact', 'visibility', 'components',
+            'title', 'status', 'impact', 'visibility', 'components', 'created',
         )),
         ('Incident Update', (
             'update_component_status', 'text',
@@ -36,12 +36,13 @@ class IncidentForm(StatusPageModelForm):
     class Meta:
         model = Incident
         fields = (
-            'title', 'status', 'impact', 'visibility', 'components',
+            'title', 'status', 'impact', 'visibility', 'components', 'created',
         )
         widgets = {
             'status': StaticSelect(),
             'impact': StaticSelect(),
             'components': StaticSelectMultiple(),
+            'created': DateTimePicker(),
         }
 
     def __init__(self, *args, **kwargs):
@@ -83,7 +84,7 @@ class IncidentForm(StatusPageModelForm):
 class IncidentUpdateForm(StatusPageModelForm):
     fieldsets = (
         ('Incident Update', (
-            'text', 'new_status', 'status',
+            'text', 'new_status', 'status', 'created',
         )),
     )
 
@@ -94,8 +95,9 @@ class IncidentUpdateForm(StatusPageModelForm):
     class Meta:
         model = IncidentUpdate
         fields = (
-            'text', 'new_status', 'status',
+            'text', 'new_status', 'status', 'created',
         )
         widgets = {
             'status': StaticSelect(),
+            'created': DateTimePicker(),
         }

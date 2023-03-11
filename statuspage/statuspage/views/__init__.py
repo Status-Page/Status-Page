@@ -76,9 +76,9 @@ class HomeView(BaseView):
             local_list = []
             begin = date_begin[count]
             end = date_end[count]
-            for incident in resolved_incidents.filter(last_updated__range=(begin, end)):
+            for incident in resolved_incidents.filter(created__range=(begin, end)):
                 local_list.append(incident)
-            for maintenance in resolved_maintenances.filter(last_updated__range=(begin, end)):
+            for maintenance in resolved_maintenances.filter(created__range=(begin, end)):
                 local_list.append(maintenance)
 
             resolved_incidents_maintenances.append((date_begin[count], local_list))

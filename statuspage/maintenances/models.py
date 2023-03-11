@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.utils import timezone
 
 from components.models import Component
 from maintenances.choices import *
@@ -40,6 +41,7 @@ class Maintenance(IncidentMaintenanceModel):
         choices=MaintenanceImpactChoices,
         default=MaintenanceImpactChoices.MAINTENANCE,
     )
+    created = models.DateTimeField(default=timezone.now)
 
     class Meta:
         ordering = ['pk']
@@ -97,6 +99,7 @@ class MaintenanceUpdate(IncidentMaintenanceUpdateModel):
         blank=True,
         null=True
     )
+    created = models.DateTimeField(default=timezone.now)
 
     class Meta:
         ordering = ['pk']
