@@ -17,7 +17,7 @@ class MaintenanceForm(StatusPageModelForm):
     fieldsets = (
         ('Maintenance', (
             'title', 'status', 'impact', 'visibility', 'scheduled_at', 'start_automatically', 'end_at',
-            'end_automatically', 'components',
+            'end_automatically', 'components', 'created',
         )),
         ('Maintenance Update', (
             'text',
@@ -33,7 +33,7 @@ class MaintenanceForm(StatusPageModelForm):
         model = Maintenance
         fields = (
             'title', 'status', 'impact', 'visibility', 'scheduled_at', 'start_automatically', 'end_at',
-            'end_automatically', 'components',
+            'end_automatically', 'components', 'created',
         )
         widgets = {
             'status': StaticSelect(),
@@ -41,6 +41,7 @@ class MaintenanceForm(StatusPageModelForm):
             'scheduled_at': DateTimePicker(),
             'end_at': DateTimePicker(),
             'components': StaticSelectMultiple(),
+            'created': DateTimePicker(),
         }
 
     def __init__(self, *args, **kwargs):
@@ -75,7 +76,7 @@ class MaintenanceForm(StatusPageModelForm):
 class MaintenanceUpdateForm(StatusPageModelForm):
     fieldsets = (
         ('Maintenance Update', (
-            'text', 'new_status', 'status',
+            'text', 'new_status', 'status', 'created',
         )),
     )
 
@@ -86,8 +87,9 @@ class MaintenanceUpdateForm(StatusPageModelForm):
     class Meta:
         model = MaintenanceUpdate
         fields = (
-            'text', 'new_status', 'status',
+            'text', 'new_status', 'status', 'created',
         )
         widgets = {
             'status': StaticSelect(),
+            'created': DateTimePicker(),
         }

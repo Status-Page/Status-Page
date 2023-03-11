@@ -1,5 +1,7 @@
 from django.db import models
 from django.urls import reverse
+from django.utils import timezone
+
 from incidents.choices import *
 from django.contrib.auth.models import User
 from components.models import Component
@@ -30,6 +32,7 @@ class Incident(IncidentMaintenanceModel):
         related_name='incidents',
         blank=True,
     )
+    created = models.DateTimeField(default=timezone.now)
 
     class Meta:
         ordering = ['pk']
@@ -87,6 +90,7 @@ class IncidentUpdate(IncidentMaintenanceUpdateModel):
         blank=True,
         null=True
     )
+    created = models.DateTimeField(default=timezone.now)
 
     class Meta:
         ordering = ['pk']
