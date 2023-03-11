@@ -15,6 +15,9 @@ v 1 . 0 . 0
 
 This page contains a history of all major and minor releases since v2.0.0. For more detail on a specific patch release, please see the release notes page for that specific minor release.
 
+#### [Version 2.2](./version-2.2.md) (March 2023)
+* Maintenance and Incident Templates
+
 #### [Version 2.1](./version-2.1.md) (February 2023)
 * Add bars to components that show incidents for the past 90 days
 * Add Markdown Styling
