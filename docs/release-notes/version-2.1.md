@@ -6,6 +6,7 @@
 * Add missing `show_historic_incidents` to component bulk edit form
 * Fix Maintenance Update Textbox
 * Add created field for incidents and maintenances
+* Add Captcha Verification Option for Subscriber Forms
 
 ---
 

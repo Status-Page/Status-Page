@@ -67,6 +67,8 @@ nav:
         - 4. Gunicorn: 'installation/4-gunicorn.md'
         - 5. HTTP Server: 'installation/5-http-server.md'
         - Upgrading Status-Page: 'installation/upgrading.md'
+    - Configuration:
+        - Captcha: 'configuration/captcha.md'
     - Release Notes:
         - Overview: 'release-notes/index.md'
         - Version 2.1: 'release-notes/version-2.1.md'

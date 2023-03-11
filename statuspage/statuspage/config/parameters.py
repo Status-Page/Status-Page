@@ -87,6 +87,32 @@ PARAMS = (
         field=SimpleArrayField,
         field_kwargs={'base_field': forms.CharField()}
     ),
+    ConfigParam(
+        name='CAPTCHA_PROVIDER',
+        label='Captcha Provider',
+        default=None,
+        field=forms.ChoiceField,
+        field_kwargs={
+            'choices': [
+                (None, '---------'),
+                ('TURNSTILE', 'CloudFlare Turnstile'),
+                ('RECAPTCHA_V2', 'Google reCAPTCHA v2'),
+                ('HCAPTCHA', 'hCaptcha'),
+            ],
+        },
+    ),
+    ConfigParam(
+        name='CAPTCHA_PUBLIC_KEY',
+        label='Captcha Public Key',
+        default='',
+        field=forms.CharField,
+    ),
+    ConfigParam(
+        name='CAPTCHA_PRIVATE_KEY',
+        label='Captcha Private Key',
+        default='',
+        field=forms.CharField,
+    ),
 
     # Pagination
     ConfigParam(
