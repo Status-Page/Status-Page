@@ -2,6 +2,14 @@
 {% load helpers %}
 {% load form_helpers %}
 
+{% block head %}
+  {% with config.captcha_provider_url as cap_url %}
+    {% if cap_url %}
+      <script src="{{ cap_url }}" async defer></script>
+    {% endif %}
+  {% endwith %}
+{% endblock %}
+
 {% block controls %}
   <div>
     <a href="{% url 'home' %}" class="bg-indigo-500 hover:bg-indigo-600 text-white shadow px-4 py-2 rounded-md" role="button">Home</a>
@@ -15,6 +23,11 @@
       {% csrf_token %}
       <div class="flex flex-col space-y-2">
         {% render_form form %}
+        {% with config.captcha_provider_class as cap_class %}
+          {% if cap_class %}
+            <div class="{{ cap_class }}" data-sitekey="{{ config.CAPTCHA_PUBLIC_KEY }}"></div>
+          {% endif %}
+        {% endwith %}
         <button type="submit" class="bg-indigo-500 hover:bg-indigo-600 text-white shadow px-4 py-2 rounded-md">Subscribe</button>
       </div>
     </form>

@@ -91,6 +91,46 @@ class Config:
         logger.debug("Filled cache with data from latest ConfigRevision")
         self._populate_from_cache()
 
+    def captcha_provider_url(self):
+        match self.CAPTCHA_PROVIDER:
+            case 'TURNSTILE':
+                return 'https://challenges.cloudflare.com/turnstile/v0/api.js'
+            case 'RECAPTCHA_V2':
+                return 'https://www.google.com/recaptcha/api.js'
+            case 'HCAPTCHA':
+                return 'https://js.hcaptcha.com/1/api.js'
+        return None
+
+    def captcha_provider_class(self):
+        match self.CAPTCHA_PROVIDER:
+            case 'TURNSTILE':
+                return 'cf-turnstile'
+            case 'RECAPTCHA_V2':
+                return 'g-recaptcha'
+            case 'HCAPTCHA':
+                return 'h-captcha'
+        return None
+
+    def captcha_provider_formdata(self):
+        match self.CAPTCHA_PROVIDER:
+            case 'TURNSTILE':
+                return 'cf-turnstile-response'
+            case 'RECAPTCHA_V2':
+                return 'g-recaptcha-response'
+            case 'HCAPTCHA':
+                return 'h-captcha-response'
+        return None
+
+    def captcha_provider_siteverify(self):
+        match self.CAPTCHA_PROVIDER:
+            case 'TURNSTILE':
+                return 'https://challenges.cloudflare.com/turnstile/v0/siteverify'
+            case 'RECAPTCHA_V2':
+                return 'https://www.google.com/recaptcha/api/siteverify'
+            case 'HCAPTCHA':
+                return 'https://hcaptcha.com/siteverify'
+        return None
+
 
 class ConfigItem:
     """

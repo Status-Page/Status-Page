@@ -3,6 +3,7 @@ import sys
 import uuid
 from itertools import chain
 
+import requests
 from django.conf import settings
 from django.contrib import messages
 from django.db import IntegrityError
@@ -155,6 +156,25 @@ class SubscriberSubscribeView(BaseView):
         form = PublicSubscriberForm(data=request.POST)
 
         if form.is_valid():
+            config = get_config()
+
+            provider = config.CAPTCHA_PROVIDER
+            secret = config.CAPTCHA_PRIVATE_KEY
+            if provider:
+                siteverify_url = config.captcha_provider_siteverify()
+
+                formdata = config.captcha_provider_formdata()
+                captcha_response = request.POST.get(formdata)
+
+                response = requests.post(siteverify_url, data={
+                    'secret': secret,
+                    'response': captcha_response,
+                })
+                outcome = response.json()
+                if not outcome['success']:
+                    messages.error(request, 'Captcha Verification Failed')
+                    return redirect('subscriber_subscribe')
+
             email = form.cleaned_data.get('email')
             try:
                 subscriber = Subscriber()
@@ -183,6 +203,25 @@ class SubscriberRequestManagementKeyView(BaseView):
         form = PublicSubscriberForm(data=request.POST)
 
         if form.is_valid():
+            config = get_config()
+
+            provider = config.CAPTCHA_PROVIDER
+            secret = config.CAPTCHA_PRIVATE_KEY
+            if provider:
+                siteverify_url = config.captcha_provider_siteverify()
+
+                formdata = config.captcha_provider_formdata()
+                captcha_response = request.POST.get(formdata)
+
+                response = requests.post(siteverify_url, data={
+                    'secret': secret,
+                    'response': captcha_response,
+                })
+                outcome = response.json()
+                if not outcome['success']:
+                    messages.error(request, 'Captcha Verification Failed')
+                    return redirect('subscriber_subscribe')
+
             email = form.cleaned_data.get('email')
             try:
                 subscriber = Subscriber.objects.get(email=email)

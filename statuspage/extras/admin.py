@@ -20,7 +20,7 @@ class ConfigRevisionAdmin(admin.ModelAdmin):
                        'CUSTOM_STYLE_FOOTER_DISABLE_CORE', 'CUSTOM_STYLE_CSS',),
         }),
         ('Security', {
-            'fields': ('ALLOWED_URL_SCHEMES',),
+            'fields': ('ALLOWED_URL_SCHEMES', 'CAPTCHA_PROVIDER', 'CAPTCHA_PUBLIC_KEY', 'CAPTCHA_PRIVATE_KEY',),
         }),
         ('Pagination', {
             'fields': ('PAGINATE_COUNT', 'MAX_PAGE_SIZE'),
