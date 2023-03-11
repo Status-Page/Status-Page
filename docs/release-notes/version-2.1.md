@@ -1,6 +1,6 @@
 # Status-Page v2.1
 
-## v2.1.2 (FUTURE)
+## v2.1.2 (2023-03-11)
 
 ### Bug fixes
 * Add missing `show_historic_incidents` to component bulk edit form
