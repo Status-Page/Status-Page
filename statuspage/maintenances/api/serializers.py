@@ -3,7 +3,7 @@ from rest_framework import serializers
 from components.api.nested_serializers import NestedComponentSerializer
 from maintenances.api.nested_serializers import NestedMaintenanceSerializer
 from maintenances.choices import MaintenanceStatusChoices, MaintenanceImpactChoices
-from maintenances.models import Maintenance, MaintenanceUpdate
+from maintenances.models import Maintenance, MaintenanceUpdate, MaintenanceTemplate
 from statuspage.api.serializers import StatusPageModelSerializer
 from users.api.nested_serializers import NestedUserSerializer
 
@@ -45,3 +45,26 @@ class MaintenanceUpdateSerializer(StatusPageModelSerializer):
     class Meta:
         model = MaintenanceUpdate
         fields = ('id', 'url', 'text', 'new_status', 'maintenance', 'status', 'user')
+
+
+class MaintenanceTemplateSerializer(StatusPageModelSerializer):
+    url = serializers.HyperlinkedIdentityField(
+        view_name='maintenances-api:maintenancetemplate-detail'
+    )
+    status = serializers.ChoiceField(
+        choices=MaintenanceStatusChoices,
+        default=MaintenanceStatusChoices.SCHEDULED,
+    )
+    impact = serializers.ChoiceField(
+        choices=MaintenanceImpactChoices,
+        default=MaintenanceImpactChoices.MAINTENANCE,
+    )
+    components = serializers.ManyRelatedField(
+        child_relation=NestedComponentSerializer(),
+        default=[],
+    )
+
+    class Meta:
+        model = MaintenanceTemplate
+        fields = ('id', 'url', 'template_name', 'title', 'visibility', 'status', 'impact', 'user', 'components',
+                  'update_component_status', 'text')

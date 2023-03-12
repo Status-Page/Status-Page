@@ -2,7 +2,7 @@ import django_filters
 from django.contrib.auth.models import User
 from django.db.models import Q
 
-from incidents.models import Incident, IncidentUpdate
+from incidents.models import Incident, IncidentUpdate, IncidentTemplate
 from components.models import Component
 from statuspage.filtersets import StatusPageModelFilterSet
 
@@ -86,4 +86,33 @@ class IncidentUpdateFilterSet(StatusPageModelFilterSet):
             return queryset
         return queryset.filter(
             Q(text__icontains=value)
+        ).distinct()
+
+
+class IncidentTemplateFilterSet(StatusPageModelFilterSet):
+    component = django_filters.ModelMultipleChoiceFilter(
+        field_name='components__name',
+        queryset=Component.objects.all(),
+        to_field_name='name',
+        conjoined=True,
+        label='Component (Name)',
+    )
+    component_id = django_filters.ModelMultipleChoiceFilter(
+        field_name='components__id',
+        queryset=Component.objects.all(),
+        to_field_name='id',
+        conjoined=True,
+        label='Component (Id)',
+    )
+
+    class Meta:
+        model = IncidentTemplate
+        fields = ['id', 'template_name', 'title', 'status', 'impact', 'visibility', 'update_component_status']
+
+    def search(self, queryset, name, value):
+        if not value.strip():
+            return queryset
+        return queryset.filter(
+            Q(template_name__icontains=value)|
+            Q(title__icontains=value)
         ).distinct()

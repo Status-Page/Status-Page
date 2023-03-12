@@ -1,11 +1,5 @@
 # Status-Page v2.1
 
-## v2.1.3 (FUTURE)
-
-### Bug fixes
-
----
-
 ## v2.1.2 (2023-03-11)
 
 ### Bug fixes

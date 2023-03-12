@@ -2,13 +2,14 @@ from statuspage.forms import StatusPageModelBulkEditForm
 from utilities.forms import StaticSelect, StaticSelectMultiple, add_blank_choice, BulkEditNullBooleanSelect, \
     DateTimePicker
 from .. import choices
-from ..models import Maintenance, MaintenanceUpdate
+from ..models import Maintenance, MaintenanceUpdate, MaintenanceTemplate
 from django import forms
 from components.models import Component
 
 __all__ = (
     'MaintenanceBulkEditForm',
     'MaintenanceUpdateBulkEditForm',
+    'MaintenanceTemplateBulkEditForm',
 )
 
 
@@ -74,3 +75,37 @@ class MaintenanceUpdateBulkEditForm(StatusPageModelBulkEditForm):
     fieldsets = (
         ('Maintenance Update', ('new_status', 'status',)),
     )
+
+
+class MaintenanceTemplateBulkEditForm(StatusPageModelBulkEditForm):
+    status = forms.ChoiceField(
+        choices=add_blank_choice(choices.MaintenanceStatusChoices),
+        required=False,
+        widget=StaticSelect(),
+    )
+    impact = forms.ChoiceField(
+        choices=add_blank_choice(choices.MaintenanceImpactChoices),
+        required=False,
+        widget=StaticSelect(),
+    )
+    visibility = forms.NullBooleanField(
+        required=False,
+        widget=BulkEditNullBooleanSelect,
+        label='Visible',
+    )
+    components = forms.ModelMultipleChoiceField(
+        queryset=Component.objects.all(),
+        required=False,
+        widget=StaticSelectMultiple(),
+    )
+    update_component_status = forms.NullBooleanField(
+        required=False,
+        widget=BulkEditNullBooleanSelect,
+        label='Update Component Status',
+    )
+
+    model = MaintenanceTemplate
+    fieldsets = (
+        ('Maintenance Template', ('status', 'impact', 'visibility', 'components', 'update_component_status')),
+    )
+    nullable_fields = ('components',)

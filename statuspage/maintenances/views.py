@@ -2,7 +2,7 @@ from django.db.models import Q
 
 from statuspage.views import generic
 from statuspage.views.generic.mixins import ActionsMixin
-from .models import Maintenance, MaintenanceUpdate
+from .models import Maintenance, MaintenanceUpdate, MaintenanceTemplate
 from . import tables
 from . import forms
 from . import filtersets
@@ -86,3 +86,34 @@ class MaintenanceUpdateBulkEditView(generic.BulkEditView):
 class MaintenanceUpdateBulkDeleteView(generic.BulkDeleteView):
     queryset = MaintenanceUpdate.objects.all()
     table = tables.MaintenanceUpdateTable
+
+
+class MaintenanceTemplateListView(generic.ObjectListView):
+    queryset = MaintenanceTemplate.objects.filter()
+    table = tables.MaintenanceTemplateTable
+    filterset = filtersets.MaintenanceTemplateFilterSet
+    filterset_form = forms.MaintenanceTemplateFilterForm
+
+
+class MaintenanceTemplateView(generic.ObjectView, ActionsMixin):
+    queryset = MaintenanceTemplate.objects.filter()
+
+
+class MaintenanceTemplateEditView(generic.ObjectEditView):
+    queryset = MaintenanceTemplate.objects.filter()
+    form = forms.MaintenanceTemplateForm
+
+
+class MaintenanceTemplateDeleteView(generic.ObjectDeleteView):
+    queryset = MaintenanceTemplate.objects.filter()
+
+
+class MaintenanceTemplateBulkEditView(generic.BulkEditView):
+    queryset = MaintenanceTemplate.objects.all()
+    table = tables.MaintenanceTemplateTable
+    form = forms.MaintenanceTemplateBulkEditForm
+
+
+class MaintenanceTemplateBulkDeleteView(generic.BulkDeleteView):
+    queryset = MaintenanceTemplate.objects.all()
+    table = tables.MaintenanceTemplateTable

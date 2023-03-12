@@ -118,3 +118,51 @@ class IncidentUpdate(IncidentMaintenanceUpdateModel):
                     })
             except:
                 pass
+
+
+class IncidentTemplate(IncidentMaintenanceModel):
+    template_name = models.CharField(
+        max_length=255,
+    )
+    status = models.CharField(
+        max_length=255,
+        choices=IncidentStatusChoices,
+        default=IncidentStatusChoices.INVESTIGATING,
+    )
+    impact = models.CharField(
+        max_length=255,
+        choices=IncidentImpactChoices,
+        default=IncidentImpactChoices.NONE,
+    )
+    components = models.ManyToManyField(
+        to=Component,
+        related_name='+',
+        blank=True,
+    )
+    update_component_status = models.BooleanField(
+        default=False,
+    )
+    text = models.CharField(
+        max_length=65536,
+    )
+
+    class Meta:
+        ordering = ['pk']
+
+    def __str__(self):
+        return self.template_name
+
+    def get_absolute_url(self):
+        return reverse('incidents:incidenttemplate', args=[self.pk])
+
+    def get_impact_color(self):
+        (color, _, __) = IncidentImpactChoices.colors.get(self.impact)
+        return color
+
+    def get_impact_border_color(self):
+        (_, color, __) = IncidentImpactChoices.colors.get(self.impact)
+        return color
+
+    def get_impact_text_color(self):
+        (_, __, color) = IncidentImpactChoices.colors.get(self.impact)
+        return color

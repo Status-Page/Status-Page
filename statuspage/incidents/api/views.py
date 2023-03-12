@@ -3,7 +3,7 @@ from rest_framework.viewsets import ModelViewSet
 
 from incidents.api import serializers
 from incidents import filtersets
-from incidents.models import Incident, IncidentUpdate
+from incidents.models import Incident, IncidentUpdate, IncidentTemplate
 
 
 class IncidentsRootView(APIRootView):
@@ -24,3 +24,9 @@ class IncidentUpdateViewSet(ModelViewSet):
     queryset = IncidentUpdate.objects.all()
     serializer_class = serializers.IncidentUpdateSerializer
     filterset_class = filtersets.IncidentUpdateFilterSet
+
+
+class IncidentTemplateViewSet(ModelViewSet):
+    queryset = IncidentTemplate.objects.all()
+    serializer_class = serializers.IncidentTemplateSerializer
+    filterset_class = filtersets.IncidentTemplateFilterSet

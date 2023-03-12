@@ -68,6 +68,7 @@ DEFAULT_MENU = Menu(
             items=(
                 get_model_item('incidents', 'incident', 'Incidents'),
                 get_past_model_item('incidents', 'incident', 'Past'),
+                get_model_item('incidents', 'incidenttemplate', 'Incident Templates'),
             ),
         ),
         MenuDropdown(
@@ -76,6 +77,7 @@ DEFAULT_MENU = Menu(
             items=(
                 get_model_item('maintenances', 'maintenance', 'Maintenances'),
                 get_past_model_item('maintenances', 'maintenance', 'Past'),
+                get_model_item('maintenances', 'maintenancetemplate', 'Maintenance Templates'),
             ),
         ),
         MenuDropdown(

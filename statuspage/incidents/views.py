@@ -2,7 +2,7 @@ from django.db.models import Q
 
 from statuspage.views import generic
 from statuspage.views.generic.mixins import ActionsMixin
-from .models import Incident, IncidentUpdate
+from .models import Incident, IncidentUpdate, IncidentTemplate
 from . import tables
 from . import forms
 from . import filtersets
@@ -86,3 +86,34 @@ class IncidentUpdateBulkEditView(generic.BulkEditView):
 class IncidentUpdateBulkDeleteView(generic.BulkDeleteView):
     queryset = IncidentUpdate.objects.all()
     table = tables.IncidentUpdateTable
+
+
+class IncidentTemplateListView(generic.ObjectListView):
+    queryset = IncidentTemplate.objects.filter()
+    table = tables.IncidentTemplateTable
+    filterset = filtersets.IncidentTemplateFilterSet
+    filterset_form = forms.IncidentTemplateFilterForm
+
+
+class IncidentTemplateView(generic.ObjectView, ActionsMixin):
+    queryset = IncidentTemplate.objects.filter()
+
+
+class IncidentTemplateEditView(generic.ObjectEditView):
+    queryset = IncidentTemplate.objects.filter()
+    form = forms.IncidentTemplateForm
+
+
+class IncidentTemplateDeleteView(generic.ObjectDeleteView):
+    queryset = IncidentTemplate.objects.filter()
+
+
+class IncidentTemplateBulkEditView(generic.BulkEditView):
+    queryset = IncidentTemplate.objects.all()
+    table = tables.IncidentTemplateTable
+    form = forms.IncidentTemplateBulkEditForm
+
+
+class IncidentTemplateBulkDeleteView(generic.BulkDeleteView):
+    queryset = IncidentTemplate.objects.all()
+    table = tables.IncidentTemplateTable

@@ -3,7 +3,7 @@ from rest_framework.viewsets import ModelViewSet
 
 from maintenances.api import serializers
 from maintenances import filtersets
-from maintenances.models import Maintenance, MaintenanceUpdate
+from maintenances.models import Maintenance, MaintenanceUpdate, MaintenanceTemplate
 
 
 class MaintenancesRootView(APIRootView):
@@ -24,3 +24,9 @@ class MaintenanceUpdateViewSet(ModelViewSet):
     queryset = MaintenanceUpdate.objects.all()
     serializer_class = serializers.MaintenanceUpdateSerializer
     filterset_class = filtersets.MaintenanceUpdateFilterSet
+
+
+class MaintenanceTemplateViewSet(ModelViewSet):
+    queryset = MaintenanceTemplate.objects.all()
+    serializer_class = serializers.MaintenanceTemplateSerializer
+    filterset_class = filtersets.MaintenanceTemplateFilterSet
