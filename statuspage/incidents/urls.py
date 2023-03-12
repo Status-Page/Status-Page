@@ -2,7 +2,7 @@ from django.urls import path
 
 from statuspage.views.generic import ObjectChangeLogView
 from . import views
-from .models import Incident, IncidentUpdate
+from .models import Incident, IncidentUpdate, IncidentTemplate
 
 app_name = 'incidents'
 urlpatterns = [
@@ -24,6 +24,17 @@ urlpatterns = [
     path('update/<int:pk>/delete/', views.IncidentUpdateDeleteView.as_view(), name='incidentupdate_delete'),
     path('update/<int:pk>/changelog/', ObjectChangeLogView.as_view(), name='incidentupdate_changelog', kwargs={
         'model': IncidentUpdate,
+    }),
+
+    path('template/', views.IncidentTemplateListView.as_view(), name='incidenttemplate_list'),
+    path('template/add/', views.IncidentTemplateEditView.as_view(), name='incidenttemplate_add'),
+    path('template/edit/', views.IncidentTemplateBulkEditView.as_view(), name='incidenttemplate_bulk_edit'),
+    path('template/delete/', views.IncidentTemplateBulkDeleteView.as_view(), name='incidenttemplate_bulk_delete'),
+    path('template/<int:pk>/', views.IncidentTemplateView.as_view(), name='incidenttemplate'),
+    path('template/<int:pk>/edit/', views.IncidentTemplateEditView.as_view(), name='incidenttemplate_edit'),
+    path('template/<int:pk>/delete/', views.IncidentTemplateDeleteView.as_view(), name='incidenttemplate_delete'),
+    path('template/<int:pk>/changelog/', ObjectChangeLogView.as_view(), name='incidenttemplate_changelog', kwargs={
+        'model': IncidentTemplate,
     }),
 
     path('past/', views.PastIncidentListView.as_view(), name='past'),

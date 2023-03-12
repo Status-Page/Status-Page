@@ -1,15 +1,13 @@
 from statuspage.forms import StatusPageModelForm
 from statuspage.request_context import get_request
 from utilities.forms import StaticSelect, StaticSelectMultiple, DateTimePicker
-from ..models import Maintenance, MaintenanceUpdate
+from ..models import Maintenance, MaintenanceUpdate, MaintenanceTemplate
 from utilities.forms.fields import fields
-from django import forms
-from ..choices import MaintenanceStatusChoices
-from components.choices import ComponentStatusChoices
 
 __all__ = (
     'MaintenanceForm',
     'MaintenanceUpdateForm',
+    'MaintenanceTemplateForm',
 )
 
 
@@ -91,5 +89,32 @@ class MaintenanceUpdateForm(StatusPageModelForm):
         )
         widgets = {
             'status': StaticSelect(),
+            'created': DateTimePicker(),
+        }
+
+
+class MaintenanceTemplateForm(StatusPageModelForm):
+    fieldsets = (
+        ('Maintenance Template', (
+            'template_name', 'title', 'status', 'impact', 'visibility', 'components',
+        )),
+        ('Maintenance Update', (
+            'update_component_status', 'text',
+        )),
+    )
+
+    text = fields.CommentField(
+        label='Text',
+    )
+
+    class Meta:
+        model = MaintenanceTemplate
+        fields = (
+            'template_name', 'title', 'status', 'impact', 'visibility', 'components', 'update_component_status', 'text',
+        )
+        widgets = {
+            'status': StaticSelect(),
+            'impact': StaticSelect(),
+            'components': StaticSelectMultiple(),
             'created': DateTimePicker(),
         }

@@ -282,6 +282,10 @@ def join_components_with_groups(value: any) -> Any:
     return mark_safe(", ".join(list(map(lambda c: f'{c.component_group.name} &mdash; {c.name}' if c.component_group else c.name, value))))
 
 
+@register.filter
+def urlencode(value: str) -> Any:
+    return value.replace('\n', '%0A')
+
 #
 # Tags
 #

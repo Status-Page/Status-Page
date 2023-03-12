@@ -128,3 +128,50 @@ class MaintenanceUpdate(IncidentMaintenanceUpdateModel):
             except:
                 pass
 
+
+class MaintenanceTemplate(IncidentMaintenanceModel):
+    template_name = models.CharField(
+        max_length=255,
+    )
+    status = models.CharField(
+        max_length=255,
+        choices=MaintenanceStatusChoices,
+        default=MaintenanceStatusChoices.SCHEDULED,
+    )
+    impact = models.CharField(
+        max_length=255,
+        choices=MaintenanceImpactChoices,
+        default=MaintenanceImpactChoices.MAINTENANCE,
+    )
+    components = models.ManyToManyField(
+        to=Component,
+        related_name='+',
+        blank=True,
+    )
+    update_component_status = models.BooleanField(
+        default=False,
+    )
+    text = models.CharField(
+        max_length=65536,
+    )
+
+    class Meta:
+        ordering = ['pk']
+
+    def __str__(self):
+        return self.template_name
+
+    def get_absolute_url(self):
+        return reverse('maintenances:maintenancetemplate', args=[self.pk])
+
+    def get_impact_color(self):
+        (color, _, __) = MaintenanceImpactChoices.colors.get(self.impact)
+        return color
+
+    def get_impact_border_color(self):
+        (_, color, __) = MaintenanceImpactChoices.colors.get(self.impact)
+        return color
+
+    def get_impact_text_color(self):
+        (_, __, color) = MaintenanceImpactChoices.colors.get(self.impact)
+        return color

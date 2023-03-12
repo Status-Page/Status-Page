@@ -1,0 +1,67 @@
+{% extends 'generic/object.html' %}
+{% load buttons %}
+{% load static %}
+{% load helpers %}
+
+{% block extra_controls %}
+  {% if perms.maintenances.add_maintenances %}
+    <a href="{% url 'maintenances:maintenance_add' %}?{% if object.title %}title={{ object.title }}{% endif %}{% if object.status %}&status={{ object.status }}{% endif %}{% if object.impact %}&impact={{ object.impact }}{% endif %}{% if object.visibility %}&visibility={{ object.visibility }}{% endif %}{% for component in object.components.all %}&components={{ component.pk }}{% endfor %}{% if object.update_component_status %}&update_component_status={{ object.update_component_status }}{% endif %}{% if object.text %}&text={{ object.text|urlencode }}{% endif %}" class="bg-green-500 hover:bg-green-400 text-white px-2 py-2 rounded-md font-medium" type="button">
+      <i class="mdi mdi-plus-thick"></i> Create Maintenance
+    </a>
+  {% endif %}
+{% endblock %}
+
+{% block page_left %}
+  <div class="grow bg-zinc-100 dark:bg-zinc-800 p-2 space-y-2 ring-1 ring-zinc-500 rounded-md shadow-lg">
+    <div class="text-2xl">Maintenance Template</div>
+    <div class="px-4">
+      <table class="text-left w-full">
+        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+          <tr>
+            <th scope="row" class="pr-6 py-1">Template Name</th>
+            <td>{{ object.template_name }}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="pr-6 py-1">Title</th>
+            <td>{{ object.title }}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="pr-6 py-1">Visible</th>
+            <td>{% checkmark object.visibility %}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="pr-6 py-1">Status</th>
+            <td>{{ object.get_status_display }}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="pr-6 py-1">Impact</th>
+            <td>{% badge object.get_impact_display bg_color=object.get_impact_color %}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}
+
+{% block page_right %}
+  <div class="grow bg-zinc-100 dark:bg-zinc-800 p-2 space-y-2 ring-1 ring-zinc-500 rounded-md shadow-lg">
+    <div class="text-2xl">Affected Components</div>
+    <div class="px-4 flex flex-col w-1/2 divide-y divide-gray-200 dark:divide-gray-700">
+      {% for component in object.components.all %}
+        <div class="grid grid-cols-2 gap-2 py-1">
+          <div>{{ component|linkify }}</div>
+          <div>{% badge component.get_status_display component.get_status_color %}</div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
+
+{% block page_full %}
+  <div class="grow bg-zinc-100 dark:bg-zinc-800 p-2 space-y-2 ring-1 ring-zinc-500 rounded-md shadow-lg">
+    <div class="text-2xl">Text</div>
+    <div class="px-4">
+      {{ object.text|markdown }}
+    </div>
+  </div>
+{% endblock %}

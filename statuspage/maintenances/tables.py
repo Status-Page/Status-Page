@@ -1,7 +1,7 @@
 import django_tables2 as tables
 
 from statuspage.tables import StatusPageTable, columns
-from .models import Maintenance, MaintenanceUpdate
+from .models import Maintenance, MaintenanceUpdate, MaintenanceTemplate
 
 
 class MaintenanceTable(StatusPageTable):
@@ -34,3 +34,20 @@ class MaintenanceUpdateTable(StatusPageTable):
         model = MaintenanceUpdate
         fields = ('pk', 'id', 'text', 'new_status', 'status', 'user', 'created', 'last_updated')
         default_columns = ('id', 'text', 'new_status', 'status', 'user')
+
+
+class MaintenanceTemplateTable(StatusPageTable):
+    template_name = tables.Column(
+        linkify=True,
+    )
+    title = tables.Column()
+    status = tables.Column()
+    impact = columns.ChoiceFieldColumn()
+    visibility = columns.BooleanColumn()
+    update_component_status = columns.BooleanColumn()
+
+    class Meta(StatusPageTable.Meta):
+        model = MaintenanceTemplate
+        fields = ('pk', 'id', 'template_name', 'title', 'status', 'impact', 'visibility', 'update_component_status',
+                  'created', 'last_updated')
+        default_columns = ('id', 'template_name', 'status', 'impact', 'visibility')

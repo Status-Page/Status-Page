@@ -2,7 +2,7 @@ from statuspage.forms import StatusPageModelForm
 from statuspage.request_context import get_request
 from utilities.forms import StaticSelect, StaticSelectMultiple, DateTimePicker
 from utilities.utils import get_component_status_from_incident_impact
-from ..models import Incident, IncidentUpdate
+from ..models import Incident, IncidentUpdate, IncidentTemplate
 from utilities.forms.fields import fields
 from django import forms
 from incidents.choices import IncidentStatusChoices
@@ -11,6 +11,7 @@ from components.choices import ComponentStatusChoices
 __all__ = (
     'IncidentForm',
     'IncidentUpdateForm',
+    'IncidentTemplateForm',
 )
 
 
@@ -99,5 +100,32 @@ class IncidentUpdateForm(StatusPageModelForm):
         )
         widgets = {
             'status': StaticSelect(),
+            'created': DateTimePicker(),
+        }
+
+
+class IncidentTemplateForm(StatusPageModelForm):
+    fieldsets = (
+        ('Incident Template', (
+            'template_name', 'title', 'status', 'impact', 'visibility', 'components',
+        )),
+        ('Incident Update', (
+            'update_component_status', 'text',
+        )),
+    )
+
+    text = fields.CommentField(
+        label='Text',
+    )
+
+    class Meta:
+        model = IncidentTemplate
+        fields = (
+            'template_name', 'title', 'status', 'impact', 'visibility', 'components', 'update_component_status', 'text',
+        )
+        widgets = {
+            'status': StaticSelect(),
+            'impact': StaticSelect(),
+            'components': StaticSelectMultiple(),
             'created': DateTimePicker(),
         }

@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from maintenances.models import Maintenance, MaintenanceUpdate
+from maintenances.models import Maintenance, MaintenanceUpdate, MaintenanceTemplate
 from statuspage.api.serializers import WritableNestedSerializer
 
 
@@ -22,3 +22,13 @@ class NestedMaintenanceUpdateSerializer(WritableNestedSerializer):
     class Meta:
         model = MaintenanceUpdate
         fields = ('id', 'url', 'display', 'text', 'new_status', 'status')
+
+
+class NestedMaintenanceTemplateSerializer(WritableNestedSerializer):
+    url = serializers.HyperlinkedIdentityField(
+        view_name='maintenances-api:maintenancetemplate-detail'
+    )
+
+    class Meta:
+        model = MaintenanceTemplate
+        fields = ('id', 'url', 'display', 'template_name', 'title', 'status', 'impact')
