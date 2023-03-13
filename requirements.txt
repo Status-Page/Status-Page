@@ -1,5 +1,5 @@
 Markdown==3.3.7
-Pillow==9.3.0
+Pillow==9.4.0
 PyYAML==6.0
 bleach==5.0.1
 django-filter==22.1
