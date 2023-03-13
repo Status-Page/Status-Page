@@ -3,6 +3,7 @@
 ## v2.2.1 (FUTURE)
 
 ### Bug Fixes
+* Apply creation date to incident and maintenance updates on creation 
 
 
 ---

@@ -62,6 +62,7 @@ class MaintenanceForm(StatusPageModelForm):
             update.text = maintenance_update_text
             if self._newly_created:
                 update.new_status = True
+                update.created = maintenance.created
             else:
                 update.new_status = 'status' in self.changed_data
             update.status = maintenance.status
