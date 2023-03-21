@@ -52,23 +52,6 @@ class Maintenance(IncidentMaintenanceModel):
     def get_absolute_url(self):
         return reverse('maintenances:maintenance', args=[self.pk])
 
-    def save(self, **kwargs):
-        is_new = self.pk is None
-
-        super().save(**kwargs)
-
-        if is_new and self.visibility:
-            try:
-                subscribers = Subscriber.objects.filter(incident_subscriptions=True)
-
-                for subscriber in subscribers:
-                    subscriber.send_mail(subject=f'Maintenance "{self.title}": Created', template='maintenances/created', context={
-                        'maintenance': self,
-                        'components': self.components.filter(visibility=True),
-                    })
-            except:
-                pass
-
     def get_impact_color(self):
         (color, _, __) = MaintenanceImpactChoices.colors.get(self.impact)
         return color
@@ -109,24 +92,6 @@ class MaintenanceUpdate(IncidentMaintenanceUpdateModel):
 
     def get_absolute_url(self):
         return reverse('maintenances:maintenanceupdate', args=[self.pk])
-
-    def save(self, **kwargs):
-        is_new = self.pk is None
-
-        super().save(**kwargs)
-
-        if is_new and self.maintenance.visibility:
-            try:
-                subscribers = Subscriber.objects.filter(incident_subscriptions=True)
-
-                for subscriber in subscribers:
-                    subscriber.send_mail(subject=f'Maintenance "{self.maintenance.title}": Update Posted', template='maintenanceupdates/created', context={
-                        'maintenance': self.maintenance,
-                        'update': self,
-                        'components': self.maintenance.components.filter(visibility=True),
-                    })
-            except:
-                pass
 
 
 class MaintenanceTemplate(IncidentMaintenanceModel):

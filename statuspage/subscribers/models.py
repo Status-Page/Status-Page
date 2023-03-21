@@ -29,6 +29,9 @@ class Subscriber(StatusPageModel):
     incident_subscriptions = models.BooleanField(
         default=True,
     )
+    incident_notifications_subscribed_only = models.BooleanField(
+        default=False,
+    )
     component_subscriptions = models.ManyToManyField(
         to=Component,
         related_name='subscribers',

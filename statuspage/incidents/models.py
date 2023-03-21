@@ -5,7 +5,6 @@ from django.utils import timezone
 from incidents.choices import *
 from django.contrib.auth.models import User
 from components.models import Component
-from subscribers.models import Subscriber
 from utilities.models import IncidentMaintenanceModel, IncidentMaintenanceUpdateModel
 
 
@@ -42,23 +41,6 @@ class Incident(IncidentMaintenanceModel):
 
     def get_absolute_url(self):
         return reverse('incidents:incident', args=[self.pk])
-
-    def save(self, **kwargs):
-        is_new = self.pk is None
-
-        super().save(**kwargs)
-
-        if is_new and self.visibility:
-            try:
-                subscribers = Subscriber.objects.filter(incident_subscriptions=True)
-
-                for subscriber in subscribers:
-                    subscriber.send_mail(subject=f'Incident "{self.title}": Created', template='incidents/created', context={
-                        'incident': self,
-                        'components': self.components.filter(visibility=True),
-                    })
-            except:
-                pass
 
     def get_impact_color(self):
         (color, _, __) = IncidentImpactChoices.colors.get(self.impact)
@@ -100,24 +82,6 @@ class IncidentUpdate(IncidentMaintenanceUpdateModel):
 
     def get_absolute_url(self):
         return reverse('incidents:incidentupdate', args=[self.pk])
-
-    def save(self, **kwargs):
-        is_new = self.pk is None
-
-        super().save(**kwargs)
-
-        if is_new and self.incident.visibility:
-            try:
-                subscribers = Subscriber.objects.filter(incident_subscriptions=True)
-
-                for subscriber in subscribers:
-                    subscriber.send_mail(subject=f'Incident "{self.incident.title}": Update Posted', template='incidentupdates/created', context={
-                        'incident': self.incident,
-                        'update': self,
-                        'components': self.incident.components.filter(visibility=True),
-                    })
-            except:
-                pass
 
 
 class IncidentTemplate(IncidentMaintenanceModel):

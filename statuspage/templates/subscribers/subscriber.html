@@ -41,6 +41,10 @@
             <th scope="row" class="pr-6 py-1">Incident Notifications</th>
             <td>{% checkmark object.incident_subscriptions %}</td>
           </tr>
+          <tr>
+            <th scope="row" class="pr-6 py-1">Incident Notifications for Subscribed Components only</th>
+            <td>{% checkmark object.incident_notifications_subscribed_only %}</td>
+          </tr>
         </tbody>
       </table>
     </div>
