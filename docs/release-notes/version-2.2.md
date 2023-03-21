@@ -3,7 +3,9 @@
 ## v2.2.1 (FUTURE)
 
 ### Bug Fixes
-* Apply creation date to incident and maintenance updates on creation 
+* Apply creation date to incident and maintenance updates on creation
+* Add switch for incident and maintenane notifications
+* Incident and Maintenance Template URL-Encode
 
 
 ---
