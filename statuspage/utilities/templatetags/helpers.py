@@ -1,5 +1,6 @@
 import datetime
 import decimal
+import urllib.parse
 from typing import Dict, Any
 
 from django import template
@@ -284,7 +285,7 @@ def join_components_with_groups(value: any) -> Any:
 
 @register.filter
 def urlencode(value: str) -> Any:
-    return value.replace('\n', '%0A')
+    return urllib.parse.quote(value)
 
 #
 # Tags
