@@ -3,6 +3,7 @@ from django.core.mail import send_mail as django_send_mail
 from django.core.serializers import serialize
 import json
 
+from django.db import transaction
 from django.http import QueryDict
 from mptt.models import MPTTModel
 import bleach
@@ -286,3 +287,11 @@ def send_mail(subject, html_message, message, recipient_list):
         from_email=f'{config.SITE_TITLE} <{settings.DEFAULT_FROM_EMAIL}>',
         recipient_list=recipient_list,
     )
+
+
+def on_transaction_commit(func):
+    """ Create the decorator """
+    def inner(*args, **kwargs):
+        transaction.on_commit(lambda: func(*args, **kwargs))
+
+    return inner

@@ -33,12 +33,16 @@ class PublicSubscriberForm(TailwindMixin, forms.Form):
 class PublicSubscriberManagementForm(StatusPageModelForm):
     fieldsets = (
         ('Subscriber', (
-            'incident_subscriptions', 'component_subscriptions',
+            'incident_subscriptions', 'incident_notifications_subscribed_only', 'component_subscriptions',
         )),
     )
 
     incident_subscriptions = forms.BooleanField(
         label='Subscribe to Incident Updates',
+        required=False,
+    )
+    incident_notifications_subscribed_only = forms.BooleanField(
+        label='Receive Incident Notifications only for Subscribed Components',
         required=False,
     )
     component_subscriptions = forms.ModelMultipleChoiceField(
@@ -51,5 +55,5 @@ class PublicSubscriberManagementForm(StatusPageModelForm):
     class Meta:
         model = Subscriber
         fields = (
-            'incident_subscriptions', 'component_subscriptions',
+            'incident_subscriptions', 'incident_notifications_subscribed_only', 'component_subscriptions',
         )
