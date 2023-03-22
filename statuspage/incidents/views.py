@@ -1,3 +1,4 @@
+from django.core.handlers.wsgi import WSGIRequest
 from django.db.models import Q
 
 from statuspage.views import generic
@@ -34,6 +35,38 @@ class IncidentView(generic.ObjectView, ActionsMixin):
             'model': queryset.model,
             'table': table,
             'actions': actions,
+        }
+
+
+class IncidentCreateView(generic.ObjectEditView):
+    queryset = Incident.objects.filter()
+    form = forms.IncidentForm
+    template_name = 'incidents/incident_create.html'
+
+    def get_extra_context(self, request, instance: Incident):
+        template_form = forms.IncidentTemplateSelectForm(initial={
+            'template': request.GET.get('template', None)
+        })
+
+        selected_template_id = request.GET.get('template', None)
+        if selected_template_id:
+            selected_template = IncidentTemplate.objects.get(pk=selected_template_id)
+            form = forms.IncidentForm(instance=instance, initial={
+                'title': selected_template.title,
+                'status': selected_template.status,
+                'impact': selected_template.impact,
+                'visibility': selected_template.visibility,
+                'components': selected_template.components.all(),
+                'update_component_status': selected_template.update_component_status,
+                'text': selected_template.text,
+            })
+            return {
+                'form': form,
+                'template_form': template_form,
+            }
+
+        return {
+            'template_form': template_form,
         }
 
 

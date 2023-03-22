@@ -1,6 +1,6 @@
 from statuspage.forms import StatusPageModelForm
 from statuspage.request_context import get_request
-from utilities.forms import StaticSelect, StaticSelectMultiple, DateTimePicker
+from utilities.forms import StaticSelect, StaticSelectMultiple, DateTimePicker, TailwindMixin, add_blank_choice
 from utilities.utils import get_component_status_from_incident_impact
 from ..models import Incident, IncidentUpdate, IncidentTemplate
 from utilities.forms.fields import fields
@@ -10,6 +10,7 @@ from components.choices import ComponentStatusChoices
 
 __all__ = (
     'IncidentForm',
+    'IncidentTemplateSelectForm',
     'IncidentUpdateForm',
     'IncidentTemplateForm',
 )
@@ -81,6 +82,15 @@ class IncidentForm(StatusPageModelForm):
                     incident.components.update(status=get_component_status_from_incident_impact(incident.impact))
 
         return incident
+
+
+class IncidentTemplateSelectForm(TailwindMixin, forms.Form):
+    template = forms.ModelChoiceField(
+        queryset=IncidentTemplate.objects.all(),
+        widget=StaticSelect(),
+        label='',
+        required=False,
+    )
 
 
 class IncidentUpdateForm(StatusPageModelForm):

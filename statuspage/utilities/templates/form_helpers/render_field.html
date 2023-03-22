@@ -103,7 +103,7 @@
   <div>
     <div class="flex justify-between">
       <label for="{{ field.id_for_label }}" class="block text-gray-700 dark:text-gray-200 {% if field.field.required %}font-bold{% else %}font-medium{% endif %}">{{ field.label }}</label>
-      {% if not field.field.required %}
+      {% if not field.field.required and field.label %}
         <span class="text-sm text-gray-500 dark:text-gray-400">Optional</span>
       {% endif %}
     </div>
