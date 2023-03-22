@@ -1,5 +1,7 @@
+from email.utils import make_msgid
+
 from django.conf import settings
-from django.core.mail import send_mail as django_send_mail
+from django.core.mail import send_mail as django_send_mail, EmailMultiAlternatives
 from django.core.serializers import serialize
 import json
 
@@ -278,15 +280,25 @@ def dict_to_filter_params(d, prefix=''):
     return params
 
 
-def send_mail(subject, html_message, message, recipient_list):
+def get_mail_domain():
+    splitted_domain = settings.SERVER_EMAIL.split("@")
+    return splitted_domain[len(splitted_domain) - 1]
+
+
+def send_mail(subject, html_message, message, recipient_list, headers):
     config = get_config()
-    django_send_mail(
+    email = EmailMultiAlternatives(
         subject=f'{settings.EMAIL_SUBJECT_PREFIX}{subject}',
-        message=f'{message}',
-        html_message=f'{html_message}',
+        body=f'{message}',
         from_email=f'{config.SITE_TITLE} <{settings.DEFAULT_FROM_EMAIL}>',
-        recipient_list=recipient_list,
+        to=recipient_list,
+        headers={
+            'Message-ID': make_msgid(domain=get_mail_domain()),
+            **headers,
+        },
     )
+    email.attach_alternative(f'{html_message}', 'text/html')
+    email.send(fail_silently=False)
 
 
 def on_transaction_commit(func):
