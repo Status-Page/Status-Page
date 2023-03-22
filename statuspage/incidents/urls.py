@@ -7,7 +7,7 @@ from .models import Incident, IncidentUpdate, IncidentTemplate
 app_name = 'incidents'
 urlpatterns = [
     path('', views.IncidentListView.as_view(), name='incident_list'),
-    path('add/', views.IncidentEditView.as_view(), name='incident_add'),
+    path('add/', views.IncidentCreateView.as_view(), name='incident_add'),
     path('edit/', views.IncidentBulkEditView.as_view(), name='incident_bulk_edit'),
     path('delete/', views.IncidentBulkDeleteView.as_view(), name='incident_bulk_delete'),
     path('<int:pk>/', views.IncidentView.as_view(), name='incident'),

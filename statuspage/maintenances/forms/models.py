@@ -1,11 +1,14 @@
+from django import forms
+
 from statuspage.forms import StatusPageModelForm
 from statuspage.request_context import get_request
-from utilities.forms import StaticSelect, StaticSelectMultiple, DateTimePicker
+from utilities.forms import StaticSelect, StaticSelectMultiple, DateTimePicker, TailwindMixin
 from ..models import Maintenance, MaintenanceUpdate, MaintenanceTemplate
 from utilities.forms.fields import fields
 
 __all__ = (
     'MaintenanceForm',
+    'MaintenanceTemplateSelectForm',
     'MaintenanceUpdateForm',
     'MaintenanceTemplateForm',
 )
@@ -70,6 +73,15 @@ class MaintenanceForm(StatusPageModelForm):
             update.save()
 
         return maintenance
+
+
+class MaintenanceTemplateSelectForm(TailwindMixin, forms.Form):
+    template = forms.ModelChoiceField(
+        queryset=MaintenanceTemplate.objects.all(),
+        widget=StaticSelect(),
+        label='',
+        required=False,
+    )
 
 
 class MaintenanceUpdateForm(StatusPageModelForm):

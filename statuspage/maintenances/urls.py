@@ -7,7 +7,7 @@ from .models import Maintenance, MaintenanceUpdate, MaintenanceTemplate
 app_name = 'maintenances'
 urlpatterns = [
     path('', views.MaintenanceListView.as_view(), name='maintenance_list'),
-    path('add/', views.MaintenanceEditView.as_view(), name='maintenance_add'),
+    path('add/', views.MaintenanceCreateView.as_view(), name='maintenance_add'),
     path('edit/', views.MaintenanceBulkEditView.as_view(), name='maintenance_bulk_edit'),
     path('delete/', views.MaintenanceBulkDeleteView.as_view(), name='maintenance_bulk_delete'),
     path('<int:pk>/', views.MaintenanceView.as_view(), name='maintenance'),
