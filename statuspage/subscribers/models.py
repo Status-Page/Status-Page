@@ -74,7 +74,7 @@ class Subscriber(StatusPageModel):
         except:
             return None
 
-    def send_mail(self, subject, template, context=None, ignore_email_verification=False):
+    def send_mail(self, subject, template, context=None, ignore_email_verification=False, headers={}):
         if context is None:
             context = {}
         if not self.email_verified_at and not ignore_email_verification:
@@ -92,4 +92,5 @@ class Subscriber(StatusPageModel):
         message = render_to_string(f'emails/{template}.txt', extra_context)
         html_message = render_to_string(f'emails/{template}.html', extra_context)
 
-        django_rq.enqueue(send_mail, subject=subject, message=message, html_message=html_message, recipient_list=[self.email])
+        django_rq.enqueue(send_mail, subject=subject, message=message, html_message=html_message,
+                          recipient_list=[self.email], headers=headers)
