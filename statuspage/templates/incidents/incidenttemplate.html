@@ -5,7 +5,7 @@
 
 {% block extra_controls %}
   {% if perms.incidents.add_incidents %}
-    <a href="{% url 'incidents:incident_add' %}?{% if object.title %}title={{ object.title|urlencode }}{% endif %}{% if object.status %}&status={{ object.status }}{% endif %}{% if object.impact %}&impact={{ object.impact }}{% endif %}{% if object.visibility %}&visibility={{ object.visibility }}{% endif %}{% for component in object.components.all %}&components={{ component.pk }}{% endfor %}{% if object.update_component_status %}&update_component_status={{ object.update_component_status }}{% endif %}{% if object.text %}&text={{ object.text|urlencode }}{% endif %}" class="bg-green-500 hover:bg-green-400 text-white px-2 py-2 rounded-md font-medium" type="button">
+    <a href="{% url 'incidents:incident_add' %}?template={{ object.pk }}" class="bg-green-500 hover:bg-green-400 text-white px-2 py-2 rounded-md font-medium" type="button">
       <i class="mdi mdi-plus-thick"></i> Create Incident
     </a>
   {% endif %}
