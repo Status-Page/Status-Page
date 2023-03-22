@@ -1,6 +1,6 @@
 from statuspage.forms import StatusPageModelForm
 from statuspage.request_context import get_request
-from utilities.forms import StaticSelect, StaticSelectMultiple, DateTimePicker, TailwindMixin, add_blank_choice
+from utilities.forms import StaticSelect, StaticSelectMultiple, DateTimePicker, TailwindMixin
 from utilities.utils import get_component_status_from_incident_impact
 from ..models import Incident, IncidentUpdate, IncidentTemplate
 from utilities.forms.fields import fields
