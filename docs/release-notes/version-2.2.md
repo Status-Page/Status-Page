@@ -1,6 +1,6 @@
 # Status-Page v2.2
 
-## v2.2.1 (FUTURE)
+## v2.2.1 (2023-03-22)
 
 ### Features
 * Add Template Selector for Incident and Maintenance Creation

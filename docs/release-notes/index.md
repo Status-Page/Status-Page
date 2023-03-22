@@ -17,6 +17,7 @@ This page contains a history of all major and minor releases since v2.0.0. For m
 
 #### [Version 2.2](./version-2.2.md) (March 2023)
 * Maintenance and Incident Templates
+* Add Template Selector for Incident and Maintenance Creation
 
 #### [Version 2.1](./version-2.1.md) (February 2023)
 * Add bars to components that show incidents for the past 90 days
