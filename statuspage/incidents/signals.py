@@ -24,7 +24,8 @@ def send_notifications(sender, instance: Incident, **kwargs):
                 }, headers={
                     'Message-ID': f'incident-{instance.id}-0@{get_mail_domain()}',
                 })
-        except:
+        except Exception as e:
+            print(e)
             pass
 
 
@@ -56,5 +57,6 @@ def send_notifications(sender, instance: IncidentUpdate, **kwargs):
                     'Message-ID': message_id,
                     'References': ' '.join(previous_message_ids),
                 })
-        except:
+        except Exception as e:
+            print(e)
             pass
