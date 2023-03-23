@@ -3,6 +3,7 @@
 ## v2.2.3 (FUTURE)
 
 ### Bug Fixes
+* Make E-Mail Subject editable
 
 ---
 

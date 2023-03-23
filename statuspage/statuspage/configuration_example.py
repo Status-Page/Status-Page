@@ -110,6 +110,7 @@ EMAIL = {
     'USE_TLS': False,
     'TIMEOUT': 10,  # seconds
     'FROM_EMAIL': '',
+    'SUBJECT_PREFIX': '[Status-Page] ',
 }
 
 # IP addresses recognized as internal to the system. The debugging toolbar will be available only to clients accessing
