@@ -1,5 +1,13 @@
 # Status-Page v2.2
 
+## v2.2.3 (FUTURE)
+
+### Bug Fixes
+* E-Mail Threading
+* Creation E-Mails will be sent again
+
+---
+
 ## v2.2.2 (2023-03-23)
 
 ### Bug Fixes
