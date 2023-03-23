@@ -3,6 +3,8 @@
 ## v2.2.2 (FUTURE)
 
 ### Bug Fixes
+* E-Mail Threading
+* Creation E-Mails will be sent again
 
 ---
 
