@@ -17,3 +17,5 @@ gunicorn.py
 .coverage
 .vscode
 __pycache__
+
+django.mo
