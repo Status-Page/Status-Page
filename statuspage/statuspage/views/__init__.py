@@ -10,6 +10,7 @@ from django.db import IntegrityError
 from django.db.models import Q
 from django.shortcuts import redirect, render
 from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
 from django.views.decorators.csrf import requires_csrf_token
 from django.views.defaults import ERROR_500_TEMPLATE_NAME
 from django.template import loader
@@ -92,15 +93,19 @@ class HomeView(BaseView):
         maintenance_components = list(filter(lambda c: c.status == ComponentStatusChoices.MAINTENANCE, components))
 
         if len(maintenance_components) > 0:
-            status = ('bg-blue-200', 'text-blue-800', 'mdi-wrench text-blue-500', 'Some systems are undergoing maintenance')
+            status = ('bg-blue-200', 'text-blue-800', 'mdi-wrench text-blue-500', _('Some systems are undergoing '
+                                                                                    'maintenance'))
         elif len(major_components) > 0:
-            status = ('bg-red-200', 'text-red-800', 'mdi-alert-circle text-red-500', 'There is a major system outage')
+            status = ('bg-red-200', 'text-red-800', 'mdi-alert-circle text-red-500', _('There is a major system outage'))
         elif len(partial_components) > 0:
-            status = ('bg-orange-200', 'text-orange-800', 'mdi-alert-circle text-orange-500', 'There is a partial system outage')
+            status = ('bg-orange-200', 'text-orange-800', 'mdi-alert-circle text-orange-500', _('There is a partial '
+                                                                                                'system outage'))
         elif len(degraded_components) > 0:
-            status = ('bg-yellow-200', 'text-yellow-800', 'mdi-alert-circle text-yellow-500', 'Some systems are having perfomance issues')
+            status = ('bg-yellow-200', 'text-yellow-800', 'mdi-alert-circle text-yellow-500', _('Some systems are '
+                                                                                                'having perfomance '
+                                                                                                'issues'))
         else:
-            status = ('bg-green-200', 'text-green-800', 'mdi-check-circle text-green-500', 'All systems operational')
+            status = ('bg-green-200', 'text-green-800', 'mdi-check-circle text-green-500', _('All systems operational'))
 
         componentgroups_components = list(chain(component_groups, ungrouped_components))
 

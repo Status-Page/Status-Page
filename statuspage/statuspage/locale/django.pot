@@ -17,34 +17,30 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: components/choices.py:12
-msgid "Expand on Issue"
+#: statuspage/settings.py:250
+msgid "German"
 msgstr ""
 
-#: components/choices.py:13
-msgid "Always Expanded"
+#: statuspage/settings.py:251
+msgid "English"
 msgstr ""
 
-#: components/choices.py:28
-msgid "Unknown"
+#: statuspage/views/__init__.py:95
+msgid "Some systems are undergoing maintenance"
 msgstr ""
 
-#: components/choices.py:29
-msgid "Operational"
+#: statuspage/views/__init__.py:98
+msgid "There is a major system outage"
 msgstr ""
 
-#: components/choices.py:30
-msgid "Degraded Performance"
+#: statuspage/views/__init__.py:100
+msgid "There is a partial system outage"
 msgstr ""
 
-#: components/choices.py:31
-msgid "Partial Outage"
+#: statuspage/views/__init__.py:103
+msgid "Some systems are having perfomance issues"
 msgstr ""
 
-#: components/choices.py:32
-msgid "Major Outage"
-msgstr ""
-
-#: components/choices.py:33
-msgid "Maintenance"
+#: statuspage/views/__init__.py:107
+msgid "All systems operational"
 msgstr ""
