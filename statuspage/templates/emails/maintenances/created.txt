@@ -2,6 +2,9 @@ Hello!
 
 The maintenance "{{ maintenance.title }}" has been created.
 
+New Update:
+{% if update.new_status %}{{ update.get_status_display }}{% else %}Update{% endif %} - {{ update.text }}
+
 It has the following schedule:
 Begin: {{ maintenance.scheduled_at }}
 End: {{ maintenance.end_at }}

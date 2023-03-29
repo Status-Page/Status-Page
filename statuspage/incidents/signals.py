@@ -16,6 +16,7 @@ def send_incident_notifications(sender, instance: Incident, **kwargs):
 
     if is_new and instance.visibility:
         subscribers = Subscriber.objects.filter(incident_subscriptions=True)
+        update = instance.updates.first()
 
         for subscriber in subscribers:
             try:
@@ -23,6 +24,7 @@ def send_incident_notifications(sender, instance: Incident, **kwargs):
                     continue
                 subscriber.send_mail(subject=f'Incident - {instance.title}', template='incidents/created', context={
                     'incident': instance,
+                    'update': update,
                     'components': instance.components.filter(visibility=True),
                 }, headers={
                     'Message-ID': f'incident-{instance.id}-0@{get_mail_domain()}',
@@ -37,8 +39,9 @@ def send_incident_notifications(sender, instance: Incident, **kwargs):
 def send_incident_update_notifications(sender, instance: IncidentUpdate, **kwargs):
     logger = logging.getLogger('statuspage.incidents.signals')
     is_new = kwargs.get('created', False)
+    first_update = instance.created == instance.incident.created
 
-    if is_new and instance.incident.visibility:
+    if is_new and instance.incident.visibility and not first_update:
         subscribers = Subscriber.objects.filter(incident_subscriptions=True)
         message_id = f'incident-{instance.incident.id}-{instance.id}@{get_mail_domain()}'
         previous_message_ids = [

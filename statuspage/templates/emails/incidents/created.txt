@@ -1,6 +1,9 @@
 Hello!
 
 The incident "{{ incident.title }}" has been created with the impact "{{ incident.get_impact_display }}".
+
+New Update:
+{% if update.new_status %}{{ update.get_status_display }}{% else %}Update{% endif %} - {{ update.text }}
 {% if components|length > 0 %}
 
 The following components are affected:
