@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-29 15:33+0200\n"
-"PO-Revision-Date: 2023-03-29 13:54+0000\n"
+"PO-Revision-Date: 2023-03-29 14:06+0000\n"
 "Last-Translator: Tobias Peltzer <admin@herrtxbias.net>\n"
 "Language-Team: German <http://translate.status-page.dev/projects/status-page/"
 "incidents/de/>\n"
@@ -45,7 +45,7 @@ msgstr "Kleinere"
 
 #: incidents/choices.py:32
 msgid "Major"
-msgstr "Major"
+msgstr "Wesentlich"
 
 #: incidents/choices.py:33
 msgid "Critical"
