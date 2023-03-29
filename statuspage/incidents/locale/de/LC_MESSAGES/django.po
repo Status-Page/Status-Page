@@ -3,48 +3,50 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-29 15:33+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2023-03-29 13:54+0000\n"
+"Last-Translator: Tobias Peltzer <admin@herrtxbias.net>\n"
+"Language-Team: German <http://translate.status-page.dev/projects/status-page/"
+"incidents/de/>\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.16.2\n"
+
 #: incidents/choices.py:14
 msgid "Investigating"
-msgstr ""
+msgstr "Untersuchen"
 
 #: incidents/choices.py:15
 msgid "Identified"
-msgstr ""
+msgstr "Identifiziert"
 
 #: incidents/choices.py:16
 msgid "Monitoring"
-msgstr ""
+msgstr "Überwachung"
 
 #: incidents/choices.py:17
 msgid "Resolved"
-msgstr ""
+msgstr "Erledigt"
 
 #: incidents/choices.py:30
 msgid "None"
-msgstr ""
+msgstr "Keine"
 
 #: incidents/choices.py:31
 msgid "Minor"
-msgstr ""
+msgstr "Kleinere"
 
 #: incidents/choices.py:32
 msgid "Major"
-msgstr ""
+msgstr "Major"
 
 #: incidents/choices.py:33
 msgid "Critical"
-msgstr ""
+msgstr "Kritisch"
