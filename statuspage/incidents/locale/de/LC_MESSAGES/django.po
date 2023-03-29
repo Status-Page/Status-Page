@@ -16,31 +16,35 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-#: statuspage/settings.py:250
-msgid "German"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: incidents/choices.py:14
+msgid "Investigating"
 msgstr ""
 
-#: statuspage/settings.py:251
-msgid "English"
+#: incidents/choices.py:15
+msgid "Identified"
 msgstr ""
 
-#: statuspage/views/__init__.py:95
-msgid "Some systems are undergoing maintenance"
+#: incidents/choices.py:16
+msgid "Monitoring"
 msgstr ""
 
-#: statuspage/views/__init__.py:98
-msgid "There is a major system outage"
+#: incidents/choices.py:17
+msgid "Resolved"
 msgstr ""
 
-#: statuspage/views/__init__.py:100
-msgid "There is a partial system outage"
+#: incidents/choices.py:30
+msgid "None"
 msgstr ""
 
-#: statuspage/views/__init__.py:103
-msgid "Some systems are having perfomance issues"
+#: incidents/choices.py:31
+msgid "Minor"
 msgstr ""
 
-#: statuspage/views/__init__.py:107
-msgid "All systems operational"
+#: incidents/choices.py:32
+msgid "Major"
+msgstr ""
+
+#: incidents/choices.py:33
+msgid "Critical"
 msgstr ""
