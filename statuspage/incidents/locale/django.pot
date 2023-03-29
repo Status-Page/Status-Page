@@ -17,34 +17,34 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: components/choices.py:12
-msgid "Expand on Issue"
+#: incidents/choices.py:14
+msgid "Investigating"
 msgstr ""
 
-#: components/choices.py:13
-msgid "Always Expanded"
+#: incidents/choices.py:15
+msgid "Identified"
 msgstr ""
 
-#: components/choices.py:28
-msgid "Unknown"
+#: incidents/choices.py:16
+msgid "Monitoring"
 msgstr ""
 
-#: components/choices.py:29
-msgid "Operational"
+#: incidents/choices.py:17
+msgid "Resolved"
 msgstr ""
 
-#: components/choices.py:30
-msgid "Degraded Performance"
+#: incidents/choices.py:30
+msgid "None"
 msgstr ""
 
-#: components/choices.py:31
-msgid "Partial Outage"
+#: incidents/choices.py:31
+msgid "Minor"
 msgstr ""
 
-#: components/choices.py:32
-msgid "Major Outage"
+#: incidents/choices.py:32
+msgid "Major"
 msgstr ""
 
-#: components/choices.py:33
-msgid "Maintenance"
+#: incidents/choices.py:33
+msgid "Critical"
 msgstr ""
