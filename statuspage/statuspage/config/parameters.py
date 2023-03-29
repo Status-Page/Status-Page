@@ -31,6 +31,13 @@ PARAMS = (
 
     # Custom Styling
     ConfigParam(
+        name='HIDE_HISTORY_WHEN_EMPTY',
+        label='Hide Incident / Maintenance history when empty',
+        default=False,
+        field=forms.BooleanField,
+    ),
+
+    ConfigParam(
         name='CUSTOM_STYLE_HEADER',
         label='Header HTML',
         default='',

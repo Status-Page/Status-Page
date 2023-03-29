@@ -33,6 +33,7 @@ class HomeView(BaseView):
     template_name = 'home.html'
 
     def get(self, request):
+        config = get_config()
         component_groups = ComponentGroup.objects.filter(
             visibility=True,
         )
@@ -105,6 +106,11 @@ class HomeView(BaseView):
 
         metrics = Metric.objects.filter(visibility=True)
 
+        should_show_history = True
+        incident_sum = sum(list(map(lambda x: len(x[1]), resolved_incidents_maintenances)))
+        if incident_sum == 0 and config.HIDE_HISTORY_WHEN_EMPTY:
+            should_show_history = False
+
         return render(request, self.template_name, {
             'component_groups': component_groups,
             'ungrouped_components': ungrouped_components,
@@ -114,6 +120,7 @@ class HomeView(BaseView):
             'metrics': metrics,
             'upcoming_maintenances': upcoming_maintenances,
             'resolved_incidents_maintenances': resolved_incidents_maintenances,
+            'should_show_history': should_show_history,
         })
 
 
