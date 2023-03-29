@@ -5,6 +5,10 @@
   <div style="font-size: 1.125rem; line-height: 1.75rem;">Hello!</div>
   <div style="margin-top: 0.5rem;">The maintenance "{{ maintenance.title }}" has been created.</div>
   <div style="margin-top: 0.5rem;"></div>
+  <div style="margin-top: 0.5rem;">New Update:</div>
+  <div style="margin-top: 0.5rem;"><strong>{% if update.new_status %}{{ update.get_status_display }}{% else %}Update{% endif %}</strong> &mdash; {{ update.text }}</div>
+  <div style="margin-top: 0.5rem;"></div>
+  <div style="margin-top: 0.5rem;"></div>
   <div style="margin-top: 0.5rem;">It has the following schedule:</div>
   <div style="margin-top: 0.5rem;">Begin: {{ maintenance.scheduled_at }}</div>
   <div style="margin-top: 0.5rem;">End: {{ maintenance.end_at }}</div>

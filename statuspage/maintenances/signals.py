@@ -16,6 +16,7 @@ def send_maintenance_notifications(sender, instance: Maintenance, **kwargs):
 
     if is_new and instance.visibility:
         subscribers = Subscriber.objects.filter(incident_subscriptions=True)
+        update = instance.updates.first()
 
         for subscriber in subscribers:
             try:
@@ -23,6 +24,7 @@ def send_maintenance_notifications(sender, instance: Maintenance, **kwargs):
                     continue
                 subscriber.send_mail(subject=f'Maintenance - {instance.title}', template='maintenances/created', context={
                     'maintenance': instance,
+                    'update': update,
                     'components': instance.components.filter(visibility=True),
                 }, headers={
                     'Message-ID': f'maintenance-{instance.id}-0@{get_mail_domain()}',
@@ -37,8 +39,9 @@ def send_maintenance_notifications(sender, instance: Maintenance, **kwargs):
 def send_maintenance_update_notifications(sender, instance: MaintenanceUpdate, **kwargs):
     logger = logging.getLogger('statuspage.maintenances.signals')
     is_new = kwargs.get('created', False)
+    first_update = instance.created == instance.maintenance.created
 
-    if is_new and instance.maintenance.visibility:
+    if is_new and instance.maintenance.visibility and not first_update:
         subscribers = Subscriber.objects.filter(incident_subscriptions=True)
         message_id = f'maintenance-{instance.maintenance.id}-{instance.id}@{get_mail_domain()}'
         previous_message_ids = [
