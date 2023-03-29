@@ -6,7 +6,7 @@
   <div style="margin-top: 0.5rem;">The maintenance "{{ maintenance.title }}" has been updated.</div>
   <div style="margin-top: 0.5rem;"></div>
   <div style="margin-top: 0.5rem;">New Update:</div>
-  <div style="margin-top: 0.5rem;"><strong>{% if update.new_status %}{{ update.get_status_display }}{% else %}Update{% endif %}</strong> &mdash; {{ update.text }}</div>
+  <div style="margin-top: 0.5rem;"><strong>{% if update.new_status %}{{ update.get_status_display }}{% else %}Update{% endif %}</strong> &mdash; {{ update.text|markdown }}</div>
   <div style="margin-top: 0.5rem;"></div>
   {% if components|length > 0 %}
     <div style="margin-top: 0.5rem;">The following components are affected:</div>
