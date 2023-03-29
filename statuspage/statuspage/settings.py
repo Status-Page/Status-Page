@@ -195,6 +195,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django_otp.middleware.OTPMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -240,7 +241,7 @@ OTP_ADMIN_HIDE_SENSITIVE_DATA = True
 
 LANGUAGE_CODE = 'en-us'
 USE_I18N = True
-USE_L10N = False
+USE_L10N = True
 USE_TZ = True
 USE_DEPRECATED_PYTZ = True
 
