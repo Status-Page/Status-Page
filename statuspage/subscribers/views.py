@@ -31,6 +31,7 @@ class SubscriberView(generic.ObjectView):
             subscriber.send_mail(
                 subject=f'Verify your Subscription to {config.SITE_TITLE}',
                 template='subscribers/verification',
+                ignore_email_verification=True,
             )
             messages.success(request, 'Successfully resent verification mail.')
             return redirect('subscribers:subscriber', pk=subscriber.pk)
