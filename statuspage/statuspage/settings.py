@@ -7,7 +7,7 @@ from django.core.exceptions import ImproperlyConfigured
 
 from statuspage.config import PARAMS
 
-VERSION = '2.2.3'
+VERSION = '2.2.4-dev'
 
 HOSTNAME = platform.node()
 
