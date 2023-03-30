@@ -1,6 +1,6 @@
 import django_tables2 as tables
 
-from statuspage.tables import StatusPageTable, columns
+from statuspage.tables import StatusPageTable, columns, TruncatedTextColumn
 from .models import Maintenance, MaintenanceUpdate, MaintenanceTemplate
 
 
@@ -23,7 +23,7 @@ class MaintenanceTable(StatusPageTable):
 
 
 class MaintenanceUpdateTable(StatusPageTable):
-    text = tables.Column(
+    text = TruncatedTextColumn(
         linkify=True,
     )
     new_status = columns.BooleanColumn()
