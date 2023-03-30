@@ -66,5 +66,5 @@ class IncidentTemplateSerializer(StatusPageModelSerializer):
 
     class Meta:
         model = IncidentTemplate
-        fields = ('id', 'url', 'template_name', 'title', 'visibility', 'status', 'impact', 'user', 'components',
+        fields = ('id', 'url', 'template_name', 'title', 'visibility', 'status', 'impact', 'components',
                   'update_component_status', 'text')
