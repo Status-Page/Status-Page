@@ -9,6 +9,7 @@ from django.template.defaultfilters import date
 from django.urls import NoReverseMatch, reverse
 from django.utils import timezone
 from django.utils.safestring import mark_safe
+from django.utils.timezone import make_aware
 
 from components.models import Component
 from incidents.choices import IncidentImpactChoices
@@ -245,24 +246,26 @@ def get_historic_status(value: Component) -> Any:
     Template to returm historic status
     """
     num_days = 90
-    start_date = datetime.date.today() + datetime.timedelta(days=1)
+    today = make_aware(datetime.datetime.today())
+    start_date = today + datetime.timedelta(days=1)
     end_date = start_date - datetime.timedelta(days=num_days)
 
     date_list = [end_date + datetime.timedelta(days=x) for x in range(num_days)]
+    component_incidents = value.incidents.all()
     date_incidents = []
     for date in date_list:
         end = date + datetime.timedelta(days=1)
-        incidents = value.incidents.filter(created__gte=date, created__lte=end)
+        incidents = list(filter(lambda i: date <= i.created <= end, component_incidents))
 
         hover_color = 'hover:bg-green-600'
         color = 'bg-green-500'
-        if len(incidents.filter(impact=IncidentImpactChoices.MINOR)) > 0:
+        if len(list(filter(lambda i: i.impcat == IncidentImpactChoices.MINOR, incidents))) > 0:
             hover_color = 'hover:bg-yellow-600'
             color = 'bg-yellow-500'
-        if len(incidents.filter(impact=IncidentImpactChoices.MAJOR)) > 0:
+        if len(list(filter(lambda i: i.impcat == IncidentImpactChoices.MAJOR, incidents))) > 0:
             hover_color = 'hover:bg-orange-600'
             color = 'bg-orange-500'
-        if len(incidents.filter(impact=IncidentImpactChoices.CRITICAL)) > 0:
+        if len(list(filter(lambda i: i.impcat == IncidentImpactChoices.CRITICAL, incidents))) > 0:
             hover_color = 'hover:bg-red-600'
             color = 'bg-red-500'
 

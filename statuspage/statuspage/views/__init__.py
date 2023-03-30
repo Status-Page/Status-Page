@@ -7,7 +7,7 @@ import requests
 from django.conf import settings
 from django.contrib import messages
 from django.db import IntegrityError
-from django.db.models import Q
+from django.db.models import Q, Prefetch
 from django.shortcuts import redirect, render
 from django.utils import timezone
 from django.views.decorators.csrf import requires_csrf_token
@@ -34,10 +34,11 @@ class HomeView(BaseView):
 
     def get(self, request):
         config = get_config()
-        component_groups = ComponentGroup.objects.filter(
-            visibility=True,
-        )
-        ungrouped_components = Component.objects.filter(component_group=None)
+        component_groups = ComponentGroup.objects.filter(visibility=True)\
+            .prefetch_related(Prefetch('components', queryset=Component.objects.filter(visibility=True)),
+                              Prefetch('components__incidents', queryset=Incident.objects.filter(visibility=True)))
+        ungrouped_components = Component.objects.filter(component_group=None, visibility=True)\
+            .prefetch_related(Prefetch('incidents', queryset=Incident.objects.filter(visibility=True)))
 
         open_incidents = Incident.objects.filter(
             ~Q(status=IncidentStatusChoices.RESOLVED),
