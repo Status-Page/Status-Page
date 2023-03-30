@@ -26,6 +26,7 @@ __all__ = (
     'TemplateColumn',
     'ToggleColumn',
     'UtilizationColumn',
+    'TruncatedTextColumn',
 )
 
 
@@ -394,3 +395,11 @@ class MarkdownColumn(tables.TemplateColumn):
 
     def value(self, value):
         return value
+
+
+class TruncatedTextColumn(tables.Column):
+    """A Column to limit to 100 characters and add an ellipsis"""
+    def render(self, value):
+        if len(value) > 52:
+            return value[0:49] + '...'
+        return str(value)
