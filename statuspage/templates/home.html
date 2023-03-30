@@ -26,7 +26,7 @@
                   {% endif %}
                 </div>
                 <div>&mdash;</div>
-                <div>{{ update.text|markdown }}</div>
+                <div class="break-words">{{ update.text|markdown }}</div>
               </div>
               <div class="text-gray-400">
                 {{ update.created }} by {% if update.user.get_full_name %}
