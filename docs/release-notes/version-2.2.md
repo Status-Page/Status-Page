@@ -1,9 +1,10 @@
 # Status-Page v2.2
 
-## v2.2.3 (FUTURE)
+## v2.2.3 (2023-03-30)
 
 ### Bug Fixes
 * Make E-Mail Subject editable
+* Multiple bug fixes and performance improvements
 
 ---
 
