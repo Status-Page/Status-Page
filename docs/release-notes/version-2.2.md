@@ -1,8 +1,10 @@
 # Status-Page v2.2
 
-## v2.2.4 (FUTURE)
+## v2.2.4 (2023-03-30)
 
 ### Bug Fixes
+* Line Break fixes
+* Typo fixes
 
 ---
 
