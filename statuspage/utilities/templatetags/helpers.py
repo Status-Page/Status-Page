@@ -259,13 +259,13 @@ def get_historic_status(value: Component) -> Any:
 
         hover_color = 'hover:bg-green-600'
         color = 'bg-green-500'
-        if len(list(filter(lambda i: i.impcat == IncidentImpactChoices.MINOR, incidents))) > 0:
+        if len(list(filter(lambda i: i.impact == IncidentImpactChoices.MINOR, incidents))) > 0:
             hover_color = 'hover:bg-yellow-600'
             color = 'bg-yellow-500'
-        if len(list(filter(lambda i: i.impcat == IncidentImpactChoices.MAJOR, incidents))) > 0:
+        if len(list(filter(lambda i: i.impact == IncidentImpactChoices.MAJOR, incidents))) > 0:
             hover_color = 'hover:bg-orange-600'
             color = 'bg-orange-500'
-        if len(list(filter(lambda i: i.impcat == IncidentImpactChoices.CRITICAL, incidents))) > 0:
+        if len(list(filter(lambda i: i.impact == IncidentImpactChoices.CRITICAL, incidents))) > 0:
             hover_color = 'hover:bg-red-600'
             color = 'bg-red-500'
 
