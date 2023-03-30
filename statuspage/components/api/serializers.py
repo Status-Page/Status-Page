@@ -28,7 +28,9 @@ class ComponentSerializer(StatusPageModelSerializer):
         choices=ComponentStatusChoices,
         default=ComponentStatusChoices.OPERATIONAL
     )
-    component_group = NestedComponentGroupSerializer()
+    component_group = NestedComponentGroupSerializer(
+        required=False
+    )
 
     class Meta:
         model = Component
