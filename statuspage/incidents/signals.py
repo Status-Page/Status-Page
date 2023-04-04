@@ -27,7 +27,7 @@ def send_incident_notifications(sender, instance: Incident, **kwargs):
                     'update': update,
                     'components': instance.components.filter(visibility=True),
                 }, headers={
-                    'Message-ID': f'incident-{instance.id}-0-{subscriber.id}@{get_mail_domain()}',
+                    'Message-ID': f'<incident-{instance.id}-0-{subscriber.id}@{get_mail_domain()}>',
                 })
             except Exception as e:
                 logger.error(e)
@@ -45,11 +45,11 @@ def send_incident_update_notifications(sender, instance: IncidentUpdate, **kwarg
         subscribers = Subscriber.objects.filter(incident_subscriptions=True)
 
         for subscriber in subscribers:
-            message_id = f'incident-{instance.incident.id}-{instance.id}-{subscriber.id}@{get_mail_domain()}'
+            message_id = f'<incident-{instance.incident.id}-{instance.id}-{subscriber.id}@{get_mail_domain()}>'
             previous_message_ids = [
-                f'incident-{instance.incident.id}-0-{subscriber.id}@{get_mail_domain()}',
+                f'<incident-{instance.incident.id}-0-{subscriber.id}@{get_mail_domain()}>',
                 *list(map(
-                    lambda update: f'incident-{instance.incident.id}-{update.id}-{subscriber.id}@{get_mail_domain()}',
+                    lambda update: f'<incident-{instance.incident.id}-{update.id}-{subscriber.id}@{get_mail_domain()}>',
                     instance.incident.updates.all()
                 ))
             ]
