@@ -27,7 +27,7 @@ def send_maintenance_notifications(sender, instance: Maintenance, **kwargs):
                     'update': update,
                     'components': instance.components.filter(visibility=True),
                 }, headers={
-                    'Message-ID': f'maintenance-{instance.id}-0-{subscriber.id}@{get_mail_domain()}',
+                    'Message-ID': f'<maintenance-{instance.id}-0-{subscriber.id}@{get_mail_domain()}>',
                 })
             except Exception as e:
                 logger.error(e)
@@ -45,11 +45,11 @@ def send_maintenance_update_notifications(sender, instance: MaintenanceUpdate, *
         subscribers = Subscriber.objects.filter(incident_subscriptions=True)
 
         for subscriber in subscribers:
-            message_id = f'maintenance-{instance.maintenance.id}-{instance.id}-{subscriber.id}@{get_mail_domain()}'
+            message_id = f'<maintenance-{instance.maintenance.id}-{instance.id}-{subscriber.id}@{get_mail_domain()}>'
             previous_message_ids = [
-                f'maintenance-{instance.maintenance.id}-0-{subscriber.id}@{get_mail_domain()}',
+                f'<maintenance-{instance.maintenance.id}-0-{subscriber.id}@{get_mail_domain()}>',
                 *list(map(
-                    lambda update: f'maintenance-{instance.maintenance.id}-{update.id}-{subscriber.id}@{get_mail_domain()}',
+                    lambda update: f'<maintenance-{instance.maintenance.id}-{update.id}-{subscriber.id}@{get_mail_domain()}>',
                     instance.maintenance.updates.all()
                 ))
             ]
