@@ -3,6 +3,7 @@
 ## v2.2.5 (FUTURE)
 
 ### Bug Fixes
+* fix all emails
 
 ---
 
