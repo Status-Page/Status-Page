@@ -1,11 +1,41 @@
-{% extends 'base/dashboard.html' %}
+{% extends 'generic/object.html' %}
 {% load buttons %}
 {% load static %}
+{% load helpers %}
 
-{% block title %}
-{{ object|meta:"verbose_name"|bettertitle }}: {{ object.title }}
-{% endblock %}
-
-{% block dashboard_content %}
-  Maintenance Update
+{% block page_full %}
+  <div class="grow bg-zinc-100 dark:bg-zinc-800 p-2 space-y-2 ring-1 ring-zinc-500 rounded-md shadow-lg">
+    <div class="text-2xl">Maintenance Update</div>
+    <div class="px-4">
+      <table class="text-left w-full">
+        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+          <tr>
+            <th scope="row" class="pr-6 py-1">New Status</th>
+            <td>{% checkmark object.new_status %}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="pr-6 py-1">Status</th>
+            <td>{{ object.get_status_display }}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="pr-6 py-1">User</th>
+            <td>
+              {% if object.user.get_full_name %}
+                {{ object.user.get_full_name }} ({{ object.user.username }})
+              {% else %}
+                {{ object.user.username }}
+              {% endif %}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <div class="border-b border-zinc-500"></div>
+      <div>Update Text:</div>
+      <div>
+        {{ object.text|markdown }}
+      </div>
+    </div>
+  </div>
 {% endblock %}

@@ -5,6 +5,7 @@
 ### Bug Fixes
 * fix all emails
 * make templates selectable in incident / maintenance edit
+* add templates for incident and maintenance update
 
 ---
 
