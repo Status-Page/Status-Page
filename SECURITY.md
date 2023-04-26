@@ -6,6 +6,7 @@ We provide the following Versions with Security Updates:
 
 | Version  | Supported          | Until          |
 |----------|--------------------|----------------|
+| 2.2.x    | :white_check_mark: | Further notice |
 | 2.1.x    | :white_check_mark: | Further notice |
 | 2.0.x    | :white_check_mark: | Further notice |
 | 1.10.x   | :warning:          | Jul 8, 2023    |
