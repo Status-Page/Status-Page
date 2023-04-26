@@ -40,7 +40,7 @@ class MaintenanceView(generic.ObjectView, ActionsMixin):
 class MaintenanceCreateView(generic.ObjectEditView):
     queryset = Maintenance.objects.filter()
     form = forms.MaintenanceForm
-    template_name = 'maintenances/maintenance_create.html'
+    template_name = 'maintenances/maintenance_edit.html'
 
     def get_extra_context(self, request, instance: Maintenance):
         template_form = forms.MaintenanceTemplateSelectForm(initial={
@@ -72,6 +72,33 @@ class MaintenanceCreateView(generic.ObjectEditView):
 class MaintenanceEditView(generic.ObjectEditView):
     queryset = Maintenance.objects.filter()
     form = forms.MaintenanceForm
+    template_name = 'maintenances/maintenance_edit.html'
+
+    def get_extra_context(self, request, instance: Maintenance):
+        template_form = forms.MaintenanceTemplateSelectForm(initial={
+            'template': request.GET.get('template', None)
+        })
+
+        selected_template_id = request.GET.get('template', None)
+        if selected_template_id:
+            selected_template = MaintenanceTemplate.objects.get(pk=selected_template_id)
+            form = forms.MaintenanceForm(instance=instance, initial={
+                'title': selected_template.title,
+                'status': selected_template.status,
+                'impact': selected_template.impact,
+                'visibility': selected_template.visibility,
+                'components': selected_template.components.all(),
+                'update_component_status': selected_template.update_component_status,
+                'text': selected_template.text,
+            })
+            return {
+                'form': form,
+                'template_form': template_form,
+            }
+
+        return {
+            'template_form': template_form,
+        }
 
 
 class MaintenanceDeleteView(generic.ObjectDeleteView):
