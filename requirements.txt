@@ -8,7 +8,7 @@ django-mptt==0.14.0
 django-otp-yubikey==1.0.1
 django-otp==1.1.6
 django-redis==5.2.0
-django-rq==2.7.0
+django-rq==2.8.0
 django-tables2==2.4.1
 django==4.1.7
 django_browser_reload==1.6.0
@@ -21,7 +21,9 @@ mkdocstrings[python-legacy]==0.20.0
 netaddr==0.8.0
 phonenumbers==8.13.7
 psycopg2==2.9.5
-rq-scheduler==0.11.0
+# Should fix the ImportError bug
+rq==1.13.0
+rq-scheduler==0.13.0
 segno==1.5.2
 swagger-spec-validator==3.0.3
 typing-extensions==4.4.0
