@@ -21,6 +21,8 @@ mkdocstrings[python-legacy]==0.20.0
 netaddr==0.8.0
 phonenumbers==8.13.7
 psycopg2==2.9.5
+# Should fix the ImportError bug
+rq==1.13.0
 rq-scheduler==0.13.0
 segno==1.5.2
 swagger-spec-validator==3.0.3
