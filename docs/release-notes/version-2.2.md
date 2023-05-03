@@ -3,6 +3,7 @@
 ## v2.2.6 (FUTURE)
 
 ### Bug Fixes
+* improve historic status display
 
 ---
 
