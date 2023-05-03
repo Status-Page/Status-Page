@@ -121,6 +121,41 @@ PARAMS = (
         field=forms.CharField,
     ),
 
+    # Banners
+    ConfigParam(
+        name='BANNER_LOGIN',
+        label='Login banner',
+        default='',
+        description="Additional content to display on the login page",
+        field_kwargs={
+            'widget': forms.Textarea(
+                attrs={'class': 'vLargeTextField'}
+            ),
+        },
+    ),
+    ConfigParam(
+        name='BANNER_TOP',
+        label='Top banner',
+        default='',
+        description="Additional content to display at the top of every page",
+        field_kwargs={
+            'widget': forms.Textarea(
+                attrs={'class': 'vLargeTextField'}
+            ),
+        },
+    ),
+    ConfigParam(
+        name='BANNER_BOTTOM',
+        label='Bottom banner',
+        default='',
+        description="Additional content to display at the bottom of every page",
+        field_kwargs={
+            'widget': forms.Textarea(
+                attrs={'class': 'vLargeTextField'}
+            ),
+        },
+    ),
+
     # Pagination
     ConfigParam(
         name='PAGINATE_COUNT',
