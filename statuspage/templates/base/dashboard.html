@@ -153,7 +153,19 @@
     </header>
     <main class="grow">
       <div class="mx-auto py-4 sm:px-6 lg:px-8 dark:text-white">
+        {% if config.BANNER_TOP %}
+          <div class="text-center mx-3">
+            {{ config.BANNER_TOP|safe }}
+          </div>
+        {% endif %}
+
         {% block dashboard_content %}{% endblock %}
+
+        {% if config.BANNER_BOTTOM %}
+          <div class="text-center mx-3 my-4">
+            {{ config.BANNER_BOTTOM|safe }}
+          </div>
+        {% endif %}
       </div>
     </main>
     <footer class="py-4 px-8 text-gray-500 dark:text-gray-300">

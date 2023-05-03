@@ -22,6 +22,10 @@ class ConfigRevisionAdmin(admin.ModelAdmin):
         ('Security', {
             'fields': ('ALLOWED_URL_SCHEMES', 'CAPTCHA_PROVIDER', 'CAPTCHA_PUBLIC_KEY', 'CAPTCHA_PRIVATE_KEY',),
         }),
+        ('Banners', {
+            'fields': ('BANNER_LOGIN', 'BANNER_TOP', 'BANNER_BOTTOM'),
+            'classes': ('monospace',),
+        }),
         ('Pagination', {
             'fields': ('PAGINATE_COUNT', 'MAX_PAGE_SIZE'),
         }),
