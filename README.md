@@ -11,7 +11,7 @@
     <a href="https://www.codacy.com/gh/Status-Page/Status-Page/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Status-Page/Status-Page&amp;utm_campaign=Badge_Grade"><img src="https://app.codacy.com/project/badge/Grade/250b53ad99ca432cbac8d761a975b34d"/></a>
 </p>
 
-# Overview
+## Overview
 - Components
 - Report incidents
 - JSON API
@@ -21,7 +21,7 @@
 - Subscriptions for Notifications
 - Custom Plugins
 
-# Requirements
+## Requirements
 | Dependency       | Minimum Version | Optional |
 |------------------|-----------------|----------|
 | Python           | 3.10            | no       |
@@ -29,8 +29,11 @@
 | Redis            | 4.0             | no       |
 | SMTP Mail Server | ---             | yes      |
 
-# Installation & Updates
+## Installation & Updates
 Please have a look at our [Documentation](https://docs.status-page.dev/).
+
+## Public Demo
+We have a public Demo available: https://demo.status-page.dev
 
 ## Versioning
 We use semantic versioning. A version number has the following structure:
