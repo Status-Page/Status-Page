@@ -10,11 +10,13 @@ from django.urls import NoReverseMatch, reverse
 from django.utils import timezone
 from django.utils.safestring import mark_safe
 from django.utils.timezone import make_aware
+from pysvg.structure import Svg
 
 from components.models import Component
 from incidents.choices import IncidentImpactChoices
 from utilities.forms import get_selected_values
 from utilities.forms.forms import TableConfigForm
+from utilities.pysvg_helpers import create_rect
 from utilities.utils import get_viewname
 
 register = template.Library()
@@ -243,7 +245,7 @@ def get_visible_components(value: any) -> Any:
 @register.filter
 def get_historic_status(value: Component) -> Any:
     """
-    Template to returm historic status
+    Template to return historic status
     """
     num_days = 90
     today = make_aware(datetime.datetime.today())
@@ -252,30 +254,35 @@ def get_historic_status(value: Component) -> Any:
 
     date_list = [end_date + datetime.timedelta(days=x) for x in range(num_days)]
     component_incidents = value.incidents.all()
-    date_incidents = []
-    for date in date_list:
+
+    status_svg = Svg(width=816, height=34)
+
+    for index, date in enumerate(date_list):
         end = date + datetime.timedelta(days=1)
         incidents = list(filter(lambda i: date <= i.created <= end, component_incidents))
 
-        hover_color = 'hover:bg-green-600'
-        color = 'bg-green-500'
-        if len(list(filter(lambda i: i.impact == IncidentImpactChoices.MINOR, incidents))) > 0:
-            hover_color = 'hover:bg-yellow-600'
-            color = 'bg-yellow-500'
-        if len(list(filter(lambda i: i.impact == IncidentImpactChoices.MAJOR, incidents))) > 0:
-            hover_color = 'hover:bg-orange-600'
-            color = 'bg-orange-500'
         if len(list(filter(lambda i: i.impact == IncidentImpactChoices.CRITICAL, incidents))) > 0:
-            hover_color = 'hover:bg-red-600'
-            color = 'bg-red-500'
+            status_svg.addElement(create_rect(index=index,
+                                              date=date,
+                                              incidents=len(incidents),
+                                              fill="rgb(239, 68, 68)"))
+        elif len(list(filter(lambda i: i.impact == IncidentImpactChoices.MAJOR, incidents))) > 0:
+            status_svg.addElement(create_rect(index=index,
+                                              date=date,
+                                              incidents=len(incidents),
+                                              fill="rgb(249, 115, 22)"))
+        elif len(list(filter(lambda i: i.impact == IncidentImpactChoices.MINOR, incidents))) > 0:
+            status_svg.addElement(create_rect(index=index,
+                                              date=date,
+                                              incidents=len(incidents),
+                                              fill="rgb(234, 179, 8)"))
+        else:
+            status_svg.addElement(create_rect(index=index,
+                                              date=date,
+                                              incidents=len(incidents),
+                                              fill="rgb(34, 197, 94)"))
 
-        date_incidents.append({
-            'date': date,
-            'hover_color': hover_color,
-            'color': color,
-            'incidents': incidents
-        })
-    return date_incidents
+    return mark_safe(status_svg.getXML())
 
 
 @register.filter

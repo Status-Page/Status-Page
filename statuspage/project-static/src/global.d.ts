@@ -1,3 +1,5 @@
+import {Instance} from "@popperjs/core";
+
 type Primitives = string | number | boolean | undefined | null;
 
 type JSONAble = Primitives | Primitives[] | { [k: string]: JSONAble } | JSONAble[];
@@ -162,3 +164,8 @@ type UserPreferences = {
     showRackImages: boolean;
   };
 };
+
+// @ts-ignore
+declare global {
+    interface Window { globalPopper: Instance; }
+}

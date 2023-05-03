@@ -94,12 +94,8 @@
                   </div>
                   {% if component.show_historic_incidents %}
                     <div class="px-2 py-2">
-                      <div class="flex flex-row justify-around space-x-1">
-                        {% for date in component|get_historic_status %}
-                          <div data-tooltip="{{ date.date }}<br>Incident amount: {{ date.incidents|length }}">
-                            <div class="{{ date.color }} {{ date.hover_color }}" style="width: 5px; height: 2rem;"></div>
-                          </div>
-                        {% endfor %}
+                      <div class="flex justify-center">
+                        {{ component|get_historic_status }}
                       </div>
                       <div class="px-1 flex flex-row items-center space-x-4 text-gray-600 dark:text-gray-500">
                         <div class="shrink-0">90 days ago</div>
@@ -131,12 +127,8 @@
             </div>
             {% if component.show_historic_incidents %}
               <div class="px-2 py-2">
-                <div class="flex flex-row justify-around space-x-1">
-                  {% for date in component|get_historic_status %}
-                    <div data-tooltip="{{ date.date }}<br>Incident amount: {{ date.incidents|length }}">
-                      <div class="{{ date.color }} {{ date.hover_color }}" style="width: 5px; height: 2rem;"></div>
-                    </div>
-                  {% endfor %}
+                <div class="flex justify-center">
+                  {{ component|get_historic_status }}
                 </div>
                 <div class="px-1 flex flex-row items-center space-x-4 text-gray-600 dark:text-gray-500">
                   <div class="shrink-0">90 days ago</div>
