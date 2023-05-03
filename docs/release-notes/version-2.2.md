@@ -1,6 +1,6 @@
 # Status-Page v2.2
 
-## v2.2.6 (FUTURE)
+## v2.2.6 (2023-05-03)
 
 ### Bug Fixes
 * improve historic status display
