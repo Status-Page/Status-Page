@@ -76,7 +76,7 @@
                     </div>
                     {% if request.user.is_staff %}
                       <div class="py-1" role="none">
-                          <a href="{% url 'admin:index' %}" class="{% dashboard_dropdown_active 'admin:index' %} block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1">Admin {% badge '2FA Required' %}</a>
+                          <a href="{% url 'admin:index' %}" class="{% dashboard_dropdown_active 'admin:index' %} block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1">Admin</a>
                       </div>
                     {% endif %}
                     {% if perms.extras.view_objectchange %}
@@ -132,7 +132,7 @@
             <a href="{% url 'users:token_list' %}" class="{% dashboard_link_active 'users:token_list' %} block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-indigo-500 hover:bg-opacity-75">API Tokens</a>
             <a href="{% url 'users:device_list' %}" class="{% dashboard_link_active 'users:device_list' %} block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-indigo-500 hover:bg-opacity-75">2FA Devices</a>
             {% if request.user.is_staff %}
-              <a href="{% url 'admin:index' %}" class="{% dashboard_link_active 'admin:index' %} block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-indigo-500 hover:bg-opacity-75">Admin {% badge '2FA Required' %}</a>
+              <a href="{% url 'admin:index' %}" class="{% dashboard_link_active 'admin:index' %} block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-indigo-500 hover:bg-opacity-75">Admin</a>
             {% endif %}
             {% if perms.extras.view_objectchange %}
               <a href="{% url 'extras:objectchange_list' %}" class="{% dashboard_link_active 'extras:objectchange_list' %} block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-indigo-500 hover:bg-opacity-75">Changelog</a>

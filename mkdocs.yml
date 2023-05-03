@@ -69,6 +69,8 @@ nav:
         - Upgrading Status-Page: 'installation/upgrading.md'
     - Configuration:
         - Captcha: 'configuration/captcha.md'
+    - Important Notes:
+        - Captcha: 'important-notes/admin-panel.md'
     - Release Notes:
         - Overview: 'release-notes/index.md'
         - Version 2.2: 'release-notes/version-2.2.md'
