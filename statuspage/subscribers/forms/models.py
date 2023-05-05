@@ -1,4 +1,6 @@
 from django import forms
+from django.forms import fields
+from django.utils import timezone
 
 from components.models import Component
 from statuspage.forms import StatusPageModelForm
@@ -15,8 +17,14 @@ __all__ = (
 class SubscriberForm(StatusPageModelForm):
     fieldsets = (
         ('Subscriber', (
-            'email',
+            'email', 'verification_mail',
         )),
+    )
+
+    verification_mail = fields.BooleanField(
+        label='Send Verification E-Mail',
+        initial=True,
+        required=False,
     )
 
     class Meta:
@@ -24,6 +32,11 @@ class SubscriberForm(StatusPageModelForm):
         fields = (
             'email',
         )
+
+    def save(self, **kwargs):
+        if not self.cleaned_data['verification_mail']:
+            self.instance.email_verified_at = timezone.now()
+        return super().save(**kwargs)
 
 
 class PublicSubscriberForm(TailwindMixin, forms.Form):
