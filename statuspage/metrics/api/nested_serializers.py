@@ -11,7 +11,7 @@ class NestedMetricSerializer(WritableNestedSerializer):
 
     class Meta:
         model = Metric
-        fields = ('id', 'url', 'display', 'suffix', 'visibility', 'order')
+        fields = ('id', 'url', 'display', 'suffix', 'visibility', 'order', 'created', 'last_updated')
 
 
 class NestedMetricPointSerializer(WritableNestedSerializer):
@@ -21,4 +21,4 @@ class NestedMetricPointSerializer(WritableNestedSerializer):
 
     class Meta:
         model = MetricPoint
-        fields = ('id', 'url', 'display', 'value')
+        fields = ('id', 'url', 'display', 'value', 'created', 'last_updated')

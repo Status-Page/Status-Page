@@ -12,7 +12,7 @@ class MetricSerializer(StatusPageModelSerializer):
 
     class Meta:
         model = Metric
-        fields = ('id', 'url', 'title', 'suffix', 'visibility', 'order', 'expand')
+        fields = ('id', 'url', 'title', 'suffix', 'visibility', 'order', 'expand', 'created', 'last_updated')
 
 
 class MetricPointSerializer(StatusPageModelSerializer):
@@ -23,4 +23,4 @@ class MetricPointSerializer(StatusPageModelSerializer):
 
     class Meta:
         model = MetricPoint
-        fields = ('id', 'url', 'metric', 'value')
+        fields = ('id', 'url', 'metric', 'value', 'created', 'last_updated')

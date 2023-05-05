@@ -28,7 +28,8 @@ class IncidentSerializer(StatusPageModelSerializer):
 
     class Meta:
         model = Incident
-        fields = ('id', 'url', 'title', 'visibility', 'status', 'impact', 'user', 'components')
+        fields = ('id', 'url', 'title', 'visibility', 'status', 'impact', 'user', 'components', 'created',
+                  'last_updated')
 
 
 class IncidentUpdateSerializer(StatusPageModelSerializer):
@@ -44,7 +45,7 @@ class IncidentUpdateSerializer(StatusPageModelSerializer):
 
     class Meta:
         model = IncidentUpdate
-        fields = ('id', 'url', 'text', 'new_status', 'incident', 'status', 'user')
+        fields = ('id', 'url', 'text', 'new_status', 'incident', 'status', 'user', 'created', 'last_updated')
 
 
 class IncidentTemplateSerializer(StatusPageModelSerializer):
@@ -67,4 +68,4 @@ class IncidentTemplateSerializer(StatusPageModelSerializer):
     class Meta:
         model = IncidentTemplate
         fields = ('id', 'url', 'template_name', 'title', 'visibility', 'status', 'impact', 'components',
-                  'update_component_status', 'text')
+                  'update_component_status', 'text', 'created', 'last_updated')

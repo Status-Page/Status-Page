@@ -11,7 +11,7 @@ class NestedIncidentSerializer(WritableNestedSerializer):
 
     class Meta:
         model = Incident
-        fields = ('id', 'url', 'display', 'title', 'status', 'impact')
+        fields = ('id', 'url', 'display', 'title', 'status', 'impact', 'created', 'last_updated')
 
 
 class NestedIncidentUpdateSerializer(WritableNestedSerializer):
@@ -21,7 +21,7 @@ class NestedIncidentUpdateSerializer(WritableNestedSerializer):
 
     class Meta:
         model = IncidentUpdate
-        fields = ('id', 'url', 'display', 'text', 'new_status', 'status')
+        fields = ('id', 'url', 'display', 'text', 'new_status', 'status', 'created', 'last_updated')
 
 
 class NestedIncidentTemplateSerializer(WritableNestedSerializer):
@@ -31,4 +31,4 @@ class NestedIncidentTemplateSerializer(WritableNestedSerializer):
 
     class Meta:
         model = IncidentTemplate
-        fields = ('id', 'url', 'display', 'template_name', 'title', 'status', 'impact')
+        fields = ('id', 'url', 'display', 'template_name', 'title', 'status', 'impact', 'created', 'last_updated')

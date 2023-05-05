@@ -11,7 +11,7 @@ class NestedMaintenanceSerializer(WritableNestedSerializer):
 
     class Meta:
         model = Maintenance
-        fields = ('id', 'url', 'display', 'title', 'status', 'impact')
+        fields = ('id', 'url', 'display', 'title', 'status', 'impact', 'created', 'last_updated')
 
 
 class NestedMaintenanceUpdateSerializer(WritableNestedSerializer):
@@ -21,7 +21,7 @@ class NestedMaintenanceUpdateSerializer(WritableNestedSerializer):
 
     class Meta:
         model = MaintenanceUpdate
-        fields = ('id', 'url', 'display', 'text', 'new_status', 'status')
+        fields = ('id', 'url', 'display', 'text', 'new_status', 'status', 'created', 'last_updated')
 
 
 class NestedMaintenanceTemplateSerializer(WritableNestedSerializer):
@@ -31,4 +31,4 @@ class NestedMaintenanceTemplateSerializer(WritableNestedSerializer):
 
     class Meta:
         model = MaintenanceTemplate
-        fields = ('id', 'url', 'display', 'template_name', 'title', 'status', 'impact')
+        fields = ('id', 'url', 'display', 'template_name', 'title', 'status', 'impact', 'created', 'last_updated')

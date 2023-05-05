@@ -17,7 +17,7 @@ class ComponentGroupSerializer(StatusPageModelSerializer):
 
     class Meta:
         model = ComponentGroup
-        fields = ('id', 'url', 'name', 'description', 'visibility', 'order', 'collapse')
+        fields = ('id', 'url', 'name', 'description', 'visibility', 'order', 'collapse', 'created', 'last_updated')
 
 
 class ComponentSerializer(StatusPageModelSerializer):
@@ -35,4 +35,4 @@ class ComponentSerializer(StatusPageModelSerializer):
     class Meta:
         model = Component
         fields = ('id', 'url', 'name', 'link', 'description', 'component_group', 'show_historic_incidents',
-                  'visibility', 'status', 'order')
+                  'visibility', 'status', 'order', 'created', 'last_updated')
