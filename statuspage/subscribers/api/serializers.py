@@ -16,4 +16,5 @@ class SubscriberSerializer(StatusPageModelSerializer):
 
     class Meta:
         model = Subscriber
-        fields = ('id', 'url', 'email', 'email_verified_at', 'management_key', 'incident_subscriptions', 'component_subscriptions')
+        fields = ('id', 'url', 'email', 'email_verified_at', 'management_key', 'incident_subscriptions',
+                  'component_subscriptions', 'created', 'last_updated')

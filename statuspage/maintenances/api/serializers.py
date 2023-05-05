@@ -28,7 +28,8 @@ class MaintenanceSerializer(StatusPageModelSerializer):
 
     class Meta:
         model = Maintenance
-        fields = ('id', 'url', 'title', 'visibility', 'status', 'impact', 'scheduled_at', 'start_automatically', 'end_at', 'end_automatically', 'user', 'components')
+        fields = ('id', 'url', 'title', 'visibility', 'status', 'impact', 'scheduled_at', 'start_automatically',
+                  'end_at', 'end_automatically', 'user', 'components', 'created', 'last_updated')
 
 
 class MaintenanceUpdateSerializer(StatusPageModelSerializer):
@@ -44,7 +45,7 @@ class MaintenanceUpdateSerializer(StatusPageModelSerializer):
 
     class Meta:
         model = MaintenanceUpdate
-        fields = ('id', 'url', 'text', 'new_status', 'maintenance', 'status', 'user')
+        fields = ('id', 'url', 'text', 'new_status', 'maintenance', 'status', 'user', 'created', 'last_updated')
 
 
 class MaintenanceTemplateSerializer(StatusPageModelSerializer):
@@ -67,4 +68,4 @@ class MaintenanceTemplateSerializer(StatusPageModelSerializer):
     class Meta:
         model = MaintenanceTemplate
         fields = ('id', 'url', 'template_name', 'title', 'visibility', 'status', 'impact', 'components',
-                  'update_component_status', 'text')
+                  'update_component_status', 'text', 'created', 'last_updated')
