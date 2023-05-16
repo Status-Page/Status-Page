@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-29 15:33+0200\n"
-"PO-Revision-Date: 2023-05-16 17:05+0000\n"
+"PO-Revision-Date: 2023-05-17 17:46+0000\n"
 "Last-Translator: Vincent <sylosis1@gmail.com>\n"
 "Language-Team: French <https://translate.status-page.dev/projects/"
 "status-page/maintenances/fr/>\n"
@@ -21,19 +21,19 @@ msgstr ""
 
 #: maintenances/choices.py:14
 msgid "Scheduled"
-msgstr ""
+msgstr "Programmé"
 
 #: maintenances/choices.py:15
 msgid "In Progress"
-msgstr ""
+msgstr "En Cours"
 
 #: maintenances/choices.py:16
 msgid "Verifying"
-msgstr ""
+msgstr "Vérification"
 
 #: maintenances/choices.py:17
 msgid "Completed"
-msgstr ""
+msgstr "Terminé"
 
 #: maintenances/choices.py:27
 msgid "Maintenance"
