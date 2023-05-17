@@ -1,4 +1,5 @@
 from utilities.choices import ChoiceSet
+from django.utils.translation import gettext_lazy as _
 
 
 class ComponentGroupCollapseChoices(ChoiceSet):
@@ -8,8 +9,8 @@ class ComponentGroupCollapseChoices(ChoiceSet):
     ALWAYS = 'expand_always'
 
     CHOICES = [
-        (ON_ISSUE, 'Expand on Issue'),
-        (ALWAYS, 'Always Expanded'),
+        (ON_ISSUE, _('Expand on Issue')),
+        (ALWAYS, _('Always Expanded')),
     ]
 
 
@@ -24,10 +25,10 @@ class ComponentStatusChoices(ChoiceSet):
     MAINTENANCE = 'maintenance'
 
     CHOICES = [
-        (UNKNOWN, 'Unknown', ('bg-black', 'text-black')),
-        (OPERATIONAL, 'Operational', ('bg-green-500', 'text-green-500')),
-        (DEGRADED_PERFORMANCE, 'Degraded Performance', ('bg-yellow-500', 'text-yellow-500')),
-        (PARTIAL_OUTAGE, 'Partial Outage', ('bg-orange-500', 'text-orange-500')),
-        (MAJOR_OUTAGE, 'Major Outage', ('bg-red-500', 'text-red-500')),
-        (MAINTENANCE, 'Maintenance', ('bg-blue-500', 'text-blue-500')),
+        (UNKNOWN, _('Unknown'), ('bg-black', 'text-black')),
+        (OPERATIONAL, _('Operational'), ('bg-green-500', 'text-green-500')),
+        (DEGRADED_PERFORMANCE, _('Degraded Performance'), ('bg-yellow-500', 'text-yellow-500')),
+        (PARTIAL_OUTAGE, _('Partial Outage'), ('bg-orange-500', 'text-orange-500')),
+        (MAJOR_OUTAGE, _('Major Outage'), ('bg-red-500', 'text-red-500')),
+        (MAINTENANCE, _('Maintenance'), ('bg-blue-500', 'text-blue-500')),
     ]

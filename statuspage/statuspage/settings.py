@@ -4,6 +4,7 @@ import sys
 import platform
 
 from django.core.exceptions import ImproperlyConfigured
+from django.utils.translation import gettext_lazy as _
 
 from statuspage.config import PARAMS
 
@@ -193,6 +194,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -240,9 +242,14 @@ OTP_ADMIN_HIDE_SENSITIVE_DATA = True
 
 LANGUAGE_CODE = 'en-us'
 USE_I18N = True
-USE_L10N = False
+USE_L10N = True
 USE_TZ = True
 USE_DEPRECATED_PYTZ = True
+
+LANGUAGES = [
+    ('de', _('German')),
+    ('en', _('English')),
+]
 
 WSGI_APPLICATION = 'statuspage.wsgi.application'
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
