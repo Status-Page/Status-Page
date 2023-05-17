@@ -8,26 +8,29 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-29 15:32+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2023-05-17 22:26+0000\n"
+"Last-Translator: Tobias Peltzer <admin@herrtxbias.net>\n"
+"Language-Team: French <https://translate.status-page.dev/projects/"
+"status-page/extras/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.16.4\n"
 
 #: extras/forms/filtersets.py:27
 msgid "After"
-msgstr ""
+msgstr "Après"
 
 #: extras/forms/filtersets.py:32
 msgid "Before"
-msgstr ""
+msgstr "Avant"
 
 #: extras/forms/filtersets.py:43
 msgid "User"
-msgstr ""
+msgstr "Utilisateur"
 
 #: extras/forms/filtersets.py:51
 msgid "Object Type"
-msgstr ""
+msgstr "Type de l'Objet"
