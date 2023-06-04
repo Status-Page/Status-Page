@@ -2,7 +2,6 @@ import logging
 from copy import deepcopy
 
 from django.contrib import messages
-from django.core.exceptions import ObjectDoesNotExist
 from django.db import transaction
 from django.db.models import ProtectedError
 from django.shortcuts import redirect, render
@@ -11,7 +10,7 @@ from django.utils.html import escape
 from django.utils.safestring import mark_safe
 
 from utilities.error_handlers import handle_protectederror
-from utilities.exceptions import AbortRequest, AbortTransaction, PermissionsViolation
+from utilities.exceptions import AbortRequest, PermissionsViolation
 from utilities.forms import ConfirmationForm, restrict_form_fields
 from utilities.htmx import is_htmx
 from utilities.permissions import get_permission_for_model
@@ -34,7 +33,12 @@ class ObjectView(BaseObjectView):
     Retrieve a single object for display.
 
     Note: If `template_name` is not specified, it will be determined automatically based on the queryset model.
+
+    Attributes:
+        tab: A ViewTab instance for the view
     """
+    tab = None
+
     def get_required_permission(self):
         return get_permission_for_model(self.queryset.model, 'view')
 
@@ -63,6 +67,7 @@ class ObjectView(BaseObjectView):
 
         return render(request, self.get_template_name(), {
             'object': instance,
+            'tab': self.tab,
             **self.get_extra_context(request, instance),
         })
 
@@ -137,6 +142,7 @@ class ObjectChildrenView(ObjectView, ActionsMixin, TableMixin):
             'child_model': self.child_model,
             'table': table,
             'actions': actions,
+            'tab': self.tab,
             **self.get_extra_context(request, instance),
         })
 
