@@ -1,19 +1,5 @@
 # Status-Page v2.2
 
-## v2.3.0 (FUTURE)
-
-### Bug Fixes
-* Add auto start and end to maintenance templates
-* Historic Incident Date
-
-### Features
-* Add Tabs to Object Views
-
-### Refactoring
-* Migrate Object Views to Registry
-
----
-
 ## v2.2.6 (2023-05-03)
 
 ### Bug Fixes
