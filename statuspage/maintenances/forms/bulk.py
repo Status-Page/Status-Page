@@ -93,6 +93,14 @@ class MaintenanceTemplateBulkEditForm(StatusPageModelBulkEditForm):
         widget=BulkEditNullBooleanSelect,
         label='Visible',
     )
+    start_automatically = forms.NullBooleanField(
+        required=False,
+        widget=BulkEditNullBooleanSelect,
+    )
+    end_automatically = forms.NullBooleanField(
+        required=False,
+        widget=BulkEditNullBooleanSelect,
+    )
     components = forms.ModelMultipleChoiceField(
         queryset=Component.objects.all(),
         required=False,
@@ -106,6 +114,7 @@ class MaintenanceTemplateBulkEditForm(StatusPageModelBulkEditForm):
 
     model = MaintenanceTemplate
     fieldsets = (
-        ('Maintenance Template', ('status', 'impact', 'visibility', 'components', 'update_component_status')),
+        ('Maintenance Template', ('status', 'impact', 'visibility', 'start_automatically', 'end_automatically',
+                                  'components', 'update_component_status')),
     )
     nullable_fields = ('components',)

@@ -44,10 +44,13 @@ class MaintenanceTemplateTable(StatusPageTable):
     status = tables.Column()
     impact = columns.ChoiceFieldColumn()
     visibility = columns.BooleanColumn()
+    start_automatically = columns.BooleanColumn()
+    end_automatically = columns.BooleanColumn()
     update_component_status = columns.BooleanColumn()
 
     class Meta(StatusPageTable.Meta):
         model = MaintenanceTemplate
-        fields = ('pk', 'id', 'template_name', 'title', 'status', 'impact', 'visibility', 'update_component_status',
-                  'created', 'last_updated')
-        default_columns = ('id', 'template_name', 'status', 'impact', 'visibility')
+        fields = ('pk', 'id', 'template_name', 'title', 'status', 'impact', 'visibility', 'start_automatically',
+                  'end_automatically', 'update_component_status', 'created', 'last_updated')
+        default_columns = ('id', 'template_name', 'status', 'impact', 'visibility', 'start_automatically',
+                           'end_automatically')

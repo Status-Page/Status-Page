@@ -30,6 +30,14 @@
             <td>{% checkmark object.visibility %}</td>
           </tr>
           <tr>
+            <th scope="row" class="pr-6 py-1">Start Automatically</th>
+            <td>{% checkmark object.start_automatically %}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="pr-6 py-1">End Automatically</th>
+            <td>{% checkmark object.end_automatically %}</td>
+          </tr>
+          <tr>
             <th scope="row" class="pr-6 py-1">Status</th>
             <td>{{ object.get_status_display }}</td>
           </tr>

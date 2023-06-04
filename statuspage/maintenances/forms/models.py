@@ -109,7 +109,8 @@ class MaintenanceUpdateForm(StatusPageModelForm):
 class MaintenanceTemplateForm(StatusPageModelForm):
     fieldsets = (
         ('Maintenance Template', (
-            'template_name', 'title', 'status', 'impact', 'visibility', 'components',
+            'template_name', 'title', 'status', 'impact', 'visibility', 'start_automatically', 'end_automatically',
+            'components',
         )),
         ('Maintenance Update', (
             'update_component_status', 'text',
@@ -123,7 +124,8 @@ class MaintenanceTemplateForm(StatusPageModelForm):
     class Meta:
         model = MaintenanceTemplate
         fields = (
-            'template_name', 'title', 'status', 'impact', 'visibility', 'components', 'update_component_status', 'text',
+            'template_name', 'title', 'status', 'impact', 'visibility', 'start_automatically', 'end_automatically',
+            'components', 'update_component_status', 'text',
         )
         widgets = {
             'status': StaticSelect(),
