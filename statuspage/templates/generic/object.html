@@ -4,6 +4,7 @@
 {% load perms %}
 {% load plugins %}
 {% load render_table from django_tables2 %}
+{% load tabs %}
 
 {% block title %}
 {{ object|meta:"verbose_name"|bettertitle }}: {{ object }}
@@ -19,6 +20,24 @@
   {% endif %}
   {% block extra_controls %}{% endblock %}
 {% endblock %}
+
+{% block tabs %}
+  <div class="mb-2">
+    <div class="isolate flex divide-x divide-gray-200 dark:divide-gray-700 rounded-lg shadow" aria-label="Tabs">
+      {# Primary tab #}
+      <a href="{{ object.get_absolute_url }}" class="{% if not tab %}text-gray-900 dark:text-gray-100{% else %}text-gray-500 hover:text-gray-700 dark:hover:text-gray-600{% endif %} group relative min-w-0 flex-1 overflow-hidden bg-white dark:bg-zinc-800 py-4 px-4 text-sm font-medium text-center hover:bg-gray-50 dark:hover:bg-zinc-700 focus:z-10">
+        <span>{{ object|meta:"verbose_name"|bettertitle }}</span>
+        <span aria-hidden="true" class="{% if not tab %}bg-indigo-500{% else %}bg-transparent{% endif %} absolute inset-x-0 bottom-0 h-0.5"></span>
+      </a>
+
+      {# Include any extra tabs passed by the view #}
+      {% block extra_tabs %}{% endblock %}
+
+      {# Include tabs for registered model views #}
+      {% model_view_tabs object %}
+    </div>
+  </div>
+{% endblock tabs %}
 
 {% block dashboard_content %}
   <div class="flex flex-col space-y-4">

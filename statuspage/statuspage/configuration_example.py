@@ -40,7 +40,7 @@ REDIS = {
         'PORT': 6379,
         # Comment out `HOST` and `PORT` lines and uncomment the following if using Redis Sentinel
         # 'SENTINELS': [('mysentinel.redis.example.com', 6379)],
-        # 'SENTINEL_SERVICE': 'netbox',
+        # 'SENTINEL_SERVICE': 'statuspage',
         'PASSWORD': '',
         'DATABASE': 1,
         'SSL': False,
