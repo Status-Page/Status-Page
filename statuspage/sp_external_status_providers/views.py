@@ -1,11 +1,13 @@
 from statuspage.views import generic
 from statuspage.views.generic.mixins import ActionsMixin
+from utilities.views import register_global_model_view, register_model_view
 from .models import ExternalStatusPage, ExternalStatusComponent
 from . import tables
 from . import forms
 from . import filtersets
 
 
+@register_global_model_view(ExternalStatusPage, 'list')
 class ExternalStatusPageListView(generic.ObjectListView):
     queryset = ExternalStatusPage.objects.all()
     table = tables.ExternalStatusPageTable
@@ -13,6 +15,8 @@ class ExternalStatusPageListView(generic.ObjectListView):
     filterset_form = forms.ExternalStatusPageFilterForm
 
 
+@register_model_view(ExternalStatusPage)
+@register_global_model_view(ExternalStatusPage, 'add')
 class ExternalStatusPageView(generic.ObjectView, ActionsMixin):
     queryset = ExternalStatusPage.objects.all()
 
@@ -34,26 +38,31 @@ class ExternalStatusPageView(generic.ObjectView, ActionsMixin):
         }
 
 
+@register_model_view(ExternalStatusPage, 'edit')
 class ExternalStatusPageEditView(generic.ObjectEditView):
     queryset = ExternalStatusPage.objects.all()
     form = forms.ExternalStatusPageForm
 
 
+@register_model_view(ExternalStatusPage, 'delete')
 class ExternalStatusPageDeleteView(generic.ObjectDeleteView):
     queryset = ExternalStatusPage.objects.all()
 
 
+@register_global_model_view(ExternalStatusPage, 'bulk_edit')
 class ExternalStatusPageBulkEditView(generic.BulkEditView):
     queryset = ExternalStatusPage.objects.all()
     table = tables.ExternalStatusPageTable
     form = forms.ExternalStatusPageBulkEditForm
 
 
+@register_global_model_view(ExternalStatusPage, 'bulk_delete')
 class ExternalStatusPageBulkDeleteView(generic.BulkDeleteView):
     queryset = ExternalStatusPage.objects.all()
     table = tables.ExternalStatusPageTable
 
 
+@register_global_model_view(ExternalStatusComponent, 'list')
 class ExternalStatusComponentListView(generic.ObjectListView):
     queryset = ExternalStatusComponent.objects.all()
     table = tables.ExternalStatusComponentTable
@@ -61,25 +70,31 @@ class ExternalStatusComponentListView(generic.ObjectListView):
     filterset_form = forms.ExternalStatusComponentFilterForm
 
 
+@register_model_view(ExternalStatusComponent)
+@register_global_model_view(ExternalStatusComponent, 'add')
 class ExternalStatusComponentView(generic.ObjectView):
     queryset = ExternalStatusComponent.objects.all()
 
 
+@register_model_view(ExternalStatusComponent, 'edit')
 class ExternalStatusComponentEditView(generic.ObjectEditView):
     queryset = ExternalStatusComponent.objects.all()
     form = forms.ExternalStatusComponentForm
 
 
+@register_model_view(ExternalStatusComponent, 'delete')
 class ExternalStatusComponentDeleteView(generic.ObjectDeleteView):
     queryset = ExternalStatusComponent.objects.all()
 
 
+@register_global_model_view(ExternalStatusComponent, 'bulk_edit')
 class ExternalStatusComponentBulkEditView(generic.BulkEditView):
     queryset = ExternalStatusComponent.objects.all()
     table = tables.ExternalStatusComponentTable
     form = forms.ExternalStatusComponentBulkEditForm
 
 
+@register_global_model_view(ExternalStatusComponent, 'bulk_delete')
 class ExternalStatusComponentBulkDeleteView(generic.BulkDeleteView):
     queryset = ExternalStatusComponent.objects.all()
     table = tables.ExternalStatusComponentTable
