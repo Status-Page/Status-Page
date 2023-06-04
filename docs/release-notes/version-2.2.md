@@ -1,8 +1,9 @@
 # Status-Page v2.2
 
-## v2.2.7 (FUTURE)
+## v2.3.0 (FUTURE)
 
-### Bug Fixes
+### Features
+* Add Tabs to Object Views
 
 ---
 
