@@ -3,12 +3,14 @@ from django.shortcuts import redirect
 
 from statuspage.config import get_config
 from statuspage.views import generic
+from utilities.views import register_global_model_view, register_model_view
 from .models import Subscriber
 from . import tables
 from . import forms
 from . import filtersets
 
 
+@register_global_model_view(Subscriber, 'list')
 class SubscriberListView(generic.ObjectListView):
     queryset = Subscriber.objects.all()
     table = tables.SubscriberTable
@@ -16,6 +18,8 @@ class SubscriberListView(generic.ObjectListView):
     filterset_form = forms.SubscriberFilterForm
 
 
+@register_model_view(Subscriber)
+@register_global_model_view(Subscriber, 'add')
 class SubscriberView(generic.ObjectView):
     queryset = Subscriber.objects.all()
 
@@ -46,15 +50,18 @@ class SubscriberView(generic.ObjectView):
         return redirect('subscribers:subscriber', pk=subscriber.pk)
 
 
+# @register_model_view(Subscriber, 'edit')
 class SubscriberEditView(generic.ObjectEditView):
     queryset = Subscriber.objects.all()
     form = forms.SubscriberForm
 
 
+@register_model_view(Subscriber, 'delete')
 class SubscriberDeleteView(generic.ObjectDeleteView):
     queryset = Subscriber.objects.all()
 
 
+@register_global_model_view(Subscriber, 'bulk_delete')
 class SubscriberBulkDeleteView(generic.BulkDeleteView):
     queryset = Subscriber.objects.all()
     table = tables.SubscriberTable
