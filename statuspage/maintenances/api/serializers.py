@@ -67,5 +67,5 @@ class MaintenanceTemplateSerializer(StatusPageModelSerializer):
 
     class Meta:
         model = MaintenanceTemplate
-        fields = ('id', 'url', 'template_name', 'title', 'visibility', 'status', 'impact', 'components',
-                  'update_component_status', 'text', 'created', 'last_updated')
+        fields = ('id', 'url', 'template_name', 'title', 'visibility', 'start_automatically', 'end_automatically',
+                  'status', 'impact', 'components', 'update_component_status', 'text', 'created', 'last_updated')

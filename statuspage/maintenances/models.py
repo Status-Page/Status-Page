@@ -113,6 +113,12 @@ class MaintenanceTemplate(IncidentMaintenanceModel):
         related_name='+',
         blank=True,
     )
+    start_automatically = models.BooleanField(
+        default=True,
+    )
+    end_automatically = models.BooleanField(
+        default=True,
+    )
     update_component_status = models.BooleanField(
         default=False,
     )

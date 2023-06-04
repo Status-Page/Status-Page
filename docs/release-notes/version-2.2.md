@@ -2,6 +2,9 @@
 
 ## v2.3.0 (FUTURE)
 
+### Bug Fixes
+* Add auto start and end to maintenance templates
+
 ### Features
 * Add Tabs to Object Views
 

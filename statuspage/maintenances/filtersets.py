@@ -107,7 +107,8 @@ class MaintenanceTemplateFilterSet(StatusPageModelFilterSet):
 
     class Meta:
         model = MaintenanceTemplate
-        fields = ['id', 'template_name', 'title', 'status', 'impact', 'visibility', 'update_component_status']
+        fields = ['id', 'template_name', 'title', 'status', 'impact', 'visibility', 'start_automatically',
+                  'end_automatically', 'update_component_status']
 
     def search(self, queryset, name, value):
         if not value.strip():

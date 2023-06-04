@@ -77,8 +77,8 @@ class MaintenanceTemplateFilterForm(FilterForm):
     model = MaintenanceTemplate
     fieldsets = (
         (None, ('q',)),
-        ('Maintenance Template', ('template_name', 'title', 'status', 'impact', 'visibility', 'component_id',
-                                  'update_component_status')),
+        ('Maintenance Template', ('template_name', 'title', 'status', 'impact', 'visibility', 'start_automatically',
+                                  'end_automatically', 'component_id', 'update_component_status')),
     )
     template_name = forms.CharField(
         required=False,
@@ -97,6 +97,18 @@ class MaintenanceTemplateFilterForm(FilterForm):
         widget=StaticSelect(),
     )
     visibility = forms.NullBooleanField(
+        required=False,
+        widget=StaticSelect(
+            choices=BOOLEAN_WITH_BLANK_CHOICES,
+        ),
+    )
+    start_automatically = forms.NullBooleanField(
+        required=False,
+        widget=StaticSelect(
+            choices=BOOLEAN_WITH_BLANK_CHOICES,
+        ),
+    )
+    end_automatically = forms.NullBooleanField(
         required=False,
         widget=StaticSelect(
             choices=BOOLEAN_WITH_BLANK_CHOICES,
