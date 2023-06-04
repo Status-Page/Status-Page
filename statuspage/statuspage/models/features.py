@@ -1,11 +1,17 @@
 from django.db import models
+from django.db.models.signals import class_prepared
+from django.dispatch import receiver
 
 from extras.choices import ObjectChangeActionChoices
+from extras.utils import register_features
 from utilities.utils import serialize_object
+from taggit.managers import TaggableManager
 
 __all__ = (
     'ChangeLoggingMixin',
 )
+
+from utilities.views import register_model_view
 
 
 class ChangeLoggingMixin(models.Model):
@@ -57,3 +63,22 @@ class ChangeLoggingMixin(models.Model):
             objectchange.postchange_data = self.serialize_object()
 
         return objectchange
+
+
+FEATURES_MAP = ()
+
+
+@receiver(class_prepared)
+def _register_features(sender, **kwargs):
+    features = {
+        feature for feature, cls in FEATURES_MAP if issubclass(sender, cls)
+    }
+    register_features(sender, features)
+
+    if issubclass(sender, ChangeLoggingMixin):
+        register_model_view(
+            sender,
+            'changelog',
+            'statuspage.views.generic.ObjectChangeLogView',
+            kwargs={'model': sender}
+        )
