@@ -8,7 +8,7 @@ from django.utils.translation import gettext_lazy as _
 
 from statuspage.config import PARAMS
 
-VERSION = '2.3.0'
+VERSION = '2.3.1-dev'
 
 HOSTNAME = platform.node()
 
