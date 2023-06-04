@@ -248,9 +248,8 @@ def get_historic_status(value: Component) -> Any:
     Template to return historic status
     """
     num_days = 90
-    today = make_aware(datetime.datetime.today())
-    start_date = today + datetime.timedelta(days=1)
-    end_date = start_date - datetime.timedelta(days=num_days)
+    start_date = make_aware(datetime.datetime.today()) + datetime.timedelta(days=1)
+    end_date = (start_date - datetime.timedelta(days=num_days)).replace(microsecond=0, second=0, minute=0, hour=0)
 
     date_list = [end_date + datetime.timedelta(days=x) for x in range(num_days)]
     component_incidents = value.incidents.all()
