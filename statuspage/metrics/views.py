@@ -6,12 +6,14 @@ from django.views import View
 
 from statuspage.views import generic
 from utilities.forms import ConfirmationForm
+from utilities.views import register_global_model_view, register_model_view
 from .models import Metric
 from . import tables
 from . import forms
 from . import filtersets
 
 
+@register_global_model_view(Metric, 'list')
 class MetricListView(generic.ObjectListView):
     queryset = Metric.objects.all()
     table = tables.MetricTable
@@ -19,30 +21,37 @@ class MetricListView(generic.ObjectListView):
     filterset_form = forms.MetricFilterForm
 
 
+@register_model_view(Metric)
+@register_global_model_view(Metric, 'add')
 class MetricView(generic.ObjectView):
     queryset = Metric.objects.all()
 
 
+@register_model_view(Metric, 'edit')
 class MetricEditView(generic.ObjectEditView):
     queryset = Metric.objects.all()
     form = forms.MetricForm
 
 
+@register_model_view(Metric, 'delete')
 class MetricDeleteView(generic.ObjectDeleteView):
     queryset = Metric.objects.all()
 
 
+@register_global_model_view(Metric, 'bulk_edit')
 class MetricBulkEditView(generic.BulkEditView):
     queryset = Metric.objects.all()
     table = tables.MetricTable
     form = forms.MetricBulkEditForm
 
 
+@register_global_model_view(Metric, 'bulk_delete')
 class MetricBulkDeleteView(generic.BulkDeleteView):
     queryset = Metric.objects.all()
     table = tables.MetricTable
 
 
+@register_model_view(Metric, 'points_delete', path='metric-points/delete')
 class MetricPointsDeleteView(LoginRequiredMixin, PermissionRequiredMixin, View):
     permission_required = (
         'metrics.delete_metricpoint'

@@ -1,0 +1,31 @@
+{% extends 'generic/object.html' %}
+{% load helpers %}
+{% load buttons %}
+
+{% block page_full %}
+  {% include 'inc/table_controls_htmx.html' with table_modal="MaintenanceUpdateTable_config" %}
+
+  <form method="post">
+    {% csrf_token %}
+
+    <div id="object_list">
+      {% include 'htmx/table.html' %}
+    </div>
+
+    <div class="print:hidden bulk-buttons mt-4">
+      <div class="bulk-button-group">
+        {% if 'bulk_edit' in actions %}
+          {% bulk_edit_button model=object query_params=request.GET %}
+        {% endif %}
+        {% if 'bulk_delete' in actions %}
+          {% bulk_delete_button model=object query_params=request.GET %}
+        {% endif %}
+      </div>
+    </div>
+  </form>
+{% endblock %}
+
+{% block modals %}
+  {{ block.super }}
+  {% table_config_form table %}
+{% endblock modals %}
