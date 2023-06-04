@@ -170,6 +170,7 @@ class IncidentTemplateListView(generic.ObjectListView):
 
 
 @register_model_view(IncidentTemplate)
+@register_global_model_view(IncidentTemplate, 'add')
 class IncidentTemplateView(generic.ObjectView, ActionsMixin):
     queryset = IncidentTemplate.objects.filter()
 
