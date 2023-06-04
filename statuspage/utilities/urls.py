@@ -39,7 +39,7 @@ def get_model_urls(app_label, model_name):
         name = f"{model_name}_{config['name']}" if config['name'] else model_name
         url_path = f"{config['path']}/" if config['path'] else ''
         paths.append(
-            path(url_path, view_, name=name, kwargs=config['kwargs'])
+            path(url_path if config['global_register'] else f"<int:pk>/{url_path}", view_, name=name, kwargs=config['kwargs'])
         )
 
     return paths
