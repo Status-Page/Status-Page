@@ -4,6 +4,7 @@
 
 ### Bug Fixes
 * Add auto start and end to maintenance templates
+* Historic Incident Date
 
 ### Features
 * Add Tabs to Object Views
