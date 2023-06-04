@@ -2,7 +2,7 @@ from django.urls import path, include
 
 from utilities.urls import get_model_urls
 
-from components import views # noqa Required for registration
+from . import views # noqa Required for registration
 
 app_name = 'components'
 urlpatterns = [

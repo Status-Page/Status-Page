@@ -1,9 +1,11 @@
 from statuspage.views import generic
 from utilities.utils import shallow_compare_dict
+from utilities.views import register_global_model_view, register_model_view
 from . import filtersets, forms, tables
 from .models import *
 
 
+@register_global_model_view(ObjectChange, 'list')
 class ObjectChangeListView(generic.ObjectListView):
     queryset = ObjectChange.objects.all()
     filterset = filtersets.ObjectChangeFilterSet
@@ -13,6 +15,7 @@ class ObjectChangeListView(generic.ObjectListView):
     actions = ('export',)
 
 
+@register_model_view(ObjectChange)
 class ObjectChangeView(generic.ObjectView):
     queryset = ObjectChange.objects.all()
 
