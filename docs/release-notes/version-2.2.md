@@ -5,6 +5,9 @@
 ### Features
 * Add Tabs to Object Views
 
+### Refactoring
+* Migrate Object Views to Registry
+
 ---
 
 ## v2.2.6 (2023-05-03)
