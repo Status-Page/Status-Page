@@ -174,4 +174,8 @@ def register_model_view(model, name='', path=None, global_register=False, kwargs
 
 
 def register_global_model_view(model, name='', path=None, global_register=True, kwargs=None):
+    if name == 'bulk_edit':
+        path = 'edit'
+    if name == 'bulk_delete':
+        path = 'delete'
     return register_model_view(model, name=name, path=path, global_register=global_register, kwargs=kwargs)
