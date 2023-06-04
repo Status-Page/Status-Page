@@ -2,7 +2,7 @@ from django.db.models import Q
 
 from statuspage.views import generic
 from statuspage.views.generic.mixins import ActionsMixin
-from utilities.views import register_global_model_view, register_model_view
+from utilities.views import register_global_model_view, register_model_view, ViewTab
 from .models import Incident, IncidentUpdate, IncidentTemplate
 from . import tables
 from . import forms
@@ -22,22 +22,22 @@ class IncidentListView(generic.ObjectListView):
 class IncidentView(generic.ObjectView, ActionsMixin):
     queryset = Incident.objects.filter()
 
-    def get_extra_context(self, request, instance):
-        queryset = instance.updates.all()
 
-        actions = self.get_permitted_actions(request.user)
-        has_bulk_actions = any([a.startswith('bulk_') for a in actions])
+@register_model_view(Incident, 'updates')
+class IncidentIncidentUpdateListView(generic.ObjectChildrenView):
+    queryset = Incident.objects.all()
+    child_model = IncidentUpdate
+    table = tables.IncidentUpdateTable
+    tab = ViewTab(
+        label='Incident Updates',
+        badge=lambda x: x.updates.count(),
+        permission='incidents.view_incidentupdate',
+        weight=500,
+    )
+    template_name = 'incidents/incident/incidentupdates.html'
 
-        table = tables.IncidentUpdateTable(queryset)
-        if 'pk' in table.base_columns and has_bulk_actions:
-            table.columns.show('pk')
-        table.configure(request)
-
-        return {
-            'model': queryset.model,
-            'table': table,
-            'actions': actions,
-        }
+    def get_children(self, request, parent):
+        return parent.updates.restrict(request.user, 'view').all()
 
 
 @register_global_model_view(Incident, 'add')
