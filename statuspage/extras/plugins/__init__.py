@@ -8,7 +8,7 @@ from django.apps import AppConfig
 from django.core.exceptions import ImproperlyConfigured
 from django.template.loader import get_template
 
-from extras.registry import registry
+from statuspage.registry import registry
 
 from extras.plugins.utils import import_object
 from queuing.apps import get_func_name

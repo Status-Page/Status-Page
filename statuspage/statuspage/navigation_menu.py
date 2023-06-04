@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from typing import Sequence, Optional
 
-from extras.registry import registry
+from statuspage.registry import registry
 
 #
 # Nav menu data classes

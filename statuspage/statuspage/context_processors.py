@@ -1,6 +1,6 @@
 from django.conf import settings as django_settings
 
-from extras.registry import registry
+from statuspage.registry import registry
 from statuspage.config import get_config
 
 
