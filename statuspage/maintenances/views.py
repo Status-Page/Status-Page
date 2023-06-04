@@ -2,7 +2,7 @@ from django.db.models import Q
 
 from statuspage.views import generic
 from statuspage.views.generic.mixins import ActionsMixin
-from utilities.views import register_global_model_view, register_model_view
+from utilities.views import register_global_model_view, register_model_view, ViewTab
 from .models import Maintenance, MaintenanceUpdate, MaintenanceTemplate
 from . import tables
 from . import forms
@@ -22,22 +22,22 @@ class MaintenanceListView(generic.ObjectListView):
 class MaintenanceView(generic.ObjectView, ActionsMixin):
     queryset = Maintenance.objects.filter()
 
-    def get_extra_context(self, request, instance):
-        queryset = instance.updates.all()
 
-        actions = self.get_permitted_actions(request.user)
-        has_bulk_actions = any([a.startswith('bulk_') for a in actions])
+@register_model_view(Maintenance, 'updates')
+class IncidentIncidentUpdateListView(generic.ObjectChildrenView):
+    queryset = Maintenance.objects.all()
+    child_model = MaintenanceUpdate
+    table = tables.MaintenanceUpdateTable
+    tab = ViewTab(
+        label='Maintenance Updates',
+        badge=lambda x: x.updates.count(),
+        permission='maintenances.view_maintenanceupdate',
+        weight=500,
+    )
+    template_name = 'maintenances/maintenance/maintenanceupdates.html'
 
-        table = tables.MaintenanceUpdateTable(queryset)
-        if 'pk' in table.base_columns and has_bulk_actions:
-            table.columns.show('pk')
-        table.configure(request)
-
-        return {
-            'model': queryset.model,
-            'table': table,
-            'actions': actions,
-        }
+    def get_children(self, request, parent):
+        return parent.updates.restrict(request.user, 'view').all()
 
 
 @register_global_model_view(Maintenance, 'add')
