@@ -37,5 +37,5 @@ urlpatterns = [
         'model': MaintenanceTemplate,
     }),
 
-    path('past/', views.PastMaintenanceListView.as_view(), name='past'),
+    path('past/', views.PastMaintenanceListView.as_view(), name='maintenance_past'),
 ]

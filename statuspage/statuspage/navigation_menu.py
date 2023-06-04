@@ -44,7 +44,7 @@ def get_model_item(app_label, model_name, label):
 
 def get_past_model_item(app_label, model_name, label):
     return MenuItem(
-        link=f'{app_label}:past',
+        link=f'{app_label}:{model_name}_past',
         link_text=label,
         permissions=[f'{app_label}.view_{model_name}'],
     )
