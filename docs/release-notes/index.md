@@ -15,6 +15,9 @@ v 1 . 0 . 0
 
 This page contains a history of all major and minor releases since v2.0.0. For more detail on a specific patch release, please see the release notes page for that specific minor release.
 
+#### [Version 2.4](./version-2.4.md) (June 2023)
+* Add Webhooks
+
 #### [Version 2.3](./version-2.3.md) (June 2023)
 * Add Tabs to Object Views
 

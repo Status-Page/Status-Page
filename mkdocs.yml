@@ -73,6 +73,7 @@ nav:
         - Captcha: 'important-notes/admin-panel.md'
     - Release Notes:
         - Overview: 'release-notes/index.md'
+        - Version 2.4: 'release-notes/version-2.4.md'
         - Version 2.3: 'release-notes/version-2.3.md'
         - Version 2.2: 'release-notes/version-2.2.md'
         - Version 2.1: 'release-notes/version-2.1.md'
