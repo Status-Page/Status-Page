@@ -39,7 +39,11 @@ class TailwindMixin:
             elif isinstance(field.widget, forms.CheckboxInput):
                 field.widget.attrs['class'] = f'{css} h-4 w-4 rounded border-gray-300 text-indigo-600 ' \
                                               f'dark:bg-zinc-900 dark:border-zinc-700'
-            elif isinstance(field.widget, forms.Select):
+            elif isinstance(field.widget, forms.SelectMultiple) and 'size' in field.widget.attrs:
+                # Use native Bootstrap class for multi-line <select> widgets
+                field.widget.attrs['class'] = f'{css} block w-full rounded-md border-gray-300 shadow-sm sm:text-sm ' \
+                                              f'text-black dark:text-white dark:bg-zinc-900 dark:border-zinc-700'
+            elif isinstance(field.widget, (forms.Select, forms.SelectMultiple)):
                 field.widget.attrs['class'] = f'{css} statuspage-static-select'
             else:
                 field.widget.attrs['class'] = f'{css} block w-full rounded-md border-gray-300 shadow-sm sm:text-sm ' \
