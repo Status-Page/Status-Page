@@ -1,0 +1,133 @@
+{% extends 'generic/object.html' %}
+{% load helpers %}
+{% load plugins %}
+
+{% block page_left %}
+  <div class="grow bg-zinc-100 dark:bg-zinc-800 p-2 space-y-2 ring-1 ring-zinc-500 rounded-md shadow-lg">
+    <div class="text-2xl">Webhook</div>
+    <div class="px-4">
+      <table class="text-left w-full">
+        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+          <tr>
+            <th scope="row" class="pr-6 py-1">Name</th>
+            <td>{{ object.name }}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="pr-6 py-1">Enabled</th>
+            <td>{% checkmark object.enabled %}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="grow bg-zinc-100 dark:bg-zinc-800 p-2 space-y-2 ring-1 ring-zinc-500 rounded-md shadow-lg">
+    <div class="text-2xl">Events</div>
+    <div class="px-4">
+      <table class="text-left w-full">
+        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+          <tr>
+            <th scope="row" class="pr-6 py-1">Create</th>
+            <td>{% checkmark object.type_create %}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="pr-6 py-1">Update</th>
+            <td>{% checkmark object.type_update %}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="pr-6 py-1">Delete</th>
+            <td>{% checkmark object.type_delete %}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="grow bg-zinc-100 dark:bg-zinc-800 p-2 space-y-2 ring-1 ring-zinc-500 rounded-md shadow-lg">
+    <div class="text-2xl">HTTP Request</div>
+    <div class="px-4">
+      <table class="text-left w-full">
+        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+          <tr>
+            <th scope="row" class="pr-6 py-1">HTTP Method</th>
+            <td>{{ object.get_http_method_display }}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="pr-6 py-1">Payload URL</th>
+            <td class="font-mono">{{ object.payload_url }}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="pr-6 py-1">HTTP Content Type</th>
+            <td>{{ object.http_content_type }}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="pr-6 py-1">Secret</th>
+            <td>{{ object.secret|placeholder }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="grow bg-zinc-100 dark:bg-zinc-800 p-2 space-y-2 ring-1 ring-zinc-500 rounded-md shadow-lg">
+    <div class="text-2xl">SSL</div>
+    <div class="px-4">
+      <table class="text-left w-full">
+        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+          <tr>
+            <th scope="row" class="pr-6 py-1">SSL Verification</th>
+            <td>{% checkmark object.ssl_verification %}</td>
+          </tr>
+          <tr>
+            <th scope="row" class="pr-6 py-1">CA File Path</th>
+            <td>{{ object.ca_file_path|placeholder }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}
+
+{% block page_right %}
+  <div class="grow bg-zinc-100 dark:bg-zinc-800 p-2 space-y-2 ring-1 ring-zinc-500 rounded-md shadow-lg">
+    <div class="text-2xl">Assigned Models</div>
+    <div class="px-4">
+      <table class="text-left w-full">
+        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+          {% for ct in object.content_types.all %}
+            <tr>
+              <td>{{ ct }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="grow bg-zinc-100 dark:bg-zinc-800 p-2 space-y-2 ring-1 ring-zinc-500 rounded-md shadow-lg">
+    <div class="text-2xl">Conditions</div>
+    <div class="px-4">
+      {% if object.conditions %}
+        <pre>{{ object.conditions|json }}</pre>
+      {% else %}
+        <span class="text-muted">None</span>
+      {% endif %}
+    </div>
+  </div>
+  <div class="grow bg-zinc-100 dark:bg-zinc-800 p-2 space-y-2 ring-1 ring-zinc-500 rounded-md shadow-lg">
+    <div class="text-2xl">Additional Headers</div>
+    <div class="px-4">
+      {% if object.additional_headers %}
+        <pre>{{ object.additional_headers }}</pre>
+      {% else %}
+        <span class="text-muted">None</span>
+      {% endif %}
+    </div>
+  </div>
+  <div class="grow bg-zinc-100 dark:bg-zinc-800 p-2 space-y-2 ring-1 ring-zinc-500 rounded-md shadow-lg">
+    <div class="text-2xl">Body Template</div>
+    <div class="px-4">
+      {% if object.body_template %}
+        <pre>{{ object.body_template }}</pre>
+      {% else %}
+        <span class="text-muted">None</span>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

@@ -1,13 +1,13 @@
 from statuspage.views import generic
 from statuspage.views.generic.mixins import ActionsMixin
-from utilities.views import register_global_model_view, register_model_view
+from utilities.views import register_model_view
 from .models import ExternalStatusPage, ExternalStatusComponent
 from . import tables
 from . import forms
 from . import filtersets
 
 
-@register_global_model_view(ExternalStatusPage, 'list')
+@register_model_view(ExternalStatusPage, 'list')
 class ExternalStatusPageListView(generic.ObjectListView):
     queryset = ExternalStatusPage.objects.all()
     table = tables.ExternalStatusPageTable
@@ -16,7 +16,7 @@ class ExternalStatusPageListView(generic.ObjectListView):
 
 
 @register_model_view(ExternalStatusPage)
-@register_global_model_view(ExternalStatusPage, 'add')
+@register_model_view(ExternalStatusPage, 'add')
 class ExternalStatusPageView(generic.ObjectView, ActionsMixin):
     queryset = ExternalStatusPage.objects.all()
 
@@ -49,20 +49,20 @@ class ExternalStatusPageDeleteView(generic.ObjectDeleteView):
     queryset = ExternalStatusPage.objects.all()
 
 
-@register_global_model_view(ExternalStatusPage, 'bulk_edit')
+@register_model_view(ExternalStatusPage, 'bulk_edit')
 class ExternalStatusPageBulkEditView(generic.BulkEditView):
     queryset = ExternalStatusPage.objects.all()
     table = tables.ExternalStatusPageTable
     form = forms.ExternalStatusPageBulkEditForm
 
 
-@register_global_model_view(ExternalStatusPage, 'bulk_delete')
+@register_model_view(ExternalStatusPage, 'bulk_delete')
 class ExternalStatusPageBulkDeleteView(generic.BulkDeleteView):
     queryset = ExternalStatusPage.objects.all()
     table = tables.ExternalStatusPageTable
 
 
-@register_global_model_view(ExternalStatusComponent, 'list')
+@register_model_view(ExternalStatusComponent, 'list')
 class ExternalStatusComponentListView(generic.ObjectListView):
     queryset = ExternalStatusComponent.objects.all()
     table = tables.ExternalStatusComponentTable
@@ -71,7 +71,7 @@ class ExternalStatusComponentListView(generic.ObjectListView):
 
 
 @register_model_view(ExternalStatusComponent)
-@register_global_model_view(ExternalStatusComponent, 'add')
+@register_model_view(ExternalStatusComponent, 'add')
 class ExternalStatusComponentView(generic.ObjectView):
     queryset = ExternalStatusComponent.objects.all()
 
@@ -87,14 +87,14 @@ class ExternalStatusComponentDeleteView(generic.ObjectDeleteView):
     queryset = ExternalStatusComponent.objects.all()
 
 
-@register_global_model_view(ExternalStatusComponent, 'bulk_edit')
+@register_model_view(ExternalStatusComponent, 'bulk_edit')
 class ExternalStatusComponentBulkEditView(generic.BulkEditView):
     queryset = ExternalStatusComponent.objects.all()
     table = tables.ExternalStatusComponentTable
     form = forms.ExternalStatusComponentBulkEditForm
 
 
-@register_global_model_view(ExternalStatusComponent, 'bulk_delete')
+@register_model_view(ExternalStatusComponent, 'bulk_delete')
 class ExternalStatusComponentBulkDeleteView(generic.BulkDeleteView):
     queryset = ExternalStatusComponent.objects.all()
     table = tables.ExternalStatusComponentTable

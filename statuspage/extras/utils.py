@@ -29,8 +29,14 @@ class FeatureQuery:
 
 
 def register_features(model, features):
+    """
+    Register model features in the application registry.
+    """
+    app_label, model_name = model._meta.label_lower.split('.')
     for feature in features:
-        if feature not in EXTRAS_FEATURES:
-            raise ValueError(f"{feature} is not a valid extras feature!")
-        app_label, model_name = model._meta.label_lower.split('.')
-        registry['model_features'][feature][app_label].add(model_name)
+        try:
+            registry['model_features'][feature][app_label].add(model_name)
+        except KeyError:
+            raise KeyError(
+                f"{feature} is not a valid model feature! Valid keys are: {registry['model_features'].keys()}"
+            )

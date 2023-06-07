@@ -7,7 +7,40 @@ from .template_code import *
 
 __all__ = (
     'ObjectChangeTable',
+    'WebhookTable',
 )
+
+
+class WebhookTable(StatusPageTable):
+    name = tables.Column(
+        linkify=True
+    )
+    content_types = columns.ContentTypesColumn()
+    enabled = columns.BooleanColumn()
+    type_create = columns.BooleanColumn(
+        verbose_name='Create'
+    )
+    type_update = columns.BooleanColumn(
+        verbose_name='Update'
+    )
+    type_delete = columns.BooleanColumn(
+        verbose_name='Delete'
+    )
+    ssl_validation = columns.BooleanColumn(
+        verbose_name='SSL Validation'
+    )
+
+    class Meta(StatusPageTable.Meta):
+        model = Webhook
+        fields = (
+            'pk', 'id', 'name', 'content_types', 'enabled', 'type_create', 'type_update', 'type_delete',
+            'http_method', 'payload_url', 'secret', 'ssl_validation', 'ca_file_path',
+            'created', 'last_updated',
+        )
+        default_columns = (
+            'pk', 'name', 'content_types', 'enabled', 'type_create', 'type_update', 'type_delete',
+            'http_method', 'payload_url',
+        )
 
 
 class ObjectChangeTable(StatusPageTable):

@@ -1,12 +1,13 @@
 from email.utils import make_msgid
 
 from django.conf import settings
-from django.core.mail import send_mail as django_send_mail, EmailMultiAlternatives
+from django.core.mail import EmailMultiAlternatives
 from django.core.serializers import serialize
 import json
 
 from django.db import transaction
 from django.http import QueryDict
+from jinja2.sandbox import SandboxedEnvironment
 from mptt.models import MPTTModel
 import bleach
 
@@ -14,6 +15,13 @@ from extras.plugins import PluginConfig
 from incidents.choices import IncidentImpactChoices
 from components.choices import ComponentStatusChoices
 from statuspage.config import get_config
+
+
+def title(value):
+    """
+    Improved implementation of str.title(); retains all existing uppercase letters.
+    """
+    return ' '.join([w[0].upper() + w[1:] for w in str(value).split()])
 
 
 def get_viewname(model, action=None, rest_api=False):
@@ -142,13 +150,17 @@ def clean_html(html, schemes):
     )
 
 
-def content_type_name(ct):
+def content_type_name(ct, include_app=True):
     """
     Return a human-friendly ContentType name (e.g. "DCIM > Site").
     """
     try:
         meta = ct.model_class()._meta
-        return f'{meta.app_config.verbose_name} > {meta.verbose_name}'
+        app_label = title(meta.app_config.verbose_name)
+        model_name = title(meta.verbose_name)
+        if include_app:
+            return f'{app_label} > {model_name}'
+        return model_name
     except AttributeError:
         # Model no longer exists
         return f'{ct.app_label} > {ct.model}'
@@ -246,6 +258,15 @@ def deepmerge(original, new):
         else:
             merged[key] = val
     return merged
+
+
+def render_jinja2(template_code, context):
+    """
+    Render a Jinja2 template with the provided context. Return the rendered content.
+    """
+    environment = SandboxedEnvironment()
+    environment.filters.update(get_config().JINJA2_FILTERS)
+    return environment.from_string(source=template_code).render(**context)
 
 
 def dict_to_filter_params(d, prefix=''):

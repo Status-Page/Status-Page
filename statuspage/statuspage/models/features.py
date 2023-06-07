@@ -1,13 +1,17 @@
+from collections import defaultdict
+
 from django.db import models
 from django.db.models.signals import class_prepared
 from django.dispatch import receiver
 
 from extras.choices import ObjectChangeActionChoices
 from extras.utils import register_features
+from statuspage.registry import registry
 from utilities.utils import serialize_object
 
 __all__ = (
     'ChangeLoggingMixin',
+    'WebhooksMixin',
 )
 
 from utilities.views import register_model_view
@@ -64,13 +68,27 @@ class ChangeLoggingMixin(models.Model):
         return objectchange
 
 
-FEATURES_MAP = ()
+class WebhooksMixin(models.Model):
+    """
+    Enables support for webhooks.
+    """
+    class Meta:
+        abstract = True
+
+
+FEATURES_MAP = {
+    'webhooks': WebhooksMixin,
+}
+
+registry['model_features'].update({
+    feature: defaultdict(set) for feature in FEATURES_MAP.keys()
+})
 
 
 @receiver(class_prepared)
 def _register_features(sender, **kwargs):
     features = {
-        feature for feature, cls in FEATURES_MAP if issubclass(sender, cls)
+        feature for feature, cls in FEATURES_MAP.items() if issubclass(sender, cls)
     }
     register_features(sender, features)
 

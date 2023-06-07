@@ -6,14 +6,14 @@ from django.views import View
 
 from statuspage.views import generic
 from utilities.forms import ConfirmationForm
-from utilities.views import register_global_model_view, register_model_view
+from utilities.views import register_model_view
 from .models import Metric
 from . import tables
 from . import forms
 from . import filtersets
 
 
-@register_global_model_view(Metric, 'list')
+@register_model_view(Metric, 'list')
 class MetricListView(generic.ObjectListView):
     queryset = Metric.objects.all()
     table = tables.MetricTable
@@ -22,7 +22,7 @@ class MetricListView(generic.ObjectListView):
 
 
 @register_model_view(Metric)
-@register_global_model_view(Metric, 'add')
+@register_model_view(Metric, 'add')
 class MetricView(generic.ObjectView):
     queryset = Metric.objects.all()
 
@@ -38,14 +38,14 @@ class MetricDeleteView(generic.ObjectDeleteView):
     queryset = Metric.objects.all()
 
 
-@register_global_model_view(Metric, 'bulk_edit')
+@register_model_view(Metric, 'bulk_edit')
 class MetricBulkEditView(generic.BulkEditView):
     queryset = Metric.objects.all()
     table = tables.MetricTable
     form = forms.MetricBulkEditForm
 
 
-@register_global_model_view(Metric, 'bulk_delete')
+@register_model_view(Metric, 'bulk_delete')
 class MetricBulkDeleteView(generic.BulkDeleteView):
     queryset = Metric.objects.all()
     table = tables.MetricTable

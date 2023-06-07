@@ -24,7 +24,7 @@ class ConfigRevisionAdmin(admin.ModelAdmin):
         }),
         ('Banners', {
             'fields': ('BANNER_LOGIN', 'BANNER_TOP', 'BANNER_BOTTOM'),
-            'classes': ('monospace',),
+            'classes': ('font-mono',),
         }),
         ('Pagination', {
             'fields': ('PAGINATE_COUNT', 'MAX_PAGE_SIZE'),

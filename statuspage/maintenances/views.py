@@ -2,7 +2,7 @@ from django.db.models import Q
 
 from statuspage.views import generic
 from statuspage.views.generic.mixins import ActionsMixin
-from utilities.views import register_global_model_view, register_model_view, ViewTab
+from utilities.views import register_model_view, ViewTab
 from .models import Maintenance, MaintenanceUpdate, MaintenanceTemplate
 from . import tables
 from . import forms
@@ -10,7 +10,7 @@ from . import filtersets
 from .choices import MaintenanceStatusChoices
 
 
-@register_global_model_view(Maintenance, 'list')
+@register_model_view(Maintenance, 'list')
 class MaintenanceListView(generic.ObjectListView):
     queryset = Maintenance.objects.filter(~Q(status=MaintenanceStatusChoices.COMPLETED))
     table = tables.MaintenanceTable
@@ -40,7 +40,7 @@ class IncidentIncidentUpdateListView(generic.ObjectChildrenView):
         return parent.updates.restrict(request.user, 'view').all()
 
 
-@register_global_model_view(Maintenance, 'add')
+@register_model_view(Maintenance, 'add')
 class MaintenanceCreateView(generic.ObjectEditView):
     queryset = Maintenance.objects.filter()
     form = forms.MaintenanceForm
@@ -115,20 +115,20 @@ class MaintenanceDeleteView(generic.ObjectDeleteView):
     queryset = Maintenance.objects.filter()
 
 
-@register_global_model_view(Maintenance, 'bulk_edit')
+@register_model_view(Maintenance, 'bulk_edit')
 class MaintenanceBulkEditView(generic.BulkEditView):
     queryset = Maintenance.objects.all()
     table = tables.MaintenanceTable
     form = forms.MaintenanceBulkEditForm
 
 
-@register_global_model_view(Maintenance, 'bulk_delete')
+@register_model_view(Maintenance, 'bulk_delete')
 class MaintenanceBulkDeleteView(generic.BulkDeleteView):
     queryset = Maintenance.objects.all()
     table = tables.MaintenanceTable
 
 
-@register_global_model_view(Maintenance, 'past')
+@register_model_view(Maintenance, 'past', global_register=True)
 class PastMaintenanceListView(generic.ObjectListView):
     queryset = Maintenance.objects.filter(status=MaintenanceStatusChoices.COMPLETED)
     table = tables.MaintenanceTable
@@ -152,20 +152,20 @@ class MaintenanceUpdateDeleteView(generic.ObjectDeleteView):
     queryset = MaintenanceUpdate.objects.filter()
 
 
-@register_global_model_view(MaintenanceUpdate, 'bulk_edit')
+@register_model_view(MaintenanceUpdate, 'bulk_edit')
 class MaintenanceUpdateBulkEditView(generic.BulkEditView):
     queryset = MaintenanceUpdate.objects.all()
     table = tables.MaintenanceUpdateTable
     form = forms.MaintenanceUpdateBulkEditForm
 
 
-@register_global_model_view(MaintenanceUpdate, 'bulk_delete')
+@register_model_view(MaintenanceUpdate, 'bulk_delete')
 class MaintenanceUpdateBulkDeleteView(generic.BulkDeleteView):
     queryset = MaintenanceUpdate.objects.all()
     table = tables.MaintenanceUpdateTable
 
 
-@register_global_model_view(MaintenanceTemplate, 'list')
+@register_model_view(MaintenanceTemplate, 'list')
 class MaintenanceTemplateListView(generic.ObjectListView):
     queryset = MaintenanceTemplate.objects.filter()
     table = tables.MaintenanceTemplateTable
@@ -174,7 +174,7 @@ class MaintenanceTemplateListView(generic.ObjectListView):
 
 
 @register_model_view(MaintenanceTemplate)
-@register_global_model_view(MaintenanceTemplate, 'add')
+@register_model_view(MaintenanceTemplate, 'add')
 class MaintenanceTemplateView(generic.ObjectView, ActionsMixin):
     queryset = MaintenanceTemplate.objects.filter()
 
@@ -190,14 +190,14 @@ class MaintenanceTemplateDeleteView(generic.ObjectDeleteView):
     queryset = MaintenanceTemplate.objects.filter()
 
 
-@register_global_model_view(MaintenanceTemplate, 'bulk_edit')
+@register_model_view(MaintenanceTemplate, 'bulk_edit')
 class MaintenanceTemplateBulkEditView(generic.BulkEditView):
     queryset = MaintenanceTemplate.objects.all()
     table = tables.MaintenanceTemplateTable
     form = forms.MaintenanceTemplateBulkEditForm
 
 
-@register_global_model_view(MaintenanceTemplate, 'bulk_delete')
+@register_model_view(MaintenanceTemplate, 'bulk_delete')
 class MaintenanceTemplateBulkDeleteView(generic.BulkDeleteView):
     queryset = MaintenanceTemplate.objects.all()
     table = tables.MaintenanceTemplateTable

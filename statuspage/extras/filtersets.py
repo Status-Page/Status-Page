@@ -2,16 +2,48 @@ import django_filters
 from django.contrib.auth.models import User
 from django.contrib.contenttypes.models import ContentType
 from django.db.models import Q
+from django.utils.translation import gettext as _
 
 from statuspage.filtersets import BaseFilterSet
-from utilities.filters import ContentTypeFilter
+from utilities.filters import ContentTypeFilter, MultiValueNumberFilter
+from .choices import WebhookHttpMethodChoices
 from .models import *
 
 
 __all__ = (
     'ContentTypeFilterSet',
     'ObjectChangeFilterSet',
+    'WebhookFilterSet',
 )
+
+
+class WebhookFilterSet(BaseFilterSet):
+    q = django_filters.CharFilter(
+        method='search',
+        label=_('Search'),
+    )
+    content_type_id = MultiValueNumberFilter(
+        field_name='content_types__id'
+    )
+    content_types = ContentTypeFilter()
+    http_method = django_filters.MultipleChoiceFilter(
+        choices=WebhookHttpMethodChoices
+    )
+
+    class Meta:
+        model = Webhook
+        fields = [
+            'id', 'name', 'type_create', 'type_update', 'type_delete', 'payload_url',
+            'enabled', 'http_method', 'http_content_type', 'secret', 'ssl_verification', 'ca_file_path',
+        ]
+
+    def search(self, queryset, name, value):
+        if not value.strip():
+            return queryset
+        return queryset.filter(
+            Q(name__icontains=value) |
+            Q(payload_url__icontains=value)
+        )
 
 
 class ObjectChangeFilterSet(BaseFilterSet):
