@@ -9,6 +9,7 @@ from statuspage.api.exceptions import SerializerNotFound
 from statuspage.api.fields import ChoiceField, ContentTypeField
 from statuspage.api.serializers import BaseModelSerializer, ValidatedModelSerializer
 from statuspage.constants import NESTED_SERIALIZER_PREFIX
+from subscribers.api.nested_serializers import NestedSubscriberSerializer
 from users.api.nested_serializers import NestedUserSerializer
 from utilities.api import get_serializer_for_model
 
@@ -29,11 +30,12 @@ class WebhookSerializer(ValidatedModelSerializer):
         queryset=ContentType.objects.filter(FeatureQuery('webhooks').get_query()),
         many=True
     )
+    subscriber = NestedSubscriberSerializer()
 
     class Meta:
         model = Webhook
         fields = [
-            'id', 'url', 'display', 'content_types', 'name', 'type_create', 'type_update', 'type_delete',
+            'id', 'url', 'display', 'subscriber', 'content_types', 'name', 'type_create', 'type_update', 'type_delete',
             'payload_url', 'enabled', 'http_method', 'http_content_type',
             'additional_headers', 'body_template', 'secret', 'conditions', 'ssl_verification', 'ca_file_path',
             'created', 'last_updated',

@@ -5,6 +5,7 @@ from django.db.models import Q
 from django.utils.translation import gettext as _
 
 from statuspage.filtersets import BaseFilterSet
+from subscribers.models import Subscriber
 from utilities.filters import ContentTypeFilter, MultiValueNumberFilter
 from .choices import WebhookHttpMethodChoices
 from .models import *
@@ -22,6 +23,18 @@ class WebhookFilterSet(BaseFilterSet):
         method='search',
         label=_('Search'),
     )
+    subscriber = django_filters.ModelMultipleChoiceFilter(
+        field_name='subscriber__email',
+        queryset=Subscriber.objects.all(),
+        to_field_name='email',
+        label='Subscriber (Email)',
+    )
+    subscriber_id = django_filters.ModelMultipleChoiceFilter(
+        field_name='subscriber__id',
+        queryset=Subscriber.objects.all(),
+        to_field_name='id',
+        label='Subscriber (Id)',
+    )
     content_type_id = MultiValueNumberFilter(
         field_name='content_types__id'
     )
@@ -33,7 +46,7 @@ class WebhookFilterSet(BaseFilterSet):
     class Meta:
         model = Webhook
         fields = [
-            'id', 'name', 'type_create', 'type_update', 'type_delete', 'payload_url',
+            'id', 'subscriber', 'name', 'type_create', 'type_update', 'type_delete', 'payload_url',
             'enabled', 'http_method', 'http_content_type', 'secret', 'ssl_verification', 'ca_file_path',
         ]
 

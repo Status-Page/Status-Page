@@ -5,7 +5,9 @@ from extras.plugins.urls import plugin_patterns, plugin_api_patterns, plugin_adm
 from .admin import admin_site
 from django.urls import path, include, re_path
 from statuspage.views import HomeView, DashboardHomeView, SubscriberVerifyView, SubscriberManageView, \
-    SubscriberUnsubscribeView, SubscriberSubscribeView, SubscriberRequestManagementKeyView
+    SubscriberUnsubscribeView, SubscriberSubscribeView, SubscriberRequestManagementKeyView, \
+    SubscriberManageWebhookListView, SubscriberManageWebhookCreateView, SubscriberManageWebhookDeleteView, \
+    SubscriberManageWebhookEditView
 from users.views import LoginView, LogoutView
 from statuspage.api.views import APIRootView
 from drf_yasg import openapi
@@ -34,6 +36,10 @@ _patterns = [
     path('subscribers/reqeust-management-key', SubscriberRequestManagementKeyView.as_view(), name='subscriber_management_key'),
     path('subscribers/<str:management_key>/verify', SubscriberVerifyView.as_view(), name='subscriber_verify'),
     path('subscribers/<str:management_key>/manage', SubscriberManageView.as_view(), name='subscriber_manage'),
+    path('subscribers/<str:management_key>/manage/webhooks', SubscriberManageWebhookListView.as_view(), name='subscriber_manage_webhook_list'),
+    path('subscribers/<str:management_key>/manage/webhooks/create', SubscriberManageWebhookCreateView.as_view(), name='subscriber_manage_webhook_create'),
+    path('subscribers/<str:management_key>/manage/webhooks/<int:webhook>/edit', SubscriberManageWebhookEditView.as_view(), name='subscriber_manage_webhook_edit'),
+    path('subscribers/<str:management_key>/manage/webhooks/<int:webhook>/delete', SubscriberManageWebhookDeleteView.as_view(), name='subscriber_manage_webhook_delete'),
     path('subscribers/<str:management_key>/unsubscribe', SubscriberUnsubscribeView.as_view(), name='subscriber_unsubscribe'),
 
     path('dashboard/', DashboardHomeView.as_view(), name='dashboard'),

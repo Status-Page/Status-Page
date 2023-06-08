@@ -3,6 +3,7 @@ from django.utils.translation import gettext as _
 
 from extras.choices import *
 from extras.models import *
+from subscribers.models import Subscriber
 from utilities.forms import BulkEditForm, add_blank_choice
 from utilities.forms.widgets import BulkEditNullBooleanSelect
 
@@ -15,6 +16,10 @@ class WebhookBulkEditForm(BulkEditForm):
     pk = forms.ModelMultipleChoiceField(
         queryset=Webhook.objects.all(),
         widget=forms.MultipleHiddenInput
+    )
+    subscriber = forms.ModelChoiceField(
+        queryset=Subscriber.objects.all(),
+        required=False,
     )
     enabled = forms.NullBooleanField(
         required=False,

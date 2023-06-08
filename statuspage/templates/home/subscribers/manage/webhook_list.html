@@ -1,0 +1,38 @@
+{% extends 'base/home.html' %}
+{% load helpers %}
+{% load form_helpers %}
+{% load buttons %}
+
+{% block controls %}
+  <div>
+    <a href="{% url 'subscriber_unsubscribe' management_key=subscriber.management_key %}" class="bg-indigo-500 hover:bg-indigo-600 text-white shadow px-4 py-2 rounded-md" role="button">Unsubscribe</a>
+  </div>
+  <div>
+    <a href="{% url 'home' %}" class="bg-indigo-500 hover:bg-indigo-600 text-white shadow px-4 py-2 rounded-md" role="button">Home</a>
+  </div>
+  <div>
+    <a href="{% url 'subscriber_manage' management_key=subscriber.management_key %}" class="bg-indigo-500 hover:bg-indigo-600 text-white shadow px-4 py-2 rounded-md" role="button">Management Home</a>
+  </div>
+{% endblock %}
+
+{% block home_content %}
+<div class="flex flex-col space-y-8">
+  <div class="space-y-4">
+    <div class="flex flex-row justify-between">
+      <div class="text-2xl">Webhooks</div>
+      <div>
+        <a class="px-2 py-1 rounded-md bg-green-500 hover:bg-green-400" href="{% url 'subscriber_manage_webhook_create' management_key=subscriber.management_key %}" type="button"><i class="mdi mdi-plus-thick"></i> Add</a>
+      </div>
+    </div>
+    <div>
+      <form method="post">
+        {% csrf_token %}
+
+        <div id="object_list">
+          {% include 'htmx/table.html' %}
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

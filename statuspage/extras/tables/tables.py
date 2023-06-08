@@ -8,6 +8,7 @@ from .template_code import *
 __all__ = (
     'ObjectChangeTable',
     'WebhookTable',
+    'PublicWebhookTable',
 )
 
 
@@ -15,6 +16,7 @@ class WebhookTable(StatusPageTable):
     name = tables.Column(
         linkify=True
     )
+    subscriber = tables.Column()
     content_types = columns.ContentTypesColumn()
     enabled = columns.BooleanColumn()
     type_create = columns.BooleanColumn(
@@ -33,13 +35,34 @@ class WebhookTable(StatusPageTable):
     class Meta(StatusPageTable.Meta):
         model = Webhook
         fields = (
-            'pk', 'id', 'name', 'content_types', 'enabled', 'type_create', 'type_update', 'type_delete',
+            'pk', 'id', 'name', 'subscriber', 'content_types', 'enabled', 'type_create', 'type_update', 'type_delete',
             'http_method', 'payload_url', 'secret', 'ssl_validation', 'ca_file_path',
             'created', 'last_updated',
         )
         default_columns = (
-            'pk', 'name', 'content_types', 'enabled', 'type_create', 'type_update', 'type_delete',
+            'pk', 'name', 'subscriber', 'content_types', 'enabled', 'type_create', 'type_update', 'type_delete',
             'http_method', 'payload_url',
+        )
+
+
+class PublicWebhookTable(StatusPageTable):
+    name = tables.Column()
+    content_types = columns.ContentTypesColumn()
+    actions = columns.ActionsColumn(
+        actions=(),
+        extra_buttons=' '.join([
+            '<a class="px-2 py-1 rounded-md bg-yellow-500 hover:bg-yellow-400" href="{% url \'subscriber_manage_webhook_edit\' webhook=record.pk management_key=record.subscriber.management_key %}" type="button"><i class="mdi mdi-pencil"></i></a>',
+            '<a class="px-2 py-1 rounded-md bg-red-500 hover:bg-red-400" href="{% url \'subscriber_manage_webhook_delete\' webhook=record.pk management_key=record.subscriber.management_key %}" type="button"><i class="mdi mdi-trash-can-outline"></i></a>',
+        ]),
+    )
+
+    class Meta(StatusPageTable.Meta):
+        model = Webhook
+        fields = (
+            'pk', 'name', 'content_types', 'payload_url',
+        )
+        default_columns = (
+            'pk', 'name', 'content_types', 'payload_url',
         )
 
 

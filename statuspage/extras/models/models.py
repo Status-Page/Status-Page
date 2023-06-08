@@ -21,6 +21,8 @@ __all__ = (
     'ConfigRevision',
 )
 
+from subscribers.models import Subscriber
+
 from utilities.utils import render_jinja2
 
 
@@ -40,6 +42,13 @@ class Webhook(ChangeLoggedModel):
     name = models.CharField(
         max_length=150,
         unique=True
+    )
+    subscriber = models.ForeignKey(
+        to=Subscriber,
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE,
+        related_name='webhooks',
     )
     type_create = models.BooleanField(
         default=False,

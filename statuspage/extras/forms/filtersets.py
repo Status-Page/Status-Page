@@ -6,6 +6,7 @@ from django.utils.translation import gettext as _
 from extras.choices import *
 from extras.models import *
 from extras.utils import FeatureQuery
+from subscribers.models import Subscriber
 from utilities.forms import (
     add_blank_choice, APISelectMultiple, DateTimePicker, DynamicModelMultipleChoiceField, FilterForm,
     StaticSelect, ContentTypeMultipleChoiceField, BOOLEAN_WITH_BLANK_CHOICES
@@ -20,8 +21,12 @@ __all__ = (
 class WebhookFilterForm(FilterForm):
     fieldsets = (
         (None, ('q',)),
-        ('Attributes', ('content_type_id', 'http_method', 'enabled')),
+        ('Attributes', ('subscriber', 'content_type_id', 'http_method', 'enabled')),
         ('Events', ('type_create', 'type_update', 'type_delete')),
+    )
+    subscriber = forms.ModelChoiceField(
+        queryset=Subscriber.objects.all(),
+        required=False,
     )
     content_type_id = ContentTypeMultipleChoiceField(
         queryset=ContentType.objects.filter(FeatureQuery('webhooks').get_query()),
