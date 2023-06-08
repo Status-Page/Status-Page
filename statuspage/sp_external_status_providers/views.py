@@ -16,7 +16,6 @@ class ExternalStatusPageListView(generic.ObjectListView):
 
 
 @register_model_view(ExternalStatusPage)
-@register_model_view(ExternalStatusPage, 'add')
 class ExternalStatusPageView(generic.ObjectView, ActionsMixin):
     queryset = ExternalStatusPage.objects.all()
 
@@ -39,6 +38,7 @@ class ExternalStatusPageView(generic.ObjectView, ActionsMixin):
 
 
 @register_model_view(ExternalStatusPage, 'edit')
+@register_model_view(ExternalStatusPage, 'add')
 class ExternalStatusPageEditView(generic.ObjectEditView):
     queryset = ExternalStatusPage.objects.all()
     form = forms.ExternalStatusPageForm
@@ -71,12 +71,12 @@ class ExternalStatusComponentListView(generic.ObjectListView):
 
 
 @register_model_view(ExternalStatusComponent)
-@register_model_view(ExternalStatusComponent, 'add')
 class ExternalStatusComponentView(generic.ObjectView):
     queryset = ExternalStatusComponent.objects.all()
 
 
 @register_model_view(ExternalStatusComponent, 'edit')
+@register_model_view(ExternalStatusComponent, 'add')
 class ExternalStatusComponentEditView(generic.ObjectEditView):
     queryset = ExternalStatusComponent.objects.all()
     form = forms.ExternalStatusComponentForm
