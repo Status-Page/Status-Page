@@ -1,11 +1,60 @@
 from statuspage.views import generic
 from utilities.utils import shallow_compare_dict
-from utilities.views import register_global_model_view, register_model_view
+from utilities.views import register_model_view
 from . import filtersets, forms, tables
 from .models import *
 
 
-@register_global_model_view(ObjectChange, 'list')
+#
+# Webhooks
+#
+
+@register_model_view(Webhook, 'list')
+class WebhookListView(generic.ObjectListView):
+    queryset = Webhook.objects.all()
+    filterset = filtersets.WebhookFilterSet
+    filterset_form = forms.WebhookFilterForm
+    table = tables.WebhookTable
+
+
+@register_model_view(Webhook)
+class WebhookView(generic.ObjectView):
+    queryset = Webhook.objects.all()
+
+
+@register_model_view(Webhook, 'edit')
+@register_model_view(Webhook, 'add')
+class WebhookEditView(generic.ObjectEditView):
+    queryset = Webhook.objects.all()
+    form = forms.WebhookForm
+
+
+@register_model_view(Webhook, 'delete')
+class WebhookDeleteView(generic.ObjectDeleteView):
+    queryset = Webhook.objects.all()
+
+
+# class WebhookBulkImportView(generic.BulkImportView):
+#    queryset = Webhook.objects.all()
+#    model_form = forms.WebhookImportForm
+
+
+@register_model_view(Webhook, 'bulk_edit')
+class WebhookBulkEditView(generic.BulkEditView):
+    queryset = Webhook.objects.all()
+    filterset = filtersets.WebhookFilterSet
+    table = tables.WebhookTable
+    form = forms.WebhookBulkEditForm
+
+
+@register_model_view(Webhook, 'bulk_delete')
+class WebhookBulkDeleteView(generic.BulkDeleteView):
+    queryset = Webhook.objects.all()
+    filterset = filtersets.WebhookFilterSet
+    table = tables.WebhookTable
+
+
+@register_model_view(ObjectChange, 'list')
 class ObjectChangeListView(generic.ObjectListView):
     queryset = ObjectChange.objects.all()
     filterset = filtersets.ObjectChangeFilterSet

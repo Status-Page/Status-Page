@@ -8,6 +8,9 @@ __all__ = (
     'FilterForm',
     'ReturnURLForm',
     'ConfirmationForm',
+    'TableConfigForm',
+    'BulkEditForm',
+    'CSVModelForm',
 )
 
 
@@ -20,10 +23,8 @@ class TailwindMixin:
         super().__init__(*args, **kwargs)
 
         exempt_widgets = [
-            forms.CheckboxInput,
             forms.FileInput,
             forms.RadioSelect,
-            forms.Select,
             APISelect,
             APISelectMultiple,
             ClearableFileInput,
@@ -31,27 +32,28 @@ class TailwindMixin:
         ]
 
         for field_name, field in self.fields.items():
+            css = field.widget.attrs.get('class', '')
 
-            if field.widget.__class__ not in exempt_widgets:
-                css = field.widget.attrs.get('class', '')
-                field.widget.attrs['class'] = ' '.join([css, 'block w-full rounded-md border-gray-300 shadow-sm '
-                                                             'sm:text-sm text-black dark:text-white dark:bg-zinc-900'
-                                                             ' dark:border-zinc-700']).strip()
+            if field.widget.__class__ in exempt_widgets:
+                continue
+            elif isinstance(field.widget, forms.CheckboxInput):
+                field.widget.attrs['class'] = f'{css} h-4 w-4 rounded border-gray-300 text-indigo-600 ' \
+                                              f'dark:bg-zinc-900 dark:border-zinc-700'
+            elif isinstance(field.widget, forms.SelectMultiple) and 'size' in field.widget.attrs:
+                # Use native Bootstrap class for multi-line <select> widgets
+                field.widget.attrs['class'] = f'{css} block w-full rounded-md border-gray-300 shadow-sm sm:text-sm ' \
+                                              f'text-black dark:text-white dark:bg-zinc-900 dark:border-zinc-700'
+            elif isinstance(field.widget, (forms.Select, forms.SelectMultiple)):
+                field.widget.attrs['class'] = f'{css} statuspage-static-select'
+            else:
+                field.widget.attrs['class'] = f'{css} block w-full rounded-md border-gray-300 shadow-sm sm:text-sm ' \
+                                              f'text-black dark:text-white dark:bg-zinc-900 dark:border-zinc-700'
 
             if field.required and not isinstance(field.widget, forms.FileInput):
                 field.widget.attrs['required'] = 'required'
 
             if 'placeholder' not in field.widget.attrs and field.label is not None:
                 field.widget.attrs['placeholder'] = field.label
-
-            if field.widget.__class__ == forms.CheckboxInput:
-                css = field.widget.attrs.get('class', '')
-                field.widget.attrs['class'] = ' '.join((css, 'h-4 w-4 rounded border-gray-300 text-indigo-600'
-                                                             ' dark:bg-zinc-900 dark:border-zinc-700')).strip()
-
-            if field.widget.__class__ == forms.Select:
-                css = field.widget.attrs.get('class', '')
-                field.widget.attrs['class'] = ' '.join((css, 'text-black')).strip()
 
 
 class FilterForm(TailwindMixin, forms.Form):
@@ -62,6 +64,35 @@ class FilterForm(TailwindMixin, forms.Form):
         required=False,
         label='Search'
     )
+
+
+class BulkEditForm(TailwindMixin, forms.Form):
+    """
+    Provides bulk edit support for objects.
+    """
+    nullable_fields = ()
+
+
+class CSVModelForm(forms.ModelForm):
+    """
+    ModelForm used for the import of objects in CSV format.
+    """
+    def __init__(self, *args, headers=None, fields=None, **kwargs):
+        headers = headers or {}
+        fields = fields or []
+        super().__init__(*args, **kwargs)
+
+        # Modify the model form to accommodate any customized to_field_name properties
+        for field, to_field in headers.items():
+            if to_field is not None:
+                self.fields[field].to_field_name = to_field
+
+        # Omit any fields not specified (e.g. because the form is being used to
+        # updated rather than create objects)
+        if fields:
+            for field in list(self.fields.keys()):
+                if field not in fields:
+                    del self.fields[field]
 
 
 class ReturnURLForm(forms.Form):

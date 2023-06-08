@@ -8,6 +8,7 @@ from django.forms import ModelMultipleChoiceField, MultipleHiddenInput
 from django.shortcuts import render, redirect
 from django.utils.safestring import mark_safe
 
+from extras.signals import clear_webhooks
 from utilities.error_handlers import handle_protectederror
 from utilities.exceptions import PermissionsViolation, AbortRequest
 from utilities.forms import restrict_form_fields, ConfirmationForm
@@ -189,10 +190,12 @@ class BulkEditView(GetReturnURLMixin, BaseMultiObjectView):
 
                 except ValidationError as e:
                     messages.error(self.request, ", ".join(e.messages))
+                    clear_webhooks.send(sender=self)
 
                 except (AbortRequest, PermissionsViolation) as e:
                     logger.debug(e.message)
                     form.add_error(None, e.message)
+                    clear_webhooks.send(sender=self)
 
             else:
                 logger.debug("Form validation failed")

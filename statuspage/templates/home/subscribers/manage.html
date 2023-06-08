@@ -1,6 +1,7 @@
 {% extends 'base/home.html' %}
 {% load helpers %}
 {% load form_helpers %}
+{% load buttons %}
 
 {% block controls %}
   <div>
@@ -13,13 +14,20 @@
 
 {% block home_content %}
 <div class="flex flex-col space-y-8">
-  <div class="text-2xl">Manage Subscription</div>
-  <form action="" method="post">
+  <div class="space-y-4">
+    <div class="text-2xl">Manage Subscription</div>
+    <form action="" method="post">
       {% csrf_token %}
       <div class="flex flex-col space-y-2">
         {% render_form form %}
         <button type="submit" class="bg-indigo-500 hover:bg-indigo-600 text-white shadow px-4 py-2 rounded-md">Update</button>
       </div>
     </form>
+    {% if config.SITE_PUBLIC_WEBHOOKS %}
+      <div>
+        <a href="{% url 'subscriber_manage_webhook_list' management_key=subscriber.management_key %}" class="bg-indigo-500 hover:bg-indigo-600 text-white shadow px-4 py-2 rounded-md" role="button">Webhooks</a>
+      </div>
+    {% endif %}
+  </div>
 </div>
 {% endblock %}

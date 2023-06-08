@@ -1,5 +1,5 @@
+from statuspage.context import current_request
 from statuspage.forms import StatusPageModelForm
-from statuspage.request_context import get_request
 from utilities.forms import StaticSelect, StaticSelectMultiple, DateTimePicker, TailwindMixin
 from utilities.utils import get_component_status_from_incident_impact
 from ..models import Incident, IncidentUpdate, IncidentTemplate
@@ -55,7 +55,7 @@ class IncidentForm(StatusPageModelForm):
             self.fields['text'].required = True
 
     def save(self, *args, **kwargs):
-        request = get_request()
+        request = current_request.get()
 
         self.instance.user = request.user
         incident = super().save(*args, **kwargs)

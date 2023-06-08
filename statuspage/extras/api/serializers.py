@@ -4,17 +4,42 @@ from rest_framework import serializers
 
 from extras.choices import *
 from extras.models import *
+from extras.utils import FeatureQuery
 from statuspage.api.exceptions import SerializerNotFound
 from statuspage.api.fields import ChoiceField, ContentTypeField
-from statuspage.api.serializers import BaseModelSerializer
+from statuspage.api.serializers import BaseModelSerializer, ValidatedModelSerializer
 from statuspage.constants import NESTED_SERIALIZER_PREFIX
+from subscribers.api.nested_serializers import NestedSubscriberSerializer
 from users.api.nested_serializers import NestedUserSerializer
 from utilities.api import get_serializer_for_model
 
 __all__ = (
     'ContentTypeSerializer',
     'ObjectChangeSerializer',
+    'WebhookSerializer',
 )
+
+
+#
+# Webhooks
+#
+
+class WebhookSerializer(ValidatedModelSerializer):
+    url = serializers.HyperlinkedIdentityField(view_name='extras-api:webhook-detail')
+    content_types = ContentTypeField(
+        queryset=ContentType.objects.filter(FeatureQuery('webhooks').get_query()),
+        many=True
+    )
+    subscriber = NestedSubscriberSerializer()
+
+    class Meta:
+        model = Webhook
+        fields = [
+            'id', 'url', 'display', 'subscriber', 'content_types', 'name', 'type_create', 'type_update', 'type_delete',
+            'payload_url', 'enabled', 'http_method', 'http_content_type',
+            'additional_headers', 'body_template', 'secret', 'conditions', 'ssl_verification', 'ca_file_path',
+            'created', 'last_updated',
+        ]
 
 
 #

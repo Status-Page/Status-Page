@@ -2,7 +2,7 @@ from django.db.models import Q
 
 from statuspage.views import generic
 from statuspage.views.generic.mixins import ActionsMixin
-from utilities.views import register_global_model_view, register_model_view, ViewTab
+from utilities.views import register_model_view, ViewTab
 from .models import Incident, IncidentUpdate, IncidentTemplate
 from . import tables
 from . import forms
@@ -10,7 +10,7 @@ from . import filtersets
 from .choices import IncidentStatusChoices
 
 
-@register_global_model_view(Incident, 'list')
+@register_model_view(Incident, 'list')
 class IncidentListView(generic.ObjectListView):
     queryset = Incident.objects.filter(~Q(status=IncidentStatusChoices.RESOLVED))
     table = tables.IncidentTable
@@ -40,7 +40,7 @@ class IncidentIncidentUpdateListView(generic.ObjectChildrenView):
         return parent.updates.restrict(request.user, 'view').all()
 
 
-@register_global_model_view(Incident, 'add')
+@register_model_view(Incident, 'add')
 class IncidentCreateView(generic.ObjectEditView):
     queryset = Incident.objects.filter()
     form = forms.IncidentForm
@@ -111,20 +111,20 @@ class IncidentDeleteView(generic.ObjectDeleteView):
     queryset = Incident.objects.filter()
 
 
-@register_global_model_view(Incident, 'bulk_edit')
+@register_model_view(Incident, 'bulk_edit')
 class IncidentBulkEditView(generic.BulkEditView):
     queryset = Incident.objects.all()
     table = tables.IncidentTable
     form = forms.IncidentBulkEditForm
 
 
-@register_global_model_view(Incident, 'bulk_delete')
+@register_model_view(Incident, 'bulk_delete')
 class IncidentBulkDeleteView(generic.BulkDeleteView):
     queryset = Incident.objects.all()
     table = tables.IncidentTable
 
 
-@register_global_model_view(Incident, 'past')
+@register_model_view(Incident, 'past', global_register=True)
 class PastIncidentListView(generic.ObjectListView):
     queryset = Incident.objects.filter(status=IncidentStatusChoices.RESOLVED)
     table = tables.IncidentTable
@@ -148,20 +148,20 @@ class IncidentUpdateDeleteView(generic.ObjectDeleteView):
     queryset = IncidentUpdate.objects.filter()
 
 
-@register_global_model_view(IncidentUpdate, 'bulk_edit')
+@register_model_view(IncidentUpdate, 'bulk_edit')
 class IncidentUpdateBulkEditView(generic.BulkEditView):
     queryset = IncidentUpdate.objects.all()
     table = tables.IncidentUpdateTable
     form = forms.IncidentUpdateBulkEditForm
 
 
-@register_global_model_view(IncidentUpdate, 'bulk_delete')
+@register_model_view(IncidentUpdate, 'bulk_delete')
 class IncidentUpdateBulkDeleteView(generic.BulkDeleteView):
     queryset = IncidentUpdate.objects.all()
     table = tables.IncidentUpdateTable
 
 
-@register_global_model_view(IncidentTemplate, 'list')
+@register_model_view(IncidentTemplate, 'list')
 class IncidentTemplateListView(generic.ObjectListView):
     queryset = IncidentTemplate.objects.filter()
     table = tables.IncidentTemplateTable
@@ -170,7 +170,7 @@ class IncidentTemplateListView(generic.ObjectListView):
 
 
 @register_model_view(IncidentTemplate)
-@register_global_model_view(IncidentTemplate, 'add')
+@register_model_view(IncidentTemplate, 'add')
 class IncidentTemplateView(generic.ObjectView, ActionsMixin):
     queryset = IncidentTemplate.objects.filter()
 
@@ -186,14 +186,14 @@ class IncidentTemplateDeleteView(generic.ObjectDeleteView):
     queryset = IncidentTemplate.objects.filter()
 
 
-@register_global_model_view(IncidentTemplate, 'bulk_edit')
+@register_model_view(IncidentTemplate, 'bulk_edit')
 class IncidentTemplateBulkEditView(generic.BulkEditView):
     queryset = IncidentTemplate.objects.all()
     table = tables.IncidentTemplateTable
     form = forms.IncidentTemplateBulkEditForm
 
 
-@register_global_model_view(IncidentTemplate, 'bulk_delete')
+@register_model_view(IncidentTemplate, 'bulk_delete')
 class IncidentTemplateBulkDeleteView(generic.BulkDeleteView):
     queryset = IncidentTemplate.objects.all()
     table = tables.IncidentTemplateTable

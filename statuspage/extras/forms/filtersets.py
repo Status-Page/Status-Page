@@ -5,14 +5,66 @@ from django.utils.translation import gettext as _
 
 from extras.choices import *
 from extras.models import *
+from extras.utils import FeatureQuery
+from subscribers.models import Subscriber
 from utilities.forms import (
     add_blank_choice, APISelectMultiple, DateTimePicker, DynamicModelMultipleChoiceField, FilterForm,
-    StaticSelect
+    StaticSelect, ContentTypeMultipleChoiceField, BOOLEAN_WITH_BLANK_CHOICES
 )
 
 __all__ = (
     'ObjectChangeFilterForm',
+    'WebhookFilterForm',
 )
+
+
+class WebhookFilterForm(FilterForm):
+    fieldsets = (
+        (None, ('q',)),
+        ('Attributes', ('subscriber', 'content_type_id', 'http_method', 'enabled')),
+        ('Events', ('type_create', 'type_update', 'type_delete')),
+    )
+    subscriber = forms.ModelChoiceField(
+        queryset=Subscriber.objects.all(),
+        required=False,
+    )
+    content_type_id = ContentTypeMultipleChoiceField(
+        queryset=ContentType.objects.filter(FeatureQuery('webhooks').get_query()),
+        required=False,
+        label=_('Object type')
+    )
+    http_method = forms.MultipleChoiceField(
+        choices=WebhookHttpMethodChoices,
+        required=False,
+        label=_('HTTP method')
+    )
+    enabled = forms.NullBooleanField(
+        required=False,
+        widget=forms.Select(
+            choices=BOOLEAN_WITH_BLANK_CHOICES
+        )
+    )
+    type_create = forms.NullBooleanField(
+        required=False,
+        widget=forms.Select(
+            choices=BOOLEAN_WITH_BLANK_CHOICES
+        ),
+        label=_('Object creations')
+    )
+    type_update = forms.NullBooleanField(
+        required=False,
+        widget=forms.Select(
+            choices=BOOLEAN_WITH_BLANK_CHOICES
+        ),
+        label=_('Object updates')
+    )
+    type_delete = forms.NullBooleanField(
+        required=False,
+        widget=forms.Select(
+            choices=BOOLEAN_WITH_BLANK_CHOICES
+        ),
+        label=_('Object deletions')
+    )
 
 
 class ObjectChangeFilterForm(FilterForm):

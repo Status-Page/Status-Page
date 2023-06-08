@@ -95,6 +95,24 @@ DEFAULT_MENU = Menu(
                 get_model_item('metrics', 'metric', 'Metrics'),
             ),
         ),
+        MenuDropdown(
+            label='Operations',
+            groups=(
+                MenuGroup(
+                    label='Integrations',
+                    items=(
+                        get_model_item('extras', 'webhook', 'Webhooks'),
+                    ),
+                ),
+                MenuGroup(
+                    label='Logging',
+                    items=(
+                        get_model_item('extras', 'objectchange', 'Changelog'),
+                    ),
+                ),
+            ),
+            items=(),
+        ),
     ),
 )
 

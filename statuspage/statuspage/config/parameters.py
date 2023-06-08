@@ -28,6 +28,13 @@ PARAMS = (
         default=False,
         field=forms.BooleanField,
     ),
+    ConfigParam(
+        name='SITE_PUBLIC_WEBHOOKS',
+        label='Public Webhooks',
+        description='Enable Public Webhooks (Requires correct E-Mail server setup)',
+        default=False,
+        field=forms.BooleanField,
+    ),
 
     # Custom Styling
     ConfigParam(

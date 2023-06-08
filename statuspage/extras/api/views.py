@@ -6,6 +6,7 @@ from rest_framework.viewsets import ReadOnlyModelViewSet
 from extras import filtersets
 from extras.models import *
 from statuspage.api.metadata import ContentTypeMetadata
+from statuspage.api.viewsets import StatusPageModelViewSet
 from . import serializers
 
 
@@ -15,6 +16,17 @@ class ExtrasRootView(APIRootView):
     """
     def get_view_name(self):
         return 'Extras'
+
+
+#
+# Webhooks
+#
+
+class WebhookViewSet(StatusPageModelViewSet):
+    metadata_class = ContentTypeMetadata
+    queryset = Webhook.objects.all()
+    serializer_class = serializers.WebhookSerializer
+    filterset_class = filtersets.WebhookFilterSet
 
 
 #

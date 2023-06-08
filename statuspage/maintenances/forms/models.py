@@ -1,7 +1,7 @@
 from django import forms
 
+from statuspage.context import current_request
 from statuspage.forms import StatusPageModelForm
-from statuspage.request_context import get_request
 from utilities.forms import StaticSelect, StaticSelectMultiple, DateTimePicker, TailwindMixin
 from ..models import Maintenance, MaintenanceUpdate, MaintenanceTemplate
 from utilities.forms.fields import fields
@@ -53,7 +53,7 @@ class MaintenanceForm(StatusPageModelForm):
             self.fields['text'].required = True
 
     def save(self, *args, **kwargs):
-        request = get_request()
+        request = current_request.get()
 
         self.instance.user = request.user
         maintenance = super().save(*args, **kwargs)

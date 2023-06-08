@@ -10,7 +10,6 @@ __all__ = (
     'GetReturnURLMixin',
     'ViewTab',
     'register_model_view',
-    'register_global_model_view',
 )
 
 
@@ -133,7 +132,7 @@ class ViewTab:
         return self.badge
 
 
-def register_model_view(model, name='', path=None, global_register=False, kwargs=None):
+def _register_model_view(model, name='', path=None, global_register=None, kwargs=None):
     """
     This decorator can be used to "attach" a view to any model in Status-Page. This is typically used to inject
     additional tabs within a model's detail view. For example:
@@ -164,7 +163,7 @@ def register_model_view(model, name='', path=None, global_register=False, kwargs
             'name': name,
             'view': cls,
             'path': path or name,
-            'global_register': global_register,
+            'global_register': global_register or False,
             'kwargs': kwargs or {},
         })
 
@@ -173,9 +172,12 @@ def register_model_view(model, name='', path=None, global_register=False, kwargs
     return _wrapper
 
 
-def register_global_model_view(model, name='', path=None, global_register=True, kwargs=None):
+def register_model_view(model, name='', path=None, global_register=None, kwargs=None):
+    if global_register is None:
+        if name in ['list', 'add', 'bulk_edit', 'bulk_delete']:
+            global_register = True
     if name == 'bulk_edit':
         path = 'edit'
     if name == 'bulk_delete':
         path = 'delete'
-    return register_model_view(model, name=name, path=path, global_register=global_register, kwargs=kwargs)
+    return _register_model_view(model=model ,name=name, path=path, global_register=global_register, kwargs=kwargs)

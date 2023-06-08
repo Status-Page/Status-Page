@@ -1,13 +1,13 @@
 from statuspage.views import generic
 from statuspage.views.generic.mixins import ActionsMixin
-from utilities.views import register_model_view, register_global_model_view
+from utilities.views import register_model_view
 from .models import Component, ComponentGroup
 from . import tables
 from . import forms
 from . import filtersets
 
 
-@register_global_model_view(Component, 'list')
+@register_model_view(Component, 'list')
 class ComponentListView(generic.ObjectListView):
     queryset = Component.objects.all()
     table = tables.ComponentTable
@@ -16,7 +16,7 @@ class ComponentListView(generic.ObjectListView):
 
 
 @register_model_view(Component)
-@register_global_model_view(Component, 'add')
+@register_model_view(Component, 'add')
 class ComponentView(generic.ObjectView):
     queryset = Component.objects.all()
 
@@ -32,20 +32,20 @@ class ComponentDeleteView(generic.ObjectDeleteView):
     queryset = Component.objects.all()
 
 
-@register_global_model_view(Component, 'bulk_edit')
+@register_model_view(Component, 'bulk_edit')
 class ComponentBulkEditView(generic.BulkEditView):
     queryset = Component.objects.all()
     table = tables.ComponentTable
     form = forms.ComponentBulkEditForm
 
 
-@register_global_model_view(Component, 'bulk_delete')
+@register_model_view(Component, 'bulk_delete')
 class ComponentBulkDeleteView(generic.BulkDeleteView):
     queryset = Component.objects.all()
     table = tables.ComponentTable
 
 
-@register_global_model_view(ComponentGroup, 'list')
+@register_model_view(ComponentGroup, 'list')
 class ComponentGroupListView(generic.ObjectListView):
     queryset = ComponentGroup.objects.all()
     table = tables.ComponentGroupTable
@@ -54,7 +54,7 @@ class ComponentGroupListView(generic.ObjectListView):
 
 
 @register_model_view(ComponentGroup)
-@register_global_model_view(ComponentGroup, 'add')
+@register_model_view(ComponentGroup, 'add')
 class ComponentGroupView(generic.ObjectView, ActionsMixin):
     queryset = ComponentGroup.objects.all()
 
@@ -87,14 +87,14 @@ class ComponentGroupDeleteView(generic.ObjectDeleteView):
     queryset = ComponentGroup.objects.all()
 
 
-@register_global_model_view(ComponentGroup, 'bulk_edit')
+@register_model_view(ComponentGroup, 'bulk_edit')
 class ComponentGroupBulkEditView(generic.BulkEditView):
     queryset = ComponentGroup.objects.all()
     table = tables.ComponentGroupTable
     form = forms.ComponentGroupBulkEditForm
 
 
-@register_global_model_view(ComponentGroup, 'bulk_delete')
+@register_model_view(ComponentGroup, 'bulk_delete')
 class ComponentGroupBulkDeleteView(generic.BulkDeleteView):
     queryset = ComponentGroup.objects.all()
     table = tables.ComponentGroupTable
