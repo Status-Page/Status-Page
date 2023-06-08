@@ -170,12 +170,12 @@ class IncidentTemplateListView(generic.ObjectListView):
 
 
 @register_model_view(IncidentTemplate)
-@register_model_view(IncidentTemplate, 'add')
 class IncidentTemplateView(generic.ObjectView, ActionsMixin):
     queryset = IncidentTemplate.objects.filter()
 
 
 @register_model_view(IncidentTemplate, 'edit')
+@register_model_view(IncidentTemplate, 'add')
 class IncidentTemplateEditView(generic.ObjectEditView):
     queryset = IncidentTemplate.objects.filter()
     form = forms.IncidentTemplateForm

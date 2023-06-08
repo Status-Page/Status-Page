@@ -22,12 +22,12 @@ class MetricListView(generic.ObjectListView):
 
 
 @register_model_view(Metric)
-@register_model_view(Metric, 'add')
 class MetricView(generic.ObjectView):
     queryset = Metric.objects.all()
 
 
 @register_model_view(Metric, 'edit')
+@register_model_view(Metric, 'add')
 class MetricEditView(generic.ObjectEditView):
     queryset = Metric.objects.all()
     form = forms.MetricForm

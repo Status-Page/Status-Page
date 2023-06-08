@@ -16,12 +16,12 @@ class ComponentListView(generic.ObjectListView):
 
 
 @register_model_view(Component)
-@register_model_view(Component, 'add')
 class ComponentView(generic.ObjectView):
     queryset = Component.objects.all()
 
 
 @register_model_view(Component, 'edit')
+@register_model_view(Component, 'add')
 class ComponentEditView(generic.ObjectEditView):
     queryset = Component.objects.all()
     form = forms.ComponentForm
@@ -54,7 +54,6 @@ class ComponentGroupListView(generic.ObjectListView):
 
 
 @register_model_view(ComponentGroup)
-@register_model_view(ComponentGroup, 'add')
 class ComponentGroupView(generic.ObjectView, ActionsMixin):
     queryset = ComponentGroup.objects.all()
 
@@ -77,6 +76,7 @@ class ComponentGroupView(generic.ObjectView, ActionsMixin):
 
 
 @register_model_view(ComponentGroup, 'edit')
+@register_model_view(ComponentGroup, 'add')
 class ComponentGroupEditView(generic.ObjectEditView):
     queryset = ComponentGroup.objects.all()
     form = forms.ComponentGroupForm

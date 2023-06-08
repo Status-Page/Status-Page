@@ -19,7 +19,6 @@ class SubscriberListView(generic.ObjectListView):
 
 
 @register_model_view(Subscriber)
-@register_model_view(Subscriber, 'add')
 class SubscriberView(generic.ObjectView):
     queryset = Subscriber.objects.all()
 
@@ -51,6 +50,7 @@ class SubscriberView(generic.ObjectView):
 
 
 # @register_model_view(Subscriber, 'edit')
+@register_model_view(Subscriber, 'add')
 class SubscriberEditView(generic.ObjectEditView):
     queryset = Subscriber.objects.all()
     form = forms.SubscriberForm

@@ -174,12 +174,12 @@ class MaintenanceTemplateListView(generic.ObjectListView):
 
 
 @register_model_view(MaintenanceTemplate)
-@register_model_view(MaintenanceTemplate, 'add')
 class MaintenanceTemplateView(generic.ObjectView, ActionsMixin):
     queryset = MaintenanceTemplate.objects.filter()
 
 
 @register_model_view(MaintenanceTemplate, 'edit')
+@register_model_view(MaintenanceTemplate, 'add')
 class MaintenanceTemplateEditView(generic.ObjectEditView):
     queryset = MaintenanceTemplate.objects.filter()
     form = forms.MaintenanceTemplateForm
