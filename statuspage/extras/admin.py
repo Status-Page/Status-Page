@@ -13,7 +13,7 @@ from .models import ConfigRevision
 class ConfigRevisionAdmin(admin.ModelAdmin):
     fieldsets = [
         ('Site', {
-            'fields': ('SITE_TITLE', 'SITE_SUBSCRIBERS',),
+            'fields': ('SITE_TITLE', 'SITE_SUBSCRIBERS', 'SITE_PUBLIC_WEBHOOKS',),
         }),
         ('Custom Styles', {
             'fields': ('HIDE_HISTORY_WHEN_EMPTY', 'CUSTOM_STYLE_HEADER', 'CUSTOM_STYLE_HEADER_DISABLE_CORE',

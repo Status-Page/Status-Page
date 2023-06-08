@@ -197,6 +197,9 @@ class SubscriberManageWebhookListView(BaseView):
 
     def get(self, request, **kwargs):
         subscriber = Subscriber.get_by_management_key(**kwargs)
+        if not get_config().SITE_PUBLIC_WEBHOOKS:
+            messages.error(request, 'This feature is not enabled.')
+            return redirect('subscriber_manage', **kwargs)
 
         if not subscriber:
             messages.error(request, 'This Subscriber has not been found.')
@@ -217,6 +220,9 @@ class SubscriberManageWebhookListView(BaseView):
 
     def post(self, request, **kwargs):
         subscriber = Subscriber.get_by_management_key(kwargs.get('management_key'))
+        if not get_config().SITE_PUBLIC_WEBHOOKS:
+            messages.error(request, 'This feature is not enabled.')
+            return redirect('subscriber_manage', **kwargs)
 
         if not subscriber:
             messages.error(request, 'This Subscriber has not been found.')
@@ -234,6 +240,9 @@ class SubscriberManageWebhookCreateView(BaseView):
 
     def get(self, request, **kwargs):
         subscriber = Subscriber.get_by_management_key(**kwargs)
+        if not get_config().SITE_PUBLIC_WEBHOOKS:
+            messages.error(request, 'This feature is not enabled.')
+            return redirect('subscriber_manage', **kwargs)
 
         if not subscriber:
             messages.error(request, 'This Subscriber has not been found.')
@@ -256,6 +265,9 @@ class SubscriberManageWebhookCreateView(BaseView):
 
     def post(self, request, **kwargs):
         subscriber = Subscriber.get_by_management_key(kwargs.get('management_key'))
+        if not get_config().SITE_PUBLIC_WEBHOOKS:
+            messages.error(request, 'This feature is not enabled.')
+            return redirect('subscriber_manage', **kwargs)
 
         if not subscriber:
             messages.error(request, 'This Subscriber has not been found.')
@@ -301,6 +313,9 @@ class SubscriberManageWebhookEditView(BaseView):
     def get(self, request, **kwargs):
         subscriber = Subscriber.get_by_management_key(kwargs.get('management_key'))
         webhook = Webhook.objects.get(pk=kwargs.get('webhook'))
+        if not get_config().SITE_PUBLIC_WEBHOOKS:
+            messages.error(request, 'This feature is not enabled.')
+            return redirect('subscriber_manage', **kwargs)
 
         if not subscriber:
             messages.error(request, 'This Subscriber has not been found.')
@@ -325,6 +340,9 @@ class SubscriberManageWebhookEditView(BaseView):
     def post(self, request, **kwargs):
         subscriber = Subscriber.get_by_management_key(kwargs.get('management_key'))
         webhook = Webhook.objects.get(pk=kwargs.get('webhook'))
+        if not get_config().SITE_PUBLIC_WEBHOOKS:
+            messages.error(request, 'This feature is not enabled.')
+            return redirect('subscriber_manage', **kwargs)
 
         if not subscriber:
             messages.error(request, 'This Subscriber has not been found.')
@@ -363,6 +381,9 @@ class SubscriberManageWebhookDeleteView(BaseView):
     def get(self, request, **kwargs):
         subscriber = Subscriber.get_by_management_key(kwargs.get('management_key'))
         webhook = Webhook.objects.get(pk=kwargs.get('webhook'))
+        if not get_config().SITE_PUBLIC_WEBHOOKS:
+            messages.error(request, 'This feature is not enabled.')
+            return redirect('subscriber_manage', **kwargs)
 
         if not subscriber:
             messages.error(request, 'This Subscriber has not been found.')
@@ -384,6 +405,9 @@ class SubscriberManageWebhookDeleteView(BaseView):
     def post(self, request, **kwargs):
         subscriber = Subscriber.get_by_management_key(kwargs.get('management_key'))
         webhook = Webhook.objects.get(pk=kwargs.get('webhook'))
+        if not get_config().SITE_PUBLIC_WEBHOOKS:
+            messages.error(request, 'This feature is not enabled.')
+            return redirect('subscriber_manage', **kwargs)
 
         if not subscriber:
             messages.error(request, 'This Subscriber has not been found.')

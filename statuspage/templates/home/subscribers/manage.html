@@ -23,9 +23,11 @@
         <button type="submit" class="bg-indigo-500 hover:bg-indigo-600 text-white shadow px-4 py-2 rounded-md">Update</button>
       </div>
     </form>
-    <div>
-      <a href="{% url 'subscriber_manage_webhook_list' management_key=subscriber.management_key %}" class="bg-indigo-500 hover:bg-indigo-600 text-white shadow px-4 py-2 rounded-md" role="button">Webhooks</a>
-    </div>
+    {% if config.SITE_PUBLIC_WEBHOOKS %}
+      <div>
+        <a href="{% url 'subscriber_manage_webhook_list' management_key=subscriber.management_key %}" class="bg-indigo-500 hover:bg-indigo-600 text-white shadow px-4 py-2 rounded-md" role="button">Webhooks</a>
+      </div>
+    {% endif %}
   </div>
 </div>
 {% endblock %}
