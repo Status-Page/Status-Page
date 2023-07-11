@@ -19,7 +19,7 @@ mkdocs-material==9.1.15
 mkdocs==1.4.3
 mkdocstrings[python-legacy]==0.22.0
 netaddr==0.8.0
-phonenumbers==8.13.13
+phonenumbers==8.13.16
 psycopg2==2.9.6
 pysvg-py3==0.2.2.post3
 rq-scheduler==0.13.1
