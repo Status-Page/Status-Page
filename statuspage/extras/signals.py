@@ -1,5 +1,7 @@
 import logging
 
+from django.contrib.auth.models import AnonymousUser
+from subscribers.models import Subscriber
 from django.contrib.contenttypes.models import ContentType
 from django.db.models.signals import m2m_changed, post_save, pre_delete
 from django.dispatch import receiver, Signal
@@ -68,7 +70,12 @@ def handle_changed_object(sender, instance, **kwargs):
             )
         else:
             objectchange = instance.to_objectchange(action)
-            objectchange.user = request.user
+            if not isinstance(request.user, AnonymousUser):
+                objectchange.user = request.user
+            elif isinstance(instance, Subscriber):
+                objectchange.user_name = instance.email
+            else:
+                objectchange.user_name = 'anonymous'
             objectchange.request_id = request.id
             objectchange.save()
 
@@ -98,7 +105,12 @@ def handle_deleted_object(sender, instance, **kwargs):
         if hasattr(instance, 'snapshot') and not getattr(instance, '_prechange_snapshot', None):
             instance.snapshot()
         objectchange = instance.to_objectchange(ObjectChangeActionChoices.ACTION_DELETE)
-        objectchange.user = request.user
+        if not isinstance(request.user, AnonymousUser):
+            objectchange.user = request.user
+        elif isinstance(instance, Subscriber):
+            objectchange.user_name = instance.email
+        else:
+            objectchange.user_name = 'anonymous'
         objectchange.request_id = request.id
         objectchange.save()
 
