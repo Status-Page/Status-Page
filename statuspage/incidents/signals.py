@@ -14,7 +14,7 @@ def send_incident_notifications(sender, instance: Incident, **kwargs):
     logger = logging.getLogger('statuspage.incidents.signals')
     is_new = kwargs.get('created', False)
 
-    if is_new and instance.visibility:
+    if is_new and instance.visibility and instance.send_email:
         subscribers = Subscriber.objects.filter(incident_subscriptions=True)
         update = instance.updates.first()
 
@@ -41,7 +41,7 @@ def send_incident_update_notifications(sender, instance: IncidentUpdate, **kwarg
     is_new = kwargs.get('created', False)
     first_update = instance.created == instance.incident.created
 
-    if is_new and instance.incident.visibility and not first_update:
+    if is_new and instance.incident.visibility and instance.send_email and not first_update:
         subscribers = Subscriber.objects.filter(incident_subscriptions=True)
 
         for subscriber in subscribers:

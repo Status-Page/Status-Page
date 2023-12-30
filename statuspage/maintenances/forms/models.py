@@ -21,7 +21,7 @@ class MaintenanceForm(StatusPageModelForm):
             'end_automatically', 'components', 'created',
         )),
         ('Maintenance Update', (
-            'text',
+            'send_email', 'text',
         )),
     )
 
@@ -34,7 +34,7 @@ class MaintenanceForm(StatusPageModelForm):
         model = Maintenance
         fields = (
             'title', 'status', 'impact', 'visibility', 'scheduled_at', 'start_automatically', 'end_at',
-            'end_automatically', 'components', 'created',
+            'end_automatically', 'components', 'created', 'send_email',
         )
         widgets = {
             'status': StaticSelect(),
@@ -68,6 +68,7 @@ class MaintenanceForm(StatusPageModelForm):
                 update.created = maintenance.created
             else:
                 update.new_status = 'status' in self.changed_data
+            update.send_email = maintenance.send_email
             update.status = maintenance.status
             update.user = request.user
             update.save()
