@@ -22,7 +22,7 @@ class IncidentForm(StatusPageModelForm):
             'title', 'status', 'impact', 'visibility', 'components', 'created',
         )),
         ('Incident Update', (
-            'update_component_status', 'text',
+            'update_component_status', 'send_email', 'text',
         )),
     )
 
@@ -38,7 +38,7 @@ class IncidentForm(StatusPageModelForm):
     class Meta:
         model = Incident
         fields = (
-            'title', 'status', 'impact', 'visibility', 'components', 'created',
+            'title', 'status', 'impact', 'visibility', 'components', 'created', 'send_email',
         )
         widgets = {
             'status': StaticSelect(),
@@ -71,6 +71,7 @@ class IncidentForm(StatusPageModelForm):
                 update.created = incident.created
             else:
                 update.new_status = 'status' in self.changed_data
+            update.send_email = incident.send_email
             update.status = incident.status
             update.user = request.user
             update.save()
