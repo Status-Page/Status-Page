@@ -2,6 +2,7 @@ from django.db.models import Q
 
 from statuspage.views import generic
 from statuspage.views.generic.mixins import ActionsMixin
+from utilities.utils import render_jinja2
 from utilities.views import register_model_view, ViewTab
 from .models import Maintenance, MaintenanceUpdate, MaintenanceTemplate
 from . import tables
@@ -63,7 +64,7 @@ class MaintenanceCreateView(generic.ObjectEditView):
                 'end_automatically': selected_template.end_automatically,
                 'components': selected_template.components.all(),
                 'update_component_status': selected_template.update_component_status,
-                'text': selected_template.text,
+                'text': render_jinja2(template_code=selected_template.text, context={'maintenance': instance}),
             })
             return {
                 'form': form,
@@ -98,7 +99,7 @@ class MaintenanceEditView(generic.ObjectEditView):
                 'end_automatically': selected_template.end_automatically,
                 'components': selected_template.components.all(),
                 'update_component_status': selected_template.update_component_status,
-                'text': selected_template.text,
+                'text': render_jinja2(template_code=selected_template.text, context={'maintenance': instance}),
             })
             return {
                 'form': form,

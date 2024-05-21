@@ -1,12 +1,10 @@
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
-
-from components.models import Component
-from maintenances.choices import *
 from django.contrib.auth.models import User
 
-from subscribers.models import Subscriber
+from maintenances.choices import *
+from components.models import Component
 from utilities.models import IncidentMaintenanceModel, IncidentMaintenanceUpdateModel
 
 

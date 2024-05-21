@@ -1,9 +1,9 @@
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 from incidents.choices import *
-from django.contrib.auth.models import User
 from components.models import Component
 from utilities.models import IncidentMaintenanceModel, IncidentMaintenanceUpdateModel
 
