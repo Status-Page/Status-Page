@@ -266,6 +266,9 @@ LANGUAGES = [
     ('de', _('German')),
     ('en', _('English')),
 ]
+LOCALE_PATHS = (
+    f'{BASE_DIR}/locale',
+)
 
 WSGI_APPLICATION = 'statuspage.wsgi.application'
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')

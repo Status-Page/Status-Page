@@ -1,0 +1,249 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-05-23 00:42+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: components/choices.py:12
+msgid "Expand on Issue"
+msgstr ""
+
+#: components/choices.py:13
+msgid "Always Expanded"
+msgstr ""
+
+#: components/choices.py:28
+msgid "Unknown"
+msgstr ""
+
+#: components/choices.py:29
+msgid "Operational"
+msgstr ""
+
+#: components/choices.py:30
+msgid "Degraded Performance"
+msgstr ""
+
+#: components/choices.py:31
+msgid "Partial Outage"
+msgstr ""
+
+#: components/choices.py:32
+msgid "Major Outage"
+msgstr ""
+
+#: components/choices.py:33 maintenances/choices.py:27
+msgid "Maintenance"
+msgstr ""
+
+#: extras/filtersets.py:24
+msgid "Search"
+msgstr ""
+
+#: extras/forms/bulk_edit.py:43 extras/forms/filtersets.py:39
+msgid "HTTP method"
+msgstr ""
+
+#: extras/forms/bulk_edit.py:47
+msgid "Payload URL"
+msgstr ""
+
+#: extras/forms/bulk_edit.py:52
+msgid "SSL verification"
+msgstr ""
+
+#: extras/forms/bulk_edit.py:59
+msgid "CA file path"
+msgstr ""
+
+#: extras/forms/bulk_import.py:18
+msgid "One or more assigned object types"
+msgstr ""
+
+#: extras/forms/filtersets.py:34
+msgid "Object type"
+msgstr ""
+
+#: extras/forms/filtersets.py:52
+msgid "Object creations"
+msgstr ""
+
+#: extras/forms/filtersets.py:59
+msgid "Object updates"
+msgstr ""
+
+#: extras/forms/filtersets.py:66
+msgid "Object deletions"
+msgstr ""
+
+#: extras/forms/filtersets.py:79
+msgid "After"
+msgstr ""
+
+#: extras/forms/filtersets.py:84
+msgid "Before"
+msgstr ""
+
+#: extras/forms/filtersets.py:95
+msgid "User"
+msgstr ""
+
+#: extras/forms/filtersets.py:103
+msgid "Object Type"
+msgstr ""
+
+#: extras/models/models.py:40
+msgid "The object(s) to which this Webhook applies."
+msgstr ""
+
+#: extras/models/models.py:55
+msgid "Triggers when a matching object is created."
+msgstr ""
+
+#: extras/models/models.py:59
+msgid "Triggers when a matching object is updated."
+msgstr ""
+
+#: extras/models/models.py:63
+msgid "Triggers when a matching object is deleted."
+msgstr ""
+
+#: extras/models/models.py:68
+msgid ""
+"This URL will be called using the HTTP method defined when the webhook is "
+"called. Jinja2 template processing is supported with the same context as the "
+"request body."
+msgstr ""
+
+#: extras/models/models.py:84
+msgid ""
+"The complete list of official content types is available <a href=\"https://"
+"www.iana.org/assignments/media-types/media-types.xhtml\">here</a>."
+msgstr ""
+
+#: extras/models/models.py:89
+msgid ""
+"User-supplied HTTP headers to be sent with the request in addition to the "
+"HTTP content type. Headers should be defined in the format <code>Name: "
+"Value</code>. Jinja2 template processing is supported with the same context "
+"as the request body (below)."
+msgstr ""
+
+#: extras/models/models.py:95
+msgid ""
+"Jinja2 template for a custom request body. If blank, a JSON object "
+"representing the change will be included. Available context data includes: "
+"<code>event</code>, <code>model</code>, <code>timestamp</code>, "
+"<code>username</code>, <code>request_id</code>, and <code>data</code>."
+msgstr ""
+
+#: extras/models/models.py:102
+msgid ""
+"When provided, the request will include a 'X-Hook-Signature' header "
+"containing a HMAC hex digest of the payload body using the secret as the "
+"key. The secret is not transmitted in the request."
+msgstr ""
+
+#: extras/models/models.py:110
+msgid ""
+"A set of conditions which determine whether the webhook will be generated."
+msgstr ""
+
+#: extras/models/models.py:115
+msgid "Enable SSL certificate verification. Disable with caution!"
+msgstr ""
+
+#: extras/models/models.py:122
+msgid ""
+"The specific CA certificate file to use for SSL verification. Leave blank to "
+"use the system defaults."
+msgstr ""
+
+#: incidents/choices.py:14
+msgid "Investigating"
+msgstr ""
+
+#: incidents/choices.py:15
+msgid "Identified"
+msgstr ""
+
+#: incidents/choices.py:16
+msgid "Monitoring"
+msgstr ""
+
+#: incidents/choices.py:17
+msgid "Resolved"
+msgstr ""
+
+#: incidents/choices.py:30
+msgid "None"
+msgstr ""
+
+#: incidents/choices.py:31
+msgid "Minor"
+msgstr ""
+
+#: incidents/choices.py:32
+msgid "Major"
+msgstr ""
+
+#: incidents/choices.py:33
+msgid "Critical"
+msgstr ""
+
+#: maintenances/choices.py:14
+msgid "Scheduled"
+msgstr ""
+
+#: maintenances/choices.py:15
+msgid "In Progress"
+msgstr ""
+
+#: maintenances/choices.py:16
+msgid "Verifying"
+msgstr ""
+
+#: maintenances/choices.py:17
+msgid "Completed"
+msgstr ""
+
+#: statuspage/settings.py:266
+msgid "German"
+msgstr ""
+
+#: statuspage/settings.py:267
+msgid "English"
+msgstr ""
+
+#: statuspage/views/home.py:88
+msgid "Some systems are undergoing maintenance"
+msgstr ""
+
+#: statuspage/views/home.py:91
+msgid "There is a major system outage"
+msgstr ""
+
+#: statuspage/views/home.py:93
+msgid "There is a partial system outage"
+msgstr ""
+
+#: statuspage/views/home.py:96
+msgid "Some systems are having perfomance issues"
+msgstr ""
+
+#: statuspage/views/home.py:100
+msgid "All systems operational"
+msgstr ""
