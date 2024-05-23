@@ -2,137 +2,148 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
+# Translators:
+# Tobias Peltzer <tobias@peltzer.cloud>, 2024
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-05-23 00:42+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2024-05-22 22:52+0000\n"
+"Last-Translator: Tobias Peltzer <tobias@peltzer.cloud>, 2024\n"
+"Language-Team: German (https://app.transifex.com/status-page/teams/193043/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
 #: components/choices.py:12
 msgid "Expand on Issue"
-msgstr ""
+msgstr "Erweitern, sobald ein Problem gemeldet ist"
 
 #: components/choices.py:13
 msgid "Always Expanded"
-msgstr ""
+msgstr "Immer erweitert"
 
 #: components/choices.py:28
 msgid "Unknown"
-msgstr ""
+msgstr "Unbekannt"
 
 #: components/choices.py:29
 msgid "Operational"
-msgstr ""
+msgstr "Funktionsfähig"
 
 #: components/choices.py:30
 msgid "Degraded Performance"
-msgstr ""
+msgstr "Eingeschränkte Leistung"
 
 #: components/choices.py:31
 msgid "Partial Outage"
-msgstr ""
+msgstr "Teilweiser Ausfall"
 
 #: components/choices.py:32
 msgid "Major Outage"
-msgstr ""
+msgstr "Schwerer Ausfall"
 
 #: components/choices.py:33 maintenances/choices.py:27
 msgid "Maintenance"
-msgstr ""
+msgstr "Wartung"
 
 #: extras/filtersets.py:24
 msgid "Search"
-msgstr ""
+msgstr "Suche"
 
 #: extras/forms/bulk_edit.py:43 extras/forms/filtersets.py:39
 msgid "HTTP method"
-msgstr ""
+msgstr "HTTP Methode"
 
 #: extras/forms/bulk_edit.py:47
 msgid "Payload URL"
-msgstr ""
+msgstr "Payload-URL"
 
 #: extras/forms/bulk_edit.py:52
 msgid "SSL verification"
-msgstr ""
+msgstr "SSL Verifikation"
 
 #: extras/forms/bulk_edit.py:59
 msgid "CA file path"
-msgstr ""
+msgstr "Pfad zur CA Datei"
 
 #: extras/forms/bulk_import.py:18
 msgid "One or more assigned object types"
-msgstr ""
+msgstr "Ein oder mehr zugewiesene Objekt-Typen"
 
 #: extras/forms/filtersets.py:34
 msgid "Object type"
-msgstr ""
+msgstr "Objekt-Typ"
 
 #: extras/forms/filtersets.py:52
 msgid "Object creations"
-msgstr ""
+msgstr "Objekt Erstellungen"
 
 #: extras/forms/filtersets.py:59
 msgid "Object updates"
-msgstr ""
+msgstr "Objekt Aktualisierungen"
 
 #: extras/forms/filtersets.py:66
 msgid "Object deletions"
-msgstr ""
+msgstr "Objekt Löschungen"
 
 #: extras/forms/filtersets.py:79
 msgid "After"
-msgstr ""
+msgstr "Nach"
 
 #: extras/forms/filtersets.py:84
 msgid "Before"
-msgstr ""
+msgstr "Bevor"
 
 #: extras/forms/filtersets.py:95
 msgid "User"
-msgstr ""
+msgstr "Benutzer"
 
 #: extras/forms/filtersets.py:103
 msgid "Object Type"
-msgstr ""
+msgstr "Objekt-Typ"
 
 #: extras/models/models.py:40
 msgid "The object(s) to which this Webhook applies."
-msgstr ""
+msgstr "Die Objekte, auf die dieser Webhook zutrifft."
 
 #: extras/models/models.py:55
 msgid "Triggers when a matching object is created."
-msgstr ""
+msgstr "Wird ausgelöst, sobald ein zutreffendes Objekt erstellt wird."
 
 #: extras/models/models.py:59
 msgid "Triggers when a matching object is updated."
-msgstr ""
+msgstr "Wird ausgelöst, sobald ein zutreffendes Objekt aktualisiert wird."
 
 #: extras/models/models.py:63
 msgid "Triggers when a matching object is deleted."
-msgstr ""
+msgstr "Wird ausgelöst, sobald ein zutreffendes Objekt gelöscht wird."
 
 #: extras/models/models.py:68
 msgid ""
 "This URL will be called using the HTTP method defined when the webhook is "
-"called. Jinja2 template processing is supported with the same context as the "
-"request body."
+"called. Jinja2 template processing is supported with the same context as the"
+" request body."
 msgstr ""
+"Diese URL wird mit der HTTP-Methode aufgerufen, die beim Aufruf des Webhooks"
+" definiert wurde. Die Verarbeitung von Jinja2-Vorlagen wird mit demselben "
+"Kontext wie der Request Body unterstützt."
 
 #: extras/models/models.py:84
 msgid ""
-"The complete list of official content types is available <a href=\"https://"
-"www.iana.org/assignments/media-types/media-types.xhtml\">here</a>."
+"The complete list of official content types is available <a "
+"href=\"https://www.iana.org/assignments/media-types/media-"
+"types.xhtml\">here</a>."
 msgstr ""
+"Die komplette Liste der offiziellen Typen ist <a "
+"href=\"https://www.iana.org/assignments/media-types/media-"
+"types.xhtml\">hier</a> zu finden."
 
 #: extras/models/models.py:89
 msgid ""
@@ -141,6 +152,10 @@ msgid ""
 "Value</code>. Jinja2 template processing is supported with the same context "
 "as the request body (below)."
 msgstr ""
+"Vom Benutzer bereitgestellte HTTP-Header, die mit der Anfrage zusätzlich zum"
+" HTTP-Inhaltstyp gesendet werden. Die Header sollten im Format <code>Name: "
+"Wert</code>. Die Verarbeitung von Jinja2-Vorlagen wird mit demselben Kontext"
+" wie der Anfragekörper unterstützt (siehe unten)."
 
 #: extras/models/models.py:95
 msgid ""
@@ -149,6 +164,11 @@ msgid ""
 "<code>event</code>, <code>model</code>, <code>timestamp</code>, "
 "<code>username</code>, <code>request_id</code>, and <code>data</code>."
 msgstr ""
+"Jinja2-Vorlage für einen benutzerdefinierten Anfragekörper. Falls leer, wird"
+" ein JSON-Objekt eingefügt, das die Änderung darstellt. Verfügbare "
+"Kontextdaten sind: <code>event</code>, <code>model</code>, "
+"<code>timestamp</code>, <code>username</code>, <code>request_id</code> und "
+"<code>data</code>."
 
 #: extras/models/models.py:102
 msgid ""
@@ -156,94 +176,101 @@ msgid ""
 "containing a HMAC hex digest of the payload body using the secret as the "
 "key. The secret is not transmitted in the request."
 msgstr ""
+"Wenn dies der Fall ist, enthält die Anfrage einen „X-Hook-Signature“-Header "
+"mit einem HMAC-Hex-Digest des Nutzdatenkörpers unter Verwendung des Secrets "
+"als Schlüssel. Das Geheimnis wird nicht in der Anfrage übertragen."
 
 #: extras/models/models.py:110
 msgid ""
 "A set of conditions which determine whether the webhook will be generated."
 msgstr ""
+"Eine Reihe von Bedingungen, die bestimmen, ob der Webhook ausgelöst wird."
 
 #: extras/models/models.py:115
 msgid "Enable SSL certificate verification. Disable with caution!"
 msgstr ""
+"Aktivieren Sie die SSL-Zertifikatsüberprüfung. Mit Vorsicht deaktivieren!"
 
 #: extras/models/models.py:122
 msgid ""
-"The specific CA certificate file to use for SSL verification. Leave blank to "
-"use the system defaults."
+"The specific CA certificate file to use for SSL verification. Leave blank to"
+" use the system defaults."
 msgstr ""
+"Die spezifische CA-Zertifikatsdatei, die für die SSL-Verifizierung verwendet"
+" werden soll. Leer lassen, um die Systemvorgaben zu verwenden."
 
 #: incidents/choices.py:14
 msgid "Investigating"
-msgstr ""
+msgstr "Untersuchung"
 
 #: incidents/choices.py:15
 msgid "Identified"
-msgstr ""
+msgstr "Identifiziert"
 
 #: incidents/choices.py:16
 msgid "Monitoring"
-msgstr ""
+msgstr "Überwachung"
 
 #: incidents/choices.py:17
 msgid "Resolved"
-msgstr ""
+msgstr "Gelöst"
 
 #: incidents/choices.py:30
 msgid "None"
-msgstr ""
+msgstr "Keiner"
 
 #: incidents/choices.py:31
 msgid "Minor"
-msgstr ""
+msgstr "Geringfügig"
 
 #: incidents/choices.py:32
 msgid "Major"
-msgstr ""
+msgstr "Schwer"
 
 #: incidents/choices.py:33
 msgid "Critical"
-msgstr ""
+msgstr "Kritisch"
 
 #: maintenances/choices.py:14
 msgid "Scheduled"
-msgstr ""
+msgstr "Geplant"
 
 #: maintenances/choices.py:15
 msgid "In Progress"
-msgstr ""
+msgstr "In Bearbeitung"
 
 #: maintenances/choices.py:16
 msgid "Verifying"
-msgstr ""
+msgstr "Verifizierung"
 
 #: maintenances/choices.py:17
 msgid "Completed"
-msgstr ""
+msgstr "Fertiggestellt"
 
 #: statuspage/settings.py:266
 msgid "German"
-msgstr ""
+msgstr "Deutsch"
 
 #: statuspage/settings.py:267
 msgid "English"
-msgstr ""
+msgstr "Englisch"
 
 #: statuspage/views/home.py:88
 msgid "Some systems are undergoing maintenance"
-msgstr ""
+msgstr "Einige Systeme werden zur Zeit gewartet"
 
 #: statuspage/views/home.py:91
 msgid "There is a major system outage"
-msgstr ""
+msgstr "Es liegt ein größerer Systemausfall vor"
 
 #: statuspage/views/home.py:93
 msgid "There is a partial system outage"
-msgstr ""
+msgstr "Es liegt ein teilweiser Systemausfall vor"
 
 #: statuspage/views/home.py:96
 msgid "Some systems are having perfomance issues"
-msgstr ""
+msgstr "Einige Systeme haben Leistungsprobleme"
 
 #: statuspage/views/home.py:100
 msgid "All systems operational"
-msgstr ""
+msgstr "Alle Systeme sind funktionsfähig"
