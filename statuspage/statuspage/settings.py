@@ -263,8 +263,10 @@ USE_TZ = True
 USE_DEPRECATED_PYTZ = True
 
 LANGUAGES = [
-    ('de', _('German')),
     ('en', _('English')),
+    ('de', _('German')),
+    ('fr', _('French')),
+    ('es', _('Spanish')),
 ]
 LOCALE_PATHS = (
     f'{BASE_DIR}/locale',
