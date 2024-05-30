@@ -1,5 +1,9 @@
 # Status-Page v2.5
 
+## v2.5.1 (FUTURE)
+
+---
+
 ## v2.5.0 (2024-05-30)
 
 ### Features

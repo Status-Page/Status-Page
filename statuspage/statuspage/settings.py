@@ -9,7 +9,7 @@ from django.utils.translation import gettext_lazy as _
 from statuspage.config import PARAMS
 from statuspage.constants import RQ_QUEUE_HIGH, RQ_QUEUE_DEFAULT, RQ_QUEUE_LOW
 
-VERSION = '2.5.0'
+VERSION = '2.5.1-dev'
 
 HOSTNAME = platform.node()
 
