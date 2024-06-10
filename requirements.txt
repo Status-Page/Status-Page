@@ -25,4 +25,4 @@ pysvg-py3==0.2.2.post3
 rq-scheduler==0.13.1
 segno==1.6.1
 swagger-spec-validator==3.0.3
-typing_extensions==4.11.0
+typing_extensions==4.12.2
