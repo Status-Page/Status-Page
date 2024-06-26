@@ -12,7 +12,7 @@ django-rq==2.10.2
 django-tables2==2.7.0
 Django==4.2.13
 django-browser-reload==1.12.1
-djangorestframework==3.15.1
+djangorestframework==3.15.2
 drf-yasg==1.21.7
 gunicorn==22.0.0
 mkdocs-material==9.5.24
