@@ -1,6 +1,6 @@
 # Status-Page v2.5
 
-## v2.5.1 (FUTURE)
+## v2.5.1 (2024-10-30)
 
 ### Lifecycle Management
 * Bump all dependencies to latest versions
