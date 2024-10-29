@@ -12,7 +12,7 @@ Check out the following sections for installing Status-Page:
 | Dependency       | Minimum Version | Optional |
 |------------------|-----------------|----------|
 | Python           | 3.10            | no       |
-| PostgreSQL       | 10              | no       |
+| PostgreSQL       | 12              | no       |
 | Redis            | 4.0             | no       |
 | SMTP Mail Server | ---             | yes      |
 
