@@ -8,6 +8,9 @@
 ### Fixes
 * Use new material emoji logic for docs
 
+### Documentation
+* Update documentation for Postgres
+
 ---
 
 ## v2.5.0 (2024-05-30)

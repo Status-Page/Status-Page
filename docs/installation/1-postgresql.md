@@ -2,8 +2,8 @@
 
 If you already have a PostgreSQL database set up, skip to [the next section](2-redis.md).
 
-!!! warning "PostgreSQL 10 or later required"
-    Status-Page requires PostgreSQL 10 or later. Please note that other relational databases are **not** supported.
+!!! warning "PostgreSQL 12 or later required"
+    Status-Page requires PostgreSQL 12 or later. Please note that other relational databases are **not** supported.
 
 ## Installation
 
@@ -35,7 +35,7 @@ sudo systemctl start postgresql
 sudo systemctl enable postgresql
 ```
 
-Before continuing, verify that you have installed PostgreSQL 10 or later:
+Before continuing, verify that you have installed PostgreSQL 12 or later:
 
 ```no-highlight
 psql -V
@@ -52,8 +52,8 @@ sudo -u postgres psql
 Within the shell, enter the following commands to create the database and user (role), substituting your own value for the password:
 
 ```postgresql
-CREATE DATABASE statuspage;
 CREATE USER statuspage WITH PASSWORD 'abcdefgh123456';
+CREATE DATABASE statuspage OWNER statuspage;
 GRANT ALL PRIVILEGES ON DATABASE statuspage TO statuspage;
 ```
 
