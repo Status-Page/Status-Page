@@ -34,15 +34,11 @@ body:
         4. See error
     validations:
       required: true
-  - type: dropdown
+  - type: textarea
     id: version
     attributes:
       label: Version
       description: What version of our software are you running?
-      options:
-        - "> 2.0.0 (Preview)"
-        - "= 2.0.0 (Stable)"
-        - "< 2.0.0 (Old PHP Version)"
     validations:
       required: true
   - type: textarea
