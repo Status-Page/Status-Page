@@ -5,6 +5,9 @@
 ### Lifecycle Management
 * Bump all dependencies to latest versions
 
+### Fixes
+* Use new material emoji logic for docs
+
 ---
 
 ## v2.5.0 (2024-05-30)
