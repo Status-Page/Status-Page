@@ -2,6 +2,9 @@
 
 ## v2.5.1 (FUTURE)
 
+### Lifecycle Management
+* Bump all dependencies to latest versions
+
 ---
 
 ## v2.5.0 (2024-05-30)
