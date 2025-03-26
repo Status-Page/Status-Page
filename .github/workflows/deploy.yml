@@ -55,8 +55,9 @@ jobs:
             echo "Deploying to $ip"
             ssh -o StrictHostKeyChecking=no \
               -i ~/.ssh/deploy_key \
-              -o ProxyJump=${{ secrets.BASTION_USER }}@ \
-              ${{ secrets.BASTION_IP }} \
+              - name: Echo ProxyJump string
+                run: echo "ProxyJump=${{ secrets.BASTION_USER }}@${{ secrets.BASTION_IP }}"
+
               ${{ secrets.SERVER_USER }}@$ip \
               'cd /opt/status-page && \
                if [ ! -d .git ]; then \
