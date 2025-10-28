@@ -1,0 +1,40 @@
+{
+    "id": null,
+    "title": "Node Monitoring",
+    "time": {
+      "from": "now-6h",
+      "to": "now"
+    },
+    "panels": [
+      {
+        "title": "CPU Usage",
+        "type": "timeseries",
+        "targets": [
+          {
+            "expr": "instance:cpu_usage_percent",
+            "format": "time_series"
+          }
+        ]
+      },
+      {
+        "title": "Memory Available (MB)",
+        "type": "timeseries",
+        "targets": [
+          {
+            "expr": "instance:memory_available_mb",
+            "format": "time_series"
+          }
+        ]
+      },
+      {
+        "title": "Disk Usage (%)",
+        "type": "timeseries",
+        "targets": [
+          {
+            "expr": "instance:disk_usage_percent",
+            "format": "time_series"
+          }
+        ]
+      }
+    ]
+  }

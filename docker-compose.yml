@@ -1,0 +1,61 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:14
+    container_name: postgres-db
+    restart: always
+    expose:
+      - "5432"
+    environment:
+      POSTGRES_USER: statuspage
+      POSTGRES_PASSWORD: securepassword
+      POSTGRES_DB: statuspage
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - my_network
+
+  redis:
+    image: redis:6
+    container_name: redis-cache
+    restart: always
+    expose:
+      - "6379"
+    networks:
+      - my_network
+
+  app:
+    build: .
+    container_name: statuspage-app
+    restart: always
+    depends_on:
+      - db
+      - redis
+    environment:
+      - DATABASE_URL=postgresql://statuspage:securepassword@db:5432/statuspage
+      - REDIS_URL=redis://redis:6379/0
+    ports:
+      - "8000:8000"
+    networks:
+      - my_network
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx-proxy
+    restart: always
+    depends_on:
+      - app
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    networks:
+      - my_network
+
+volumes:
+  postgres_data:
+
+networks:
+  my_network:

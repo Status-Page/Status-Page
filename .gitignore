@@ -17,3 +17,9 @@ gunicorn.py
 .coverage
 .vscode
 __pycache__
+# .gitignore
+terraform.tfstate
+terraform.tfstate.backup
+.terraform/
+.env
+

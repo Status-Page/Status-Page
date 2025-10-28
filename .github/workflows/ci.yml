@@ -1,0 +1,37 @@
+---
+name: CI for Django with Docker
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run Docker Compose
+        env:
+          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+          POSTGRES_HOST: ${{ secrets.POSTGRES_HOST }}
+        run: |
+          docker compose -f docker-compose.yml up -d
+
+      - name: Wait for services to be ready
+        run: sleep 20
+
+      - name: Run Django tests
+        run: docker compose exec app python statuspage/manage.py test
+
+      - name: Wait for server to start
+        run: sleep 10
+
+      - name: Check server is up (localhost:8000)
+        run: curl -I http://localhost:8000

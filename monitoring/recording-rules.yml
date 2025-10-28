@@ -1,0 +1,18 @@
+groups:
+  - name: memory.rules
+    interval: 30s
+    rules:
+      - record: instance:memory_available_mb
+        expr: node_memory_MemAvailable_bytes / 1024 / 1024
+
+  - name: cpu.rules
+    interval: 30s
+    rules:
+      - record: instance:cpu_usage_percent
+        expr: 100 - (avg by (instance) (rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100)
+
+  - name: disk.rules
+    interval: 30s
+    rules:
+      - record: instance:disk_usage_percent
+        expr: (1 - (node_filesystem_avail_bytes{mountpoint="/"} / node_filesystem_size_bytes{mountpoint="/"})) * 100
